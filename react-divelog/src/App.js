@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Layout/Header';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -13,6 +13,9 @@ import i18next from 'i18next';
 import common_de from "./translations/de/common.json";
 import common_en from "./translations/en/common.json";
 import common_pl from './translations/pl/common.json';
+
+import Header from './components/Layout/Header';
+import LogIn from './components/LogIn';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -37,7 +40,7 @@ function App() {
         <div className="App">
           <I18nextProvider i18n={i18next}>
             <Header />
-            {/* <Route exact path="/" component={Sudoku} /> */}
+            <Route exact path="/login" component={LogIn} />
           </I18nextProvider>
         </div>
       </Router>

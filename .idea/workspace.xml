@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/react-divelog/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -301,12 +300,12 @@
       <workItem from="1564609479221" duration="1733000" />
       <workItem from="1564645374637" duration="70000" />
       <workItem from="1564645449535" duration="386000" />
-      <workItem from="1564645954924" duration="3744000" />
+      <workItem from="1564645954924" duration="4339000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28439000" />
+    <option name="totallyTimeSpent" value="29034000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />

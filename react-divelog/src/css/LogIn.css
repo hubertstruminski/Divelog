@@ -1,0 +1,43 @@
+.container {
+    background-image: url("../img/login-city.jpg");
+    background-size: 100% 100%;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -1;
+    min-width: 100%;
+    display: block;
+}
+
+.form-container {
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+}
+
+.absolute-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.form-size {
+    width: 20%;
+    height: 40%;
+}
+
+.logo-space {
+    margin-top: 1.5%;
+}
+
+.logo-text {
+    font-size: 1.4vw;
+    letter-spacing: 2.5px;
+}
+
+.logo {
+    width: 60%;
+    height: 40%;
+}
