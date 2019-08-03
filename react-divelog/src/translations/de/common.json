@@ -4,5 +4,9 @@
         "guide": "Führung",
         "aboutMe": "Über mich",
         "contact": "Kontakt"
+    },
+    "login": {
+        "login": "Einloggen",
+        "facebook-btn": "Einloggen mit facebook"
     }
 }

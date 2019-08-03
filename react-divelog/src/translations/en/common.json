@@ -4,5 +4,9 @@
         "guide": "Guide",
         "aboutMe": "About me",
         "contact": "Contact"
+    },
+    "login": {
+        "login": "Log In",
+        "facebook-btn": "Log in with facebook"
     }
 }
