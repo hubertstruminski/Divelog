@@ -4,6 +4,16 @@ import fbLogo from '../img/fb-logo.png';
 import logo from '../img/logo.png';
 
 class LogIn extends React.Component {
+    constructor() {
+        super();
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit() {
+
+    }
+
     render() {
         return(
             <div className="container of-auto">
@@ -17,10 +27,10 @@ class LogIn extends React.Component {
                     <span className="logo-text">Divelog</span>
                     <br />
                     <br />
-                    <button class="ui facebook button">
-                        <i class="facebook icon" />
-                        Log in with Facebook
-                    </button>        
+                    <button className="btn-fb" onCLick={this.handleSubmit}>
+                        <img src={fbLogo} alt="facebook" className="float fb-img" />
+                        <div className="float block-text-fb">Log in with Facebook</div>
+                    </button>     
                 </div>
             </div>
         );
