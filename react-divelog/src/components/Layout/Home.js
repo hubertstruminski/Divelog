@@ -72,6 +72,18 @@ class Home extends React.Component {
                     </div>
                     <div className="item4"></div>
                 </div>
+
+                <div className="grid-container maps-center">
+                    <div className="fb-item1">
+                        <h1 className="display-4">
+                            {this.props.t("home.maps")}
+                        </h1>
+                        <p className="fb-pgh">
+                            {this.props.t("home.maps-paragraph")}
+                        </p>
+                    </div>
+                    <div className="item6"></div>
+                </div>
             </div>
         );
     }
