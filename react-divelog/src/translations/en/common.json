@@ -3,10 +3,20 @@
         "home": "Home",
         "guide": "Guide",
         "aboutMe": "About me",
+        "donate": "Donate",
         "contact": "Contact"
     },
     "login": {
         "login": "Log In",
         "facebook-btn": "Log in with facebook"
+    },
+    "home": {
+        "built": "Built for divers",
+        "step": "Step into the depths of the ocean.",
+        "let": "Join to us!",
+        "fb-title": "Facebook interface",
+        "fb-paragraph": "Share your impressions with the dive world stay in touch with other divers thanks to Facebook API. Talk with divers, add posts, share photos, comment and participate in groups. Our interface is completely secure.",
+        "logbook": "Logbook",
+        "logbook-paragraph": "Stay updated. No worries, all you need is internet access and you don't have to worry about where to save your next dive. Divelog supports the storage of dive data in our database"
     }
 }

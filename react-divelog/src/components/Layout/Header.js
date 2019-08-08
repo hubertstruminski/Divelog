@@ -53,6 +53,11 @@ class Header extends React.Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
+                                <Link to="/donate" className="nav-link">
+                                    {this.props.t("header.donate")}
+                                </Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link to="/home" className="nav-link">
                                     {this.props.t("header.contact")}
                                 </Link>

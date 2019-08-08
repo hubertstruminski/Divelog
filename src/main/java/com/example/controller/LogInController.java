@@ -62,11 +62,10 @@ public class LogInController {
         System.out.println(tokenValue);
 
         System.out.println(user.getName());
-        Object decodedDetails = details.getDecodedDetails();
-        System.out.println(decodedDetails.toString());
 
         OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) user;
-        OAuth2Request oAuth2Request = oAuth2Authentication.getOAuth2Request();
+        boolean authenticated = oAuth2Authentication.getUserAuthentication().isAuthenticated();
+        System.out.println(authenticated);
         return user;
     }
 }

@@ -1,0 +1,93 @@
+.home-background {
+    background-image: url("../img/home-diver.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 800px;
+    margin-bottom: 350px;
+}
+
+.home-container {
+    height: 1800px;
+}
+
+.shadow-jumbotron {
+    -webkit-box-shadow: 0px 5px 14px 5px rgba(122,117,122,1);
+    -moz-box-shadow: 0px 5px 14px 5px rgba(122,117,122,1);
+    box-shadow: 0px 5px 14px 5px rgba(122,117,122,1);
+}
+
+.font-color-jumbotron {
+    color: white;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 30px 100px;
+}
+
+.btn-container {
+    margin-top: 100px;
+    max-width: 60%;
+}
+
+.item1-margin {
+    margin-top: 100px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 60%;
+    height: 350px;
+
+    -webkit-box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
+    -moz-box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
+    box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
+}
+
+.fb-center {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -25%);
+    transform: translate(-50%, -25%);
+}
+
+.fb-item1 {
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.fb-item2 {
+    background-image: url("../img/home-facebook.jpg");
+    background-size: 150% 150%;
+    background-repeat: no-repeat;
+}
+
+.fb-pgh {
+    font-size: 1.4vw;
+    text-align: justify;
+    margin-top: 6%;
+}
+
+.book-center {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, 135%);
+    transform: translate(-50%, 135%);
+}
+
+.item4 {
+    background-image: url("../img/divebook.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.maps-center {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, 295%);
+    transform: translate(-50%, 295%);
+}
+
+

@@ -3,10 +3,20 @@
         "home": "Homepage",
         "guide": "Führung",
         "aboutMe": "Über mich",
+        "donate": "Schenken",
         "contact": "Kontakt"
     },
     "login": {
         "login": "Einloggen",
         "facebook-btn": "Einloggen mit facebook"
+    },
+    "home": {
+        "built": "Gebaut für Taucher",
+        "step": "Treten Sie ein in die Tiefen des Ozeans",
+        "let": "Trete ein!",
+        "fb-title": "Facebook-Schnittstelle",
+        "fb-paragraph": "Teile deine Eindrücke mit der Tauchwelt und bleibe dank Facebook API mit anderen Tauchern in Kontakt. Beiträge hinzufügen, Fotos teilen, Kommentare abgeben und an Gruppen teilnehmen. Mit Freunden reden. Unsere Schnittstelle ist absolut sicher.",
+        "logbook": "Logbuch",
+        "logbook-paragraph": "Bleiben Sie auf dem Laufenden. Keine Sorge, alles was Sie brauchen ist ein Internetzugang und Sie müssen sich keine Sorgen machen, wo Sie Ihren nächsten Tauchgang speichern können. Divelog unterstützt die Speicherung von Tauchdaten in unserer Datenbank."
     }
 }

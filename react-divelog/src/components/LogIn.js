@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/LogIn.css';
-import fbLogo from '../img/fb-logo.png';
 import logo from '../img/logo.png';
 import { withTranslation } from 'react-i18next';
 
@@ -17,7 +16,7 @@ class LogIn extends React.Component {
 
     render() {
         return(
-            <div className="container of-auto">
+            <div className="login-container of-auto">
                 <div className="form-container absolute-center form-size">
                 </div>
                 <div className="form-size absolute-center logo-space">
@@ -30,12 +29,10 @@ class LogIn extends React.Component {
                     <span className="logo-text">Divelog</span>
                     <br />
                     <br />
-                    <button className="btn-fb" onCLick={this.handleSubmit}>
-                        <img src={fbLogo} alt="facebook" className="float fb-img" />
-                        <div className="float block-text-fb">
-                            {this.props.t("login.facebook-btn")}
-                        </div>
-                    </button>     
+                    <button type="button" class="btn btn-lg btn-fb" style={{color: 'white'}}>
+                        <i class="fab fa-facebook-f pr-1"></i> 
+                        {this.props.t("login.facebook-btn")}
+                    </button>
                 </div>
             </div>
         );

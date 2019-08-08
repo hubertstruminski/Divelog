@@ -16,6 +16,7 @@ import common_pl from './translations/pl/common.json';
 
 import Header from './components/Layout/Header';
 import LogIn from './components/LogIn';
+import Home from './components/Layout/Home';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -40,6 +41,7 @@ function App() {
         <div className="App">
           <I18nextProvider i18n={i18next}>
             <Header />
+            <Route exact path="/home" component={Home} />
             <Route exact path="/login" component={LogIn} />
           </I18nextProvider>
         </div>

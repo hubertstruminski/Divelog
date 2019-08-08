@@ -3,10 +3,20 @@
         "home": "Strona główna",
         "guide": "Przewodnik",
         "aboutMe": "O mnie",
+        "donate": "Darowizna",
         "contact": "Kontakt"
     },
     "login": {
         "login": "Zaloguj się",
         "facebook-btn": "Zaloguj się z facebook"
+    },
+    "home": {
+        "built": "Stworzone dla nurków",
+        "step": "Wejdź w otchłań oceanu",
+        "let": "Dołącz do nas!",
+        "fb-title": "Interfejs Facebooka",
+        "fb-paragraph": "Dziel się wrażeniami ze światem nurkowym pozostajac w ciągłym kontakcie z innymi nurkami dzięki Facebook API. Rozmawiaj z nurkami, dodawaj posty, dziel się zdjęciami, komentuj i uczestnicz w grupach. Nasz interfejs jest w pełni bezpieczny.",
+        "logbook": "Logbook",
+        "logbook-paragraph": "Bądź na bieżąco. Żadnych obaw, wystarczy dostęp do internetu i nie musisz się martwić o to gdzie zapisać swoje kolejne nurkowanie. Divelog wspiera przechowywanie danych o nurkowaniach w naszej bazie danych."
     }
 }
