@@ -17,8 +17,14 @@
         "fb-title": "Interfejs Facebooka",
         "fb-paragraph": "Dziel się wrażeniami ze światem nurkowym pozostajac w ciągłym kontakcie z innymi nurkami dzięki Facebook API. Rozmawiaj z nurkami, dodawaj posty, dziel się zdjęciami, komentuj i uczestnicz w grupach. Nasz interfejs jest w pełni bezpieczny.",
         "logbook": "Logbook",
-        "logbook-paragraph": "Bądź na bieżąco. Żadnych obaw, wystarczy dostęp do internetu i nie musisz się martwić o to gdzie zapisać swoje kolejne nurkowanie. Divelog wspiera przechowywanie danych o nurkowaniach w naszej bazie danych.",
+        "logbook-paragraph": "Bądź na bieżąco. Żadnych obaw, wystarczy dostęp do internetu i nie musisz się martwić o to gdzie zapisać swoje kolejne nurkowanie. Divelog wspiera przechowywanie danych o nurkowaniach w naszej bazie danych. Możesz także wygenerować dynamiczny PDF.",
         "maps": "Mapy Google",
-        "maps-paragraph": "Divelog pozwala na oznaczanie lokalizacji na mapach od Google. Już dziś sprawdź swoją historię lokalizacji nurkowań i podziel się piękną mapą z resztą świata nurkowego."
+        "maps-paragraph": "Divelog pozwala na oznaczanie lokalizacji na mapach od Google. Już dziś sprawdź swoją historię lokalizacji nurkowań i podziel się piękną mapą z resztą świata nurkowego.",
+        "computer": "Komputer nurkowy",
+        "computer-paragraph": "Divelog pozwala na tworzenie planu nurkowania. Zaloguj się i podaj wszystkie wymagane dane, a otrzymasz w pełni kompleksowy plan nurkowania. Możesz także wygenerować dynamiczny PDF.",
+        "progress": "Funkcjonalność w trakcie...",
+        "forum": "Forum",
+        "forum-paragraph": "Jeżeli masz ważna informację do przekazania światu nurkowemu możesz skorzystać z dostępnego forum, które jest widoczne tylko dla użytkowników. Dziel się przeżyciami z większym gronem użytkowników.",
+        "footer": "Prawo autorskie. www.divelog.com. Wszelkie prawa zastrzeżone."
     }
 }

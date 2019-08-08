@@ -17,8 +17,14 @@
         "fb-title": "Facebook interface",
         "fb-paragraph": "Share your impressions with the dive world stay in touch with other divers thanks to Facebook API. Talk with divers, add posts, share photos, comment and participate in groups. Our interface is completely secure.",
         "logbook": "Logbook",
-        "logbook-paragraph": "Stay updated. No worries, all you need is internet access and you don't have to worry about where to save your next dive. Divelog supports the storage of dive data in our database.",
+        "logbook-paragraph": "Stay updated. No worries, all you need is internet access and you don't have to worry about where to save your next dive. Divelog supports the storage of dive data in our database. You can also generate dynamic PDF.",
         "maps": "Google maps",
-        "maps-paragraph": "Divelog allows you to mark locations on maps from Google. Check your dive location history today and share this beautiful map with the rest of the dive world."
+        "maps-paragraph": "Divelog allows you to mark locations on maps from Google. Check your dive location history today and share this beautiful map with the rest of the dive world.",
+        "computer": "Dive computer",
+        "computer-paragraph": "Divelog allows you to create a dive plan. Log in and provide all the required data and you will receive a fully comprehensive diving plan. You can also generate dynamic PDF.",
+        "progress": "The feature in progress...",
+        "forum": "Forum",
+        "forum-paragraph": "If you have important information to provide to the dive world, you can use the available forum, which is visible only to users. Share your experiences with a larger group of users.",
+        "footer": "Copyright. www.divelog.com. All rights reserved."
     }
 }

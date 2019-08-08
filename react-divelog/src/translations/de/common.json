@@ -17,8 +17,14 @@
         "fb-title": "Facebook-Schnittstelle",
         "fb-paragraph": "Teile deine Eindrücke mit der Tauchwelt und bleibe dank Facebook API mit anderen Tauchern in Kontakt. Beiträge hinzufügen, Fotos teilen, Kommentare abgeben und an Gruppen teilnehmen. Mit Freunden reden. Unsere Schnittstelle ist absolut sicher.",
         "logbook": "Logbuch",
-        "logbook-paragraph": "Bleiben Sie auf dem Laufenden. Keine Sorge, alles was Sie brauchen ist ein Internetzugang und Sie müssen sich keine Sorgen machen, wo Sie Ihren nächsten Tauchgang speichern können. Divelog unterstützt die Speicherung von Tauchdaten in unserer Datenbank.",
+        "logbook-paragraph": "Bleiben Sie auf dem Laufenden. Keine Sorge, alles was Sie brauchen ist ein Internetzugang und Sie müssen sich keine Sorgen machen, wo Sie Ihren nächsten Tauchgang speichern können. Divelog unterstützt die Speicherung von Tauchdaten in unserer Datenbank. Sie können auch dynamische PDF-Dateien erstellen.",
         "maps": "Google Karten",
-        "maps-paragraph": "Mit Divelog können Sie Orte auf Karten von Google markieren. Überprüfen Sie noch heute Ihren Tauchstandortverlauf und teilen Sie eine wunderschöne Karte mit dem Rest der Tauchwelt."
+        "maps-paragraph": "Mit Divelog können Sie Orte auf Karten von Google markieren. Überprüfen Sie noch heute Ihren Tauchstandortverlauf und teilen Sie eine wunderschöne Karte mit dem Rest der Tauchwelt.",
+        "computer": "Tauchcomputer",
+        "computer-paragraph": "Mit Divelog können Sie einen Tauchplan erstellen. Loggen Sie sich ein und geben Sie alle erforderlichen Daten ein und Sie erhalten einen vollständigen Tauchplan. Sie können auch dynamische PDF-Dateien erstellen.",
+        "progress": "Die Funktion in Bearbeitung...",
+        "forum": "Forum",
+        "forum-paragraph": "Wenn Sie wichtige Informationen für die Tauchwelt haben, können Sie das verfügbare Forum verwenden, das nur für Benutzer sichtbar ist. Teilen Sie Ihre Erfahrungen mit einer größeren Gruppe von Benutzern.",
+        "footer": "Copyright. www.divelog.com. Alle rechte vorbehalten."
     }
 }

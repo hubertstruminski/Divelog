@@ -7,7 +7,7 @@
 }
 
 .home-container {
-    height: 2700px;
+    height: 3700px;
 }
 
 .shadow-jumbotron {
@@ -39,7 +39,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     width: 60%;
-    height: 350px;
+    height: 420px;
 
     -webkit-box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
     -moz-box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
@@ -60,7 +60,7 @@
 
 .fb-item2 {
     background-image: url("../img/home-facebook.jpg");
-    background-size: 150% 150%;
+    background-size: 160% 160%;
     background-repeat: no-repeat;
 }
 
@@ -94,6 +94,49 @@
     background-image: url("../img/map.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+
+.computer-center {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, 455%);
+    transform: translate(-50%, 455%);
+}
+
+.item8 {
+    background-image: url("../img/home-computer.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.forum-center {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, 615%);
+    transform: translate(-50%, 615%);
+}
+
+.item10 {
+    background-image: url("../img/home-forum.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.footer {
+    position: absolute;
+    top: 450%;
+
+    width: 100%;
+    height: 5%;
+    background-color: #363738;
+    color: white;
+    font-size: 1.5vw;
+}
+
+.footer-shadow {
+    -webkit-box-shadow: 0px -5px 15px 0px rgba(145,146,148,1);
+    -moz-box-shadow: 0px -5px 15px 0px rgba(145,146,148,1);
+    box-shadow: 0px -5px 15px 0px rgba(145,146,148,1);
 }
 
 

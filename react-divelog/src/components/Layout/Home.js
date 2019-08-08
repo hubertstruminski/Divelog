@@ -84,6 +84,38 @@ class Home extends React.Component {
                     </div>
                     <div className="item6"></div>
                 </div>
+
+                <div className="grid-container computer-center">
+                    <div className="fb-item1">
+                        <h1 className="display-4">
+                            {this.props.t("home.computer")}
+                            <br />
+                            <span style={{color: 'red', fontSize: '1.3vw', fontWeight: '800'}}>
+                                {this.props.t("home.progress")}
+                            </span>
+                        </h1>
+                        <p className="fb-pgh">
+                            {this.props.t("home.computer-paragraph")}
+                        </p>
+                    </div>
+                    <div className="item8"></div>
+                </div>
+
+                <div className="grid-container forum-center">
+                    <div className="fb-item1">
+                        <h1 className="display-4">
+                            {this.props.t("home.forum")}
+                        </h1>
+                        <p className="fb-pgh">
+                            {this.props.t("home.forum-paragraph")}
+                        </p>
+                    </div>
+                    <div className="item10"></div>
+                </div>
+
+                <div className="footer footer-shadow">
+                    &copy; {this.props.t("home.footer")}
+                </div>
             </div>
         );
     }
