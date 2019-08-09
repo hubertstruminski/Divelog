@@ -27,17 +27,17 @@ class Home extends React.Component {
                 <div className="jumbotron jumbotron-fluid home-background shadow-jumbotron">
                     <div className="home-grid">
                         <div className="home-grid-item item1-margin">
-                        <h1 className="display-3 font-color-jumbotron">
+                        <h1 className="font-size-jumbotron-1 font-color-jumbotron">
                             {this.props.t("home.built")}
                         </h1>
-                        <p className="lead font-color-jumbotron">
+                        <p className="font-size-jumbotron-2 font-color-jumbotron">
                             {this.props.t("home.step")}
                         </p>
                         </div>
                         <div className="home-grid-item"></div>
                         <div className="home-grid-item">
                             <div className="btn-container">
-                            <h1 className="display-3 font-color-jumbotron">
+                            <h1 className="font-size-jumbotron-1 font-color-jumbotron">
                                 {this.props.t("home.let")}
                             </h1>
                                 <button type="button" class="btn btn-lg btn-fb" style={{color: 'white'}}>
@@ -51,7 +51,7 @@ class Home extends React.Component {
 
                 <div className="grid-container fb-center">
                     <div className="fb-item1">
-                        <h1 className="display-4">
+                        <h1 className="font-size-grid-1">
                             {this.props.t("home.fb-title")}
                         </h1>
                         <p className="fb-pgh">
@@ -63,7 +63,7 @@ class Home extends React.Component {
 
                 <div className="grid-container book-center">
                     <div className="fb-item1">
-                        <h1 className="display-4">
+                        <h1 className="font-size-grid-1">
                             {this.props.t("home.logbook")}
                         </h1>
                         <p className="fb-pgh">
@@ -75,7 +75,7 @@ class Home extends React.Component {
 
                 <div className="grid-container maps-center">
                     <div className="fb-item1">
-                        <h1 className="display-4">
+                        <h1 className="font-size-grid-1">
                             {this.props.t("home.maps")}
                         </h1>
                         <p className="fb-pgh">
@@ -87,7 +87,7 @@ class Home extends React.Component {
 
                 <div className="grid-container computer-center">
                     <div className="fb-item1">
-                        <h1 className="display-4">
+                        <h1 className="font-size-grid-1">
                             {this.props.t("home.computer")}
                             <br />
                             <span style={{color: 'red', fontSize: '1.3vw', fontWeight: '800'}}>
@@ -103,7 +103,7 @@ class Home extends React.Component {
 
                 <div className="grid-container forum-center">
                     <div className="fb-item1">
-                        <h1 className="display-4">
+                        <h1 className="font-size-grid-1">
                             {this.props.t("home.forum")}
                         </h1>
                         <p className="fb-pgh">
