@@ -58,7 +58,7 @@ class Header extends React.Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/home" className="nav-link">
+                                <Link to="/contact" className="nav-link">
                                     {this.props.t("header.contact")}
                                 </Link>
                             </li>
