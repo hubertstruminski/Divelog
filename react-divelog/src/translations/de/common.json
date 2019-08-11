@@ -37,5 +37,17 @@
         "title-1": "Spenden",
         "paragraph-1": "Ich freue mich sehr, dass Sie meine Arbeit nutzen. Diese Bewerbung ist für mich aufgrund meines Berufs eine Herausforderung, aber um eine solche Bewerbung zu führen, benötigen Sie viel Geld. Vielen Dank im Voraus für das gesamte Geld, das für die Entwicklung der Bewerbung bereitgestellt wurde.",
         "button-title": "Klicken Sie auf die Schaltfläche unten, um zu spenden"
+    },
+    "contact": {
+        "jumbotron": "Wenden Sie sich an den Divelog-Support",
+        "contact-title": "Kontakt",
+        "contact-paragraph": "Mit dem folgenden Formular können Sie die Divelog-Administration kontaktieren. Wenn Sie Fragen oder Anregungen haben, stehen wir Ihnen gerne zur Verfügung und sind offen für Anregungen. Technische Probleme können auch über das Formular gemeldet werden.",
+        "form-title": "Kontakt Formular",
+        "form": {
+            "email": "E-Mail-Addresse",
+            "message": "Nachricht",
+            "textarea": "Schreiben Sie hier Ihre Nachricht",
+            "button": "Nachricht senden"
+        }
     }
 }

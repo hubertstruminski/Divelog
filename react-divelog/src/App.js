@@ -19,6 +19,7 @@ import LogIn from './components/LogIn';
 import Home from './components/Layout/Home';
 import AboutMe from './components/Layout/AboutMe';
 import Donate from './components/Layout/Donate';
+import Contact from './components/Layout/Contact';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/home" component={Home} />
             <Route exact path="/about" component={AboutMe} />
             <Route exact path="/donate" component={Donate} />
+            <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={LogIn} />
           </I18nextProvider>
         </div>

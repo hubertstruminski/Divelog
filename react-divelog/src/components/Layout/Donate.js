@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../css/Donate.css';
 import '../../css/Home.css';
-import seaImage from '../../img/donate/sea.jpg';
 import { withTranslation } from 'react-i18next';
 
 class Donate extends React.Component {

@@ -37,5 +37,17 @@
         "title-1": "Darowizny",
         "paragraph-1": "Jest mi niezmiernie miło, że Państwo korzystacie z mojej twórczości. Ta aplikacja stanowi dla mnie wyzwanie ze względu na wykonywaną profesję, ale też do utrzymania takiej aplikacji potrzebne są niemałe pieniądze, dlatego z góry dziękuję za każde przekazane pieniądze na rozwój aplikacji.",
         "button-title": "Kliknij przycisk poniżej żeby przekazać darowiznę"
+    },
+    "contact": {
+        "jumbotron": "Kontakt z Divelog",
+        "contact-title": "Kontakt",
+        "contact-paragraph": "Formularz zamieszczony poniżej umożliwia kontakt z administracją Divelog. Jeśli masz jakieś pytania bądź propozycje jesteśmy dla Ciebie dostępni i otwarci na wszelkie sugestie. Problemy techniczne też mogą być zgłaszane przez formularz.",
+        "form-title": "Formularz do kontaktu",
+        "form": {
+            "email": "Adres email",
+            "message": "Wiadomość",
+            "textarea": "Tutaj napisz wiadomość",
+            "button": "Wyślij wiadomość"
+        }
     }
 }

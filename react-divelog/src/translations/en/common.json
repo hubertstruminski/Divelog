@@ -37,5 +37,17 @@
         "title-1": "Donations",
         "paragraph-1": "I am very pleased that you use my work. This application is a challenge for me because of my profession, but also to keep such an application you need a lot of money, so thank you in advance for all the money provided for the development of the application.",
         "button-title": "Click button below to donate:"
+    },
+    "contact": {
+        "jumbotron": "Contact with Divelog support",
+        "contact-title": "Contact",
+        "contact-paragraph": "The form below allows you to contact the Divelog administration. If you have any questions or suggestions, we are available to you and open to any suggestions. Technical problems can also be reported via the form.",
+        "form-title": "Contact form",
+        "form": {
+            "email": "Email address",
+            "message": "Message",
+            "textarea": "Write here your message",
+            "button": "Send message"
+        }
     }
 }
