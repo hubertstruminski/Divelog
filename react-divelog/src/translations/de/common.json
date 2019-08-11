@@ -26,5 +26,10 @@
         "forum": "Forum",
         "forum-paragraph": "Wenn Sie wichtige Informationen für die Tauchwelt haben, können Sie das verfügbare Forum verwenden, das nur für Benutzer sichtbar ist. Teilen Sie Ihre Erfahrungen mit einer größeren Gruppe von Benutzern.",
         "footer": "Copyright. www.divelog.com. Alle rechte vorbehalten."
+    },
+    "aboutMe": {
+        "text": "Hallo an alle Divelog-Benutzer und zukünftige Benutzer. Ich bin von Beruf Programmierer. Diese Website wurde vollständig von mir erstellt und entstand aus der Verbindung meiner beiden Leidenschaften - Tauchen und Programmieren. Meine Idee war es, etwas zu kreieren, das es ermöglicht, Tauchbekanntschaften von einem Ort aus zu machen und alle notwendigen Funktionen in einem Ganzen zu vereinen. Egal wo Sie sind, jetzt brauchen Sie nur noch einen Internetzugang und können Ihre Erfahrungen ganz einfach austauschen. Die Funktionen von Divelog finden Sie auf der Hauptseite der Anwendung. Neben dem Programmieren und Tauchen habe ich noch Zeit zum Lernen. Ich bin ein externer Student an einer polnischen Universität. Soviel zu mir.",
+        "end-text": "Ich möchte mich bei allen für die Nutzung meiner Bewerbung bedanken und hoffe, dass der Besuch hier Ihr Alltag wird.",
+        "thanks": "Grüße"
     }
 }

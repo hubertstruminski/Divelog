@@ -1,14 +1,8 @@
 import React from 'react';
 import '../../css/Home.css';
-import fbLogo from '../../img/fb-logo.png';
 import { withTranslation } from 'react-i18next';
-import $ from 'jquery';
 
 class Home extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         // $(".fb-container").hide();
         // $(window).scroll(function() {
@@ -21,6 +15,7 @@ class Home extends React.Component {
         //     }     
         // });
     }
+
     render() {
         return (
             <div className="home-container">
