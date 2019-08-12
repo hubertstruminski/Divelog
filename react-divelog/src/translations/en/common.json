@@ -28,6 +28,7 @@
         "footer": "Copyright. www.divelog.com. All rights reserved."
     },
     "aboutMe": {
+        "jumbotron": "FullStack Java Developer",
         "text": "Hello to all Divelog users and future users. I am a programmer by profession. This website was entirely created by me and was created as a result of joining my two passions - diving and programming. My idea was to create something that will allow to make diving acquaintances from one place and combine all the necessary functionalities into one whole. No matter where you are, now all you need is Internet access and you can confidently exchange your experiences. The functionalities that Divelog has can be found on the main page of the application. In addition to programming and diving, I still find time to study. I am an extramural student at one of Polish universities. That's all about me.",
         "end-text": "I would like to thank everyone for using my application and I hope that visiting here will be your everyday life.",
         "thanks": "Greetings"
