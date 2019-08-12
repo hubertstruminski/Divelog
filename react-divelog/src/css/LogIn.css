@@ -1,0 +1,462 @@
+.login-container {
+    background-image: url("../img/login-city.jpg");
+    background-size: 100% 100%;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -1;
+    min-width: 100%;
+    display: block;
+}
+
+.form-container {
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+}
+
+.btn-facebook {
+    color: white;
+}
+.absolute-center {
+    position: inherit;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    display: inline-block;
+}
+
+.form-size {
+    width: 20%;
+    height: 30em; 
+}
+
+.logo-space {
+    margin-top: 1.5%;
+}
+
+.logo-text {
+    font-size: 1.4vw;
+    letter-spacing: 2.5px;
+}
+
+.logo {
+    width: 60%;
+    height: 40%;
+}
+
+.float {
+    float: left;
+}
+
+.fb-img {display: flex;
+    height: 80%;
+    width: 15%;
+    
+}
+
+.btn-fb {
+    height: 12%;
+    width: 90%;
+    background-color: #3B5999;
+    border: 1px solid #3B5999;
+    border-radius: 5px;
+}
+
+.block-text-fb {
+
+    padding-left: 8%;
+    line-height: 150%;
+    font-size: 1.1vw;
+    color: white;
+}
+
+
+
+/* -------------------------------------------------- */
+/* -------------------------------------------------- */
+@media screen and (max-width: 800px) {
+    .form-size {
+        width: 40%;
+        height: 25%;
+    }
+
+    .logo-text {
+        font-size: 3vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 2.3vw;
+        line-height: 200%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .form-size {
+        width: 55%;
+        height: 30%;
+    }
+
+    .logo-text {
+        font-size: 4vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 3.3vw;
+        line-height: 200%;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 850px) and (max-height: 400px) {
+    .form-size {
+        width: 30%;
+        height: 70%;
+    }
+
+    .logo-text {
+        font-size: 2vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 1.5vw;
+        line-height: 200%;
+    }
+
+    .absolute-center {
+        top: 55%;
+    }
+}
+/* iPhone XS Max */
+@media screen and (max-width: 1300px) and (min-width: 1200px) and (orientation: portrait) {
+    .form-size {
+        width: 60%;
+        height: 35%;
+    }
+    .logo-text {
+        font-size: 4.5vw;
+    }
+
+    .btn-fb {
+        height: 12%;
+    }
+
+    .block-text-fb {
+        font-size: 3.3vw;
+        line-height: 250%;
+    }
+}
+
+/* iPhone XS Max - landscape */
+@media screen and (max-width: 2700px) and (min-width: 2600px) and (orientation: landscape) {
+    .form-size {
+        width: 25%;
+        height: 60%;
+    }
+    .logo-text {
+        font-size: 2.5vw;
+    }
+
+    .btn-fb {
+        height: 12%;
+    }
+
+    .block-text-fb {
+        font-size: 1.3vw;
+        line-height: 200%;
+    }
+}
+
+/* iPhone 6/7/8 */
+@media screen and (max-width: 500px) and (min-width: 400px) and (orientation: portrait) {
+    .form-size {
+        width: 60%;
+        height: 40%;
+    }
+    .logo-text {
+        font-size: 5vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 3.3vw;
+        line-height: 230%;
+    }
+}
+
+/* iPhone 6/7/8 - landscape */
+@media screen and (max-width: 750px) and (min-width: 700px) and (orientation: landscape) {
+    .form-size {
+        width: 35%;
+        height: 65%;
+    }
+    .logo-text {
+        font-size: 2.3vw;
+    }
+
+    .btn-fb {
+        height: 18%;
+    }
+
+    .block-text-fb {
+        font-size: 2.1vw;
+        line-height: 230%;
+    }
+}
+
+/* iPad */
+@media screen and (max-width: 800px) and (min-width: 700px) {
+    .form-size {
+        width: 50%;
+        height: 45%;
+    }
+    .logo-text {
+        font-size: 4vw;
+    }
+
+    .btn-fb {
+        height: 16%;
+    }
+
+    .block-text-fb {
+        font-size: 2.8vw;
+        line-height: 230%;
+    }
+}
+
+/* iPad - landscape */
+
+@media screen and (max-width: 1100px) and (min-width: 1000px) and (orientation: landscape) {
+    .form-size {
+        width: 35%;
+        height: 50%;
+    }
+    .logo-text {
+        font-size: 2.3vw;
+    }
+
+    .btn-fb {
+        height: 18%;
+    }
+
+    .block-text-fb {
+        font-size: 2.1vw;
+        line-height: 230%;
+    }
+}
+
+/* iPad Pro */
+@media screen and (max-width: 1100px) and (min-width: 1000px) {
+    .form-size {
+        width: 45%;
+        height: 45%;
+    }
+    .logo-text {
+        font-size: 4vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 2.6vw;
+        line-height: 230%;
+    }
+}
+
+/* iPad Pro */
+@media screen and (max-width: 1400px) and (min-width: 1000px) {
+    .form-size {
+        width: 30%;
+        height: 45%;
+    }
+    .logo-text {
+        font-size: 2vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 1.5vw;
+        line-height: 230%;
+    }
+}
+
+/*  iPhone 4 */
+@media screen and (max-width: 450px) and (min-width: 350px) {
+    .form-size {
+        width: 45%;
+        height: 25%;
+    }
+    .logo-text {
+        font-size: 4vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 2.6vw;
+        line-height: 230%;
+    }
+}
+
+/*  iPhone 4 - landscape */
+@media screen and (max-width: 1000px) and (min-width: 900px) and (orientation: landscape) {
+    .form-size {
+        width: 25%;
+        height: 60%;
+    }
+    .logo-text {
+        font-size: 1.75vw;
+    }
+
+    .btn-fb {
+        height: 17%;
+    }
+
+    .block-text-fb {
+        font-size: 1.3vw;
+        line-height: 230%;
+    }
+}
+
+/*  iPad 3 */
+@media screen and (max-width: 1600px) and (min-width: 1500px) {
+    .form-size {
+        width: 45%;
+        height: 35%;
+    }
+    .logo-text {
+        font-size: 3vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 2.6vw;
+        line-height: 230%;
+    }
+}
+
+/*  iPad 3 - landscape */
+@media screen and (max-width: 2100px) and (min-width: 2000px) and (orientation: landscape) {
+    .form-size {
+        width: 30%;
+        height: 45%;
+    }
+    .logo-text {
+        font-size: 2vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 1.8vw;
+        line-height: 180%;
+    }
+}
+
+/*  Large screens */
+@media screen and (max-width: 2450px) and (min-width: 2350px) {
+    .form-size {
+        width: 25%;
+        height: 50%;
+    }
+    .logo-text {
+        font-size: 1.6vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 1.3vw;
+        line-height: 180%;
+    }
+}
+
+/*  Large screens */
+@media screen and (max-width: 1250px) and (min-width: 1150px) {
+    .form-size {
+        width: 45%;
+        height: 30%;
+    }
+    .logo-text {
+        font-size: 4.5vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 2.8vw;
+        line-height: 200%;
+    }
+}
+
+/* Galaxy S4 */
+@media screen and (max-width: 1150px) and (min-width: 1000px) {
+    .form-size {
+        width: 45%;
+        height: 30%;
+    }
+    .logo-text {
+        font-size: 4.5vw;
+    }
+
+    .btn-fb {
+        height: 12%;
+    }
+
+    .block-text-fb {
+        font-size: 2.8vw;
+        line-height: 180%;
+    }
+}
+
+/* Desktops and laptops */
+@media screen and (max-width: 1700px) and (min-width: 1500px) {
+    .form-size {
+        width: 30%;
+        height: 45%;
+    }
+    .logo-text {
+        font-size: 2vw;
+    }
+
+    .btn-fb {
+        height: 15%;
+    }
+
+    .block-text-fb {
+        font-size: 1.8vw;
+        line-height: 180%;
+    }
+}
