@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b98379a7-4670-4764-b479-b7eb45a935aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/LogIn.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/LogIn.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/LogInController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/LogInController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="90">
               <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -36,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="739">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,9 +52,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="jar:///usr/lib/jvm/jdk-8/src.zip!/java/security/Principal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-361">
+              <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="127" selection-start-line="127" selection-end-line="127" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="150">
               <caret line="10" selection-start-line="10" selection-end-line="15" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -90,7 +111,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="743">
+            <state relative-caret-position="449">
               <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -99,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/handler/SimpleUrlAuthenticationSuccessHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+            <state>
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,8 +157,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/handler/SimpleUrlAuthenticationSuccessHandler.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
       </list>
     </option>
   </component>
@@ -292,12 +313,12 @@
       <workItem from="1564609479221" duration="1733000" />
       <workItem from="1564645374637" duration="70000" />
       <workItem from="1564645449535" duration="386000" />
-      <workItem from="1564645954924" duration="2077000" />
+      <workItem from="1564645954924" duration="9892000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26772000" />
+    <option name="totallyTimeSpent" value="34587000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -309,7 +330,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Web" order="4" side_tool="true" />
       <window_info id="Designer" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.25290537" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.25290537" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
@@ -322,7 +343,7 @@
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="bottom" id="Run" order="10" weight="0.32937366" />
-      <window_info anchor="bottom" id="Debug" order="11" visible="true" weight="0.40064794" />
+      <window_info anchor="bottom" id="Debug" order="11" weight="0.40064794" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="14" />
@@ -346,13 +367,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java</url>
-          <line>33</line>
+          <line>42</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java</url>
-          <line>45</line>
+          <line>69</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -373,6 +394,12 @@
           <line>40</line>
           <properties />
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -400,39 +427,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/handler/LogInSuccessHandler.java" />
-    <entry file="jar:///usr/lib/jvm/jdk-8/src.zip!/java/security/Principal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="19" column="38" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="38" />
           <folding>
             <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" selection-start-line="10" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -458,13 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="127" selection-start-line="127" selection-end-line="127" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/bouncycastle/bcprov-jdk15on/1.60/bcprov-jdk15on-1.60.jar!/org/bouncycastle/jce/PrincipalUtil.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -472,20 +465,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
+    <entry file="jar:///usr/lib/jvm/jdk-8/src.zip!/java/security/Principal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="-361">
+          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="15" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -494,8 +494,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/handler/SimpleUrlAuthenticationSuccessHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+        <state>
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="127" selection-start-line="127" selection-end-line="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="739">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

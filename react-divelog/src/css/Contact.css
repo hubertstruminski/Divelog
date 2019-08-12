@@ -1,0 +1,62 @@
+/* Background pattern from Toptal Subtle Patterns */
+
+.contact-container {    
+    background-image: url("../img/hexellence.png");
+    width: 100%;
+}
+
+.contact-jumbotron {
+    background-image: url("../img/donate/sea2.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 800px;
+    margin-bottom: 200px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.contact-jumbotron-text {
+    margin-top: 15%;
+    font-size: 3vw;
+}
+
+.contact-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-background {
+    background-image: url("../img/donate/email.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-left: 1px solid #919191;
+}
+
+.mail-container {
+    width: 60%;
+    height: 700px;
+
+    -webkit-box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
+    -moz-box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
+    box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
+}
+
+.mail-background {
+    background-color: white;
+}
+
+.mail-title {
+    width: 100%;
+    text-align: center;
+    font-size: 2vw;
+    padding: 3%;
+}
+
+.form-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
