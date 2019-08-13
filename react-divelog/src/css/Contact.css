@@ -66,3 +66,107 @@
     margin-right: auto;
     width: 80%;
 }
+
+@media screen and (max-width: 500px) and (min-width: 300px) {
+    .contact-jumbotron {
+        height: 300px;
+        margin-bottom: 50px;
+    }
+
+    .contact-jumbotron-text {
+        margin-top: 30%;
+        font-size: 4vw;
+    }
+
+    .mail-container {
+        height: 500px;
+    }
+
+    .mail-title {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 850px) and (min-width: 500px) {
+    .contact-jumbotron {
+        height: 500px;
+        margin-bottom: 100px;
+    }
+
+    .contact-jumbotron-text {
+        margin-top: 30%;
+        font-size: 4vw;
+    }
+
+    .mail-container {
+        height: 600px;
+    }
+
+    .mail-title {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 1100px) and (min-width: 850px) {
+    .contact-jumbotron {
+        height: 750px;
+        margin-bottom: 100px;
+    }
+
+    .contact-jumbotron-text {
+        margin-top: 30%;
+        font-size: 4vw;
+    }
+
+    .mail-container {
+        height: 600px;
+    }
+
+    .mail-title {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 1600px) and (min-width: 1100px) {
+    .contact-container {    
+        min-height: 2688px;
+    }
+
+    .contact-jumbotron {
+        height: 950px;
+        margin-bottom: 100px;
+    }
+
+    .contact-jumbotron-text {
+        margin-top: 26%;
+        font-size: 4vw;
+    }
+
+    .mail-container {
+        height: 650px;
+    }
+
+    .mail-title {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 2700px) and (min-width: 2400px) and (orientation: landscape) {
+    .contact-jumbotron {
+        height: 1400px;
+        margin-bottom: 100px;
+    }
+
+    .contact-jumbotron-text {
+        margin-top: 22%;
+        font-size: 4vw;
+    }
+
+    .mail-container {
+        height: 850px;
+    }
+
+    .mail-title {
+        font-size: 3.5vw;
+    }
+}

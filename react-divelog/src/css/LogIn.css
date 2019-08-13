@@ -89,7 +89,11 @@
     }
 
     .logo-text {
-        font-size: 3vw;
+        font-size: 2vw;
+    }
+
+    .btn-fb {
+        font-size: 2vw;
     }
 }
 @media screen and (max-width: 1100px) and (min-width: 800px) and (min-height: 1900px) {
@@ -115,7 +119,7 @@
 
     .btn-fb {
         height: 2em;
-        font-size: 3vw;
+        font-size: 2vw;
     }
 }
 
@@ -131,7 +135,7 @@
 
     .btn-fb {
         height: 3.5em;
-        font-size: 3vw;
+        font-size: 2vw;
     }
 }
 
@@ -150,5 +154,38 @@
 
     .btn-fb {
         height: 2em;
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1100px) and (orientation: landscape) {
+    .form-size {
+        width: 40%;
+        height: 43em; 
+    }
+
+    .logo-text {
+        font-size: 3vw;
+    }
+
+    .btn-fb {
+        height: 2em;
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 2700px) and (min-width: 1500px) and (orientation: landscape) {
+    .form-size {
+        width: 30%;
+        height: 64em; 
+    }
+
+    .logo-text {
+        font-size: 3vw;
+    }
+
+    .btn-fb {
+        height: 2em;
+        font-size: 2vw;
     }
 }
