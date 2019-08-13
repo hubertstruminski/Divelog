@@ -174,7 +174,7 @@
     }
 }
 
-@media screen and (max-width: 2700px) and (min-width: 1500px) and (orientation: landscape) {
+@media screen and (max-height: 2200px) and (min-height: 1500px) {
     .form-size {
         width: 30%;
         height: 64em; 
