@@ -1,0 +1,54 @@
+{
+    "header": {
+        "home": "Strona główna",
+        "guide": "Przewodnik",
+        "aboutMe": "O mnie",
+        "donate": "Darowizna",
+        "contact": "Kontakt"
+    },
+    "login": {
+        "login": "Zaloguj się",
+        "facebook-btn": "Zaloguj się z facebook"
+    },
+    "home": {
+        "built": "Stworzone dla nurków",
+        "step": "Wejdź w otchłań oceanu",
+        "let": "Dołącz do nas!",
+        "fb-title": "Interfejs Facebooka",
+        "fb-paragraph": "Dziel się wrażeniami ze światem nurkowym pozostajac w ciągłym kontakcie z innymi nurkami dzięki Facebook API. Rozmawiaj z nurkami, dodawaj posty, dziel się zdjęciami, komentuj i uczestnicz w grupach. Nasz interfejs jest w pełni bezpieczny.",
+        "logbook": "Logbook",
+        "logbook-paragraph": "Bądź na bieżąco. Żadnych obaw, wystarczy dostęp do internetu i nie musisz się martwić o to gdzie zapisać swoje kolejne nurkowanie. Divelog wspiera przechowywanie danych o nurkowaniach w naszej bazie danych. Możesz także wygenerować dynamiczny PDF.",
+        "maps": "Mapy Google",
+        "maps-paragraph": "Divelog pozwala na oznaczanie lokalizacji na mapach od Google. Już dziś sprawdź swoją historię lokalizacji nurkowań i podziel się piękną mapą z resztą świata nurkowego.",
+        "computer": "Komputer nurkowy",
+        "computer-paragraph": "Divelog pozwala na tworzenie planu nurkowania. Zaloguj się i podaj wszystkie wymagane dane, a otrzymasz w pełni kompleksowy plan nurkowania. Możesz także wygenerować dynamiczny PDF.",
+        "progress": "Funkcjonalność w trakcie...",
+        "forum": "Forum",
+        "forum-paragraph": "Jeżeli masz ważna informację do przekazania światu nurkowemu możesz skorzystać z dostępnego forum, które jest widoczne tylko dla użytkowników. Dziel się przeżyciami z większym gronem użytkowników.",
+        "footer": "Prawo autorskie. www.divelog.com. Wszelkie prawa zastrzeżone."
+    },
+    "aboutMe": {
+        "jumbotron": "Programista Java FullStack",
+        "text": "Witam wszystkich użytkowników Divelog oraz tych przyszłych. Na co dzień z zawodu jestem programistą. Ten serwis został w całości stworzony przeze mnie i powstał w skutek połączenia dwóch moich pasji - nurkowania i programowania. Moim pomysłem było stworzyć coś co pozwoli na nawiązywanie znajomości nurkowych z jednego miejsca oraz połączyć wszystkie potrzebne funkcjonalności w jedną całość. Nieważne gdzie jesteś, teraz wystarczy tylko dostęp do internetu i możesz śmiało wymieniać się swoimi przeżyciami. Funkcjonalności jakie posiada Divelog możecie Państwo znaleźć na stronie głównej aplikacji. Poza programowaniem i nurkowaniem znajduję jeszcze czas na studiowanie. Jestem studentem zaocznym jednej z polskich uczelni. Tyle o mnie.",
+        "end-text": "Chciałbym wszystkim serdecznie podziękować za użytkowanie mojej aplikacji i mam nadzieję, że zaglądanie tutaj będzie waszą codziennością.",
+        "thanks": "Pozdrawiam."
+    },
+    "donate": {
+        "jumbotron": "Darowizny dla Divelog",
+        "title-1": "Darowizny",
+        "paragraph-1": "Jest mi niezmiernie miło, że Państwo korzystacie z mojej twórczości. Ta aplikacja stanowi dla mnie wyzwanie ze względu na wykonywaną profesję, ale też do utrzymania takiej aplikacji potrzebne są niemałe pieniądze, dlatego z góry dziękuję za każde przekazane pieniądze na rozwój aplikacji.",
+        "button-title": "Kliknij przycisk poniżej żeby przekazać darowiznę"
+    },
+    "contact": {
+        "jumbotron": "Kontakt z Divelog",
+        "contact-title": "Kontakt",
+        "contact-paragraph": "Formularz zamieszczony poniżej umożliwia kontakt z administracją Divelog. Jeśli masz jakieś pytania bądź propozycje jesteśmy dla Ciebie dostępni i otwarci na wszelkie sugestie. Problemy techniczne też mogą być zgłaszane przez formularz.",
+        "form-title": "Formularz do kontaktu",
+        "form": {
+            "email": "Adres email",
+            "message": "Wiadomość",
+            "textarea": "Tutaj napisz wiadomość",
+            "button": "Wyślij wiadomość"
+        }
+    }
+}

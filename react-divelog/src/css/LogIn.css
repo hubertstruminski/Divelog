@@ -1,0 +1,191 @@
+.App {
+    height: 100vh;
+}
+
+.login-container {
+    background-image: url("../img/logIn/login-background.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    min-height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-container {
+    background-color: lightgray;
+    border-radius: 20px;
+}
+
+.form-container-shadow {
+    -webkit-box-shadow: 10px 10px 15px 0px rgba(84,84,84,1);
+    -moz-box-shadow: 10px 10px 15px 0px rgba(84,84,84,1);
+    box-shadow: 10px 10px 15px 0px rgba(84,84,84,1);
+    border: 1px solid #919191;
+}
+
+.form-size {
+    width: 20%;
+    height: 30em; 
+}
+
+.logo-space {
+    margin-top: 1.5%;
+}
+
+.logo-text {
+    font-size: 1.4vw;
+    letter-spacing: 2.5px;
+}
+
+.logo {
+    width: 60%;
+    height: 40%;
+}
+
+.btn-fb {
+    height: 12%;
+    width: 90%;
+    background-color: #3B5999;
+    border: 1px solid #3B5999;
+    border-radius: 5px;
+}
+
+
+@media screen and (max-width: 500px) and (min-width: 300px) {
+    .form-size {
+        width: 40%;
+        height: 17em; 
+    }
+
+    .logo-text {
+        font-size: 4vw;
+    }
+
+    .btn-fb {
+        height: 12%;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 500px) {
+    .form-size {
+        width: 40%;
+        height: 26em; 
+    }
+
+    .logo-text {
+        font-size: 4vw;
+    }
+}
+
+@media screen and (max-width: 1100px) and (min-width: 800px) {
+    .form-size {
+        width: 40%;
+        height: 36em; 
+    }
+
+    .logo-text {
+        font-size: 2vw;
+    }
+
+    .btn-fb {
+        font-size: 2vw;
+    }
+}
+@media screen and (max-width: 1100px) and (min-width: 800px) and (min-height: 1900px) {
+    .form-size {
+        width: 40%;
+        height: 36em; 
+    }
+
+    .logo-text {
+        font-size: 4vw;
+    }
+}
+
+@media screen and (max-width: 1600px) and (min-width: 1100px) {
+    .form-size {
+        width: 45%;
+        height: 45em; 
+    }
+
+    .logo-text {
+        font-size: 4vw;
+    }
+
+    .btn-fb {
+        height: 2em;
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 850px) and (min-width: 600px) and (orientation: landscape) {
+    .form-size {
+        width: 40%;
+        height: 28em; 
+    }
+
+    .logo-text {
+        font-size: 3vw;
+    }
+
+    .btn-fb {
+        height: 3.5em;
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 1100px) 
+            and (min-width: 850px) 
+            and (orientation: landscape)
+            and (max-height: 800px) and (min-height: 350px) {
+    .form-size {
+        width: 30%;
+        height: 26em; 
+    }
+
+    .logo-text {
+        font-size: 2vw;
+    }
+
+    .btn-fb {
+        height: 2em;
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1100px) and (orientation: landscape) {
+    .form-size {
+        width: 40%;
+        height: 43em; 
+    }
+
+    .logo-text {
+        font-size: 3vw;
+    }
+
+    .btn-fb {
+        height: 2em;
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-height: 2200px) and (min-height: 1500px) {
+    .form-size {
+        width: 30%;
+        height: 64em; 
+    }
+
+    .logo-text {
+        font-size: 3vw;
+    }
+
+    .btn-fb {
+        height: 2em;
+        font-size: 2vw;
+    }
+}
