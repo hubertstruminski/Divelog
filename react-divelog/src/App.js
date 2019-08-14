@@ -20,6 +20,8 @@ import Home from './components/Layout/Home';
 import AboutMe from './components/Layout/AboutMe';
 import Donate from './components/Layout/Donate';
 import Contact from './components/Layout/Contact';
+import FB from 'fb';
+import User from './components/User';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -44,11 +46,13 @@ function App() {
         <div className="App">
           <I18nextProvider i18n={i18next}>
             <Header />
+            <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/about" component={AboutMe} />
             <Route exact path="/donate" component={Donate} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={LogIn} />
+            <Route exact path="/user" component={User} />
           </I18nextProvider>
         </div>
       </Router>

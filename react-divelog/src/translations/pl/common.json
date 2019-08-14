@@ -28,6 +28,7 @@
         "footer": "Prawo autorskie. www.divelog.com. Wszelkie prawa zastrzeżone."
     },
     "aboutMe": {
+        "jumbotron": "Programista Java FullStack",
         "text": "Witam wszystkich użytkowników Divelog oraz tych przyszłych. Na co dzień z zawodu jestem programistą. Ten serwis został w całości stworzony przeze mnie i powstał w skutek połączenia dwóch moich pasji - nurkowania i programowania. Moim pomysłem było stworzyć coś co pozwoli na nawiązywanie znajomości nurkowych z jednego miejsca oraz połączyć wszystkie potrzebne funkcjonalności w jedną całość. Nieważne gdzie jesteś, teraz wystarczy tylko dostęp do internetu i możesz śmiało wymieniać się swoimi przeżyciami. Funkcjonalności jakie posiada Divelog możecie Państwo znaleźć na stronie głównej aplikacji. Poza programowaniem i nurkowaniem znajduję jeszcze czas na studiowanie. Jestem studentem zaocznym jednej z polskich uczelni. Tyle o mnie.",
         "end-text": "Chciałbym wszystkim serdecznie podziękować za użytkowanie mojej aplikacji i mam nadzieję, że zaglądanie tutaj będzie waszą codziennością.",
         "thanks": "Pozdrawiam."

@@ -1,13 +1,15 @@
+/* Background pattern from Toptal Subtle Patterns */
+
 .home-background {
     background-image: url("../img/home-diver.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 800px;
-    margin-bottom: 350px;
+    margin-bottom: 150px;
 }
 
-.home-container {
-    height: 3700px;
+.home-container-background {
+    background-image: url("../img/hexellence.png");
 }
 
 .shadow-jumbotron {
@@ -54,16 +56,24 @@
     box-shadow: 5px 5px 20px 5px rgba(122,117,122,1);
 }
 
-.fb-center {
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translate(-50%, -25%);
-    transform: translate(-50%, -25%);
+.home-grid-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.margin-grid-bottom {
+    margin-bottom: 100px;
+}
+
+.title-grid-padding {
+    padding: 5%;
 }
 
 .fb-item1 {
     padding-left: 3%;
     padding-right: 3%;
+    background-color: white;
 }
 
 .fb-item2 {
@@ -78,24 +88,13 @@
     margin-top: 6%;
 }
 
-.book-center {
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translate(-50%, 135%);
-    transform: translate(-50%, 135%);
-}
-
 .item4 {
-    background-image: url("../img/divebook.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background-color: white;
 }
 
-.maps-center {
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translate(-50%, 295%);
-    transform: translate(-50%, 295%);
+.item4 img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .item6 {
@@ -104,34 +103,23 @@
     background-repeat: no-repeat;
 }
 
-.computer-center {
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translate(-50%, 455%);
-    transform: translate(-50%, 455%);
-}
-
 .item8 {
     background-image: url("../img/home-computer.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
-.forum-center {
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translate(-50%, 615%);
-    transform: translate(-50%, 615%);
+.item10 {
+    background-color: white;
 }
 
-.item10 {
-    background-image: url("../img/home-forum.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+.item10 img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
 
     width: 100%;
@@ -150,7 +138,7 @@
 @media screen and (max-width: 500px) and (min-width: 300px) {
     .home-background {
         height: 400px;
-        margin-bottom: 200px;
+        margin-bottom: 100px;
     }
 
     .font-size-jumbotron-1 {
@@ -188,10 +176,6 @@
         font-size: 2.5vw;
     }
 
-    .home-container {
-        height: 2100px;
-    }
-
     .btn-fb {
         font-size: 3vw;
     }
@@ -200,7 +184,7 @@
 @media screen and (max-width: 800px) and (min-width: 500px) {
     .home-background {
         height: 600px;
-        margin-bottom: 200px;
+        margin-bottom: 100px;
     }
 
     .font-size-jumbotron-1 {
@@ -238,10 +222,6 @@
         font-size: 2.5vw;
     }
 
-    .home-container {
-        height: 2100px;
-    }
-
     .btn-fb {
         font-size: 3vw;
     }
@@ -250,7 +230,7 @@
 @media screen and (max-width: 1100px) and (min-width: 800px) {
     .home-background {
         height: 800px;
-        margin-bottom: 200px;
+        margin-bottom: 100px;
     }
 
     .font-size-jumbotron-1 {
@@ -286,10 +266,6 @@
     .footer {
         height: 2%;
         font-size: 2vw;
-    }
-
-    .home-container {
-        height: 2100px;
     }
 
     .btn-fb {

@@ -7,7 +7,7 @@ class Contact extends React.Component {
     render() {
         return (
             <div className="contact-container">
-                <div className="contact-jumbotron">
+                <div className="contact-jumbotron contact-jumbotron-shadow">
                     <div className="contact-jumbotron-text">
                         <p>
                             {this.props.t("contact.jumbotron")}
@@ -38,7 +38,7 @@ class Contact extends React.Component {
                                 {this.props.t("contact.form-title")}
                             </p>
                         </div>
-                        <div className="form-container">
+                        <div className="form-container-contact">
                             <form>
                                 <div className="form-group">
                                     <label for="inputEmail">
