@@ -13,6 +13,8 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Request;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +31,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 
 
-@RestController
+@Controller
+@CrossOrigin
 public class LogInController {
 
     @Autowired
@@ -39,7 +42,7 @@ public class LogInController {
     private HttpClient httpClient;
 
     @GetMapping("/user")
-    public Principal user(Principal user) throws IOException {
+    public String user(Principal user, HttpServletResponse response) throws IOException {
         ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("facebook");
         String clientId = clientRegistration.getClientId();
         String clientName = clientRegistration.getClientName();
@@ -53,11 +56,22 @@ public class LogInController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        Object principal = authentication.getPrincipal();
-        Object credentials = authentication.getCredentials();
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
+
+        Object credentials1 = authentication.getCredentials();
+        Object principal2 = authentication.getPrincipal();
+
+
+        OAuth2Authentication authentication1 = (OAuth2Authentication) authentication;
+
+        Authentication userAuthentication = authentication1.getUserAuthentication();
+        Object credentials2 = authentication1.getCredentials();
+        OAuth2Request oAuth2Request = authentication1.getOAuth2Request();
+        Object principal3 = authentication1.getPrincipal();
+
+
+        Object principal1 = authentication.getPrincipal();
+        System.out.println(principal1);
         String tokenValue = details.getTokenValue();
         System.out.println(tokenValue);
 
@@ -66,6 +80,7 @@ public class LogInController {
         OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) user;
         boolean authenticated = oAuth2Authentication.getUserAuthentication().isAuthenticated();
         System.out.println(authenticated);
-        return user;
+
+        return "index.html";
     }
 }

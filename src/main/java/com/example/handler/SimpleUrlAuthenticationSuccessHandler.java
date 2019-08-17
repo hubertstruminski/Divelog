@@ -57,9 +57,9 @@ public class SimpleUrlAuthenticationSuccessHandler implements AuthenticationSucc
         }
 
         if (isUser) {
-            return "/user";
+            return "http://localhost:3000/dashboard";
         } else if (isAdmin) {
-            return "/user";
+            return "http://localhost:3000/dashboard";
         } else {
             throw new IllegalStateException();
         }

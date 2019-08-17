@@ -52,7 +52,7 @@ function App() {
             <Route exact path="/donate" component={Donate} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={LogIn} />
-            <Route exact path="/user" component={User} />
+            <Route exact path="/dashboard" component={User} />
           </I18nextProvider>
         </div>
       </Router>
