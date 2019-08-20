@@ -1,6 +1,10 @@
 const request = (options) => {
     const headers = new Headers({
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
     })
     
     if(localStorage.getItem("ACCESS_TOKEN")) {
@@ -23,7 +27,7 @@ const request = (options) => {
 
 export function login(loginRequest) {
     return request({
-        url: "http://localhost:8080/login/facebook",
+        url: "/login/facebook",
         method: 'GET'
     });
 }

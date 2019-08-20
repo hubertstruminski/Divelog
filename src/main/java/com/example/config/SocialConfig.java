@@ -16,8 +16,6 @@ import org.springframework.security.oauth2.client.registration.InMemoryClientReg
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableOAuth2Sso
@@ -29,7 +27,7 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
         http
                 .antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/", "/login**", "/webjars/**", "/error**", "/user")
+                .antMatchers("/", "/login**", "/webjars/**", "/error**", "/signin")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -45,8 +43,8 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .oauth2Login()
-                    .defaultSuccessUrl("/dashboard")
-                    .loginPage("/login/facebook")
+//                    .defaultSuccessUrl("/dashboard")
+//                    .loginPage("/login/facebook")
 
                 .successHandler(myAuthenticationSuccessHandler())
 
