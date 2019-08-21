@@ -47,7 +47,6 @@ class Home extends React.Component {
                     </div>
                 </div>
                 
-
                 <div className="home-grid-center margin-grid-bottom">
                     <div className="grid-container">
                         <div className="fb-item1">
@@ -63,8 +62,6 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                
 
                 <div className="home-grid-center margin-grid-bottom">
                     <div className="grid-container">
@@ -98,8 +95,6 @@ class Home extends React.Component {
                     </div>
                 </div>
 
-               
-
                 <div className="home-grid-center margin-grid-bottom">
                     <div className="grid-container">
                         <div className="fb-item1">
@@ -111,11 +106,10 @@ class Home extends React.Component {
                             </p>
                         </div>
                         <div className="item10">
-                            <img src={forumLogo} alt="Forum photo" />
+                            <img src={forumLogo} alt="Forum" />
                         </div>
                     </div>
                 </div>
-
 
                 <div className="footer footer-shadow">
                     &copy; {this.props.t("home.footer")}

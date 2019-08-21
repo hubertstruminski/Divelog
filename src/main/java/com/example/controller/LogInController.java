@@ -21,7 +21,7 @@ public class LogInController {
     private ConnectionRepository connectionRepository;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> user(@RequestBody LoginRequest loginRequest) throws IOException {
+    public ResponseEntity<?> saveUserData(@RequestBody LoginRequest loginRequest) throws IOException {
 
         Connection foundByEmail = connectionRepository.findByEmail(loginRequest.getEmail());
 
@@ -47,5 +47,11 @@ public class LogInController {
             connectionRepository.save(foundByEmail);
         }
         return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @GetMapping("/getuserdata/{userID}")
+    public ResponseEntity<?> getUserData(@PathVariable String userID) {
+        Connection foundByEmail = connectionRepository.findByUserID(Long.valueOf(userID));
+        return new ResponseEntity<Connection>(foundByEmail, HttpStatus.OK);
     }
 }

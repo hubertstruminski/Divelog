@@ -2,20 +2,20 @@ import React from 'react';
 import '../css/LogIn.css';
 import logo from '../img/logo.png';
 import { withTranslation } from 'react-i18next';
-import { login } from '../actions/LoginActions';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import PropTypes from 'prop-types';
-// import { login } from '../util/APIUtil';
 import FacebookLogin from 'react-facebook-login';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-
+import { Redirect } from 'react-router-dom';
+import { fakeAuth } from '../util/fakeAuth';
+import { withRouter } from 'react-router-dom';
 
 class LogIn extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
+        this.state = {
+            redirectToReferrer: false
+        }
+        this.responseFacebook = this.responseFacebook.bind(this);
     }
 
     responseFacebook(response) {
@@ -33,17 +33,27 @@ class LogIn extends React.Component {
             headers: {
                 "Accept": "application/json",
                 "Content-type": "application/json"
-            },
-        }).then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error);
-        });
-        window.location.href = "/dashboard";
+            }
+        })
+
+        fakeAuth.authenticate(() => {
+            this.setState(() => ({redirectToReferrer: true }));
+            console.log(this.state.redirectToReferrer);
+        })
+
+        localStorage.setItem("KEY", loginRequest.userID);
+        return <Redirect to="/dashboard/" />
     }
 
 
     render() {
+        const { from } = this.props.location.state || { from: { pathname: '/dashboard' }}
+        const { redirectToReferrer } = this.state;
+
+        if(redirectToReferrer === true) {
+            return <Redirect to={from} />
+        }
+
         return(
             <div className="login-container">
                 <div className="login-form-container form-container-shadow form-size">
@@ -57,18 +67,9 @@ class LogIn extends React.Component {
                         <span className="logo-text">Divelog</span>
                         <br />
                         <br />
-                        {/* <button 
-                            type="button" 
-                            className="btn btn-lg btn-fb" 
-                            style={{color: 'white'}}
-                            onClick={this.handleClick}
-                        >
-                            <i class="fab fa-facebook-f pr-1"></i> 
-                            {this.props.t("login.facebook-btn")}
-                        </button> */}
                         <FacebookLogin
                             appId="455695445269575"
-                            autoLoad={true}
+                            autoLoad={false}
                             fields="name,email,picture"
                             callback={this.responseFacebook}
                             render={renderProps => (
@@ -88,15 +89,4 @@ class LogIn extends React.Component {
     }
 }
 
-LogIn.propTypes = {
-    login: PropTypes.func.isRequired
-}
-
-const mapStateToProps = state => ({
-
-})
-
-export default
-    withTranslation('common')
-    // connect(mapStateToProps, { login })
-    (LogIn);
+export default withTranslation('common')(withRouter(LogIn));

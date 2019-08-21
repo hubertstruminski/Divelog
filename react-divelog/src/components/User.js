@@ -1,33 +1,44 @@
 import React from 'react';
-import FB from 'fb';
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class User extends React.Component {
-    constructor() {
-        super();
-        this.onSubmit = this.onSubmit.bind(this);
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            accessToken: '',
+            email: '',
+            name: '',
+            userID: ''
+        }
     }
 
-    onSubmit(e) {
-        e.preventDefault();
+    componentDidMount() {
+        let userID = localStorage.getItem("KEY");
 
-        fetch("/user")
-        .then(response => {
-            console.log("Done fetch");
-        });
+        fetch(`/getuserdata/${userID}`, {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(jsonData => {
+            this.setState({
+                accessToken: jsonData.accessToken,
+                email: jsonData.email,
+                name: jsonData.name,
+                userID: jsonData.userID
+            });
+        }); 
+        localStorage.removeItem("KEY");  
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <button>
-                        Request
-                    </button>
-                </form>
-            </div>
+            <div>Codecool</div>
         );
     }
 }
 
-export default User;
+export default withRouter(User);

@@ -13,4 +13,6 @@ public interface ConnectionRepository extends CrudRepository<Connection, Long> {
 
     @Query("SELECT c FROM Connection c WHERE c.email = ?1")
     public Connection findByEmail(String email);
+
+    public Connection findByUserID(Long userID);
 }
