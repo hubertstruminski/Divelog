@@ -29,6 +29,9 @@ public class Connection {
     @NotNull
     private boolean authenticated;
 
+    @Column(name = "picture_url")
+    private String pictureUrl;
+
     @NotNull
     private String providerId;
 
@@ -92,6 +95,14 @@ public class Connection {
 
     public void setAuthenticated(boolean authenticated) {
         this.authenticated = authenticated;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public String getProviderId() {

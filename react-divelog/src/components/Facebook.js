@@ -9,7 +9,8 @@ class Facebook extends React.Component {
             accessToken: '',
             email: '',
             name: '',
-            userID: ''
+            userID: '',
+            pictureUrl: ''
         }
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -29,10 +30,10 @@ class Facebook extends React.Component {
                 accessToken: jsonData.accessToken,
                 email: jsonData.email,
                 name: jsonData.name,
-                userID: jsonData.userID
+                userID: jsonData.userID,
+                pictureUrl: jsonData.pictureUrl
             });
         }); 
-        localStorage.removeItem("KEY");  
     }
 
     onSubmit() {
@@ -45,10 +46,35 @@ class Facebook extends React.Component {
                 <div className="fb-grid-container">
                     <div className="fb-grid-item-1">
                         <div className="categories-container">
-                        
+                            <div className="profil-container">
+                                <div className="ins-profil-container">
+                                    <img 
+                                        src={this.state.pictureUrl} 
+                                        alt="Profil"
+                                        className="fb-profil-picture"
+                                    />
+                                    { this.state.name }
+                                </div>
+                            </div>
+                            <hr className="hr-margin" />
+                            <ul className="list-group">
+                                <li className="list-group-item active">
+                                    Aktualności
+                                </li>
+                                <li className="list-group-item">
+                                    Grupy
+                                </li>
+                                <li className="list-group-item"></li>
+                                <li className="list-group-item"></li>
+                                <li className="list-group-item"></li>
+                            </ul>
                         </div>
                     </div>
-                    <div className="feed-container"></div>
+                    <div className="feed-container">
+                        <div className="feed-add-container">
+                            <i class="fas fa-plus fa-3x plus-shadow"></i>
+                        </div>
+                    </div>
                     <div className="fb-grid-item-3">
                         <div className="rl-container">
                             <div className="groups-container"></div>

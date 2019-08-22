@@ -33,6 +33,7 @@ public class LogInController {
             connection.setName(loginRequest.getName());
             connection.setAccessToken(loginRequest.getAccessToken());
             connection.setAuthenticated(true);
+            connection.setPictureUrl(loginRequest.getPictureUrl());
             connection.setProviderId(Provider.FACEBOOK.getProvider());
             connection.setLoggedAt(new Date());
             connection.setCreatedAt(new Date());
@@ -42,6 +43,7 @@ public class LogInController {
             foundByEmail.setName(loginRequest.getName());
             foundByEmail.setAccessToken(loginRequest.getAccessToken());
             foundByEmail.setAuthenticated(true);
+            foundByEmail.setPictureUrl(loginRequest.getPictureUrl());
             foundByEmail.setLoggedAt(new Date());
 
             connectionRepository.save(foundByEmail);

@@ -3,6 +3,7 @@ import '../../css/Header.css';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import $ from 'jquery';
+import FB from 'fb';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -12,7 +13,8 @@ class HeaderIn extends React.Component {
             accessToken: '',
             email: '',
             name: '',
-            userID: ''
+            userID: '',
+            pictureUrl: ''
         }
         this.logout = this.logout.bind(this);
     }
@@ -28,14 +30,15 @@ class HeaderIn extends React.Component {
         })
         .then(response => response.json())
         .then(jsonData => {
+            console.log(jsonData);
             this.setState({
                 accessToken: jsonData.accessToken,
                 email: jsonData.email,
                 name: jsonData.name,
-                userID: jsonData.userID
+                userID: jsonData.userID,
+                pictureUrl: jsonData.pictureUrl
             });
         }); 
-        localStorage.removeItem("KEY");
 
         let isActive = false;
         $(".left-menu-icon").click(function() {
@@ -101,7 +104,32 @@ class HeaderIn extends React.Component {
                                     </div>
                                 </li>
                             </ul>
+                            <ul className="collapse navbar-collapse ul-no justify-content-md-center">
+                                <li>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Search"
+                                    />
+                                </li>
+                            </ul>
                             <ul className="navbar-nav my-lg justify-content-end">
+                                <li className="nav-item nav-link">
+                                    <i class="fas fa-user-friends"></i>
+                                </li>
+                                <li className="nav-item nav-link">
+                                    <i class="fab fa-facebook-messenger"></i>
+                                </li>
+                                <li className="nav-item nav-link">
+                                    <i class="fas fa-bell"></i>
+                                </li>
+                                <li className="nav-item nav-link">
+                                    <img 
+                                        src={this.state.pictureUrl} 
+                                        alt="Profil" 
+                                        className="header-profil-picture"
+                                    />
+                                </li>
                                 <li className="nav-item nav-link">
                                     {this.state.name}
                                 </li>
@@ -120,7 +148,23 @@ class HeaderIn extends React.Component {
                     </nav>
                 </header>
                 <div className="left-menu">
-                
+                    <ul className="list-group">
+                        <li className="list-group-item item-menu">
+                            Social media
+                        </li>
+                        <li className="list-group-item item-menu">
+                            Logbook
+                        </li>
+                        <li className="list-group-item item-menu">
+                            Moja mapa
+                        </li>
+                        <li className="list-group-item item-menu">
+                            Forum
+                        </li>
+                        <li className="list-group-item item-menu">
+                            Ustawienia
+                        </li>
+                    </ul>
                 </div>
             </div>
         );

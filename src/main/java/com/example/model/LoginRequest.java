@@ -6,15 +6,17 @@ public class LoginRequest {
     private String email;
     private String name;
     private Long userID;
+    private String pictureUrl;
 
     public LoginRequest() {
     }
 
-    public LoginRequest(String accessToken, String email, String name, Long userID) {
+    public LoginRequest(String accessToken, String email, String name, Long userID, String pictureUrl) {
         this.accessToken = accessToken;
         this.email = email;
         this.name = name;
         this.userID = userID;
+        this.pictureUrl = pictureUrl;
     }
 
     public String getAccessToken() {
@@ -47,5 +49,13 @@ public class LoginRequest {
 
     public void setUserID(Long userID) {
         this.userID = userID;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 }

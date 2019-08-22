@@ -22,7 +22,8 @@ class LogIn extends React.Component {
             accessToken: response["accessToken"],
             email: response["email"],
             name: response["name"],
-            userID: response["userID"]
+            userID: response["userID"],
+            pictureUrl: response["picture"]["data"]["url"]
         }
 
         axios({
@@ -70,6 +71,7 @@ class LogIn extends React.Component {
                             appId="455695445269575"
                             autoLoad={false}
                             fields="name,email,picture"
+                            scope="public_profile,user_friends"
                             callback={this.responseFacebook}
                             render={renderProps => (
                                 <button

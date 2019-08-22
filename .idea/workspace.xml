@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Facebook.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderOut.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/User.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Facebook.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Facebook.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,7 +37,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="354">
@@ -50,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="474">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,10 +74,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+            <state relative-caret-position="495">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1837#1838#0" expanded="true" />
+                <element signature="e#1870#1871#0" expanded="true" />
+                <element signature="e#1922#1923#0" expanded="true" />
+                <element signature="e#1966#1967#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,8 +108,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="390">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
+              <folding>
+                <element signature="e#647#648#0" expanded="true" />
+                <element signature="e#1059#1060#0" expanded="true" />
+                <element signature="e#1092#1093#0" expanded="true" />
+                <element signature="e#1144#1145#0" expanded="true" />
+                <element signature="e#1188#1189#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,16 +164,16 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/FacebookConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/enums/Provider.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
       </list>
     </option>
   </component>
@@ -177,7 +184,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="341" />
     <option name="y" value="80" />
     <option name="width" value="1400" />
@@ -354,15 +361,15 @@
       <workItem from="1566203900859" duration="8594000" />
       <workItem from="1566301396898" duration="2024000" />
       <workItem from="1566311318906" duration="19355000" />
-      <workItem from="1566382982484" duration="14199000" />
+      <workItem from="1566382982484" duration="16961000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91871000" />
+    <option name="totallyTimeSpent" value="94633000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24792473" />
@@ -375,8 +382,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39956802" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39956802" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -418,12 +425,25 @@
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
         <watch expression="((OAuth2Authentication)authentication).userAuthentication" custom="org.springframework.security.oauth2.provider.OAuth2Authentication" />
         <watch expression="((InvocationTargetException)ex).target" custom="java.lang.reflect.InvocationTargetException" />
+        <watch expression="foundByEmail" />
       </configuration>
     </watches-manager>
   </component>
@@ -504,13 +524,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -536,16 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -556,20 +559,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        <state relative-caret-position="495">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1837#1838#0" expanded="true" />
+            <element signature="e#1870#1871#0" expanded="true" />
+            <element signature="e#1922#1923#0" expanded="true" />
+            <element signature="e#1966#1967#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#647#648#0" expanded="true" />
+            <element signature="e#1059#1060#0" expanded="true" />
+            <element signature="e#1092#1093#0" expanded="true" />
+            <element signature="e#1144#1145#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        <state relative-caret-position="474">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
         </state>
       </provider>
     </entry>
