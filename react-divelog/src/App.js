@@ -20,7 +20,7 @@ import Home from './components/Layout/Home';
 import AboutMe from './components/Layout/AboutMe';
 import Donate from './components/Layout/Donate';
 import Contact from './components/Layout/Contact';
-import User from './components/User';
+import Facebook from './components/Facebook';
 import PrivateRoute from './util/PrivateRoute';
 
 i18next.init({
@@ -52,7 +52,7 @@ function App() {
             <Route exact path="/donate" component={Donate} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={LogIn} />
-            <PrivateRoute exact path="/dashboard" component={User} />
+            <PrivateRoute exact path="/dashboard" component={Facebook} />
           </I18nextProvider>
         </div>
       </Router>

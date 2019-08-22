@@ -4,7 +4,9 @@
         "guide": "Führung",
         "aboutMe": "Über mich",
         "donate": "Schenken",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "login": "Einloggen",
+        "logout": "Ausloggen"
     },
     "login": {
         "login": "Einloggen",

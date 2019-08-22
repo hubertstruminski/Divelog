@@ -4,7 +4,9 @@
         "guide": "Guide",
         "aboutMe": "About me",
         "donate": "Donate",
-        "contact": "Contact"
+        "contact": "Contact",
+        "login": "Log In",
+        "logout": "Logout"
     },
     "login": {
         "login": "Log In",

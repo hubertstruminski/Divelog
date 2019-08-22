@@ -4,7 +4,9 @@
         "guide": "Przewodnik",
         "aboutMe": "O mnie",
         "donate": "Darowizna",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "login": "Zaloguj się",
+        "logout": "Wyloguj się"
     },
     "login": {
         "login": "Zaloguj się",

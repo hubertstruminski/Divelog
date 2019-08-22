@@ -2,78 +2,127 @@ import React from 'react';
 import '../../css/Header.css';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import $ from 'jquery';
 
 class HeaderIn extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            accessToken: '',
+            email: '',
+            name: '',
+            userID: ''
+        }
+        this.logout = this.logout.bind(this);
+    }
+
+    componentDidMount() {
+        let userID = localStorage.getItem("KEY");
+
+        fetch(`/getuserdata/${userID}`, {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(jsonData => {
+            this.setState({
+                accessToken: jsonData.accessToken,
+                email: jsonData.email,
+                name: jsonData.name,
+                userID: jsonData.userID
+            });
+        }); 
+        localStorage.removeItem("KEY");
+
+        let isActive = false;
+        $(".left-menu-icon").click(function() {
+
+            if(!isActive) {
+                $(".left-menu").animate({ left: '0' }, 500);
+                isActive = true;
+                return;
+            }
+
+            if(isActive) {
+                $(".left-menu").animate({ left: '-15%' }, 500);
+                isActive = false;
+                return;
+            }
+        })
+    }
+
+
+    logout() {
+        window.location.href = "https://www.facebook.com/logout.php?next=http://localhost:3000/&access_token=" + this.state.accessToken;
+    }
+
+
     render() {
         const  { i18n } = this.props;
 
         return (
-            <header>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <Link to="/home" className="navbar-brand">
-                        <span className="logoSize">
-                            Divelog
-                        </span>
-                    </Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarToggleExternalContent">
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item mt-2">
-                                <i
-                                    onClick={() => i18n.changeLanguage("en")} 
-                                    className="gb uk flag nav-link"
-                                />
-                            </li>
-                            <li className="nav-item mt-2">
-                                <i 
-                                    onClick={() => i18n.changeLanguage("de")} 
-                                    className="de flag nav-link"
-                                />
-                            </li>
-                            <li className="nav-item mt-2">
-                                <i 
-                                    onClick={() => i18n.changeLanguage("pl")} 
-                                    className="pl flag nav-link" 
-                                />
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/home" className="nav-link">
-                                    {this.props.t("header.home")}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/guide" className="nav-link">
-                                    {this.props.t("header.guide")}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/about" className="nav-link">
-                                    {this.props.t("header.aboutMe")}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/donate" className="nav-link">
-                                    {this.props.t("header.donate")}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/contact" className="nav-link">
-                                    {this.props.t("header.contact")}
-                                </Link>
-                            </li>
-                        </ul>
-                        <ul className="navbar-nav my-lg justify-content-end">
-                            <li className="nav-item">
-                                <Link to="/logout" className="nav-link">
-                                    Logout
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
+            <div>
+                <header>
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <Link to="/home" className="navbar-brand">
+                            <span className="logoSize">
+                                Divelog
+                            </span>
+                        </Link>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarToggleExternalContent">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item mt-3">
+                                    <i
+                                        onClick={() => i18n.changeLanguage("en")} 
+                                        className="gb uk flag nav-link"
+                                    />
+                                </li>
+                                <li className="nav-item mt-3">
+                                    <i 
+                                        onClick={() => i18n.changeLanguage("de")} 
+                                        className="de flag nav-link"
+                                    />
+                                </li>
+                                <li className="nav-item mt-3">
+                                    <i 
+                                        onClick={() => i18n.changeLanguage("pl")} 
+                                        className="pl flag nav-link" 
+                                    />
+                                </li>
+                                <li className="nav-item">
+                                    <div className="nav-link left-menu-icon">
+                                        <i class="fas fa-bars"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul className="navbar-nav my-lg justify-content-end">
+                                <li className="nav-item nav-link">
+                                    {this.state.name}
+                                </li>
+                                <li className="nav-item">
+                                    <div className="nav-link">
+                                        <button
+                                            onClick={this.logout}
+                                            className="btn-logout bg-dark"
+                                        >
+                                            {this.props.t("header.logout")}
+                                        </button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+                <div className="left-menu">
+                
+                </div>
+            </div>
         );
     }
 }

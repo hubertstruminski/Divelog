@@ -3,21 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/actions/LoginActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/actions/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/actions/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderOut.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/reducers/LoginReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/util/APIUtil.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/LogInController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/LogInController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/User.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -56,7 +53,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
+            <state relative-caret-position="429">
               <caret line="54" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -357,15 +354,16 @@
       <workItem from="1566203900859" duration="8594000" />
       <workItem from="1566301396898" duration="2024000" />
       <workItem from="1566311318906" duration="19355000" />
-      <workItem from="1566382982484" duration="13302000" />
+      <workItem from="1566382982484" duration="14199000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90974000" />
+    <option name="totallyTimeSpent" value="91871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24792473" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -419,18 +417,6 @@
           <line>28</line>
           <properties />
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java</url>
-          <line>53</line>
-          <properties />
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java</url>
-          <line>54</line>
-          <properties />
-          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -579,7 +565,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
+        <state relative-caret-position="429">
           <caret line="54" selection-start-line="54" selection-end-line="54" />
           <folding>
             <element signature="imports" expanded="true" />

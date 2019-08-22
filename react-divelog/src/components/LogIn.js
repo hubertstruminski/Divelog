@@ -6,7 +6,6 @@ import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { fakeAuth } from '../util/fakeAuth';
-import { withRouter } from 'react-router-dom';
 
 class LogIn extends React.Component {
     constructor() {
@@ -89,4 +88,4 @@ class LogIn extends React.Component {
     }
 }
 
-export default withTranslation('common')(withRouter(LogIn));
+export default withTranslation('common')(LogIn);

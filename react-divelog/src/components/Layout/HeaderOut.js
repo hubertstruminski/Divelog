@@ -67,7 +67,7 @@ class HeaderOut extends React.Component {
                         <ul className="navbar-nav my-lg justify-content-end">
                             <li className="nav-item">
                                 <Link to="/login" className="nav-link">
-                                    Log In
+                                    {this.props.t("header.login")}
                                 </Link>
                             </li>
                         </ul>
