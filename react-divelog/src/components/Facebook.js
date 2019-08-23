@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Facebook.css';
+import LeftCard from './Layout/LeftCard';
 
 class Facebook extends React.Component {
     constructor(props) {
@@ -57,17 +58,7 @@ class Facebook extends React.Component {
                                 </div>
                             </div>
                             <hr className="hr-margin" />
-                            <ul className="list-group">
-                                <li className="list-group-item active">
-                                    Aktualności
-                                </li>
-                                <li className="list-group-item">
-                                    Grupy
-                                </li>
-                                <li className="list-group-item"></li>
-                                <li className="list-group-item"></li>
-                                <li className="list-group-item"></li>
-                            </ul>
+                            <LeftCard />
                         </div>
                     </div>
                     <div className="feed-container">

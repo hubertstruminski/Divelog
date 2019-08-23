@@ -52,5 +52,19 @@
             "textarea": "Tutaj napisz wiadomość",
             "button": "Wyślij wiadomość"
         }
+    },
+    "searchFriends": {
+        "placeholder": "Szukaj znajomych"
+    },
+    "menu": {
+        "socialMedia": "Media społecznościowe",
+        "logbook": "Logbook",
+        "map": "Moja mapa",
+        "forum": "Forum",
+        "settings": "Ustawienia"
+    },
+    "leftCard": {
+        "news": "Aktualności",
+        "groups": "Grupy"
     }
 }

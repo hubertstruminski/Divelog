@@ -3,7 +3,11 @@ import '../../css/Header.css';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import $ from 'jquery';
-import FB from 'fb';
+import SearchFriends from '../SearchFriends';
+import Friends from '../Friends';
+import Messenger from '../Messenger';
+import Notifications from '../Notifications';
+import Menu from '../Menu';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -106,22 +110,38 @@ class HeaderIn extends React.Component {
                             </ul>
                             <ul className="collapse navbar-collapse ul-no justify-content-md-center">
                                 <li>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Search"
+                                    <SearchFriends
+                                        accessToken={this.state.accessToken}
+                                        email={this.state.email}
+                                        name={this.state.name}
+                                        userID={this.state.userID}
                                     />
                                 </li>
                             </ul>
                             <ul className="navbar-nav my-lg justify-content-end">
                                 <li className="nav-item nav-link">
-                                    <i class="fas fa-user-friends"></i>
+                                    <Friends
+                                        accessToken={this.state.accessToken}
+                                        email={this.state.email}
+                                        name={this.state.name}
+                                        userID={this.state.userID}
+                                    />
                                 </li>
                                 <li className="nav-item nav-link">
-                                    <i class="fab fa-facebook-messenger"></i>
+                                    <Messenger 
+                                        accessToken={this.state.accessToken}
+                                        email={this.state.email}
+                                        name={this.state.name}
+                                        userID={this.state.userID}
+                                    />
                                 </li>
                                 <li className="nav-item nav-link">
-                                    <i class="fas fa-bell"></i>
+                                    <Notifications 
+                                        accessToken={this.state.accessToken}
+                                        email={this.state.email}
+                                        name={this.state.name}
+                                        userID={this.state.userID}
+                                    />
                                 </li>
                                 <li className="nav-item nav-link">
                                     <img 
@@ -148,23 +168,7 @@ class HeaderIn extends React.Component {
                     </nav>
                 </header>
                 <div className="left-menu">
-                    <ul className="list-group">
-                        <li className="list-group-item item-menu">
-                            Social media
-                        </li>
-                        <li className="list-group-item item-menu">
-                            Logbook
-                        </li>
-                        <li className="list-group-item item-menu">
-                            Moja mapa
-                        </li>
-                        <li className="list-group-item item-menu">
-                            Forum
-                        </li>
-                        <li className="list-group-item item-menu">
-                            Ustawienia
-                        </li>
-                    </ul>
+                    <Menu />
                 </div>
             </div>
         );

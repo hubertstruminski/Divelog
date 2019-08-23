@@ -54,6 +54,10 @@
     border-radius: 5px;
 }
 
+.fb-btn-white-font {
+    color: white;
+}
+
 
 @media screen and (max-width: 500px) and (min-width: 300px) {
     .form-size {

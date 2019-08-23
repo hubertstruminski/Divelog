@@ -73,15 +73,9 @@ class LogIn extends React.Component {
                             fields="name,email,picture"
                             scope="public_profile,user_friends"
                             callback={this.responseFacebook}
-                            render={renderProps => (
-                                <button
-                                    className="btn btn-lg btn-fb" 
-                                    style={{color: 'white'}}
-                                >
-                                    <i class="fab fa-facebook-f pr-1"></i> 
-                                    {this.props.t("login.facebook-btn")}
-                                </button>
-                            )}
+                            cssClass="btn btn-lg btn-fb fb-btn-white-font"
+                            icon="<i className='fab fa-facebook-f pr-1' />"
+                            textButton={this.props.t("login.facebook-btn")}
                         />
                     </div>
                 </div>

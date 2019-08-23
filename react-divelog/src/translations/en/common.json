@@ -52,5 +52,19 @@
             "textarea": "Write here your message",
             "button": "Send message"
         }
+    },
+    "searchFriends": {
+        "placeholder": "Search friends"
+    },
+    "menu": {
+        "socialMedia": "Social Media",
+        "logbook": "Logbook",
+        "map": "My map",
+        "forum": "Forum",
+        "settings": "Settings"
+    },
+    "leftCard": {
+        "news": "News",
+        "groups": "Groups"
     }
 }
