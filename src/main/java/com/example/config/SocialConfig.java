@@ -20,7 +20,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 //@EnableOAuth2Sso
-//@Order(0)
+////@Order(0)
 @EnableWebSecurity
 public class SocialConfig extends WebSecurityConfigurerAdapter {
 

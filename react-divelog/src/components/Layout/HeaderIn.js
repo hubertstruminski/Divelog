@@ -109,7 +109,7 @@ class HeaderIn extends React.Component {
                                 </li>
                             </ul>
                             <ul className="collapse navbar-collapse ul-no justify-content-md-center">
-                                <li>
+                                <li className="mt-3">
                                     <SearchFriends
                                         accessToken={this.state.accessToken}
                                         email={this.state.email}

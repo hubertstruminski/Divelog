@@ -38,8 +38,14 @@
 .item-menu:hover {
     color: white;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .ul-no {
     list-style-type: none;
+}
+
+.a-link-menu {
+    color: #4a4949;
+    text-decoration: none;
 }

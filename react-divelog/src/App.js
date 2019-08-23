@@ -22,6 +22,7 @@ import Donate from './components/Layout/Donate';
 import Contact from './components/Layout/Contact';
 import Facebook from './components/Facebook';
 import PrivateRoute from './util/PrivateRoute';
+import GoogleMap from './components/googleMaps/GoogleMap';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -53,6 +54,7 @@ function App() {
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={LogIn} />
             <PrivateRoute exact path="/dashboard" component={Facebook} />
+            <PrivateRoute exact path="/map" component={GoogleMap} />
           </I18nextProvider>
         </div>
       </Router>

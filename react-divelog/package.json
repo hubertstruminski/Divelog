@@ -8,6 +8,7 @@
     "bootstrap-loader": "^3.0.4",
     "cookies": "^0.7.3",
     "fb": "^2.0.0",
+    "google-maps-react": "^2.0.2",
     "i18next": "^17.0.7",
     "jquery": "^3.4.1",
     "mdbootstrap": "^4.8.7",

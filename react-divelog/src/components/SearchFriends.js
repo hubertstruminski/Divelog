@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/SearchFriends.css';
 import { withTranslation } from 'react-i18next';
 
 class SearchFriends extends React.Component {
@@ -11,7 +12,7 @@ class SearchFriends extends React.Component {
             <div>
                 <input
                     type="text"
-                    className="form-control"
+                    className="form-control input-margin"
                     placeholder={this.props.t("searchFriends.placeholder")}
                 />
             </div>
