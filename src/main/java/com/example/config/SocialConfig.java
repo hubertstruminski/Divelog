@@ -30,7 +30,7 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/", "/login**", "/webjars/**", "/error**", "/signin", "/getuserdata/**")
+                .antMatchers("/", "/login**", "/webjars/**", "/error**", "/signin", "/getuserdata/**", "/add/marker")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

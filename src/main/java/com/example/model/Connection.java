@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "facebook_connection")
@@ -44,6 +45,9 @@ public class Connection {
     @Column(name = "created_at")
     @NotNull
     private Date createdAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Marker> markers;
 
     public Connection() {
 

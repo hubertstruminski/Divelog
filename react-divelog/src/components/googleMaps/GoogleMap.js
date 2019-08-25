@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/GoogleMap.css';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
-import ModalVertically from '../Layout/ModalVertically';
+import GoogleModal from './GoogleModal';
 import $ from 'jquery';
 
 class GoogleMap extends React.Component {
@@ -28,9 +28,9 @@ class GoogleMap extends React.Component {
 
         this.setState({
             markers: [
-                {name: 'Paryż', lat: 48.887, lng: 2.343 },
-                {name: 'Hubert Strumiński', lat: 49.748, lng: 20.731 },
-                {name: 'Berlin', lat: 52.518, lng: 13.373  }
+                {name: 'Paryż', latitude: 48.887, longitude: 2.343 },
+                {name: 'Hubert Strumiński', latitude: 49.748, longitude: 20.731 },
+                {name: 'Berlin', latitude: 52.518, longitude: 13.373  }
             ]
         })
     }
@@ -40,7 +40,7 @@ class GoogleMap extends React.Component {
             return (
                 <Marker 
                     key={index} 
-                    position={{ lat: marker.lat, lng: marker.lng }}
+                    position={{ lat: marker.latitude, lng: marker.longitude }}
                     onClick={this.onMarkerClick}
                 />
             );
@@ -123,7 +123,7 @@ class GoogleMap extends React.Component {
                     </div>
                     </InfoWindow>
                 </Map>
-                <ModalVertically 
+                <GoogleModal 
                     latitude={this.state.latitude}
                     longitude={this.state.longitude}
                     setFinishMarker={this.setFinishMarker}

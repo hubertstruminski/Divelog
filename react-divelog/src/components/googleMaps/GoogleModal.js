@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-class ModalVertically extends React.Component {
+class GoogleModal extends React.Component {
     constructor(props) {
         super(props);
 
@@ -23,6 +23,25 @@ class ModalVertically extends React.Component {
         console.log(this.props.latitude);
         console.log(this.props.longitude);
         console.log(name);
+
+        const googleMarker = {
+            name: name,
+            latitude: this.props.latitude,
+            longitude: this.props.longitude
+        }
+
+        fetch("/add/marker", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(googleMarker)
+        })
+        .then(response => response.json())
+        .then(jsonData => {
+            
+        }); 
 
         this.props.setFinishMarker();
         $("#modalCenter").modal('hide');
@@ -70,4 +89,4 @@ class ModalVertically extends React.Component {
     }
 }
 
-export default ModalVertically;
+export default GoogleModal;
