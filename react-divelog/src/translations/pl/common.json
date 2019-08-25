@@ -66,5 +66,25 @@
     "leftCard": {
         "news": "Aktualności",
         "groups": "Grupy"
+    },
+    "loading": "Ładowanie...",
+    "googleMap": {
+        "story": "Twoja historia nurkowań",
+        "table": {
+            "name": "Nazwa",
+            "latitude": "Szerokość",
+            "longitude": "Długość",
+            "delete": "Usuń"
+        },
+        "modal": {
+            "title": "füge eine Markierung zur Geschichte hinzu",
+            "text": "Name für Marker:",
+            "close": "schließen",
+            "save": "Markierung speichern",
+            "swal": {
+                "title": "Sukces",
+                "text": "Odśwież stronę"
+            }
+        }
     }
 }

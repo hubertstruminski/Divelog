@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/util/fakeAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/util/fakeAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/GoogleMap.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/GoogleMap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/MarkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/MarkerController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -25,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="32" column="118" selection-start-line="32" selection-start-column="118" selection-end-line="32" selection-end-column="118" />
+            <state relative-caret-position="169">
+              <caret line="33" column="88" selection-start-line="33" selection-start-column="88" selection-end-line="33" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,22 +66,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Marker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="525">
+              <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#477#478#0" expanded="true" />
                 <element signature="e#504#505#0" expanded="true" />
                 <element signature="e#544#545#0" expanded="true" />
                 <element signature="e#576#577#0" expanded="true" />
-                <element signature="e#724#725#0" expanded="true" />
-                <element signature="e#755#756#0" expanded="true" />
-                <element signature="e#807#808#0" expanded="true" />
-                <element signature="e#847#848#0" expanded="true" />
-                <element signature="e#887#888#0" expanded="true" />
-                <element signature="e#919#920#0" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-                <element signature="e#1015#1016#0" expanded="true" />
+                <element signature="e#680#681#0" expanded="true" />
+                <element signature="e#728#729#0" expanded="true" />
+                <element signature="e#768#769#0" expanded="true" />
+                <element signature="e#804#805#0" expanded="true" />
+                <element signature="e#836#837#0" expanded="true" />
+                <element signature="e#886#887#0" expanded="true" />
+                <element signature="e#928#929#0" expanded="true" />
                 <element signature="e#920#921#0" expanded="true" />
                 <element signature="e#947#948#0" expanded="true" />
                 <element signature="e#991#992#0" expanded="true" />
@@ -111,8 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            <state relative-caret-position="210">
+              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -123,11 +130,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+            <state relative-caret-position="384">
+              <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="121" selection-start-line="121" selection-end-line="121" />
             </state>
           </provider>
         </entry>
@@ -366,13 +382,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103157000" />
+    <option name="totallyTimeSpent" value="109657000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18206973" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18206973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -383,7 +399,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39956802" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39956802" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -424,26 +440,6 @@
           <line>28</line>
           <properties />
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
-          <line>38</line>
-          <properties />
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
-          <line>29</line>
-          <properties />
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
-          <line>28</line>
-          <properties class="com.example.controller.MarkerController" method="addMarker">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -512,13 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/Provider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -574,32 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Marker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#504#505#0" expanded="true" />
-            <element signature="e#544#545#0" expanded="true" />
-            <element signature="e#576#577#0" expanded="true" />
-            <element signature="e#724#725#0" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
-            <element signature="e#807#808#0" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-            <element signature="e#887#888#0" expanded="true" />
-            <element signature="e#919#920#0" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
-            <element signature="e#1015#1016#0" expanded="true" />
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#947#948#0" expanded="true" />
-            <element signature="e#991#992#0" expanded="true" />
-            <element signature="e#1023#1024#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
@@ -620,20 +583,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Marker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#544#545#0" expanded="true" />
+            <element signature="e#576#577#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#886#887#0" expanded="true" />
+            <element signature="e#928#929#0" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+            <element signature="e#1023#1024#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="32" column="118" selection-start-line="32" selection-start-column="118" selection-end-line="32" selection-end-column="118" />
+        <state relative-caret-position="169">
+          <caret line="33" column="88" selection-start-line="33" selection-start-column="88" selection-end-line="33" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        <state relative-caret-position="210">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -642,8 +637,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+        <state relative-caret-position="384">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

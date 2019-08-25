@@ -1,6 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 import { fakeAuth } from '../../util/fakeAuth';
+import swal from 'sweetalert';
+import { withTranslation } from 'react-i18next';
 
 class GoogleModal extends React.Component {
     constructor(props) {
@@ -38,8 +40,13 @@ class GoogleModal extends React.Component {
 
         this.props.setFinishMarker();
         $("#modalCenter").modal('hide');
-    }
 
+        swal(
+            this.props.t("googleMap.modal.swal.title"), 
+            this.props.t("googleMap.modal.swal.text"), 
+            "success"
+        );
+    }
 
     render() {
         return (
@@ -47,14 +54,18 @@ class GoogleModal extends React.Component {
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="modalCenterTitle">Add marker to story</h5>
+                        <h5 className="modal-title" id="modalCenterTitle">
+                            {this.props.t("googleMap.modal.title")}
+                        </h5>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
                         <div className="form-group">
-                            <label htmlFor="name">Name for marker:</label>
+                            <label htmlFor="name">
+                                {this.props.t("googleMap.modal.text")}
+                            </label>
                             <input 
                                 type="text" 
                                 id="name" 
@@ -66,13 +77,15 @@ class GoogleModal extends React.Component {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-danger" data-dismiss="modal">
+                            {this.props.t("googleMap.modal.close")}
+                        </button>
                         <button 
                             type="button" 
                             className="btn btn-success"
                             onClick={this.onSubmit}
                         >
-                            Save marker
+                            {this.props.t("googleMap.modal.save")}
                         </button>
                     </div>
                     </div>
@@ -82,4 +95,4 @@ class GoogleModal extends React.Component {
     }
 }
 
-export default GoogleModal;
+export default withTranslation("common")(GoogleModal);

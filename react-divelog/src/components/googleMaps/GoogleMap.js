@@ -3,6 +3,10 @@ import '../../css/GoogleMap.css';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
 import GoogleModal from './GoogleModal';
 import $ from 'jquery';
+import { fakeAuth } from '../../util/fakeAuth';
+import DeleteButton from './DeleteButton';
+import { withTranslation } from 'react-i18next';
+import { compose } from 'redux';
 
 class GoogleMap extends React.Component {
     constructor(props) {
@@ -17,7 +21,6 @@ class GoogleMap extends React.Component {
             isFinishMarker: false,
             latitude: '',
             longitude: '',
-            markerName: ''
         }
         this.onMapClick = this.onMapClick.bind(this);
         this.setFinishMarker = this.setFinishMarker.bind(this);
@@ -26,13 +29,26 @@ class GoogleMap extends React.Component {
     componentDidMount() {
         this.setState({ isLoading: false });
 
-        this.setState({
-            markers: [
-                {name: 'Paryż', latitude: 48.887, longitude: 2.343 },
-                {name: 'Hubert Strumiński', latitude: 49.748, longitude: 20.731 },
-                {name: 'Berlin', latitude: 52.518, longitude: 13.373  }
-            ]
+        fetch(`/get/markers/${fakeAuth.userID}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'content-type': 'application/json'
+            }
         })
+        .then(response => response.json())
+        .then(jsonData => {
+            jsonData.map((marker, index) => {
+                let element = {
+                    name: marker.name,
+                    latitude: marker.latitude,
+                    longitude: marker.longitude
+                }
+                this.setState({
+                    markers: this.state.markers.concat(element)
+                })
+            })
+        }); 
     }
 
     showMarkers = () => {
@@ -40,9 +56,29 @@ class GoogleMap extends React.Component {
             return (
                 <Marker 
                     key={index} 
+                    name={marker.name}
                     position={{ lat: marker.latitude, lng: marker.longitude }}
                     onClick={this.onMarkerClick}
                 />
+            );
+        });
+    }
+
+    showTableRows = () => {
+        let i = 0;
+        return this.state.markers.map((marker, index) => {
+            return (
+                <tr>
+                    <th scope="row">
+                        <b>{++i}</b>
+                    </th>
+                    <td>{marker.name}</td>
+                    <td>{marker.latitude}</td>
+                    <td>{marker.longitude}</td>
+                    <td>
+                        <DeleteButton id={marker.id} />
+                    </td>
+                </tr>
             );
         })
     }
@@ -86,48 +122,83 @@ class GoogleMap extends React.Component {
 
     render() {
         const mapStyle = {
-            width: '70%',
-            height: '60%',
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            '-webkit-transform': 'translate(-50%, -50%)',
-            transform: 'translate(-50%, -50%)'
+            width: '100%',
+            height: '100%',
         }
 
         let loadingScreen = (
             <div class="d-flex justify-content-center">
                 <div class="spinner-grow" role="status">
-                    <span class="sr-only">Loading...</span>
+                    <span class="sr-only">
+                        {this.props.t("loading")}
+                    </span>
                 </div>
             </div>
         )
 
         let map = (
             <div className="google-container">
-                <Map
-                    google={this.props.google}
-                    zoom={5}
-                    style={mapStyle}
-                    initialCenter={{ lat: 50.087, lng: 14.421}}
-                    onClick={this.onMapClick}
-                >
-                    { this.showMarkers() }
-                    <InfoWindow
-                        marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}
-                        onClose={this.onClose}
-                    >
-                    <div className="alert alert-success" role="alert">
-                        <h4>{this.state.selectedPlace.name}</h4>
+                <div className="table-container">
+                    <div>
+                        <div className="story-header"> 
+                            {this.props.t("googleMap.story")}
+                        </div>
+                    <br />
+                        <div className="marker-table">
+                            <div className="table-responsive">
+                                <table className="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <b>#</b>
+                                            </th>
+                                            <th scope="col">
+                                                {this.props.t("googleMap.table.name")}
+                                            </th>
+                                            <th scope="col">
+                                                {this.props.t("googleMap.table.latitude")}
+                                            </th>
+                                            <th scope="col">
+                                                {this.props.t("googleMap.table.longitude")}
+                                            </th>
+                                            <th scope="col">
+                                                {this.props.t("googleMap.table.delete")}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        { this.showTableRows() }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    </InfoWindow>
-                </Map>
-                <GoogleModal 
-                    latitude={this.state.latitude}
-                    longitude={this.state.longitude}
-                    setFinishMarker={this.setFinishMarker}
-                />
+                </div>
+                <div>
+                    <Map
+                        google={this.props.google}
+                        zoom={5}
+                        style={mapStyle}
+                        initialCenter={{ lat: 48.023, lng: 14.426}}
+                        onClick={this.onMapClick}
+                    >
+                        { this.showMarkers() }
+                        <InfoWindow
+                            marker={this.state.activeMarker}
+                            visible={this.state.showingInfoWindow}
+                            onClose={this.onClose}
+                        >
+                        <div className="alert alert-success" role="alert">
+                            <h4>{this.state.selectedPlace.name}</h4>
+                        </div>
+                        </InfoWindow>
+                    </Map>
+                    <GoogleModal 
+                        latitude={this.state.latitude}
+                        longitude={this.state.longitude}
+                        setFinishMarker={this.setFinishMarker}
+                    />
+                </div>
             </div>
             
         )
@@ -141,9 +212,12 @@ class GoogleMap extends React.Component {
     }
 }
 
-export default GoogleApiWrapper(
+export default compose(
+    GoogleApiWrapper(
     (props) => ({
       apiKey: 'AIzaSyBgb4kpatKEjsOGsxplxFyRfw1K_wGhLTo',
       language: props.language,
     }
-  ))(GoogleMap);
+  )),
+    withTranslation("common")
+  )(GoogleMap);

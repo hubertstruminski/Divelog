@@ -1,29 +1,23 @@
 .google-container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-image: url("../img/hexellence.png");
-    height: 100vh;
-    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
-.loading-container {
-    width: 100vh;
-    height: 100vh;
-    overflow-y: hidden;
-    overflow-x: hidden;
-
-    background-color: black;
-    opacity: 0.65;
-
+.table-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-
-    z-index: 10;
 }
 
-.z-spinner {
-    z-index: 20;
+.story-header {
+    margin-top: 7.5%;
+    margin-bottom: 5%;
+    font-size: 2vw;
+}
+
+.marker-table {
+    width: 100%;
+    max-height: 60%;
+    overflow-y: scroll;
 }

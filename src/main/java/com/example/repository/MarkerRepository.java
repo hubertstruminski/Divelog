@@ -11,4 +11,6 @@ import java.util.List;
 public interface MarkerRepository extends CrudRepository<Marker, Long> {
 
     public List<Marker> findAllByUser(Connection user);
+
+    void deleteById(Long id);
 }

@@ -66,5 +66,25 @@
     "leftCard": {
         "news": "Nachrichten",
         "groups": "Gruppen"
+    },
+    "loading": "Wird geladen...",
+    "googleMap": {
+        "story": "Deine Tauchergeschichte",
+        "table": {
+            "name": "Name",
+            "latitude": "Breite",
+            "longitude": "Längengrad",
+            "delete": "Löschen"
+        },
+        "modal": {
+            "title": "Dodaj znacznik do historii",
+            "text": "Nazwa dla znacznika:",
+            "close": "Zamknij",
+            "save": "Zapisz znacznik",
+            "swal": {
+                "title": "Erfolg",
+                "text": "Lade die Seite neu"
+            }
+        }
     }
 }

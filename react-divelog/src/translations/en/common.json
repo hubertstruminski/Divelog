@@ -66,5 +66,25 @@
     "leftCard": {
         "news": "News",
         "groups": "Groups"
+    },
+    "loading": "Loading...",
+    "googleMap": {
+        "story": "Your diving story",
+        "table": {
+            "name": "Name",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "delete": "Delete"
+        },
+        "modal": {
+            "title": "Add marker to story",
+            "text": "Name for marker:",
+            "close": "Close",
+            "save": "Save marker",
+            "swal": {
+                "title": "Success",
+                "text": "Refresh the page"
+            }
+        }
     }
 }
