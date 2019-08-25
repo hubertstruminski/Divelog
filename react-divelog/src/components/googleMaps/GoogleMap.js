@@ -1,18 +1,87 @@
 import React from 'react';
 import '../../css/GoogleMap.css';
-import { Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
+import ModalVertically from '../Layout/ModalVertically';
+import $ from 'jquery';
 
 class GoogleMap extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoading: true
+            isLoading: true,
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+            markers: [],
+            isFinishMarker: false,
+            latitude: '',
+            longitude: '',
+            markerName: ''
         }
+        this.onMapClick = this.onMapClick.bind(this);
+        this.setFinishMarker = this.setFinishMarker.bind(this);
     }
 
     componentDidMount() {
         this.setState({ isLoading: false });
+
+        this.setState({
+            markers: [
+                {name: 'Paryż', lat: 48.887, lng: 2.343 },
+                {name: 'Hubert Strumiński', lat: 49.748, lng: 20.731 },
+                {name: 'Berlin', lat: 52.518, lng: 13.373  }
+            ]
+        })
+    }
+
+    showMarkers = () => {
+        return this.state.markers.map((marker, index) => {
+            return (
+                <Marker 
+                    key={index} 
+                    position={{ lat: marker.lat, lng: marker.lng }}
+                    onClick={this.onMarkerClick}
+                />
+            );
+        })
+    }
+
+    onMarkerClick = (props, marker, e) => {
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
+    }
+
+    onClose = props => {
+        if(this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            });
+        }
+    };
+
+    onMapClick(t, map, coord) {
+        const { latLng } = coord;
+        const lat = latLng.lat();
+        const lng = latLng.lng();
+
+        this.setState({ 
+            latitude: lat,
+            longitude: lng
+        });
+
+        $(document).on('show.bs.modal', "#modalCenter", function (event) {
+            $('#name').trigger('focus');
+        });
+        $("#modalCenter").modal('show');
+    }
+
+    setFinishMarker() {
+        this.setState({ isFinishMarker: true });
     }
 
     render() {
@@ -38,13 +107,29 @@ class GoogleMap extends React.Component {
             <div className="google-container">
                 <Map
                     google={this.props.google}
-                    zoom={2}
+                    zoom={5}
                     style={mapStyle}
-                    initialCenter={{ lat: 47.444, lng: -122.176}}
+                    initialCenter={{ lat: 50.087, lng: 14.421}}
+                    onClick={this.onMapClick}
                 >
-                    <Marker position={{ lat: 48.00, lng: -122.00}} />
+                    { this.showMarkers() }
+                    <InfoWindow
+                        marker={this.state.activeMarker}
+                        visible={this.state.showingInfoWindow}
+                        onClose={this.onClose}
+                    >
+                    <div className="alert alert-success" role="alert">
+                        <h4>{this.state.selectedPlace.name}</h4>
+                    </div>
+                    </InfoWindow>
                 </Map>
+                <ModalVertically 
+                    latitude={this.state.latitude}
+                    longitude={this.state.longitude}
+                    setFinishMarker={this.setFinishMarker}
+                />
             </div>
+            
         )
         let content = this.state.isLoading ? loadingScreen : map;
 

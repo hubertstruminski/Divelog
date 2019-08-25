@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/SearchFriends.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/SearchFriends.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleMap.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
