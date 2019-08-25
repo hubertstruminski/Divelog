@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Marker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/ModalVertically.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/util/fakeAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/util/fakeAuth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/Connection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="154">
+              <caret line="32" column="118" selection-start-line="32" selection-start-column="118" selection-end-line="32" selection-end-column="118" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+            <state relative-caret-position="135">
+              <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,8 +123,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="390">
+              <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -170,9 +179,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Marker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" />
       </list>
     </option>
   </component>
@@ -184,8 +193,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="993" />
-    <option name="y" value="27" />
+    <option name="x" value="67" />
+    <option name="y" value="25" />
     <option name="width" value="927" />
     <option name="height" value="1053" />
   </component>
@@ -357,10 +366,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101395000" />
+    <option name="totallyTimeSpent" value="103157000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18206973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -417,19 +427,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
-          <line>18</line>
-          <properties />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
-          <line>24</line>
+          <line>38</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
+          <line>29</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
-          <line>17</line>
+          <line>28</line>
           <properties class="com.example.controller.MarkerController" method="addMarker">
             <option name="EMULATED" value="true" />
           </properties>
@@ -470,16 +480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="102" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -600,16 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
@@ -620,10 +610,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="154">
+          <caret line="32" column="118" selection-start-line="32" selection-start-column="118" selection-end-line="32" selection-end-column="118" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -632,8 +642,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="390">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

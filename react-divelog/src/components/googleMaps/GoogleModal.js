@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import { fakeAuth } from '../../util/fakeAuth';
 
 class GoogleModal extends React.Component {
     constructor(props) {
@@ -20,28 +21,20 @@ class GoogleModal extends React.Component {
     onSubmit() {
         let name = $("#name").val();
 
-        console.log(this.props.latitude);
-        console.log(this.props.longitude);
-        console.log(name);
-
         const googleMarker = {
             name: name,
             latitude: this.props.latitude,
             longitude: this.props.longitude
         }
 
-        fetch("/add/marker", {
+        fetch(`/add/marker/${fakeAuth.userID}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'content-type': 'application/json'
             },
             body: JSON.stringify(googleMarker)
-        })
-        .then(response => response.json())
-        .then(jsonData => {
-            
-        }); 
+        });
 
         this.props.setFinishMarker();
         $("#modalCenter").modal('hide');

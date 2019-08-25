@@ -16,10 +16,10 @@ public class Marker {
     private String name;
 
     @NotNull
-    private BigDecimal latitude;
+    private double latitude;
 
     @NotNull
-    private BigDecimal longitude;
+    private double longitude;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -33,19 +33,19 @@ public class Marker {
         this.name = name;
     }
 
-    public BigDecimal getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(BigDecimal latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public BigDecimal getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(BigDecimal longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

@@ -38,8 +38,9 @@ class LogIn extends React.Component {
 
         fakeAuth.authenticate(() => {
             this.setState(() => ({redirectToReferrer: true }));
-            console.log(this.state.redirectToReferrer);
         })
+
+        fakeAuth.setPrincipal(loginRequest);
 
         localStorage.setItem("KEY", loginRequest.userID);
         return <Redirect to="/dashboard/" />
