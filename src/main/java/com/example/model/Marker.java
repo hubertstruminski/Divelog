@@ -25,6 +25,14 @@ public class Marker {
     @JoinColumn(name = "user_id")
     private Connection user;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

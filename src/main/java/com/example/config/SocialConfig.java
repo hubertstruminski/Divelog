@@ -31,7 +31,7 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
                 .antMatcher("/**")
                 .authorizeRequests()
                 .antMatchers("/", "/login**", "/webjars/**", "/error**",
-                        "/signin", "/getuserdata/**", "/add/marker/**", "/get/markers/**")
+                        "/signin", "/getuserdata/**", "/add/marker/**", "/get/markers/**", "/delete/marker/**/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

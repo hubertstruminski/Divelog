@@ -2,6 +2,9 @@ import React from 'react';
 import '../../css/Header.css';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import withAuth from '../../util/withAuth';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
 
 class HeaderOut extends React.Component {
     render() {

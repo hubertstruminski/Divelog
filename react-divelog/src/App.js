@@ -53,8 +53,8 @@ function App() {
             <Route exact path="/donate" component={Donate} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={LogIn} />
-            <PrivateRoute exact path="/dashboard" component={Facebook} />
-            <PrivateRoute exact path="/map" component={GoogleMap} />
+            <Route exact path="/dashboard" component={Facebook} />
+            <Route exact path="/map" component={GoogleMap} />
           </I18nextProvider>
         </div>
       </Router>

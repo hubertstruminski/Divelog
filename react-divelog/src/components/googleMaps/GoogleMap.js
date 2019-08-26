@@ -21,14 +21,16 @@ class GoogleMap extends React.Component {
             isFinishMarker: false,
             latitude: '',
             longitude: '',
+            isDeletedMarker: false
         }
         this.onMapClick = this.onMapClick.bind(this);
         this.setFinishMarker = this.setFinishMarker.bind(this);
+        this.setIsDeletedMarker = this.setIsDeletedMarker.bind(this);
     }
 
     componentDidMount() {
         this.setState({ isLoading: false });
-
+        console.log(fakeAuth.userID);
         fetch(`/get/markers/${fakeAuth.userID}`, {
             method: 'GET',
             headers: {
@@ -38,8 +40,10 @@ class GoogleMap extends React.Component {
         })
         .then(response => response.json())
         .then(jsonData => {
+            console.log(jsonData);
             jsonData.map((marker, index) => {
                 let element = {
+                    id: marker.id,
                     name: marker.name,
                     latitude: marker.latitude,
                     longitude: marker.longitude
@@ -76,7 +80,10 @@ class GoogleMap extends React.Component {
                     <td>{marker.latitude}</td>
                     <td>{marker.longitude}</td>
                     <td>
-                        <DeleteButton id={marker.id} />
+                        <DeleteButton 
+                            id={marker.id}
+                            setIsDeletedMarker={this.setIsDeletedMarker}
+                        />
                     </td>
                 </tr>
             );
@@ -118,6 +125,10 @@ class GoogleMap extends React.Component {
 
     setFinishMarker() {
         this.setState({ isFinishMarker: true });
+    }
+
+    setIsDeletedMarker() {
+        this.setState({ isDeletedMarker: true });
     }
 
     render() {

@@ -19,6 +19,7 @@ class DeleteButton extends React.Component {
                 'content-type': 'application/json'
             }
         })
+        this.props.setIsDeletedMarker();
     }
 
     render() {

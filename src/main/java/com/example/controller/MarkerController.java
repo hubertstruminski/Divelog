@@ -43,7 +43,7 @@ public class MarkerController {
     public ResponseEntity<?> deleteMarker(@PathVariable Long userID, @PathVariable Long markerID) {
         Connection foundedUser = connectionRepository.findByUserID(userID);
         markerRepository.deleteById(markerID);
-        
+
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }
