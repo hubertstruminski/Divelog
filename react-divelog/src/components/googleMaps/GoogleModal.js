@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { fakeAuth } from '../../util/fakeAuth';
+import { AuthObject } from '../../util/AuthObject';
 import swal from 'sweetalert';
 import { withTranslation } from 'react-i18next';
 
@@ -29,7 +29,7 @@ class GoogleModal extends React.Component {
             longitude: this.props.longitude
         }
 
-        fetch(`/add/marker/${fakeAuth.userID}`, {
+        fetch(`/add/marker/${AuthObject.userID}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

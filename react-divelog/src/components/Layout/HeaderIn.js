@@ -8,11 +8,8 @@ import Friends from '../Friends';
 import Messenger from '../Messenger';
 import Notifications from '../Notifications';
 import Menu from '../Menu';
-import { compose } from 'redux';
-import withAuth from '../../util/withAuth';
 import { withRouter } from 'react-router';
 import AuthService from '../../util/AuthService';
-import { Redirect } from 'react-router-dom';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -29,9 +26,9 @@ class HeaderIn extends React.Component {
     }
 
     componentDidMount() {
-        let userID = localStorage.getItem("KEY");
+        let jwtToken = localStorage.getItem("JwtToken");
 
-        fetch(`/getuserdata/${userID}`, {
+        fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json'
@@ -39,7 +36,6 @@ class HeaderIn extends React.Component {
         })
         .then(response => response.json())
         .then(jsonData => {
-            console.log(jsonData);
             this.setState({
                 accessToken: jsonData.accessToken,
                 email: jsonData.email,
@@ -71,7 +67,6 @@ class HeaderIn extends React.Component {
         const Auth = new AuthService();
         Auth.logout();
         this.props.history.push("/login");
-        // window.location.href = "https://www.facebook.com/logout.php?next=http://localhost:3000/&access_token=" + this.state.accessToken;
     }
 
 
@@ -183,5 +178,4 @@ class HeaderIn extends React.Component {
     }
 }
 
-// export default withRouter(withAuth(withTranslation('common')(HeaderIn)));
 export default withTranslation("common")(withRouter(HeaderIn));

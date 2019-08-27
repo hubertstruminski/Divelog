@@ -1,9 +1,7 @@
 import React from 'react';
 import '../css/Facebook.css';
 import LeftCard from './Layout/LeftCard';
-import AuthService from '../util/AuthService';
 import withAuth from '../util/withAuth';
-const Auth = new AuthService();
 
 class Facebook extends React.Component {
     constructor(props) {
@@ -16,13 +14,12 @@ class Facebook extends React.Component {
             userID: '',
             pictureUrl: ''
         }
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentDidMount() {
-        let userID = localStorage.getItem("KEY");
+        let jwtToken = localStorage.getItem("JwtToken");
 
-        fetch(`/getuserdata/${userID}`, {
+        fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json'
@@ -38,12 +35,6 @@ class Facebook extends React.Component {
                 pictureUrl: jsonData.pictureUrl
             });
         }); 
-    }
-
-    onSubmit() {
-        Auth.logout();
-        this.props.history.replace("/login")
-        // window.location.href = "https://www.facebook.com/logout.php?next=http://localhost:3000/&access_token=" + this.state.accessToken;
     }
 
     render() {

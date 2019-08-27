@@ -3,7 +3,7 @@ import '../../css/GoogleMap.css';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
 import GoogleModal from './GoogleModal';
 import $ from 'jquery';
-import { fakeAuth } from '../../util/fakeAuth';
+import { AuthObject } from '../../util/AuthObject';
 import DeleteButton from './DeleteButton';
 import { withTranslation } from 'react-i18next';
 import { compose } from 'redux';
@@ -21,7 +21,10 @@ class GoogleMap extends React.Component {
             isFinishMarker: false,
             latitude: '',
             longitude: '',
-            isDeletedMarker: false
+            isDeletedMarker: false,
+
+            accessToken: '',
+            userID: ''
         }
         this.onMapClick = this.onMapClick.bind(this);
         this.setFinishMarker = this.setFinishMarker.bind(this);
@@ -30,8 +33,9 @@ class GoogleMap extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading: false });
-        console.log(fakeAuth.userID);
-        fetch(`/get/markers/${fakeAuth.userID}`, {
+        let jwtToken = localStorage.getItem("JwtToken");
+
+        fetch(`/get/markers/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

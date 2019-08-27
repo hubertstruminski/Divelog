@@ -1,9 +1,11 @@
 package com.example.controller;
 
+import com.example.config.JwtTokenProvider;
 import com.example.model.Connection;
 import com.example.model.Marker;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.MarkerRepository;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,9 @@ public class MarkerController {
     @Autowired
     private MarkerRepository markerRepository;
 
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
     @PostMapping("/add/marker/{userID}")
     public ResponseEntity<?> addMarker(@RequestBody Marker marker, @PathVariable Long userID) {
         Connection foundedUser = connectionRepository.findByUserID(userID);
@@ -31,8 +36,11 @@ public class MarkerController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @GetMapping("/get/markers/{userID}")
-    public ResponseEntity<?> getAllMarkers(@PathVariable Long userID) {
+    @GetMapping("/get/markers/{jwtToken}")
+    public ResponseEntity<?> getAllMarkers(@PathVariable String jwtToken) {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        Long userID = (Long) claimsFromJwt.get("userID");
+
         Connection foundedUser = connectionRepository.findByUserID(userID);
         List<Marker> markersList = markerRepository.findAllByUser(foundedUser);
 

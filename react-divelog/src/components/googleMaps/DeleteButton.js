@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { fakeAuth } from '../../util/fakeAuth';
+import { AuthObject } from '../../util/AuthObject';
 
 class DeleteButton extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class DeleteButton extends React.Component {
     onSubmit() {
         let markerID = this.props.id;
 
-        fetch(`/delete/marker/${fakeAuth.userID}/${markerID}`, {
+        fetch(`/delete/marker/${AuthObject.userID}/${markerID}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

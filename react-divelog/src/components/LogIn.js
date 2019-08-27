@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { fakeAuth } from '../util/fakeAuth';
+import { AuthObject } from '../util/AuthObject';
 import AuthService from '../util/AuthService';
 
 class LogIn extends React.Component {
@@ -18,12 +18,6 @@ class LogIn extends React.Component {
         this.Auth = new AuthService();
         this.responseFacebook = this.responseFacebook.bind(this);
     }
-
-    // componentWillMount() {
-    //     if(this.Auth.loggedIn()) {
-    //         this.props.history.replace("/dashboard");
-    //     }
-    // }
 
     responseFacebook(response) {
         const loginRequest = {
@@ -42,18 +36,15 @@ class LogIn extends React.Component {
                 "Accept": "application/json",
                 "Content-type": "application/json"
             }
-        })
+        }).then(response => {
+            this.Auth.setToken(response["data"]);
+        });
 
-        fakeAuth.authenticate(() => {
+        AuthObject.authenticate(() => {
             this.setState(() => ({redirectToReferrer: true }));
         })
-        fakeAuth.setPrincipal(loginRequest);
+        AuthObject.setPrincipal(loginRequest);
 
-        console.log(fakeAuth.userID);
-
-        this.Auth.setToken(loginRequest.accessToken);
-
-        localStorage.setItem("KEY", loginRequest.userID);
         return <Redirect to="/dashboard/" />
     }
 

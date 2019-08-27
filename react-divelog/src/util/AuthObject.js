@@ -1,4 +1,4 @@
-export const fakeAuth = {
+export const AuthObject = {
     isAuthenticated: false,
     accessToken: '',
     userID: '',
