@@ -3,7 +3,6 @@ import '../../css/GoogleMap.css';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
 import GoogleModal from './GoogleModal';
 import $ from 'jquery';
-import { AuthObject } from '../../util/AuthObject';
 import DeleteButton from './DeleteButton';
 import { withTranslation } from 'react-i18next';
 import { compose } from 'redux';
@@ -22,9 +21,6 @@ class GoogleMap extends React.Component {
             latitude: '',
             longitude: '',
             isDeletedMarker: false,
-
-            accessToken: '',
-            userID: ''
         }
         this.onMapClick = this.onMapClick.bind(this);
         this.setFinishMarker = this.setFinishMarker.bind(this);
@@ -44,7 +40,6 @@ class GoogleMap extends React.Component {
         })
         .then(response => response.json())
         .then(jsonData => {
-            console.log(jsonData);
             jsonData.map((marker, index) => {
                 let element = {
                     id: marker.id,

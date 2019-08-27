@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { AuthObject } from '../../util/AuthObject';
+import swal from 'sweetalert';
 
 class DeleteButton extends React.Component {
     constructor(props) {
@@ -11,8 +11,9 @@ class DeleteButton extends React.Component {
 
     onSubmit() {
         let markerID = this.props.id;
+        let jwtToken = localStorage.getItem("JwtToken");
 
-        fetch(`/delete/marker/${AuthObject.userID}/${markerID}`, {
+        fetch(`/delete/marker/${jwtToken}/${markerID}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -20,6 +21,12 @@ class DeleteButton extends React.Component {
             }
         })
         this.props.setIsDeletedMarker();
+
+        swal(
+            this.props.t("googleMap.modal.swal.title"), 
+            this.props.t("googleMap.modal.swal.text"), 
+            "success"
+        );
     }
 
     render() {

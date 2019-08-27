@@ -27,10 +27,14 @@ public class MarkerController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    @PostMapping("/add/marker/{userID}")
-    public ResponseEntity<?> addMarker(@RequestBody Marker marker, @PathVariable Long userID) {
+    @PostMapping("/add/marker/{jwtToken}")
+    public ResponseEntity<?> addMarker(@RequestBody Marker marker, @PathVariable String jwtToken) {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        Long userID = (Long) claimsFromJwt.get("userID");
+
         Connection foundedUser = connectionRepository.findByUserID(userID);
         marker.setUser(foundedUser);
+
         markerRepository.save(marker);
 
         return new ResponseEntity<Void>(HttpStatus.OK);
@@ -47,10 +51,14 @@ public class MarkerController {
         return new ResponseEntity<List<Marker>>(markersList, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/marker/{userID}/{markerID}")
-    public ResponseEntity<?> deleteMarker(@PathVariable Long userID, @PathVariable Long markerID) {
+    @DeleteMapping("/delete/marker/{jwtToken}/{markerID}")
+    public ResponseEntity<?> deleteMarker(@PathVariable String jwtToken, @PathVariable Long markerID) {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        Long userID = (Long) claimsFromJwt.get("userID");
+
         Connection foundedUser = connectionRepository.findByUserID(userID);
-        markerRepository.deleteById(markerID);
+
+        markerRepository.deleteByIdAndUser(markerID, foundedUser);
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }

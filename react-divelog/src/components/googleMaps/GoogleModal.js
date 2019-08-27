@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import { AuthObject } from '../../util/AuthObject';
 import swal from 'sweetalert';
 import { withTranslation } from 'react-i18next';
 
@@ -29,7 +28,9 @@ class GoogleModal extends React.Component {
             longitude: this.props.longitude
         }
 
-        fetch(`/add/marker/${AuthObject.userID}`, {
+        let jwtToken = localStorage.getItem("JwtToken");
+
+        fetch(`/add/marker/${jwtToken}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
