@@ -1,9 +1,6 @@
 package com.example.model;
 
-import com.example.enums.DivingSuit;
-import com.example.enums.GloveType;
-import com.example.enums.WaterEntryType;
-import com.example.enums.WaterType;
+import com.example.enums.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -72,7 +69,7 @@ public class Logbook {
     private GloveType glovesType;
 
     @Column(name = "diving_type")
-    private String divingType;
+    private DivingType divingType;
 
     @Column(name = "comment")
     private String comment;
@@ -209,11 +206,11 @@ public class Logbook {
         this.glovesType = glovesType;
     }
 
-    public String getDivingType() {
+    public DivingType getDivingType() {
         return divingType;
     }
 
-    public void setDivingType(String divingType) {
+    public void setDivingType(DivingType divingType) {
         this.divingType = divingType;
     }
 

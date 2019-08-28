@@ -1,0 +1,34 @@
+/* Background pattern from Toptal Subtle Patterns */
+
+.logbook-container {
+    width: 100%;
+    background-image: url("../img/hexellence.png");
+}
+
+.logbook-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logbook-add-link {
+    width: 10%;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    background-color: blueviolet;
+    border-radius: 40px;
+}
+
+.logbook-add-link:hover {
+    cursor: pointer;
+}
+
+.add-link {
+    color: white;
+}
+
+.add-link:hover {
+    text-decoration: none;
+    color: white;
+}

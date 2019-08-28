@@ -1,3 +1,5 @@
+/* Background pattern from Toptal Subtle Patterns */
+
 .google-container {
     width: 100%;
     background-image: url("../img/hexellence.png");
@@ -9,7 +11,7 @@
 }
 
 .story-header {
-    margin-bottom: 52.5;
+    margin-bottom: 1%;
     font-size: 2vw;
     padding: 2.5%;
 }
