@@ -49,6 +49,9 @@ public class Connection {
     @OneToMany(mappedBy = "user")
     private List<Marker> markers;
 
+    @OneToMany(mappedBy = "user")
+    private List<Logbook> logbooks;
+
     public Connection() {
 
     }

@@ -77,6 +77,10 @@ public class Logbook {
     @Column(name = "comment")
     private String comment;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Connection user;
+
     public Long getId() {
         return id;
     }
@@ -219,5 +223,13 @@ public class Logbook {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Connection getUser() {
+        return user;
+    }
+
+    public void setUser(Connection user) {
+        this.user = user;
     }
 }
