@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/enums/DivingType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/Logbook.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/Logbook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/GoogleMap.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/GoogleMap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/Connection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Marker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/Marker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/AddDive.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/AddDive.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,7 +20,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2304">
+            <state relative-caret-position="2124">
               <caret line="208" column="39" selection-start-line="208" selection-start-column="39" selection-end-line="208" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -459,12 +452,12 @@
       <workItem from="1566804457535" duration="5664000" />
       <workItem from="1566888667722" duration="1519000" />
       <workItem from="1566892416265" duration="7420000" />
-      <workItem from="1566906751078" duration="11194000" />
+      <workItem from="1566906751078" duration="11263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136051000" />
+    <option name="totallyTimeSpent" value="136120000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -838,7 +831,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2304">
+        <state relative-caret-position="2124">
           <caret line="208" column="39" selection-start-line="208" selection-start-column="39" selection-end-line="208" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />

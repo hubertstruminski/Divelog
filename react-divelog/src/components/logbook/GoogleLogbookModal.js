@@ -1,14 +1,14 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 import $ from 'jquery';
 import swal from 'sweetalert';
-import { withTranslation } from 'react-i18next';
 
-class GoogleModal extends React.Component {
+class GoogleLogbookModal extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            name: ''
+            name: '',
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -19,38 +19,26 @@ class GoogleModal extends React.Component {
     }
 
     onSubmit() {
-        let name = $("#name").val();
+        try {
+            let name = $("#name").val();
 
-        const googleMarker = {
-            name: name,
-            latitude: this.props.latitude,
-            longitude: this.props.longitude
+            const googleMarker = {
+                name: name,
+                latitude: this.props.latitude,
+                longitude: this.props.longitude
+            }
+            this.props.updateMarker(googleMarker);
+
+            this.props.setFinishMarker(true);
+            $("#modalLogbookCenter").modal('hide');
+        } catch(error) {
+            swal("Error", "Something goes wrong.", "error");
         }
-
-        let jwtToken = localStorage.getItem("JwtToken");
-
-        fetch(`/add/marker/${jwtToken}`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(googleMarker)
-        });
-
-        this.props.setFinishMarker();
-        $("#modalCenter").modal('hide');
-
-        swal(
-            this.props.t("googleMap.modal.swal.title"), 
-            this.props.t("googleMap.modal.swal.text"), 
-            "success"
-        );
     }
 
     render() {
-        return (
-            <div className="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+        return(
+            <div className="modal fade" id="modalLogbookCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
@@ -95,4 +83,4 @@ class GoogleModal extends React.Component {
     }
 }
 
-export default withTranslation("common")(GoogleModal);
+export default withTranslation("common")(GoogleLogbookModal);

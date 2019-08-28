@@ -1,7 +1,12 @@
 import React from 'react';
 import '../../css/AddDive.css';
+import GoogleLogbookMap from './GoogleLogbookMap';
+import $ from 'jquery';
 
 class AddDive extends React.Component {
+    componentDidMount() {
+
+    }
     render() {
         return (
             <div className="add-dive-container">
@@ -134,13 +139,20 @@ class AddDive extends React.Component {
                             </div>
 
                             <div className="form-group">
+                                <label for="googleLogbookMap">Location</label>
+                                <GoogleLogbookMap />
+                            </div>
+
+                            <div className="form-group">
                                 <label for="comment">Comment</label>
                                 <textarea className="form-control" id="comment" rows="7"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                Confirm
-                            </button>
+                            <div className="btn-add-dive-center">
+                                <button type="submit" class="btn btn-primary btn-lg btn-add-dive">
+                                    Confirm
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
