@@ -61,7 +61,7 @@ class HeaderIn extends React.Component {
                 isActive = false;
                 return;
             }
-        })
+        });
     }
 
 

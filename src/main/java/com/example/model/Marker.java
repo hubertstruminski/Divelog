@@ -1,8 +1,11 @@
 package com.example.model;
 
+import sun.rmi.runtime.Log;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "marker")
@@ -24,6 +27,9 @@ public class Marker {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Connection user;
+
+    @OneToMany(mappedBy = "marker")
+    private List<Logbook> logbooks;
 
     public Long getId() {
         return id;

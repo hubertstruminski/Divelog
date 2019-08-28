@@ -14,8 +14,8 @@
 }
 
 .left-menu {
-    position: absolute;
-    height: 93.85vh;
+    position: fixed;
+    height: 100vh;
     background-color: black;
     opacity: 0.85;
     width: 15%;
