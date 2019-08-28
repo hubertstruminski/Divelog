@@ -31,26 +31,11 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
                 .antMatcher("/**")
                 .authorizeRequests()
                 .antMatchers("/", "/login**", "/webjars/**", "/error**",
-                        "/signin", "/getuserdata/**", "/add/marker/**", "/get/markers/**", "/delete/marker/**/**")
+                        "/signin", "/getuserdata/**", "/add/marker/**", "/get/markers/**", "/delete/marker/**/**",
+                        "/logout/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
-
-                .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .permitAll()
-                .and()
-//                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-
-//                .and()
-                .oauth2Login()
-//                    .defaultSuccessUrl("/dashboard")
-//                    .loginPage("/login/facebook")
-
-                .successHandler(myAuthenticationSuccessHandler())
 
                 .and()
                 .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);

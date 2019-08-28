@@ -10,6 +10,7 @@ import Notifications from '../Notifications';
 import Menu from '../Menu';
 import { withRouter } from 'react-router';
 import AuthService from '../../util/AuthService';
+import { async } from 'q';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -22,7 +23,8 @@ class HeaderIn extends React.Component {
             userID: '',
             pictureUrl: ''
         }
-        this.logout = this.logout.bind(this);
+        this.Auth = new AuthService();
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -63,10 +65,21 @@ class HeaderIn extends React.Component {
     }
 
 
-    logout() {
-        const Auth = new AuthService();
-        Auth.logout();
+    onSubmit() {
+        this.logout();
+        
+        this.Auth.logout();
         this.props.history.push("/login");
+    }
+
+    logout = async () => {
+        await fetch(`/logout/${this.state.email}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'content-type': 'application/json'
+            }
+        });
     }
 
 
@@ -159,7 +172,7 @@ class HeaderIn extends React.Component {
                                 <li className="nav-item">
                                     <div className="nav-link">
                                         <button
-                                            onClick={this.logout}
+                                            onClick={this.onSubmit}
                                             className="btn-logout bg-dark"
                                         >
                                             {this.props.t("header.logout")}

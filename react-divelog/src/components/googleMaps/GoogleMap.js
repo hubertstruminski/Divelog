@@ -209,8 +209,7 @@ class GoogleMap extends React.Component {
                         setFinishMarker={this.setFinishMarker}
                     />
                 </div>
-            </div>
-            
+            </div>     
         )
         let content = this.state.isLoading ? loadingScreen : map;
 
