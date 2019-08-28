@@ -148,39 +148,37 @@ class GoogleMap extends React.Component {
 
         let map = (
             <div className="google-container">
-                <div className="table-container">
-                    <div>
-                        <div className="story-header"> 
-                            {this.props.t("googleMap.story")}
-                        </div>
-                    <br />
-                        <div className="marker-table">
-                            <div className="table-responsive">
-                                <table className="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">
-                                                <b>#</b>
-                                            </th>
-                                            <th scope="col">
-                                                {this.props.t("googleMap.table.name")}
-                                            </th>
-                                            <th scope="col">
-                                                {this.props.t("googleMap.table.latitude")}
-                                            </th>
-                                            <th scope="col">
-                                                {this.props.t("googleMap.table.longitude")}
-                                            </th>
-                                            <th scope="col">
-                                                {this.props.t("googleMap.table.delete")}
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        { this.showTableRows() }
-                                    </tbody>
-                                </table>
-                            </div>
+                <div className="story-header"> 
+                    {this.props.t("googleMap.story")}
+                </div>
+                <br />
+                <div className="google-center">
+                    <div className="marker-table">
+                        <div className="table-responsive">
+                            <table className="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <b>#</b>
+                                        </th>
+                                        <th scope="col">
+                                            {this.props.t("googleMap.table.name")}
+                                        </th>
+                                        <th scope="col">
+                                            {this.props.t("googleMap.table.latitude")}
+                                        </th>
+                                        <th scope="col">
+                                            {this.props.t("googleMap.table.longitude")}
+                                        </th>
+                                        <th scope="col">
+                                            {this.props.t("googleMap.table.delete")}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    { this.showTableRows() }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
