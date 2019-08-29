@@ -59,7 +59,7 @@ class Facebook extends React.Component {
                     </div>
                     <div className="feed-container">
                         <div className="feed-add-container">
-                            <i class="fas fa-plus fa-3x plus-shadow"></i>
+                            <i className="fas fa-plus fa-3x plus-shadow"></i>
                         </div>
                     </div>
                     <div className="fb-grid-item-3">

@@ -19,4 +19,13 @@ public enum WaterType {
     public void setWaterType(String waterType) {
         this.waterType = waterType;
     }
+
+    public WaterType returnWaterType(String waterType) {
+        if(waterType.equalsIgnoreCase("SWEET")) {
+            return WaterType.SWEET;
+        } else if(waterType.equalsIgnoreCase("SALT")) {
+            return WaterType.SALT;
+        }
+        return WaterType.NONE;
+    }
 }

@@ -169,6 +169,8 @@ class GoogleLogbookMap extends React.Component {
                     longitude={this.state.longitude}
                     updateMarker={this.updateMarker}
                     setFinishMarker={this.setFinishMarker}
+                    setMarker={this.props.setMarker}
+                    setIsAccessible={this.setIsAccessible}
                 />
                 <div className="add-dive-table">
                     <table className="table table-striped table-hover">

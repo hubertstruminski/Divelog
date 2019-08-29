@@ -1,9 +1,13 @@
 package com.example.model;
 
 import com.example.enums.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -15,25 +19,26 @@ public class Logbook {
     private Long id;
 
     @Column(name = "partner_name")
+    @Size(min = 1, max = 255, message = "Length should be 1 to 255 characters")
     private String partnerName;
 
     @Column(name = "partner_surname")
+    @Size(min = 1, max = 255, message = "Length should be 1 to 255 characters")
     private String partnerSurname;
 
     @ManyToOne
     @JoinColumn(name = "marker_id")
+    @NotBlank(message = "You have to set marker")
     @NotNull
     private Marker marker;
 
-    @Temporal(TemporalType.DATE)
-    @NotNull
-    private Date date;
-
     @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
     @Column(name = "entry_time")
     private Date entryTime;
 
     @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
     @Column(name = "exit_time")
     private Date exitTime;
 
@@ -47,31 +52,43 @@ public class Logbook {
     private double visibility;
 
     @Column(name = "cylinder_capacity")
+    @NotBlank(message = "You have to set cylinder capacity")
     private String cylinderCapacity; // 10L, 12L, 15L, 18L, inny
 
     @Column(name = "diving_suit")
+    @Enumerated(EnumType.STRING)
+    @NotBlank(message = "You have to set diving suit")
     private DivingSuit divingSuit; // Pianka, suchy, półsuchy
 
     @Column(name = "water_type")
+    @Enumerated(EnumType.STRING)
+    @NotBlank(message = "You have to set type of water")
     @NotNull
     private WaterType waterType; // woda slona, woda slodka
 
     @Column(name = "type_water_entry")
+    @Enumerated(EnumType.STRING)
+    @NotBlank(message = "You have to set type of entry to water")
     @NotNull
     private WaterEntryType waterEntryType; // z brzegu, z lodki
 
     @Column(name = "ballast")
-    @NotNull
     private double ballast;
 
     @Column(name = "gloves_type")
+    @Enumerated(EnumType.STRING)
+    @NotBlank(message = "You have to set type of gloves")
     @NotNull
     private GloveType glovesType;
 
     @Column(name = "diving_type")
+    @Enumerated(EnumType.STRING)
+    @NotBlank(message = "You have to set type of diving")
     private DivingType divingType;
 
     @Column(name = "comment")
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String comment;
 
     @ManyToOne
@@ -108,14 +125,6 @@ public class Logbook {
 
     public void setMarker(Marker marker) {
         this.marker = marker;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public Date getEntryTime() {

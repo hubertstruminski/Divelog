@@ -4,7 +4,8 @@ public enum DivingSuit {
 
     DRY("DRY"),
     SEMIARID("SEMIARID"),
-    WET("WET");
+    WET("WET"),
+    NONE("NONE");
 
     private String divingSuit;
 
@@ -18,5 +19,16 @@ public enum DivingSuit {
 
     public void setDivingSuit(String divingSuit) {
         this.divingSuit = divingSuit;
+    }
+
+    public DivingSuit returnDivingSuit(String divingSuit) {
+        if(divingSuit.equalsIgnoreCase("DRY")) {
+            return DivingSuit.DRY;
+        } else if(divingSuit.equalsIgnoreCase("SEMIARID")) {
+            return DivingSuit.SEMIARID;
+        } else if(divingSuit.equalsIgnoreCase("WET")) {
+            return DivingSuit.WET;
+        }
+        return DivingSuit.NONE;
     }
 }

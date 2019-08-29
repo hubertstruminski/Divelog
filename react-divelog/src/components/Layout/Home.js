@@ -24,8 +24,8 @@ class Home extends React.Component {
                             <h1 className="font-size-jumbotron-1 font-color-jumbotron">
                                 {this.props.t("home.let")}
                             </h1>
-                                <button type="button" class="btn btn-lg btn-fb" style={{color: 'white'}}>
-                                    <i class="fab fa-facebook-f pr-1"></i> 
+                                <button type="button" className="btn btn-lg btn-fb" style={{color: 'white'}}>
+                                    <i className="fab fa-facebook-f pr-1"></i> 
                                     {this.props.t("login.facebook-btn")}
                                 </button>
                             </div>

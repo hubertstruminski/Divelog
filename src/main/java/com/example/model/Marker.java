@@ -29,6 +29,7 @@ public class Marker {
     private Connection user;
 
     @OneToMany(mappedBy = "marker")
+    @Transient
     private List<Logbook> logbooks;
 
     public Long getId() {

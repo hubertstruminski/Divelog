@@ -71,7 +71,7 @@ class GoogleMap extends React.Component {
         let i = 0;
         return this.state.markers.map((marker, index) => {
             return (
-                <tr>
+                <tr key={index}>
                     <th scope="row">
                         <b>{++i}</b>
                     </th>
@@ -137,9 +137,9 @@ class GoogleMap extends React.Component {
         }
 
         let loadingScreen = (
-            <div class="d-flex justify-content-center">
-                <div class="spinner-grow" role="status">
-                    <span class="sr-only">
+            <div className="d-flex justify-content-center">
+                <div className="spinner-grow" role="status">
+                    <span className="sr-only">
                         {this.props.t("loading")}
                     </span>
                 </div>
