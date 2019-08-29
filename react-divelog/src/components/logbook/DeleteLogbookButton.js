@@ -1,6 +1,5 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import swal from 'sweetalert';
 
 class DeleteLogbookButton extends React.Component {
     constructor(props) {

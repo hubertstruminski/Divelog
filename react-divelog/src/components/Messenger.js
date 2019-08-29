@@ -7,8 +7,8 @@ class Messenger extends React.Component {
     
     render() {
         return (
-            <div>
-                <i class="fab fa-facebook-messenger"></i>
+            <div className="">
+                <i className="fab fa-facebook-messenger"></i>
             </div>
         );
     }

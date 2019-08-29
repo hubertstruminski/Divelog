@@ -5,10 +5,6 @@ export default function withAuth(AuthComponent) {
     const Auth =  new AuthService();
 
     class AuthWrapped extends React.Component {
-        constructor(props) {
-            super(props);
-        }
-
         componentWillMount() {
             if(!Auth.loggedIn()) {
                 this.props.history.replace("/login")

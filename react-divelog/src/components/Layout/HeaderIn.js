@@ -10,7 +10,6 @@ import Notifications from '../Notifications';
 import Menu from '../Menu';
 import { withRouter } from 'react-router';
 import AuthService from '../../util/AuthService';
-import { async } from 'q';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -120,7 +119,7 @@ class HeaderIn extends React.Component {
                                 </li>
                                 <li className="nav-item">
                                     <div className="nav-link left-menu-icon">
-                                        <i class="fas fa-bars"></i>
+                                        <i className="fas fa-bars"></i>
                                     </div>
                                 </li>
                             </ul>

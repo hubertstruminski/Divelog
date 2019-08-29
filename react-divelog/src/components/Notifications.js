@@ -7,8 +7,8 @@ class Notifications extends React.Component {
     
     render() {
         return (
-            <div>
-                <i class="fas fa-bell"></i>
+            <div className="">
+                <i className="fas fa-bell"></i>
             </div>
         );
     }

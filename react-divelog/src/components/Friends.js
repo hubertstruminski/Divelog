@@ -8,7 +8,7 @@ class Friends extends React.Component {
     render() {
         return (
             <div>
-                <i class="fas fa-user-friends"></i>
+                <i className="fas fa-user-friends"></i>
             </div>
         );
     }
