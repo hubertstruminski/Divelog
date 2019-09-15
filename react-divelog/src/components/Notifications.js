@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/Header.css';
 
 class Notifications extends React.Component {
     constructor(props) {
@@ -7,8 +8,9 @@ class Notifications extends React.Component {
     
     render() {
         return (
-            <div className="">
-                <i className="fas fa-bell"></i>
+            <div className="icon-container"> 
+                <div className="icon-counter">112</div>
+                <i class="fas fa-bell" style={{ "font-size": "1vw"}}/>
             </div>
         );
     }

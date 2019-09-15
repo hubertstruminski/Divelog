@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/Header.css';
 
 class Friends extends React.Component {
     constructor(props) {
@@ -7,8 +8,9 @@ class Friends extends React.Component {
     
     render() {
         return (
-            <div>
-                <i className="fas fa-user-friends"></i>
+            <div className="icon-container"> 
+                <div className="icon-counter">7</div>
+                <i class="fas fa-user-friends" style={{ "font-size": "20px"}}/>
             </div>
         );
     }

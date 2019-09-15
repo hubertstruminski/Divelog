@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.config.JwtTokenProvider;
-import com.example.enums.*;
 import com.example.model.Connection;
 import com.example.model.Logbook;
 import com.example.model.Marker;
@@ -38,17 +37,8 @@ public class LogbookController {
     @Autowired
     private LogbookRepository logbookRepository;
 
-    @Autowired
-    private MapErrorValidatorService mapErrorValidatorService;
-
     @PostMapping("/add/logbook/{jwtToken}")
-    public ResponseEntity<?> addDiveToLogbook(@Valid @RequestBody Logbook logbook, BindingResult result, @PathVariable String jwtToken) {
-        ResponseEntity<?> errorMap = mapErrorValidatorService.validateToMap(result);
-
-        if(errorMap != null) {
-            return errorMap;
-        }
-
+    public ResponseEntity<?> addDiveToLogbook(@RequestBody Logbook logbook, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
 

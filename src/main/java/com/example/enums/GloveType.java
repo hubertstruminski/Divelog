@@ -1,9 +1,22 @@
 package com.example.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum GloveType {
 
+    @JsonProperty("WET")
     WET("WET"),
+    @JsonProperty("DRY")
     DRY("DRY"),
+    @JsonProperty("NONE")
     NONE("NONE");
 
     private String gloveType;
@@ -18,14 +31,5 @@ public enum GloveType {
 
     public void setGloveType(String gloveType) {
         this.gloveType = gloveType;
-    }
-
-    public GloveType returnGloveType(String gloveType) {
-        if(gloveType.equalsIgnoreCase("WET")) {
-            return GloveType.WET;
-        } else if(gloveType.equalsIgnoreCase("DRY")) {
-            return GloveType.DRY;
-        }
-        return GloveType.NONE;
     }
 }

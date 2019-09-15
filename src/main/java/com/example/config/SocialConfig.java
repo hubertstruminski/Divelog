@@ -1,6 +1,5 @@
 package com.example.config;
 
-import com.example.handler.SimpleUrlAuthenticationSuccessHandler;
 import org.apache.catalina.filters.CorsFilter;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -32,18 +31,13 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/login**", "/webjars/**", "/error**",
                         "/signin", "/getuserdata/**", "/add/marker/**", "/get/markers/**", "/delete/marker/**/**",
-                        "/logout/**", "/add/logbook/**")
+                        "/logout/**", "/add/logbook/**/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
 
                 .and()
                 .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
-    }
-
-    @Bean
-    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-        return new SimpleUrlAuthenticationSuccessHandler();
     }
 
     @Bean

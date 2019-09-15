@@ -13,8 +13,8 @@
 
 .add-dive-box {
     width: 40%;
-    /* height: 1600px; */
     background-color: white;
+    margin-top: 5%;
     margin-bottom: 5%;
     padding: 2.5%;
 }
@@ -26,15 +26,11 @@
 }
 
 .add-dive-title {
-    padding: 5%;
-    font-size: 2.7vw;
+    font-size: 2vw;
+    padding-bottom: 5%;
 }
 
 .btn-add-dive-center {
     display: flex;
     justify-content: center;
-}
-
-.btn-add-dive {
-
 }

@@ -3,6 +3,10 @@ import '../../css/AddDive.css';
 import GoogleLogbookMap from './GoogleLogbookMap';
 import AuthService from '../../util/AuthService';
 import axios from 'axios';
+import { withRouter } from 'react-router';
+import swal from 'sweetalert'; 
+import $ from 'jquery';  
+import { withTranslation } from 'react-i18next';
 
 class AddDive extends React.Component {
     constructor() {
@@ -12,26 +16,35 @@ class AddDive extends React.Component {
             partnerName: '',
             partnerSurname: '',
             marker: {},
-            // date: '',
             entryTime: '',
             exitTime: '',
             averageDepth: 0.0,
             maxDepth: 0.0,
             visibility: 0.0,
+            waterTemperature: 0.0,
+            airTemperature: 0.0,
             cylinderCapacity: '',
-            divingSuit: '',
-            waterType: '',
-            waterEntryType: '',
+            divingSuit: 'NONE',
+            waterType: 'NONE',
+            waterEntryType: 'NONE',
             ballast: 0.0,
-            glovesType: '',
-            divingType: '',
-            comment: ''
+            glovesType: 'NONE',
+            divingType: 'NONE',
+            comment: '',
+            partnerNameValidator: false,
+            partnerSurnameValidator: false,
+            visibilityValidator: false,
+            markerValidator: false,
+            maxDepthValidator: false,
         }
         this.Auth = new AuthService();
+
+        this.validator = [];
 
         this.onChange = this.onChange.bind(this);
         this.setMarker = this.setMarker.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.validateForm = this.validateForm.bind(this);
     }
 
     onChange(e) {
@@ -42,21 +55,93 @@ class AddDive extends React.Component {
         this.setState({ marker: newMarker });
     }
 
-    onSubmit(e) {
-        try {
+    validateForm(e) {
+        if(this.state.partnerName.length > 60) {
+            this.setState({ partnerNameValidator: true });
+            this.validator.push(true);
             e.preventDefault();
+        } else {
+            if(this.state.partnerNameValidator === true) {
+                this.setState({ partnerNameValidator: false });
+            }
+        }
+
+        if(this.state.partnerSurname.length > 100) {
+            this.setState({ partnerSurnameValidator: true });
+            this.validator.push(true);
+            e.preventDefault();
+        } else {
+            if(this.state.partnerSurnameValidator === true) {
+                this.setState({ partnerSurameValidator: false });
+            }
+        }
+
+        if(this.state.maxDepth === 0.0) {
+            this.setState({ maxDepthValidator: true });
+            this.validator.push(true);
+            e.preventDefault();
+        } else {
+            if(this.state.maxDepthValidator === true) {
+                this.setState({ maxDepthValidator: false });
+            }
+        }
+
+        if(this.state.visibility === 0.0) {
+            this.setState({ visibilityValidator: true });
+            this.validator.push(true);
+            e.preventDefault();
+        } else {
+            if(this.state.visibilityValidator === true) {
+                this.setState({ visibilityValidator: false });
+            }
+        }
+
+        if($.isEmptyObject(this.state.marker)) {
+            this.setState({ markerValidator: true });
+            this.validator.push(true);
+            e.preventDefault();
+        } else {
+            if(this.state.markerValidator === true) {
+                this.setState({ markerValidator: false });
+            }
+        }
+        console.log(this.state.marker);
+
+        for(let property in this.state.marker) {
+            console.log(this.state.marker[property]);
+            if(this.state.marker[property] === '') {
+                this.setState({ markerValidator: true });
+                this.validator.push(true);
+                e.preventDefault();
+            } else {
+                if(this.state.markerValidator === true) {
+                    this.setState({ markerValidator: false });
+                }
+            }
+        }
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        this.validator = [];
+
+        this.validateForm(e);
+        
+        if(this.validator.length === 0) {
             let jwtToken = this.Auth.getToken();
             
             const logbookObject = {
                 partnerName: this.state.partnerName,
                 partnerSurname: this.state.partnerSurname,
                 marker: this.state.marker,
-                // date: this.state.date,
                 entryTime: this.state.entryTime,
                 exitTime: this.state.exitTime,
                 averageDepth: this.state.averageDepth,
                 maxDepth: this.state.maxDepth,
                 visibility: this.state.visibility,
+                waterTemperature: this.state.waterTemperature,
+                airTemperature: this.state.airTemperature,    
                 cylinderCapacity: this.state.cylinderCapacity,
                 divingSuit: this.state.divingSuit,
                 waterType: this.state.waterType,
@@ -76,27 +161,31 @@ class AddDive extends React.Component {
                     "Content-type": "application/json"
                 }
             }).then(response => {
-                console.log(response);
-            });
-        } catch(error) {
-
+                this.props.history.push("/logbook");
+            }).catch(function(error) {
+                swal(this.props.t("googleMap.modal.swalError.title"), this.props.t("googleMap.modal.swalError.text"), "error");
+            })
         }
+        
     }
 
     render() {
         return (
             <div className="add-dive-container">
-                <div className="add-dive-title">
-                    Add dive to logbook
-                </div>
                 <div className="add-dive-center">
                     <div className="add-dive-box dive-shadow">
+                        <div className="add-dive-title">
+                            {this.props.t("addDive.form.title")}
+                        </div>
+
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
-                                <label htmlFor="partnerName">Partner's name</label>
+                                <label htmlFor="partnerName">
+                                    {this.props.t("addDive.form.partnerName")}
+                                </label>
                                 <input 
                                     type="text" 
-                                    className="form-control" 
+                                    className="form-control"
                                     id="partnerName" 
                                     placeholder="Enter partner's name"
                                     name="partnerName"
@@ -104,12 +193,15 @@ class AddDive extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
+                            <ShowInvalidPartnerName partnerNameValidator={this.state.partnerNameValidator} />
 
                             <div className="form-group">
-                                <label htmlFor="partnerSurname">Partner's surname</label>
+                                <label htmlFor="partnerSurname">
+                                    {this.props.t("addDive.form.partnerSurname")}
+                                </label>
                                 <input 
                                     type="text" 
-                                    className="form-control" 
+                                    className="form-control"
                                     id="partnerSurname" 
                                     placeholder="Enter partner's surname" 
                                     name="partnerSurname"
@@ -117,24 +209,12 @@ class AddDive extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-
-                            {/* <div className="form-group row">
-                                <label htmlFor="date" className="col-sm-2 col-form-label">Date</label>
-                                <div className="col-sm-10">
-                                    <input 
-                                        type="date" 
-                                        className="form-control" 
-                                        id="date" 
-                                        placeholder="Enter date"
-                                        name="date"
-                                        value={this.state.date}
-                                        onChange={this.onChange} 
-                                    />
-                                </div>
-                            </div> */}
+                            <ShowInvalidPartnerSurname partnerSurameValidator={this.state.partnerSurnameValidator} />
 
                             <div className="form-group row">
-                                <label htmlFor="entryTime" className="col-sm-2 col-form-label">Entry time</label>
+                                <label htmlFor="entryTime" className="col-sm-2 col-form-label">
+                                    {this.props.t("addDive.form.entryTime")}
+                                </label>
                                 <div className="col-sm-10">
                                     <input 
                                         type="datetime-local" 
@@ -148,7 +228,9 @@ class AddDive extends React.Component {
                             </div>
 
                             <div className="form-group row">
-                                <label htmlFor="exitTime" className="col-sm-2 col-form-label">Exit time</label>
+                                <label htmlFor="exitTime" className="col-sm-2 col-form-label">
+                                    {this.props.t("addDive.form.exitTime")}
+                                </label>
                                 <div className="col-sm-10">
                                     <input 
                                         type="datetime-local" 
@@ -162,11 +244,12 @@ class AddDive extends React.Component {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="avgDepth">Average depth</label>
+                                <label htmlFor="avgDepth">
+                                    {this.props.t("addDive.form.avgDepth")} [m]
+                                </label>
                                 <input 
                                     type="number" 
                                     step="0.1" 
-                                    min="1" 
                                     className="form-control" 
                                     id="avgDepth" 
                                     name="averageDepth"
@@ -176,10 +259,12 @@ class AddDive extends React.Component {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="maxDepth">Maximum depth</label>
+                                <label htmlFor="maxDepth">
+                                    {this.props.t("addDive.form.maxDepth")} [m]
+                                </label>
                                 <input 
                                     type="number" 
-                                    step="0.1" min="1"
+                                    step="0.1"
                                     className="form-control" 
                                     id="maxDepth" 
                                     name="maxDepth"
@@ -187,9 +272,12 @@ class AddDive extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
+                            <ShowInvalidMaxDepth maxDepthValidator={this.state.maxDepthValidator} />
 
                             <div className="form-group">
-                                <label htmlFor="visibility">Visibility</label>
+                                <label htmlFor="visibility">
+                                    {this.props.t("addDive.form.visibility")} [m]
+                                </label>
                                 <input 
                                     type="number" 
                                     step="0.1" 
@@ -201,98 +289,170 @@ class AddDive extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
+                            <ShowInvalidVisibility visibilityValidator={this.state.visibilityValidator} />
+                            
+                            <div className="form-group">
+                                <label htmlFor="waterTemperature">
+                                    {this.props.t("addDive.form.waterTemperature")} [<sup>o</sup>C]
+                                </label>
+                                <input 
+                                    type="number" 
+                                    step="0.1" 
+                                    min="-5" 
+                                    className="form-control" 
+                                    id="waterTemperature" 
+                                    name="waterTemperature"
+                                    value={this.state.waterTemperature}
+                                    onChange={this.onChange}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="airTemperature">
+                                    {this.props.t("addDive.form.airTemperature")} [<sup>o</sup>C]
+                                </label>
+                                <input 
+                                    type="number" 
+                                    step="0.1" 
+                                    min="-100" 
+                                    className="form-control" 
+                                    id="airTemperature" 
+                                    name="airTemperature"
+                                    value={this.state.airTemperature}
+                                    onChange={this.onChange}
+                                />
+                            </div>
 
                             <div className="form-row">
                                 <div className="form-group col-md-5">
-                                    <label htmlFor="cylinder">Cylinder capacity</label>
+                                    <label htmlFor="cylinder">
+                                        {this.props.t("addDive.form.cylinderCapacity.title")}
+                                    </label>
                                     <select 
-                                        className="custom-select mr-sm-2" 
                                         id="cylinder"
+                                        className="custom-select mr-sm-2"
                                         name="cylinderCapacity"
                                         value={this.state.cylinderCapacity}
                                         onChange={this.onChange}
                                     >
-                                        <option defaultValue>Choose cylinder...</option>
+                                        <option value="NONE">
+                                        {this.props.t("addDive.form.cylinderCapacity.options.NONE")}
+                                        </option>
                                         <option value="10L">10L</option>
                                         <option value="12L">12L</option>
                                         <option value="15L">15L</option>
                                         <option value="18L">18L</option>
-                                        <option value="TWINSET">Twinset</option>
-                                        <option value="REBREATHER">Rebreather</option>
-                                        <option value="NONE">NONE</option>
+                                        <option value="TWINSET">
+                                            {this.props.t("addDive.form.cylinderCapacity.options.TWINSET")}
+                                        </option>
+                                        <option value="REBREATHER">
+                                            {this.props.t("addDive.form.cylinderCapacity.options.REBREATHER")}
+                                        </option>
                                     </select>
                                 </div>
 
                                 <div className="form-group col-md-3">
-                                    <label htmlFor="suit">Suit</label>
+                                    <label htmlFor="suit">
+                                        {this.props.t("addDive.form.suit.title")}
+                                    </label>
                                     <select 
-                                        className="custom-select mr-sm-2" 
                                         id="suit"
                                         name="divingSuit"
+                                        className="custom-select mr-sm-2"
                                         value={this.state.divingSuit}
                                         onChange={this.onChange}
                                     >
-                                        <option defaultValue>Choose suit...</option>
-                                        <option value="DRY">Dry suit</option>
-                                        <option value="SEMIARID">Semiarid suit</option>
-                                        <option value="WET">Wet suit</option>
-                                        <option value="NONE">NONE</option>
+                                        <option value="NONE">
+                                            {this.props.t("addDive.form.suit.options.NONE")}
+                                        </option>
+                                        <option value="DRY">
+                                            {this.props.t("addDive.form.suit.options.DRY")}
+                                        </option>
+                                        <option value="SEMIARID">
+                                            {this.props.t("addDive.form.suit.options.SEMIARID")}
+                                        </option>
+                                        <option value="WET">
+                                            {this.props.t("addDive.form.suit.options.WET")}
+                                        </option>
                                     </select>
                                 </div>
 
                                 <div className="form-group col-md-4">
-                                    <label htmlFor="waterType">Water type</label>
+                                    <label htmlFor="waterType">
+                                        {this.props.t("addDive.form.waterType.title")}
+                                    </label>
                                     <select 
-                                        className="custom-select mr-sm-2" 
                                         id="waterType"
+                                        className="custom-select mr-sm-2"
                                         name="waterType"
                                         value={this.state.waterType}
                                         onChange={this.onChange}
                                     >
-                                        <option defaultValue>Choose water type...</option>
-                                        <option value="SWEET">Sweet water</option>
-                                        <option value="SALT">Salt water</option>
-                                        <option value="NONE">NONE</option>
+                                        <option value="NONE">
+                                            {this.props.t("addDive.form.waterType.options.NONE")}
+                                        </option>
+                                        <option value="SWEET">
+                                            {this.props.t("addDive.form.waterType.options.SWEET")}
+                                        </option>
+                                        <option value="SALT">
+                                            {this.props.t("addDive.form.waterType.options.SALT")}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
 
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="waterEntryType">Entry type to water</label>
-                                    <select 
-                                        className="custom-select mr-sm-2" 
+                                    <label htmlFor="waterEntryType">
+                                        {this.props.t("addDive.form.waterEntryType.title")}
+                                    </label>
+                                    <select  
                                         id="waterEntryType"
                                         name="waterEntryType"
+                                        className="custom-select mr-sm-2"
                                         value={this.state.waterEntryType}
                                         onChange={this.onChange}
                                     >
-                                        <option defaultValue>Choose entry type...</option>
-                                        <option value="COAST">COAST</option>
-                                        <option value="BOAT">BOAT</option>
-                                        <option value="NONE">NONE</option>
+                                        <option value="NONE">
+                                            {this.props.t("addDive.form.waterEntryType.options.NONE")}
+                                        </option>
+                                        <option value="COAST">
+                                            {this.props.t("addDive.form.waterEntryType.options.COAST")}
+                                        </option>
+                                        <option value="BOAT">
+                                            {this.props.t("addDive.form.waterEntryType.options.BOAT")}
+                                        </option>
                                     </select>
                                 </div>
 
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="glovesType">Gloves type</label>
+                                    <label htmlFor="glovesType">
+                                        {this.props.t("addDive.form.glovesType.title")}
+                                    </label>
                                     <select 
-                                        className="custom-select mr-sm-2" 
                                         id="glovesType"
                                         name="glovesType"
+                                        className="custom-select mr-sm-2"
                                         value={this.state.glovesType}
                                         onChange={this.onChange}
                                     >
-                                        <option defaultValue>Choose gloves type...</option>
-                                        <option value="WET">WET</option>
-                                        <option value="DRY">DRY</option>
-                                        <option value="NONE">NONE</option>
+                                        <option value="NONE">
+                                            {this.props.t("addDive.form.glovesType.options.NONE")}
+                                        </option>
+                                        <option value="WET">
+                                            {this.props.t("addDive.form.glovesType.options.WET")}
+                                        </option>
+                                        <option value="DRY">
+                                            {this.props.t("addDive.form.glovesType.options.DRY")}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="ballast">Ballast</label>
+                                <label htmlFor="ballast">
+                                    {this.props.t("addDive.form.ballast")} [kg]
+                                </label>
                                 <input 
                                     type="number" 
                                     step="0.5" 
@@ -306,32 +466,48 @@ class AddDive extends React.Component {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="divingType">Diving type</label>
+                                <label htmlFor="divingType">
+                                    {this.props.t("addDive.form.divingType.title")}
+                                </label>
                                 <select 
-                                    className="custom-select mr-sm-2" 
                                     id="divingType"
                                     name="divingType"
+                                    className="custom-select mr-sm-2"
                                     value={this.state.divingType}
                                     onChange={this.onChange}
                                 >
-                                    <option defaultValue>Choose diving type...</option>
-                                    <option value="RECREATIONAL">Recreational diving</option>
-                                    <option value="TECHNICAL">Technical diving</option>
-                                    <option value="CAVE">Cave diving</option>
-                                    <option value="WRECK">Wreck diving</option>
-                                    <option value="NONE">NONE</option>
+                                    <option value="NONE">
+                                        {this.props.t("addDive.form.divingType.options.NONE")}
+                                    </option>
+                                    <option value="RECREATIONAL">
+                                        {this.props.t("addDive.form.divingType.options.Recreational")}
+                                    </option>
+                                    <option value="TECHNICAL">
+                                        {this.props.t("addDive.form.divingType.options.Technical")}
+                                    </option>
+                                    <option value="CAVE">
+                                        {this.props.t("addDive.form.divingType.options.Cave")}
+                                    </option>
+                                    <option value="WRECK">
+                                        {this.props.t("addDive.form.divingType.options.Wreck")}
+                                    </option>
                                 </select>
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="googleLogbookMap">Location</label>
+                                <label htmlFor="googleLogbookMap">
+                                    {this.props.t("addDive.form.location")}
+                                </label>
                                 <GoogleLogbookMap 
                                     setMarker={this.setMarker}
                                 />
                             </div>
+                            <ShowInvalidMarker markerValidator={this.state.markerValidator} />
 
                             <div className="form-group">
-                                <label htmlFor="comment">Comment</label>
+                                <label htmlFor="comment">
+                                    {this.props.t("addDive.form.comment")}
+                                </label>
                                 <textarea 
                                     className="form-control" 
                                     id="comment" 
@@ -345,7 +521,7 @@ class AddDive extends React.Component {
 
                             <div className="btn-add-dive-center">
                                 <button type="submit" className="btn btn-primary btn-lg btn-add-dive">
-                                    Confirm
+                                    {this.props.t("addDive.form.button")}
                                 </button>
                             </div>
                         </form>
@@ -356,4 +532,59 @@ class AddDive extends React.Component {
     }
 }
 
-export default AddDive;
+function ShowInvalidPartnerName(props) {
+    if(props.partnerNameValidator) {
+        return (
+            <div className="alert alert-danger">
+                {this.props.t("addDive.invalidPartnerName")}
+            </div>
+        );
+    }
+    return null;
+}
+
+function ShowInvalidPartnerSurname(props) {
+    if(props.partnerSurameValidator) {
+        return (
+            <div className="alert alert-danger">
+                {this.props.t("addDive.invalidPartnerSurname")}
+            </div>
+        );
+    }
+    return null;
+}
+
+function ShowInvalidMaxDepth(props) {
+    if(props.maxDepthValidator) {
+        return (
+            <div className="alert alert-danger">
+                {this.props.t("addDive.invalidMaxDepth")}
+            </div>
+        );
+    }
+    return null;
+}
+
+function ShowInvalidVisibility(props) {
+    if(props.visibilityValidator) {
+        return (
+            <div className="alert alert-danger">
+                {this.props.t("addDive.invalidVisibility")}
+            </div>
+        );
+    }
+    return null;
+}
+
+function ShowInvalidMarker(props) {
+    if(props.markerValidator) {
+        return (
+            <div className="alert alert-danger">
+                {this.props.t("addDive.invalidMarker")}
+            </div>
+        );
+    }
+    return null;
+}
+
+export default withTranslation("common")(withRouter(AddDive));

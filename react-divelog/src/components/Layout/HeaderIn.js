@@ -47,20 +47,29 @@ class HeaderIn extends React.Component {
         }); 
 
         let isActive = false;
-        $(".left-menu-icon").click(function() {
-
+        $("#left-menu-icon").click(function() {
             if(!isActive) {
-                $(".left-menu").animate({ left: '0' }, 500);
+                $("#left-menu").animate({ left: '0' }, 500);
                 isActive = true;
                 return;
             }
 
             if(isActive) {
-                $(".left-menu").animate({ left: '-15%' }, 500);
+                $("#left-menu").animate({ left: '-15%' }, 500);
                 isActive = false;
                 return;
             }
         });
+
+        // $(".facebook-container").click(function() {
+        //     if(isActive) {
+        //         if( this.id != 'left-menu' || this.id != 'left-menu-icon') {
+        //             $("#left-menu").animate({ left: '-15%' }, 500);
+        //             isActive = false;
+        //             return;
+        //         }
+        //     }
+        // });
     }
 
 
@@ -88,7 +97,7 @@ class HeaderIn extends React.Component {
         return (
             <div>
                 <header>
-                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed">
                         <Link to="/home" className="navbar-brand">
                             <span className="logoSize">
                                 Divelog
@@ -118,7 +127,7 @@ class HeaderIn extends React.Component {
                                     />
                                 </li>
                                 <li className="nav-item">
-                                    <div className="nav-link left-menu-icon">
+                                    <div className="nav-link" id="left-menu-icon">
                                         <i className="fas fa-bars"></i>
                                     </div>
                                 </li>
@@ -158,17 +167,17 @@ class HeaderIn extends React.Component {
                                         userID={this.state.userID}
                                     />
                                 </li>
-                                <li className="nav-item nav-link">
+                                <li className="nav-item nav-link mt-3">
                                     <img 
                                         src={this.state.pictureUrl} 
                                         alt="Profil" 
                                         className="header-profil-picture"
                                     />
                                 </li>
-                                <li className="nav-item nav-link">
+                                <li className="nav-item nav-link mt-3">
                                     {this.state.name}
                                 </li>
-                                <li className="nav-item">
+                                <li className="nav-item mt-3">
                                     <div className="nav-link">
                                         <button
                                             onClick={this.onSubmit}
@@ -182,7 +191,10 @@ class HeaderIn extends React.Component {
                         </div>
                     </nav>
                 </header>
-                <div className="left-menu">
+                <div 
+                    // className="left-menu"
+                    id="left-menu"
+                >
                     <Menu />
                 </div>
             </div>

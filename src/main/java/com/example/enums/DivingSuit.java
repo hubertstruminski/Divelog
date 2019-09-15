@@ -1,10 +1,24 @@
 package com.example.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum DivingSuit {
 
+    @JsonProperty("DRY")
     DRY("DRY"),
+    @JsonProperty("SEMIARID")
     SEMIARID("SEMIARID"),
+    @JsonProperty("WET")
     WET("WET"),
+    @JsonProperty("NONE")
     NONE("NONE");
 
     private String divingSuit;
@@ -19,16 +33,5 @@ public enum DivingSuit {
 
     public void setDivingSuit(String divingSuit) {
         this.divingSuit = divingSuit;
-    }
-
-    public DivingSuit returnDivingSuit(String divingSuit) {
-        if(divingSuit.equalsIgnoreCase("DRY")) {
-            return DivingSuit.DRY;
-        } else if(divingSuit.equalsIgnoreCase("SEMIARID")) {
-            return DivingSuit.SEMIARID;
-        } else if(divingSuit.equalsIgnoreCase("WET")) {
-            return DivingSuit.WET;
-        }
-        return DivingSuit.NONE;
     }
 }

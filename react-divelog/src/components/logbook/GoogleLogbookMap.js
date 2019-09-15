@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import { compose } from 'redux';
 import DeleteLogbookButton from '../logbook/DeleteLogbookButton';
 import swal from 'sweetalert';
+import GoogleLogbookMarkerModal from './GoogleLogbookMarkerModal';
 
 class GoogleLogbookMap extends React.Component {
     constructor() {
@@ -16,15 +17,21 @@ class GoogleLogbookMap extends React.Component {
             longitude: '',
             marker: {},
             activeMarker: {},
+            markers: [],
             showingInfoWIndow: false,
             selectedPlace: {},
             isFinishMarker: false,
-            isAccessible: true
+            isAccessible: true,
+            existingMarkerName: '',
+            existingMarkerLatitude: '',
+            existingMarkerLongitude: ''
         }
         this.onMapClick = this.onMapClick.bind(this);
         this.updateMarker = this.updateMarker.bind(this);
         this.setFinishMarker = this.setFinishMarker.bind(this);
         this.setIsAccessible = this.setIsAccessible.bind(this);
+        this.showAllMarkers = this.showAllMarkers.bind(this);
+        this.onMarkerClick = this.onMarkerClick.bind(this);
     }
 
     componentDidMount() {
@@ -32,6 +39,30 @@ class GoogleLogbookMap extends React.Component {
             "height": "350px",
             "position": "static"
         });
+
+        let jwtToken = localStorage.getItem("JwtToken");
+
+        fetch(`/get/markers/${jwtToken}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'content-type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(jsonData => {
+            jsonData.map((marker, index) => {
+                let element = {
+                    id: marker.id,
+                    name: marker.name,
+                    latitude: marker.latitude,
+                    longitude: marker.longitude
+                }
+                this.setState({
+                    markers: this.state.markers.concat(element)
+                })
+            })
+        }); 
     }
 
     onMapClick(t, map, coord) {
@@ -51,16 +82,24 @@ class GoogleLogbookMap extends React.Component {
             });
             $("#modalLogbookCenter").modal('show');
         } else {
-            swal("No access", "You can not mark 2nd location", "error");
+            swal(this.props.t("googleMap.modal.swalLocation.title"), this.props.t("googleMap.modal.swalLocation.text"), "error");
         }
     }
 
     onMarkerClick = (props, marker, e) => {
-        this.setState({
-            selectedPlace: props,
-            activeMarker: marker,
-            showingInfoWindow: true
-        });
+        if(this.state.isAccessible) {
+            this.setState({
+                selectedPlace: props,
+                activeMarker: marker,
+                showingInfoWindow: true,
+                isAccessible: false,
+                existingMarkerName: props.name,
+                existingMarkerLatitude: props.position.lat,
+                existingMarkerLongitude: props.position.lng
+            });
+            $(document).on('show.bs.modal', "#modalLogbookMarker", function (event) {});
+            $("#modalLogbookMarker").modal('show');
+        }
     }
 
     onClose = props => {
@@ -84,6 +123,28 @@ class GoogleLogbookMap extends React.Component {
         );
     }
 
+    showAllMarkers() {
+        return this.state.markers.map((marker, index) => {
+            return (
+                <Marker 
+                    key={index} 
+                    name={marker.name}
+                    position={{ lat: marker.latitude, lng: marker.longitude }}
+                    onClick={this.onMarkerClick}
+                />
+            );
+        });
+    }
+
+    onClose = props => {
+        if(this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            });
+        }
+    };
+
     showTableRow = () => {
         return (
             <tr>
@@ -100,6 +161,7 @@ class GoogleLogbookMap extends React.Component {
                         setFinishMarker={this.setFinishMarker}
                         setRef={this.setRef}
                         setIsAccessible={this.setIsAccessible}
+                        setMarker={this.props.setMarker}
                     />
                 </td>
             </tr>
@@ -154,6 +216,7 @@ class GoogleLogbookMap extends React.Component {
                     onClick={this.onMapClick}
                 >
                     { isFinishMarker && this.showMarker() }
+                    { this.showAllMarkers() }
                     <InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
@@ -167,6 +230,15 @@ class GoogleLogbookMap extends React.Component {
                 <GoogleLogbookModal 
                     latitude={this.state.latitude}
                     longitude={this.state.longitude}
+                    updateMarker={this.updateMarker}
+                    setFinishMarker={this.setFinishMarker}
+                    setMarker={this.props.setMarker}
+                    setIsAccessible={this.setIsAccessible}
+                />
+                <GoogleLogbookMarkerModal 
+                    name={this.state.existingMarkerName}
+                    latitude={this.state.existingMarkerLatitude}
+                    longitude={this.state.existingMarkerLongitude}
                     updateMarker={this.updateMarker}
                     setFinishMarker={this.setFinishMarker}
                     setMarker={this.props.setMarker}

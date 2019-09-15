@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { AuthObject } from '../util/AuthObject';
 import AuthService from '../util/AuthService';
+import $ from 'jquery';
 
 class LogIn extends React.Component {
     constructor(props) {

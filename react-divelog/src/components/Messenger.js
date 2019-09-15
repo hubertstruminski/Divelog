@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/Header.css';
 
 class Messenger extends React.Component {
     constructor(props) {
@@ -7,8 +8,9 @@ class Messenger extends React.Component {
     
     render() {
         return (
-            <div className="">
-                <i className="fab fa-facebook-messenger"></i>
+            <div className="icon-container"> 
+                <div className="icon-counter">7</div>
+                <i class="fab fa-facebook-messenger" style={{ "font-size": "20px"}}/>
             </div>
         );
     }

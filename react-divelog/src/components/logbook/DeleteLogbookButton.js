@@ -17,6 +17,7 @@ class DeleteLogbookButton extends React.Component {
             longitude: ''
         }
         this.props.updateMarker(markerObject);
+        this.props.setMarker(markerObject);
         this.props.setIsAccessible();
         this.props.setFinishMarker(false);
     }

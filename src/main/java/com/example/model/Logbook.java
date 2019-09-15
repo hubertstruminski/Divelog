@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -19,16 +18,15 @@ public class Logbook {
     private Long id;
 
     @Column(name = "partner_name")
-    @Size(min = 1, max = 255, message = "Length should be 1 to 255 characters")
+    @Size(max = 60)
     private String partnerName;
 
     @Column(name = "partner_surname")
-    @Size(min = 1, max = 255, message = "Length should be 1 to 255 characters")
+    @Size(max = 100)
     private String partnerSurname;
 
     @ManyToOne
     @JoinColumn(name = "marker_id")
-    @NotBlank(message = "You have to set marker")
     @NotNull
     private Marker marker;
 
@@ -46,44 +44,43 @@ public class Logbook {
     private double averageDepth;
 
     @Column(name = "max_depth")
+    @NotNull
     private double maxDepth;
 
     @Column(name = "visibility")
+    @NotNull
     private double visibility;
 
+    @Column(name = "water_temperature")
+    private double waterTemperature;
+
+    @Column(name = "air_temperature")
+    private double airTemperature;
+
     @Column(name = "cylinder_capacity")
-    @NotBlank(message = "You have to set cylinder capacity")
-    private String cylinderCapacity; // 10L, 12L, 15L, 18L, inny
+    private String cylinderCapacity;
 
     @Column(name = "diving_suit")
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "You have to set diving suit")
-    private DivingSuit divingSuit; // Pianka, suchy, półsuchy
+    private DivingSuit divingSuit;
 
     @Column(name = "water_type")
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "You have to set type of water")
-    @NotNull
-    private WaterType waterType; // woda slona, woda slodka
+    private WaterType waterType;
 
     @Column(name = "type_water_entry")
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "You have to set type of entry to water")
-    @NotNull
-    private WaterEntryType waterEntryType; // z brzegu, z lodki
+    private WaterEntryType waterEntryType;
 
     @Column(name = "ballast")
     private double ballast;
 
     @Column(name = "gloves_type")
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "You have to set type of gloves")
-    @NotNull
     private GloveType glovesType;
 
     @Column(name = "diving_type")
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "You have to set type of diving")
     private DivingType divingType;
 
     @Column(name = "comment")
@@ -165,6 +162,22 @@ public class Logbook {
 
     public void setVisibility(double visibility) {
         this.visibility = visibility;
+    }
+
+    public double getWaterTemperature() {
+        return waterTemperature;
+    }
+
+    public void setWaterTemperature(double waterTemperature) {
+        this.waterTemperature = waterTemperature;
+    }
+
+    public double getAirTemperature() {
+        return airTemperature;
+    }
+
+    public void setAirTemperature(double airTemperature) {
+        this.airTemperature = airTemperature;
     }
 
     public String getCylinderCapacity() {

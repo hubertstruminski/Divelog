@@ -1,5 +1,15 @@
 package com.example.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum DivingType {
 
     RECREATIONAL("RECREATIONAL"),
@@ -20,18 +30,5 @@ public enum DivingType {
 
     public void setDivingType(String divingType) {
         this.divingType = divingType;
-    }
-
-    public DivingType returnDivingType(String divingType) {
-        if(divingType.equalsIgnoreCase("RECREATIONAL")) {
-            return DivingType.RECREATIONAL;
-        } else if(divingType.equalsIgnoreCase("TECHNICAL")) {
-            return DivingType.TECHNICAL;
-        } else if(divingType.equalsIgnoreCase("CAVE")) {
-            return DivingType.CAVE;
-        } else if(divingType.equalsIgnoreCase("WRECK")) {
-            return DivingType.WRECK;
-        }
-        return DivingType.NONE;
     }
 }

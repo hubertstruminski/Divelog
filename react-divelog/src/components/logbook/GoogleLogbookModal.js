@@ -33,7 +33,7 @@ class GoogleLogbookModal extends React.Component {
             this.props.setFinishMarker(true);
             $("#modalLogbookCenter").modal('hide');
         } catch(error) {
-            swal("Error", "Something goes wrong.", "error");
+            swal(this.props.t("googleMap.modal.swalError.title"), this.props.t("googleMap.modal.swalError.text"), "error");
         }
     }
 
