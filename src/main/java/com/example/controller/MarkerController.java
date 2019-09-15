@@ -2,8 +2,10 @@ package com.example.controller;
 
 import com.example.config.JwtTokenProvider;
 import com.example.model.Connection;
+import com.example.model.Logbook;
 import com.example.model.Marker;
 import com.example.repository.ConnectionRepository;
+import com.example.repository.LogbookRepository;
 import com.example.repository.MarkerRepository;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class MarkerController {
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
+
+    @Autowired
+    private LogbookRepository logbookRepository;
 
     @PostMapping("/add/marker/{jwtToken}")
     public ResponseEntity<?> addMarker(@RequestBody Marker marker, @PathVariable String jwtToken) {
@@ -57,6 +62,13 @@ public class MarkerController {
         Long userID = (Long) claimsFromJwt.get("userID");
 
         Connection foundedUser = connectionRepository.findByUserID(userID);
+
+        Marker marker = markerRepository.findByIdAndUser(markerID, foundedUser);
+        Logbook foundedLogbook = logbookRepository.findByMarker(marker);
+
+        if(foundedLogbook != null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
 
         markerRepository.deleteByIdAndUser(markerID, foundedUser);
 

@@ -2,49 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/actions/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/actions/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Friends.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Messenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Messenger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Notifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/AddDive.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/AddDive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/DeleteLogbookButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/DeleteLogbookButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/GoogleLogbookMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/GoogleLogbookMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/GoogleLogbookModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/GoogleLogbookModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/context/AuthenticatedContext.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/AddDive.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/AddDive.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/LogIn.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/LogIn.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enums/DivingSuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enums/DivingSuit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enums/DivingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enums/DivingType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enums/GloveType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enums/GloveType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enums/WaterEntryType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enums/WaterEntryType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/enums/WaterType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/enums/WaterType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/handler/SimpleUrlAuthenticationSuccessHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Marker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Marker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/LogbookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/LogbookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enums/DivingSuit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enums/DivingSuit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enums/DivingType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enums/DivingType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enums/GloveType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enums/GloveType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enums/WaterEntryType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enums/WaterEntryType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/enums/WaterType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/enums/WaterType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/handler/SimpleUrlAuthenticationSuccessHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/Connection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Logbook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/Logbook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Marker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/Marker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/DeleteButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/DeleteButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -60,21 +21,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/WaterType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
+            <state relative-caret-position="329">
               <caret line="53" selection-start-line="53" selection-end-line="53" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -84,22 +33,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/MapErrorValidatorService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="21" column="91" selection-start-line="21" selection-start-column="91" selection-end-line="21" selection-end-column="91" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/WaterEntryType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="150">
+              <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1545">
+            <state relative-caret-position="86">
               <caret line="121" selection-start-line="121" selection-end-line="121" />
             </state>
           </provider>
@@ -164,11 +101,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
               <caret line="71" column="32" selection-start-line="71" selection-start-column="32" selection-end-line="71" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -213,11 +174,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogoutController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/enums/Cylinder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Marker.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/enums/WaterEntryType.java" />
@@ -229,6 +187,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" />
       </list>
     </option>
   </component>
@@ -239,7 +200,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="67" />
     <option name="y" value="25" />
     <option name="width" value="927" />
@@ -417,16 +378,15 @@
       <workItem from="1567798909447" duration="331000" />
       <workItem from="1567886256108" duration="26000" />
       <workItem from="1568367726027" duration="21611000" />
-      <workItem from="1568481496395" duration="823000" />
+      <workItem from="1568481496395" duration="4568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175103000" />
+    <option name="totallyTimeSpent" value="178848000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23076923" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -482,10 +442,16 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java</url>
-          <line>53</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
+          <line>60</line>
           <properties />
-          <option name="timeStamp" value="16" />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java</url>
+          <line>74</line>
+          <properties />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -591,16 +557,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/Cylinder.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -608,16 +564,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#0#45#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -683,13 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Marker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -717,16 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/MapErrorValidatorService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -744,13 +673,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1545">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
         </state>
       </provider>
     </entry>
@@ -798,6 +720,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="71" column="32" selection-start-line="71" selection-start-column="32" selection-end-line="71" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

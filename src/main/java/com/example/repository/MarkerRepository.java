@@ -13,6 +13,8 @@ public interface MarkerRepository extends CrudRepository<Marker, Long> {
 
     public List<Marker> findAllByUser(Connection user);
 
+    public Marker findByIdAndUser(Long id, Connection user);
+
     @Transactional
     void deleteByIdAndUser(Long id, Connection user);
 }

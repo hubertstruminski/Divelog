@@ -6,6 +6,9 @@ class DeleteButton extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            isError: false
+        }
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -19,14 +22,21 @@ class DeleteButton extends React.Component {
                 'Accept': 'application/json, text/plain, */*',
                 'content-type': 'application/json'
             }
-        })
+        }).then(response => {
+            if(response.status === 400) {
+                swal("No access", "You can not remove marker assigned to dive from logbook.", "error");
+                this.setState({ isError: true });
+            } else {
+                if(!this.state.isError) {
+                    swal(
+                        this.props.t("googleMap.modal.swal.title"), 
+                        this.props.t("googleMap.modal.swal.text"), 
+                        "success"
+                    );
+                }
+            }
+        });
         this.props.setIsDeletedMarker();
-
-        swal(
-            this.props.t("googleMap.modal.swal.title"), 
-            this.props.t("googleMap.modal.swal.text"), 
-            "success"
-        );
     }
 
     render() {
