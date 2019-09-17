@@ -4,7 +4,9 @@
         "guide": "Führung",
         "aboutMe": "Über mich",
         "donate": "Schenken",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "login": "Einloggen",
+        "logout": "Ausloggen"
     },
     "login": {
         "login": "Einloggen",
@@ -49,6 +51,138 @@
             "message": "Nachricht",
             "textarea": "Schreiben Sie hier Ihre Nachricht",
             "button": "Nachricht senden"
+        }
+    },
+    "searchFriends": {
+        "placeholder": "Freunde suchen"
+    },
+    "menu": {
+        "socialMedia": "Sozialen Medien",
+        "logbook": "Logbuch",
+        "map": "Meine Karte",
+        "forum": "Forum",
+        "settings": "Einstellung"
+    },
+    "leftCard": {
+        "news": "Nachrichten",
+        "groups": "Gruppen"
+    },
+    "loading": "Wird geladen...",
+    "googleMap": {
+        "story": "Deine Tauchergeschichte",
+        "table": {
+            "name": "Name",
+            "latitude": "Breite",
+            "longitude": "Längengrad",
+            "delete": "Löschen"
+        },
+        "modal": {
+            "title": "füge eine Markierung zur Geschichte hinzu",
+            "text": "Name für Marker:",
+            "close": "schließen",
+            "save": "Markierung speichern",
+            "swal": {
+                "title": "Erfolg",
+                "text": "Lade die Seite neu"
+            },
+            "swalError": {
+                "title": "Error",
+                "text": "Etwas läuft schief"
+            },
+            "swalLocation": {
+                "title": "kein Zugang",
+                "text": "Sie können den zweiten Standort nicht markieren"
+            }
+        },
+        "markerModal": {
+            "title": "Vorhandenen Marker hinzufügen",
+            "text": "Möchten Sie diesen vorhandenen Marker zum Tauchen zuweisen?"     
+        }
+    },
+    "addDive": {
+        "form": {
+            "title": "Tauchgang zum Logbuch hinzufügen",
+            "partnerName": "Name des Partners",
+            "partnerSurname": "Familienname des Partners",
+            "entryTime": "Eintrittszeit",
+            "exitTime": "Ausstiegszeit",
+            "avgDepth": "durchschnittliche Tiefe",
+            "maxDepth": "maximale Tiefe",
+            "visibility": "Sichtweite",
+            "waterTemperature": "Temperatur des Wassers",
+            "airTemperature": "Temperatur der Luft",
+            "cylinderCapacity": {
+                "title": "Zylinderleistung",
+                "options": {
+                    "NONE": "KEINER",
+                    "TWINSET": "Twinset",
+                    "REBREATHER": "Rebreather"
+                }
+            },
+            "suit": {
+                "title": "Tauchanzug",
+                "options": {
+                    "NONE": "KEINER",
+                    "DRY": "Trockenanzug",
+                    "WET": "Neoprenanzug",
+                    "SEMIARID": "halbtrockener Anzug"
+                }
+            },
+            "waterType": {
+                "title": "Wasserart",
+                "options": {
+                    "NONE": "KEINER",
+                    "SWEET": "Süßwasser",
+                    "SALT": "Salzwasser"
+                }
+            },
+            "waterEntryType": {
+                "title": "Eintrittsart ins Wasser",
+                "options": {
+                    "NONE": "KEINER",
+                    "COAST": "Küste",
+                    "BOAT": "Boot"
+                }
+            },
+            "glovesType": {
+                "title": "Handschuhtyp",
+                "options": {
+                    "NONE": "KEINER",
+                    "WET": "nasse Handschuhe",
+                    "DRY": "trockene Handschuhe"
+                }
+            },
+            "ballast": "Ballast",
+            "divingType": {
+                "title": "Tauchtyp",
+                "options": {
+                    "NONE": "KEINER",
+                    "Recreational": "Freizeittauchen",
+                    "Technical": "Technisches Tauchen",
+                    "Cave": "Höhlentauchen",
+                    "Wreck": "Wracktauchen"
+                }
+            },
+            "location": "Standort",
+            "comment": "Kommentar",
+            "button": "Bestätigen"
+        }
+    },
+    "logbook": {
+        "addButton": "Tauchgang zum Logbuch hinzufügen",
+        "table": {
+            "partnerName": "Name des Partners",
+            "partnerSurname": "Familienname des Partners",
+            "entryTime": "Eintrittszeit",
+            "exitTime": "Ausstiegszeit",
+            "location": "Lage",
+            "avgDepth": "durchschnittliche Tiefe",
+            "maxDepth": "maximale Tiefe",
+            "airTemperature": "Temperatur der Luft",
+            "waterTemperature": "Temperatur des Wassers",
+            "divingType": "Tauchtyp",
+            "UPDATE": "AKTUALISIEREN",
+            "DELETE": "LÖSCHEN"
         }
     }
 }

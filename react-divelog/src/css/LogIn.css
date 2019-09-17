@@ -7,8 +7,12 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
 
+    /* position: absolute;
+    top: 0;
+    bottom: 0; */
     width: 100%;
     min-height: 100%;
+    /* z-index: -100; */
 
     display: flex;
     justify-content: center;
@@ -52,6 +56,10 @@
     background-color: #3B5999;
     border: 1px solid #3B5999;
     border-radius: 5px;
+}
+
+.fb-btn-white-font {
+    color: white;
 }
 
 

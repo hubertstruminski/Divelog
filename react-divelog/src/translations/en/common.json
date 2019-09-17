@@ -4,7 +4,9 @@
         "guide": "Guide",
         "aboutMe": "About me",
         "donate": "Donate",
-        "contact": "Contact"
+        "contact": "Contact",
+        "login": "Log In",
+        "logout": "Logout"
     },
     "login": {
         "login": "Log In",
@@ -49,6 +51,144 @@
             "message": "Message",
             "textarea": "Write here your message",
             "button": "Send message"
+        }
+    },
+    "searchFriends": {
+        "placeholder": "Search friends"
+    },
+    "menu": {
+        "socialMedia": "Social Media",
+        "logbook": "Logbook",
+        "map": "My map",
+        "forum": "Forum",
+        "settings": "Settings"
+    },
+    "leftCard": {
+        "news": "News",
+        "groups": "Groups"
+    },
+    "loading": "Loading...",
+    "googleMap": {
+        "story": "Your diving story",
+        "table": {
+            "name": "Name",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "delete": "Delete"
+        },
+        "modal": {
+            "title": "Add marker to story",
+            "text": "Name for marker:",
+            "close": "Close",
+            "save": "Save marker",
+            "swal": {
+                "title": "Success",
+                "text": "Refresh the page"
+            },
+            "swalError": {
+                "title": "Error",
+                "text": "Something goes wrong"
+            },
+            "swalLocation": {
+                "title": "No access",
+                "text": "You can not mark 2nd location"
+            }
+        },
+        "markerModal": {
+            "title": "Add exist marker",
+            "text": "Do you want assign this existing marker to dive ?"
+
+        }
+    },
+    "addDive": {
+        "form": {
+            "title": "Add dive to logbook",
+            "partnerName": "Partner's name",
+            "partnerSurname": "Partner's surname",
+            "entryTime": "Entry time",
+            "exitTime": "Exit time",
+            "avgDepth": "Average depth",
+            "maxDepth": "Maximum depth",
+            "visibility": "Visibility",
+            "waterTemperature": "Temperature of water",
+            "airTemperature": "Temperature of air",
+            "cylinderCapacity": {
+                "title": "Cylinder capacity",
+                "options": {
+                    "NONE": "NONE",
+                    "TWINSET": "Twinset",
+                    "REBREATHER": "Rebreather"
+                }
+            },
+            "suit": {
+                "title": "Suit",
+                "options": {
+                    "NONE": "NONE",
+                    "DRY": "Dry suit",
+                    "WET": "Wet suit",
+                    "SEMIARID": "Semiarid suit"
+                }
+            },
+            "waterType": {
+                "title": "Water type",
+                "options": {
+                    "NONE": "NONE",
+                    "SWEET": "Sweet water",
+                    "SALT": "Salt water"
+                }
+            },
+            "waterEntryType": {
+                "title": "Entry type to water",
+                "options": {
+                    "NONE": "NONE",
+                    "COAST": "COAST",
+                    "BOAT": "BOAT"
+                }
+            },
+            "glovesType": {
+                "title": "Gloves type",
+                "options": {
+                    "NONE": "NONE",
+                    "WET": "Wet",
+                    "DRY": "Dry"
+                }
+            },
+            "ballast": "Ballast",
+            "divingType": {
+                "title": "Diving type",
+                "options": {
+                    "NONE": "NONE",
+                    "Recreational": "Recreational diving",
+                    "Technical": "Technical diving",
+                    "Cave": "Cave diving",
+                    "Wreck": "Wreck diivng"
+                }
+            },
+            "location": "Location",
+            "comment": "Comment",
+            "button": "Confirm"
+        },
+        "invalidPartnerName": "Maximum 60 characters is permitted.",
+        "invalidPartnerSurname": "Maximum 100 characters is permitted.",
+        "invalidMaxDepth": "Maximum depth is required.",
+        "invalidVisibility": "Visibility is required.",
+        "invalidMarker": "Location is required."
+    },
+    "logbook": {
+        "addButton": "Add dive to logbook",
+        "table": {
+            "partnerName": "Partner's name",
+            "partnerSurname": "Partner's surname",
+            "entryTime": "Entry time",
+            "exitTime": "Exit time",
+            "location": "Location",
+            "avgDepth": "Average depth",
+            "maxDepth": "Maximum depth",
+            "airTemperature": "Temperature of air",
+            "waterTemperature": "Temperature of water",
+            "divingType": "Diving type",
+            "UPDATE": "UPDATE",
+            "DELETE": "DELETE"
         }
     }
 }

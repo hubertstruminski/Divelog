@@ -4,7 +4,9 @@
         "guide": "Przewodnik",
         "aboutMe": "O mnie",
         "donate": "Darowizna",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "login": "Zaloguj się",
+        "logout": "Wyloguj się"
     },
     "login": {
         "login": "Zaloguj się",
@@ -49,6 +51,144 @@
             "message": "Wiadomość",
             "textarea": "Tutaj napisz wiadomość",
             "button": "Wyślij wiadomość"
+        }
+    },
+    "searchFriends": {
+        "placeholder": "Szukaj znajomych"
+    },
+    "menu": {
+        "socialMedia": "Media społecznościowe",
+        "logbook": "Logbook",
+        "map": "Moja mapa",
+        "forum": "Forum",
+        "settings": "Ustawienia"
+    },
+    "leftCard": {
+        "news": "Aktualności",
+        "groups": "Grupy"
+    },
+    "loading": "Ładowanie...",
+    "googleMap": {
+        "story": "Twoja historia nurkowań",
+        "table": {
+            "name": "Nazwa",
+            "latitude": "Szerokość",
+            "longitude": "Długość",
+            "delete": "Usuń"
+        },
+        "modal": {
+            "title": "Dodaj znacznik do historii",
+            "text": "Nazwa dla znacznika:",
+            "close": "Zamknij",
+            "save": "Zapisz znacznik",
+            "swal": {
+                "title": "Sukces",
+                "text": "Odśwież stronę"
+            },
+            "swalError": {
+                "title": "Błąd",
+                "text": "Coś poszło źle"
+            },
+            "swalLocation": {
+                "title": "Brak dostępu",
+                "text": "Nie możesz zaznaczyć drugiej lokalizacji"
+            }
+        },
+        "markerModal": {
+            "title": "Dodaj istniejący znacznik",
+            "text": "Chcesz przypisać ten istniejący znacznik do nurkowania ?"
+            
+        }
+    },
+    "addDive": {
+        "form": {
+            "title": "Dodaj nurkowanie do logbooka",
+            "partnerName": "Imię partnera",
+            "partnerSurname": "Nazwisko partnera",
+            "entryTime": "Czas wejścia",
+            "exitTime": "Czas wyjścia",
+            "avgDepth": "Średnia głębokość",
+            "maxDepth": "Maksymalna głębokość",
+            "visibility": "WIdoczność",
+            "waterTemperature": "Temperatura wody",
+            "airTemperature": "Temperatura powietrza",
+            "cylinderCapacity": {
+                "title": "Pojemność butli",
+                "options": {
+                    "NONE": "NONE",
+                    "TWINSET": "Twinset",
+                    "REBREATHER": "Rebreather"
+                }
+            },
+            "suit": {
+                "title": "Skafander",
+                "options": {
+                    "NONE": "NIC",
+                    "DRY": "Suchy skafander",
+                    "WET": "Pianka",
+                    "SEMIARID": "Półsuchy skafander"
+                }
+            },
+            "waterType": {
+                "title": "Rodzaj wody",
+                "options": {
+                    "NONE": "NIC",
+                    "SWEET": "Woda słodka",
+                    "SALT": "Woda słona"
+                }
+            },
+            "waterEntryType": {
+                "title": "Rodzaj wejścia do wody",
+                "options": {
+                    "NONE": "NIC",
+                    "COAST": "BRZEG",
+                    "BOAT": "ŁÓDKA"
+                }
+            },
+            "glovesType": {
+                "title": "Rodzaj rękawic",
+                "options": {
+                    "NONE": "NIC",
+                    "WET": "Mokre",
+                    "DRY": "Suche"
+                }
+            },
+            "ballast": "Balast",
+            "divingType": {
+                "title": "Rodzaj nurkowania",
+                "options": {
+                    "NONE": "NIC",
+                    "Recreational": "Nurkowanie rekreacyjne",
+                    "Technical": "Nurkowanie techniczne",
+                    "Cave": "Nurkowanie jaskiniowe",
+                    "Wreck": "Nurkowanie wrakowe"
+                }
+            },
+            "location": "Lokalizacja",
+            "comment": "Komentarz",
+            "button": "Potwierdź"
+        },
+        "invalidPartnerName": "Maksymalnie 60 znaków jest dozwolonych.",
+        "invalidPartnerSurname": "Maksymalnie 100 znaków jest dozwolonych.",
+        "invalidMaxDepth": "Maksymalna głębokość jest wymagana.",
+        "invalidVisibility": "Widoczność jest wymagana.",
+        "invalidMarker": "Lokalizacja jest wymagana."
+    },
+    "logbook": {
+        "addButton": "Dodaj nurkowanie do logbooka",
+        "table": {
+            "partnerName": "Imię partnera",
+            "partnerSurname": "Nazwisko partnera",
+            "entryTime": "Czas wejścia",
+            "exitTime": "Czas wyjścia",
+            "location": "Lokalizacja",
+            "avgDepth": "Średnia głębokość",
+            "maxDepth": "Maksymalna głębokość",
+            "airTemperature": "Temperatura powietrza",
+            "waterTemperature": "Temperatura wody",
+            "divingType": "Rodzaj nurkowania",
+            "UPDATE": "AKTUALIZUJ",
+            "DELETE": "USUŃ"
         }
     }
 }

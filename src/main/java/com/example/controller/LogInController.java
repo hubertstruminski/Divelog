@@ -1,71 +1,74 @@
 package com.example.controller;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
+import com.example.config.JwtTokenProvider;
+import com.example.enums.Provider;
+import com.example.model.Connection;
+import com.example.model.LoginRequest;
+import com.example.repository.ConnectionRepository;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.OAuth2Request;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.Principal;
-import java.util.Collection;
-import java.util.Set;
+import java.util.Date;
+import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-
-
-@RestController
+@Controller
+@CrossOrigin
 public class LogInController {
 
     @Autowired
-    private ClientRegistrationRepository clientRegistrationRepository;
+    private ConnectionRepository connectionRepository;
 
-    private HttpGet get;
-    private HttpClient httpClient;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
-    @GetMapping("/user")
-    public Principal user(Principal user) throws IOException {
-        ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("facebook");
-        String clientId = clientRegistration.getClientId();
-        String clientName = clientRegistration.getClientName();
-        String clientSecret = clientRegistration.getClientSecret();
-        String authorizationUri = clientRegistration.getProviderDetails().getAuthorizationUri();
-        ClientRegistration.ProviderDetails.UserInfoEndpoint userInfoEndpoint = clientRegistration.getProviderDetails().getUserInfoEndpoint();
-        String jwkSetUri = clientRegistration.getProviderDetails().getJwkSetUri();
-        String tokenUri = clientRegistration.getProviderDetails().getTokenUri();
-        String registrationId = clientRegistration.getRegistrationId();
-        Set<String> scopes = clientRegistration.getScopes();
+    @PostMapping("/signin")
+    public ResponseEntity<?> saveUserData(@RequestBody LoginRequest loginRequest) throws IOException {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Connection foundByEmail = connectionRepository.findByEmail(loginRequest.getEmail());
+        String jwtToken = null;
 
-        Object principal = authentication.getPrincipal();
-        Object credentials = authentication.getCredentials();
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        if(foundByEmail == null) {
+            Connection connection = new Connection();
 
-        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
-        String tokenValue = details.getTokenValue();
-        System.out.println(tokenValue);
+            connection.setUserID(loginRequest.getUserID());
+            connection.setEmail(loginRequest.getEmail());
+            connection.setName(loginRequest.getName());
+            connection.setAccessToken(loginRequest.getAccessToken());
+            connection.setAuthenticated(true);
+            connection.setPictureUrl(loginRequest.getPictureUrl());
+            connection.setProviderId(Provider.FACEBOOK.getProvider());
+            connection.setLoggedAt(new Date());
+            connection.setCreatedAt(new Date());
 
-        System.out.println(user.getName());
+            connectionRepository.save(connection);
 
-        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) user;
-        boolean authenticated = oAuth2Authentication.getUserAuthentication().isAuthenticated();
-        System.out.println(authenticated);
-        return user;
+            jwtToken = jwtTokenProvider.generateToken(connection);
+        } else {
+            foundByEmail.setName(loginRequest.getName());
+            foundByEmail.setAccessToken(loginRequest.getAccessToken());
+            foundByEmail.setAuthenticated(true);
+            foundByEmail.setPictureUrl(loginRequest.getPictureUrl());
+            foundByEmail.setLoggedAt(new Date());
+
+            connectionRepository.save(foundByEmail);
+
+            jwtToken = jwtTokenProvider.generateToken(foundByEmail);
+        }
+        return new ResponseEntity<String>(jwtToken, HttpStatus.OK);
+    }
+
+    @GetMapping("/getuserdata/{jwtToken}")
+    public ResponseEntity<?> getUserData(@PathVariable String jwtToken) {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+
+        String accessToken = String.valueOf(claimsFromJwt.get("accessToken"));
+        boolean isValidAccessToken = jwtTokenProvider.validateToken(accessToken);
+
+        return new ResponseEntity<Claims>(claimsFromJwt, HttpStatus.OK);
     }
 }
