@@ -20,8 +20,11 @@ import Home from './components/Layout/Home';
 import AboutMe from './components/Layout/AboutMe';
 import Donate from './components/Layout/Donate';
 import Contact from './components/Layout/Contact';
-import FB from 'fb';
-import User from './components/User';
+import Facebook from './components/Facebook';
+import GoogleMap from './components/googleMaps/GoogleMap';
+import AddDive from './components/logbook/AddDive';
+import Logbook from './components/logbook/Logbook';
+import UpdateLogbook from './components/logbook/UpdateLogbook';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -52,7 +55,11 @@ function App() {
             <Route exact path="/donate" component={Donate} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={LogIn} />
-            <Route exact path="/user" component={User} />
+              <Route exact path="/dashboard" component={Facebook} />
+              <Route exact path="/map" component={GoogleMap} />
+              <Route exact path="/logbook" component={Logbook} />
+              <Route exact path="/add/dive" component={AddDive} />
+              <Route exact path="/update/logbook/:id" component={UpdateLogbook} />
           </I18nextProvider>
         </div>
       </Router>

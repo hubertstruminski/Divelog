@@ -1,13 +1,37 @@
-security:
-  oauth2:
-    client:
-      clientId: 455695445269575
-      clientSecret: efb40bb542ba92ded72c897e5d71a776
-      accessTokenUri: https://graph.facebook.com/oauth/access_token
-      userAuthorizationUri: https://www.facebook.com/dialog/oauth
-      tokenName: oauth_token
-      authenticationScheme: query
-      clientAuthenticationScheme: form
-      scope: email
-    resource:
-      userInfoUri: https://graph.facebook.com/me
+#security:
+#  oauth2:
+#    client:
+#      clientId: 455695445269575
+#      clientSecret: efb40bb542ba92ded72c897e5d71a776
+#      accessTokenUri: https://graph.facebook.com/oauth/access_token
+#      userAuthorizationUri: https://www.facebook.com/dialog/oauth
+#      tokenName: oauth_token
+#      authenticationScheme: query
+#      clientAuthenticationScheme: form
+#      scope: email
+#    resource:
+#      userInfoUri: https://graph.facebook.com/me
+
+#spring.jpa.hibernate.ddl-auto=create-drop
+#spring.datasource.url= jdbc:postgresql://localhost:5432/fiddle
+#spring.datasource.userName=fiddle
+#spring.datasource.password=fiddle
+#spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+#spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+#spring.datasource.driverClassName=org.postgresql.Driver
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/divelog
+    username: divelog
+    password: divelog
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+             non_contextual_creation: true
