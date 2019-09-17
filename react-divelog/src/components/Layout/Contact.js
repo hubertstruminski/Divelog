@@ -41,7 +41,7 @@ class Contact extends React.Component {
                         <div className="form-container-contact">
                             <form>
                                 <div className="form-group">
-                                    <label for="inputEmail">
+                                    <label htmlFor="inputEmail">
                                         {this.props.t("contact.form.email")}
                                     </label>
                                     <input 
@@ -51,18 +51,18 @@ class Contact extends React.Component {
                                         placeholder="Enter email" 
                                     />
                                 </div>
-                                <div class="form-group">
-                                    <label for="textArea">
+                                <div className="form-group">
+                                    <label htmlFor="textArea">
                                         {this.props.t("contact.form.message")}
                                     </label>
                                     <textarea 
-                                        class="form-control form-control-lg" 
+                                        className="form-control form-control-lg" 
                                         id="textArea" 
                                         rows="10"
                                     >
                                     </textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg">
+                                <button type="submit" className="btn btn-primary btn-lg">
                                     {this.props.t("contact.form.button")}
                                 </button>
                             </form>
