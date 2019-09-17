@@ -3,32 +3,20 @@
 .logbook-container {
     width: 100%;
     background-image: url("../img/hexellence.png");
+    height: 100vh;
 }
 
-.logbook-center {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.logbook-add-link {
-    width: 10%;
+.btn-padding {
+    margin-top: 2.5%;
     padding: 1%;
-    color: white;
-    text-align: center;
-    background-color: blueviolet;
-    border-radius: 40px;
 }
 
-.logbook-add-link:hover {
-    cursor: pointer;
+.alert-margin {
+    margin-top: 20%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
 }
 
-.add-link {
-    color: white;
-}
-
-.add-link:hover {
-    text-decoration: none;
-    color: white;
+.table-margin {
+    margin-top: 2.5%;
 }

@@ -173,5 +173,22 @@
         "invalidMaxDepth": "Maksymalna głębokość jest wymagana.",
         "invalidVisibility": "Widoczność jest wymagana.",
         "invalidMarker": "Lokalizacja jest wymagana."
+    },
+    "logbook": {
+        "addButton": "Dodaj nurkowanie do logbooka",
+        "table": {
+            "partnerName": "Imię partnera",
+            "partnerSurname": "Nazwisko partnera",
+            "entryTime": "Czas wejścia",
+            "exitTime": "Czas wyjścia",
+            "location": "Lokalizacja",
+            "avgDepth": "Średnia głębokość",
+            "maxDepth": "Maksymalna głębokość",
+            "airTemperature": "Temperatura powietrza",
+            "waterTemperature": "Temperatura wody",
+            "divingType": "Rodzaj nurkowania",
+            "UPDATE": "AKTUALIZUJ",
+            "DELETE": "USUŃ"
+        }
     }
 }

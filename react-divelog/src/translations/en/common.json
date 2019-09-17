@@ -173,5 +173,22 @@
         "invalidMaxDepth": "Maximum depth is required.",
         "invalidVisibility": "Visibility is required.",
         "invalidMarker": "Location is required."
+    },
+    "logbook": {
+        "addButton": "Add dive to logbook",
+        "table": {
+            "partnerName": "Partner's name",
+            "partnerSurname": "Partner's surname",
+            "entryTime": "Entry time",
+            "exitTime": "Exit time",
+            "location": "Location",
+            "avgDepth": "Average depth",
+            "maxDepth": "Maximum depth",
+            "airTemperature": "Temperature of air",
+            "waterTemperature": "Temperature of water",
+            "divingType": "Diving type",
+            "UPDATE": "UPDATE",
+            "DELETE": "DELETE"
+        }
     }
 }

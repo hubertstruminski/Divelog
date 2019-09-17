@@ -167,5 +167,22 @@
             "comment": "Kommentar",
             "button": "Bestätigen"
         }
+    },
+    "logbook": {
+        "addButton": "Tauchgang zum Logbuch hinzufügen",
+        "table": {
+            "partnerName": "Name des Partners",
+            "partnerSurname": "Familienname des Partners",
+            "entryTime": "Eintrittszeit",
+            "exitTime": "Ausstiegszeit",
+            "location": "Lage",
+            "avgDepth": "durchschnittliche Tiefe",
+            "maxDepth": "maximale Tiefe",
+            "airTemperature": "Temperatur der Luft",
+            "waterTemperature": "Temperatur des Wassers",
+            "divingType": "Tauchtyp",
+            "UPDATE": "AKTUALISIEREN",
+            "DELETE": "LÖSCHEN"
+        }
     }
 }

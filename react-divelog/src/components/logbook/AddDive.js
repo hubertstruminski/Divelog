@@ -9,8 +9,8 @@ import $ from 'jquery';
 import { withTranslation } from 'react-i18next';
 
 class AddDive extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             partnerName: '',
@@ -35,7 +35,7 @@ class AddDive extends React.Component {
             partnerSurnameValidator: false,
             visibilityValidator: false,
             markerValidator: false,
-            maxDepthValidator: false,
+            maxDepthValidator: false
         }
         this.Auth = new AuthService();
 
@@ -121,6 +121,39 @@ class AddDive extends React.Component {
         }
     }
 
+    showInvalidMaxDepth(maxDepthValidator) {
+        if(maxDepthValidator) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.t("addDive.invalidMaxDepth")}
+                </div>
+            );
+        }
+        return null;
+    }
+
+    showInvalidVisibility(visibilityValidator) {
+        if(visibilityValidator) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.t("addDive.invalidVisibility")}
+                </div>
+            );
+        }
+        return null;
+    }
+
+    showInvalidMarker(markerValidator) {
+        if(markerValidator) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.t("addDive.invalidMarker")}
+                </div>
+            );
+        }
+        return null;
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -131,6 +164,24 @@ class AddDive extends React.Component {
         if(this.validator.length === 0) {
             let jwtToken = this.Auth.getToken();
             
+            let year1 = this.state.entryTime.substr(0, 4);
+            let month1 = this.state.entryTime.substr(5, 2);
+            let day1 = this.state.entryTime.substr(8, 2);
+            
+            let hours1 = this.state.entryTime.substr(11, 2);
+            let minutes1 = this.state.entryTime.substr(14, 2);
+
+            let entryTime = day1 + "-" + month1 + "-" + year1 + "T" + hours1 + ":" + minutes1;
+
+            let year2 = this.state.exitTime.substr(0, 4);
+            let month2 = this.state.exitTime.substr(5, 2);
+            let day2 = this.state.exitTime.substr(8, 2);
+            
+            let hours2 = this.state.exitTime.substr(11, 2);
+            let minutes2 = this.state.exitTime.substr(14, 2);
+
+            let exitTime = day2 + "-" + month2 + "-" + year2 + "T" + hours2 + ":" + minutes2;
+
             const logbookObject = {
                 partnerName: this.state.partnerName,
                 partnerSurname: this.state.partnerSurname,
@@ -179,7 +230,7 @@ class AddDive extends React.Component {
                         </div>
 
                         <form onSubmit={this.onSubmit}>
-                            <div className="form-group">
+                            <div className="form-group">showInvalidVisibility
                                 <label htmlFor="partnerName">
                                     {this.props.t("addDive.form.partnerName")}
                                 </label>
@@ -272,7 +323,8 @@ class AddDive extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <ShowInvalidMaxDepth maxDepthValidator={this.state.maxDepthValidator} />
+                            {/* <ShowInvalidMaxDepth maxDepthValidator={this.state.maxDepthValidator} /> */}
+                            { this.showInvalidMaxDepth(this.state.maxDepthValidator) }
 
                             <div className="form-group">
                                 <label htmlFor="visibility">
@@ -289,7 +341,8 @@ class AddDive extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <ShowInvalidVisibility visibilityValidator={this.state.visibilityValidator} />
+                            {/* <ShowInvalidVisibility visibilityValidator={this.state.visibilityValidator} /> */}
+                            { this.showInvalidVisibility(this.state.visibilityValidator) }
                             
                             <div className="form-group">
                                 <label htmlFor="waterTemperature">
@@ -301,7 +354,7 @@ class AddDive extends React.Component {
                                     min="-5" 
                                     className="form-control" 
                                     id="waterTemperature" 
-                                    name="waterTemperature"
+                                    name="wshowInvalidVisibilityaterTemperature"
                                     value={this.state.waterTemperature}
                                     onChange={this.onChange}
                                 />
@@ -502,7 +555,8 @@ class AddDive extends React.Component {
                                     setMarker={this.setMarker}
                                 />
                             </div>
-                            <ShowInvalidMarker markerValidator={this.state.markerValidator} />
+                            {/* <ShowInvalidMarker markerValidator={this.state.markerValidator} /> */}
+                            { this.showInvalidMarker(this.state.showInvalidMarker) }
 
                             <div className="form-group">
                                 <label htmlFor="comment">
@@ -554,37 +608,37 @@ function ShowInvalidPartnerSurname(props) {
     return null;
 }
 
-function ShowInvalidMaxDepth(props) {
-    if(props.maxDepthValidator) {
-        return (
-            <div className="alert alert-danger">
-                {this.props.t("addDive.invalidMaxDepth")}
-            </div>
-        );
-    }
-    return null;
-}
+// function ShowInvalidMaxDepth(props) {
+//     if(props.maxDepthValidator) {
+//         return (
+//             <div className="alert alert-danger">
+//                 {this.props.t("addDive.invalidMaxDepth")}
+//             </div>
+//         );
+//     }
+//     return null;
+// }
 
-function ShowInvalidVisibility(props) {
-    if(props.visibilityValidator) {
-        return (
-            <div className="alert alert-danger">
-                {this.props.t("addDive.invalidVisibility")}
-            </div>
-        );
-    }
-    return null;
-}
+// function ShowInvalidVisibility(props) {
+//     if(props.visibilityValidator) {
+//         return (
+//             <div className="alert alert-danger">
+//                 {this.props.t("addDive.invalidVisibility")}
+//             </div>
+//         );
+//     }
+//     return null;
+// }
 
-function ShowInvalidMarker(props) {
-    if(props.markerValidator) {
-        return (
-            <div className="alert alert-danger">
-                {this.props.t("addDive.invalidMarker")}
-            </div>
-        );
-    }
-    return null;
-}
+// function ShowInvalidMarker(props) {
+//     if(props.markerValidator) {
+//         return (
+//             <div className="alert alert-danger">
+//                 {this.props.t("addDive.invalidMarker")}
+//             </div>
+//         );
+//     }
+//     return null;
+// }
 
 export default withTranslation("common")(withRouter(AddDive));

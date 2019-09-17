@@ -24,6 +24,7 @@ import Facebook from './components/Facebook';
 import GoogleMap from './components/googleMaps/GoogleMap';
 import AddDive from './components/logbook/AddDive';
 import Logbook from './components/logbook/Logbook';
+import UpdateLogbook from './components/logbook/UpdateLogbook';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -58,6 +59,7 @@ function App() {
               <Route exact path="/map" component={GoogleMap} />
               <Route exact path="/logbook" component={Logbook} />
               <Route exact path="/add/dive" component={AddDive} />
+              <Route exact path="/update/logbook/:id" component={UpdateLogbook} />
           </I18nextProvider>
         </div>
       </Router>

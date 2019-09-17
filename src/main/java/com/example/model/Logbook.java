@@ -3,6 +3,7 @@ package com.example.model;
 import com.example.enums.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -30,13 +31,15 @@ public class Logbook {
     @NotNull
     private Marker marker;
 
-    @Temporal(TemporalType.TIME)
-    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
+//    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "entry_time")
     private Date entryTime;
 
-    @Temporal(TemporalType.TIME)
-    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
+//    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "exit_time")
     private Date exitTime;
 
