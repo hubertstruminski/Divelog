@@ -39,13 +39,9 @@ class GoogleModal extends React.Component {
         });
 
         this.props.setFinishMarker();
+        this.props.addMarkerToArray(googleMarker);
+        this.props.fetchMarkers();
         $("#modalCenter").modal('hide');
-
-        swal(
-            this.props.t("googleMap.modal.swal.title"), 
-            this.props.t("googleMap.modal.swal.text"), 
-            "success"
-        );
     }
 
     render() {

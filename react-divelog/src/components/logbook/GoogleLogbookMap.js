@@ -24,7 +24,8 @@ class GoogleLogbookMap extends React.Component {
             isAccessible: true,
             existingMarkerName: '',
             existingMarkerLatitude: '',
-            existingMarkerLongitude: ''
+            existingMarkerLongitude: '',
+            isUpdateLogbookRow: false
         }
         this.onMapClick = this.onMapClick.bind(this);
         this.updateMarker = this.updateMarker.bind(this);
@@ -32,6 +33,8 @@ class GoogleLogbookMap extends React.Component {
         this.setIsAccessible = this.setIsAccessible.bind(this);
         this.showAllMarkers = this.showAllMarkers.bind(this);
         this.onMarkerClick = this.onMarkerClick.bind(this);
+        this.setUpdateLogbookRow = this.setUpdateLogbookRow.bind(this);
+        this.fetchMarkers = this.fetchMarkers.bind(this);
     }
 
     componentDidMount() {
@@ -63,6 +66,19 @@ class GoogleLogbookMap extends React.Component {
                 })
             })
         }); 
+
+        if(this.props.updateMarker != null) {
+            const element = {
+                id: this.props.updateMarker.id,
+                name: this.props.updateMarker.name,
+                latitude: this.props.updateMarker.latitude,
+                longitude: this.props.updateMarker.longitude
+            }
+            this.setState({ markers: this.state.markers.concat(element) });
+            this.setState({ marker: element}, () => {
+                this.setState({ isUpdateLogbookRow: true });
+            });
+        }
     }
 
     onMapClick(t, map, coord) {
@@ -107,9 +123,7 @@ class GoogleLogbookMap extends React.Component {
             this.setState({
                 showingInfoWindow: false,
                 activeMarker: null
-            });if(this.tbodyRef.innerHTML !== "") {
-                this.tbodyRef.innerHTML = "";
-            }
+            });
         }
     };
 
@@ -168,6 +182,30 @@ class GoogleLogbookMap extends React.Component {
         );
     }
 
+    showMarkerRowFromUpdateLogbook(object) {
+        return (
+            <tr>
+                <th scope="row">
+                    <b>1</b>
+                </th>
+                <td>{object.name}</td>
+                <td>{object.latitude}</td>
+                <td>{object.longitude}</td>
+                <td>
+                    <DeleteLogbookButton 
+                        id={object.id}
+                        updateMarker={this.updateMarker}
+                        setFinishMarker={this.setFinishMarker}
+                        setIsAccessible={this.setIsAccessible}
+                        setMarker={this.props.setMarker}
+                        setUpdateLogbookRow={this.setUpdateLogbookRow}
+                        isUpdating={true}
+                    />
+                </td>
+            </tr>
+        );
+    }
+
     updateMarker(markerObject) {
         this.setState({ marker: markerObject });
     }
@@ -180,14 +218,27 @@ class GoogleLogbookMap extends React.Component {
         this.setState({ isAccessible: true });
     }
 
+    setUpdateLogbookRow() {
+        this.setState({ isUpdateLogbookRow: false });
+    }
+
     render() {
         let isFinishMarker = this.state.isFinishMarker;
+        let isUpdateLogbookRow = this.state.isUpdateLogbookRow;
+        let marker = this.state.marker;
 
         let tableRow;
         if(isFinishMarker) {
             tableRow = this.showTableRow();
         } else {
             tableRow = "";
+        }
+
+        let updateTableRow;
+        if(isUpdateLogbookRow) {
+            updateTableRow = this.showMarkerRowFromUpdateLogbook(marker);
+        } else {
+            updateTableRow = "";
         }
          
         const mapStyle = {
@@ -266,7 +317,8 @@ class GoogleLogbookMap extends React.Component {
                             </tr>
                         </thead>
                         <tbody ref={(el) => this.tbodyRef = el}>
-                            { isFinishMarker && tableRow }
+                            { isFinishMarker && !isUpdateLogbookRow && tableRow }
+                            { isUpdateLogbookRow && updateTableRow }
                         </tbody>
                     </table>
                 </div>

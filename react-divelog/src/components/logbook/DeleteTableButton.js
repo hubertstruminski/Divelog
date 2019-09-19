@@ -21,8 +21,8 @@ class DeleteTableButton extends React.Component {
             }
         }).then(response => {
             if(response.status === 200) {
-                this.props.setIsDeletedRow(true);
                 this.props.setDeletedLogbookId(id);
+                this.props.fetchLogbooks();
                 swal("Success", "Record has been removed successfully.", "success");
             } else {
                 swal("Error", "Bad Request. Something goes wrong.", "error");

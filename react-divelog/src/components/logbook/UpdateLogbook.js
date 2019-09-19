@@ -7,7 +7,7 @@ import { withRouter } from 'react-router';
 import swal from 'sweetalert'; 
 import $ from 'jquery';  
 import { withTranslation } from 'react-i18next';
-import moment from 'moment';
+import ConvertTime from '../../util/ConvertTime';
 
 class UpdateLogbook extends React.Component {
     constructor(props) {
@@ -46,6 +46,8 @@ class UpdateLogbook extends React.Component {
         this.setMarker = this.setMarker.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
+
+        this.ConvertTime = new ConvertTime();
     }
 
     componentDidMount() {
@@ -61,20 +63,7 @@ class UpdateLogbook extends React.Component {
         })
         .then(response => response.json())
         .then(jsonData => {
-            // console.log(jsonData);
-            // console.log(jsonData.entryTime);
-            // console.log(jsonData.exitTime);
-            // var entry = moment(jsonData.entryTime).format("DD-MM-YYYYTHH:mm");
-            console.log(jsonData);
-            let year = jsonData.entryTime.substr(0, 4);
-            let month = jsonData.entryTime.substr(5, 2);
-            let day = jsonData.entryTime.substr(8, 2);
-            
-            let hours = jsonData.entryTime.substr(11, 2);
-            let minutes = jsonData.entryTime.substr(14, 2);
-
-            let result = day + "-" + month + "-" + year + "T" + hours + ":" + minutes;
-            console.log(result);
+            let time = this.ConvertTime.convertTime(jsonData.entryTime, jsonData.exitTime, true);
 
             const markerElement = {
                 id: jsonData.marker.id,
@@ -87,8 +76,8 @@ class UpdateLogbook extends React.Component {
                 partnerName: jsonData.partnerName,
                 partnerSurname: jsonData.partnerSurname,
                 marker: markerElement,
-                entryTime: result,
-                exitTime: jsonData.exitTime,
+                entryTime: time[0],
+                exitTime: time[1],
                 averageDepth: jsonData.averageDepth,
                 maxDepth: jsonData.maxDepth,
                 visibility: jsonData.visibility,
@@ -164,7 +153,6 @@ class UpdateLogbook extends React.Component {
                 this.setState({ markerValidator: false });
             }
         }
-        console.log(this.state.marker);
 
         for(let property in this.state.marker) {
             console.log(this.state.marker[property]);
@@ -180,6 +168,61 @@ class UpdateLogbook extends React.Component {
         }
     }
 
+    showInvalidPartnerName(partnerNameValidator) {
+        if(partnerNameValidator) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.t("addDive.invalidPartnerName")}
+                </div>
+            );
+        }
+        return null;
+    }
+    
+    showInvalidPartnerSurname(partnerSurnameValidator) {
+        if(partnerSurnameValidator) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.t("addDive.invalidPartnerSurname")}
+                </div>
+            );
+        }
+        return null;
+    }
+    
+    showInvalidMaxDepth(maxDepthValidator) {
+        if(maxDepthValidator) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.t("addDive.invalidMaxDepth")}
+                </div>
+            );
+        }
+        return null;
+    }
+    
+    showInvalidVisibility(visibilityValidator) {
+        if(visibilityValidator) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.t("addDive.invalidVisibility")}
+                </div>
+            );
+        }
+        return null;
+    }
+    
+    showInvalidMarker(markerValidator) {
+        if(markerValidator) {
+            return (
+                <div className="alert alert-danger">
+                    {this.props.t("addDive.invalidMarker")}
+                </div>
+            );
+        }
+        return null;
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -189,6 +232,7 @@ class UpdateLogbook extends React.Component {
         
         if(this.validator.length === 0) {
             let jwtToken = this.Auth.getToken();
+            let logbookId = this.props.match.params.id;
             
             const logbookObject = {
                 partnerName: this.state.partnerName,
@@ -210,21 +254,22 @@ class UpdateLogbook extends React.Component {
                 divingType: this.state.divingType,
                 comment: this.state.comment
             }
-            // ----------------------------------- ZMIENIĆ AXIOS NA METODĘ PUT --------------------------------------------------------
+
             axios({
-                method: 'POST',
-                url: `/add/logbook/${jwtToken}`,
+                method: 'PUT',
+                url: `/edit/logbook/${logbookId}/${jwtToken}`,
                 data: logbookObject,
                 headers: {
                     "Accept": "application/json",
                     "Content-type": "application/json"
                 }
             }).then(response => {
-                this.props.history.push("/logbook");
-            }).catch(function(error) {
-                swal(this.props.t("googleMap.modal.swalError.title"), this.props.t("googleMap.modal.swalError.text"), "error");
-            })
-            //--------------------------------------------------------------------------------------------------------------------------
+                if(response.status !== 200) {
+                    swal(this.props.t("googleMap.modal.swalError.title"), this.props.t("googleMap.modal.swalError.text"), "error");
+                } else {
+                    this.props.history.push("/logbook");
+                }
+            });
         }   
     }
 
@@ -252,7 +297,7 @@ class UpdateLogbook extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <ShowInvalidPartnerName partnerNameValidator={this.state.partnerNameValidator} />
+                            { this.showInvalidPartnerName(this.state.partnerNameValidator) }
 
                             <div className="form-group">
                                 <label htmlFor="partnerSurname">
@@ -268,7 +313,7 @@ class UpdateLogbook extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <ShowInvalidPartnerSurname partnerSurameValidator={this.state.partnerSurnameValidator} />
+                            { this.showInvalidPartnerSurname(this.state.partnerSurnameValidator) }
 
                             <div className="form-group row">
                                 <label htmlFor="entryTime" className="col-sm-2 col-form-label">
@@ -331,7 +376,7 @@ class UpdateLogbook extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <ShowInvalidMaxDepth maxDepthValidator={this.state.maxDepthValidator} />
+                            { this.showInvalidMaxDepth(this.state.maxDepthValidator) }
 
                             <div className="form-group">
                                 <label htmlFor="visibility">
@@ -348,7 +393,7 @@ class UpdateLogbook extends React.Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <ShowInvalidVisibility visibilityValidator={this.state.visibilityValidator} />
+                            { this.showInvalidVisibility(this.state.visibilityValidator) }
                             
                             <div className="form-group">
                                 <label htmlFor="waterTemperature">
@@ -559,9 +604,10 @@ class UpdateLogbook extends React.Component {
                                 </label>
                                 <GoogleLogbookMap 
                                     setMarker={this.setMarker}
+                                    updateMarker={this.state.marker}
                                 />
                             </div>
-                            <ShowInvalidMarker markerValidator={this.state.markerValidator} />
+                            { this.showInvalidMarker(this.state.markerValidator) }
 
                             <div className="form-group">
                                 <label htmlFor="comment">
@@ -589,61 +635,6 @@ class UpdateLogbook extends React.Component {
             </div>
         );
     }
-}
-
-function ShowInvalidPartnerName(props) {
-    if(props.partnerNameValidator) {
-        return (
-            <div className="alert alert-danger">
-                {this.props.t("addDive.invalidPartnerName")}
-            </div>
-        );
-    }
-    return null;
-}
-
-function ShowInvalidPartnerSurname(props) {
-    if(props.partnerSurameValidator) {
-        return (
-            <div className="alert alert-danger">
-                {this.props.t("addDive.invalidPartnerSurname")}
-            </div>
-        );
-    }
-    return null;
-}
-
-function ShowInvalidMaxDepth(props) {
-    if(props.maxDepthValidator) {
-        return (
-            <div className="alert alert-danger">
-                {this.props.t("addDive.invalidMaxDepth")}
-            </div>
-        );
-    }
-    return null;
-}
-
-function ShowInvalidVisibility(props) {
-    if(props.visibilityValidator) {
-        return (
-            <div className="alert alert-danger">
-                {this.props.t("addDive.invalidVisibility")}
-            </div>
-        );
-    }
-    return null;
-}
-
-function ShowInvalidMarker(props) {
-    if(props.markerValidator) {
-        return (
-            <div className="alert alert-danger">
-                {this.props.t("addDive.invalidMarker")}
-            </div>
-        );
-    }
-    return null;
 }
 
 export default withTranslation("common")(withRouter(UpdateLogbook));

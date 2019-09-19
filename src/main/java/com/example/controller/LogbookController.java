@@ -7,19 +7,16 @@ import com.example.model.Marker;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.LogbookRepository;
 import com.example.repository.MarkerRepository;
-import com.example.service.MapErrorValidatorService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @CrossOrigin
@@ -44,17 +41,7 @@ public class LogbookController {
 
         Connection foundedUser = connectionRepository.findByUserID(userID);
 
-        Date entryTime = logbook.getEntryTime();
-        long time = entryTime.getTime();
-        time = time - 7200000;
-        entryTime.setTime(time);
-        logbook.setEntryTime(entryTime);
-
-        Date exitTime = logbook.getExitTime();
-        long time2 = exitTime.getTime();
-        time2 = time2 - 7200000;
-        exitTime.setTime(time2);
-        logbook.setExitTime(exitTime);
+        setTime(logbook, logbook);
 
         Marker marker = logbook.getMarker();
         marker.setUser(foundedUser);
@@ -87,10 +74,7 @@ public class LogbookController {
         Logbook logbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
 
         if(logbook != null) {
-            Marker marker = logbook.getMarker();
-
             logbookRepository.deleteById(logbook.getId());
-            markerRepository.deleteById(marker.getId());
 
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
@@ -110,5 +94,62 @@ public class LogbookController {
             return new ResponseEntity<Logbook>(logbook, HttpStatus.OK);
         }
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("/edit/logbook/{logbookId}/{jwtToken}")
+    public ResponseEntity<?> updateLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken, @RequestBody Logbook logbook) {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        Long userID = (Long) claimsFromJwt.get("userID");
+
+        Connection foundedUser = connectionRepository.findByUserID(userID);
+
+        Logbook foundedLogbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
+        Marker marker = foundedLogbook.getMarker();
+
+        if(foundedLogbook != null) {
+            setTime(logbook, foundedLogbook);
+            foundedLogbook.setDivingSuit(logbook.getDivingSuit());
+            foundedLogbook.setAirTemperature(logbook.getAirTemperature());
+            foundedLogbook.setAverageDepth(logbook.getAverageDepth());
+            foundedLogbook.setBallast(logbook.getBallast());
+            foundedLogbook.setComment(logbook.getComment());
+            foundedLogbook.setCylinderCapacity(logbook.getCylinderCapacity());
+            foundedLogbook.setDivingType(logbook.getDivingType());
+            foundedLogbook.setGlovesType(logbook.getGlovesType());
+            foundedLogbook.setMaxDepth(logbook.getMaxDepth());
+            foundedLogbook.setPartnerName(logbook.getPartnerName());
+            foundedLogbook.setPartnerSurname(logbook.getPartnerSurname());
+            foundedLogbook.setVisibility(logbook.getVisibility());
+            foundedLogbook.setWaterEntryType(logbook.getWaterEntryType());
+            foundedLogbook.setWaterTemperature(logbook.getWaterTemperature());
+            foundedLogbook.setWaterType(logbook.getWaterType());
+
+            marker.setName(logbook.getMarker().getName());
+            marker.setLatitude(logbook.getMarker().getLatitude());
+            marker.setLongitude(logbook.getMarker().getLongitude());
+
+            foundedLogbook.setMarker(marker);
+
+            markerRepository.save(marker);
+            logbookRepository.save(foundedLogbook);
+
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+    }
+
+    private void setTime(Logbook logbook, Logbook foundedLogbook) {
+        Date entryTime = logbook.getEntryTime();
+        long time = entryTime.getTime();
+        time = time - 7200000;
+        entryTime.setTime(time);
+        foundedLogbook.setEntryTime(entryTime);
+
+        Date exitTime = logbook.getExitTime();
+        long time2 = exitTime.getTime();
+        time2 = time2 - 7200000;
+        exitTime.setTime(time2);
+        foundedLogbook.setExitTime(exitTime);
     }
 }

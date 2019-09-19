@@ -21,10 +21,14 @@ class GoogleMap extends React.Component {
             latitude: '',
             longitude: '',
             isDeletedMarker: false,
+            deletedMarkerId: 0
         }
         this.onMapClick = this.onMapClick.bind(this);
         this.setFinishMarker = this.setFinishMarker.bind(this);
         this.setIsDeletedMarker = this.setIsDeletedMarker.bind(this);
+        this.fetchMarkers = this.fetchMarkers.bind(this);
+        this.setDeletedMarkerId = this.setDeletedMarkerId.bind(this);
+        this.addMarkerToArray = this.addMarkerToArray.bind(this);
     }
 
     componentDidMount() {
@@ -52,6 +56,34 @@ class GoogleMap extends React.Component {
                 })
             })
         }); 
+    }
+
+    fetchMarkers() {
+        let jwtToken = localStorage.getItem("JwtToken");
+
+        this.setState({ markers: [] }, () => {
+            fetch(`/get/markers/${jwtToken}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'content-type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(jsonData => {
+                jsonData.map((marker, index) => {
+                    let element = {
+                        id: marker.id,
+                        name: marker.name,
+                        latitude: marker.latitude,
+                        longitude: marker.longitude
+                    }
+                    this.setState({
+                        markers: this.state.markers.concat(element)
+                    })
+                })
+            }); 
+        });
     }
 
     showMarkers = () => {
@@ -82,6 +114,8 @@ class GoogleMap extends React.Component {
                         <DeleteButton 
                             id={marker.id}
                             setIsDeletedMarker={this.setIsDeletedMarker}
+                            setDeletedMarkerId={this.setDeletedMarkerId}
+                            fetchMarkers={this.fetchMarkers}
                         />
                     </td>
                 </tr>
@@ -128,6 +162,25 @@ class GoogleMap extends React.Component {
 
     setIsDeletedMarker() {
         this.setState({ isDeletedMarker: true });
+    }
+
+    setDeletedMarkerId(value) {
+        this.setState({ deletedMarkerId: value }, () => {
+            let id = this.state.deletedMarkerId;
+            let index = 0;
+            this.state.markers.map((marker, index) => {
+                if(marker.id === id) {
+                    this.setState({ markers: this.state.markers.splice(index, 1) }, () => {
+                        this.forceUpdate();
+                    });
+                }
+                index++;
+            });
+        });
+    }
+
+    addMarkerToArray(object) {
+        this.setState({ markers: this.state.markers.concat(object) });
     }
 
     render() {
@@ -205,6 +258,8 @@ class GoogleMap extends React.Component {
                         latitude={this.state.latitude}
                         longitude={this.state.longitude}
                         setFinishMarker={this.setFinishMarker}
+                        addMarkerToArray={this.addMarkerToArray}
+                        fetchMarkers={this.fetchMarkers}
                     />
                 </div>
             </div>     

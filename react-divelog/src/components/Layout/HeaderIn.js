@@ -59,7 +59,7 @@ class HeaderIn extends React.Component {
                 isActive = false;
                 return;
             }
-        });
+        }); 
 
         // $(".facebook-container").click(function() {
         //     if(isActive) {
