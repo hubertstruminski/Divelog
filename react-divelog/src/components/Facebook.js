@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/Facebook.css';
 import LeftCard from './Layout/LeftCard';
 import withAuth from '../util/withAuth';
+import $ from 'jquery';
 
 class Facebook extends React.Component {
     constructor(props) {
