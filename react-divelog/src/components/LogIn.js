@@ -20,6 +20,14 @@ class LogIn extends React.Component {
         this.responseFacebook = this.responseFacebook.bind(this);
     }
 
+    componentDidMount() {
+        $("nav").css({ "position": "fixed", "width": "100%"});
+    }
+
+    componentWillUnmount() {
+        $("nav").css({ "position": "static"});
+    }
+
     responseFacebook(response) {
         const loginRequest = {
             accessToken: response["accessToken"],

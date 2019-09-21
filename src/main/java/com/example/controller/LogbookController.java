@@ -14,6 +14,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -136,6 +144,21 @@ public class LogbookController {
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
 
+        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/pdf/logbook/{logbookId}/{jwtToken}")
+    public ResponseEntity<?> getPDFFromLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        Long userID = (Long) claimsFromJwt.get("userID");
+
+        Connection foundedUser = connectionRepository.findByUserID(userID);
+
+        Logbook foundedLogbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
+
+        if(foundedLogbook != null) {
+            return new ResponseEntity<Logbook>(foundedLogbook, HttpStatus.OK);
+        }
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 

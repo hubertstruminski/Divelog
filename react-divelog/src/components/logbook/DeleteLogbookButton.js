@@ -21,12 +21,9 @@ class DeleteLogbookButton extends React.Component {
         this.props.setIsAccessible();
         this.props.setFinishMarker(false);
 
-        this.props.setDeletedMarkerId();
-        this.props.fetchMarkers();
-
         if(this.props.isUpdating) {
             this.props.setUpdateLogbookRow();
-            this.props.onDeleteClick();
+
         }
     }
 

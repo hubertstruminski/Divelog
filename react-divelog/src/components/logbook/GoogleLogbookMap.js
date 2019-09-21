@@ -34,7 +34,6 @@ class GoogleLogbookMap extends React.Component {
         this.showAllMarkers = this.showAllMarkers.bind(this);
         this.onMarkerClick = this.onMarkerClick.bind(this);
         this.setUpdateLogbookRow = this.setUpdateLogbookRow.bind(this);
-        this.fetchMarkers = this.fetchMarkers.bind(this);
     }
 
     componentDidMount() {
