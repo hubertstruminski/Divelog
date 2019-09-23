@@ -26,6 +26,7 @@ import AddDive from './components/logbook/AddDive';
 import Logbook from './components/logbook/Logbook';
 import UpdateLogbook from './components/logbook/UpdateLogbook';
 import Forum from './components/forum/Forum';
+import AddTopic from './components/forum/AddTopic';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -62,6 +63,7 @@ function App() {
               <Route exact path="/add/dive" component={AddDive} />
               <Route exact path="/update/logbook/:id" component={UpdateLogbook} />
               <Route exact path="/forum" component={Forum} />
+              <Route exact path="/create/topic/:selectedForum" component={AddTopic} />
           </I18nextProvider>
         </div>
       </Router>

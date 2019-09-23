@@ -6,6 +6,7 @@ import england from '../../img/flags/england.jpg';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import { TypeForum } from '../../util/TypeForum';
 
 class Forum extends React.Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class Forum extends React.Component {
 
         $("#polandFlag").click(() => {
             this.setState({ 
-                selectedForum: 'POLISH'
+                selectedForum: 'polish'
             }, () => {
                 $("#polandFlag").addClass("isActiveFlag");
                 $("#germanyFlag").removeClass("isActiveFlag");
@@ -36,7 +37,7 @@ class Forum extends React.Component {
 
         $("#germanyFlag").click(() => {
             this.setState({ 
-                selectedForum: 'GERMANY'
+                selectedForum: 'germany'
             }, () => {
                 $("#germanyFlag").addClass("isActiveFlag");
                 $("#polandFlag").removeClass("isActiveFlag");
@@ -46,7 +47,7 @@ class Forum extends React.Component {
 
         $("#englandFlag").click(() => {
             this.setState({ 
-                selectedForum: 'ENGLISH'
+                selectedForum: 'english'
             }, () => {
                 $("#englandFlag").addClass("isActiveFlag");
                 $("#germanyFlag").removeClass("isActiveFlag");

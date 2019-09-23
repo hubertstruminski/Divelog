@@ -12,6 +12,8 @@
     "classnames": "^2.2.6",
     "cookies": "^0.7.3",
     "fb": "^2.0.0",
+    "filestack-js": "^3.7.0",
+    "filestack-react": "^3.1.0",
     "google-maps-react": "^2.0.2",
     "i18next": "^17.0.7",
     "j": "^1.0.0",
@@ -34,7 +36,8 @@
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "sweetalert": "^2.1.2",
-    "tether": "^1.4.7"
+    "tether": "^1.4.7",
+    "unsplash-js": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -51,6 +51,9 @@ public class Connection {
     @OneToMany(mappedBy = "user")
     private List<Logbook> logbooks;
 
+    @OneToMany(mappedBy = "user")
+    private List<Topic> topics;
+
     public Connection() {
 
     }

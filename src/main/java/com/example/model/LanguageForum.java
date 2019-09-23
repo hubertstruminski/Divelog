@@ -3,6 +3,7 @@ package com.example.model;
 import com.example.enums.ForumType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "language_forum")
@@ -14,6 +15,9 @@ public class LanguageForum {
 
     @Enumerated(EnumType.STRING)
     private ForumType forumType;
+
+    @OneToMany(mappedBy = "languageForum")
+    private List<Topic> topics;
 
     public Long getId() {
         return id;
