@@ -1,0 +1,86 @@
+.topic-container {
+    width: 100%;
+    height: 75px;
+    border-bottom: 2px solid white;
+}
+
+.topic-body {
+    width: 100%;
+    height: 75px;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    cursor: pointer;
+
+    background-image: linear-gradient(-90deg, #707070, #333A40)
+}
+
+.grid-topic-one {
+    width: 100%;
+    height: 75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    cursor: auto;
+}
+
+.grid-topic-two {
+    width: 100%;
+    height: 75px;
+}
+
+.grid-topic-three {
+    width: 100%;
+    height: 75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    color: white;
+}
+
+.like-icon {
+    font-size: 0.8vw;
+    color: white;
+    cursor: pointer;
+}
+
+.counter {
+    font-size: 0.8vw;
+    color: white;
+}
+
+.owner-topic {
+    width: 100%;
+    height: 22.5px;
+    text-align: left;
+    color: white;
+    font-size: 0.75vw;
+    margin-bottom: 2.5px;
+}
+
+.title-topic {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    color: white;
+
+    overflow-y: scroll;
+}
+
+.floating-div {
+    display: block;
+    float: left;
+    width: 50%;
+}
+
+.float-two-right {
+    text-align: right;
+}

@@ -16,25 +16,22 @@ export default class ConvertTime {
             entryTime = entryTime.substr(0, 10) + " " + entryHours + ":" + entryTime.substr(14, 2);
         }
         
+        if(exitTime !== null) {
+            let exitHoursWithMinutes = exitTime.substr(11, 5);
+            let exitHours = exitHoursWithMinutes.substr(0, 2);
+            exitHours = Number.parseInt(exitHours);
+            exitHours += 2;
 
-        let exitHoursWithMinutes = exitTime.substr(11, 5);
-        let exitHours = exitHoursWithMinutes.substr(0, 2);
-        exitHours = Number.parseInt(exitHours);
-        exitHours += 2;
+            if(exitHours < 10) {
+                exitHours = "0" + exitHours;
+            }
 
-        if(exitHours < 10) {
-            exitHours = "0" + exitHours;
-        }
-
-        if(isUpdate) {
-            exitTime = exitTime.substr(0, 10) + "T" + exitHours + ":" + exitTime.substr(14, 2);
-        } else {
-            exitTime = exitTime.substr(0, 10) + " " + exitHours + ":" + exitTime.substr(14, 2);
+            if(isUpdate) {
+                exitTime = exitTime.substr(0, 10) + "T" + exitHours + ":" + exitTime.substr(14, 2);
+            } else {
+                exitTime = exitTime.substr(0, 10) + " " + exitHours + ":" + exitTime.substr(14, 2);
+            }
         }
         return [entryTime, exitTime];
-    }
-
-    convertTimeForUpdate() {
-
     }
 }

@@ -13,6 +13,8 @@ public class ForumService {
     private ForumRepository forumRepository;
 
     public void initForum() {
+        forumRepository.deleteAll();
+
         LanguageForum englishForum = new LanguageForum();
         englishForum.setForumType(ForumType.ENGLISH);
 

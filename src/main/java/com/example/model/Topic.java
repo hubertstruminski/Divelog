@@ -1,6 +1,7 @@
 package com.example.model;
 
 import org.hibernate.annotations.Type;
+import java.util.Date;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,6 +24,9 @@ public class Topic {
 
     @Column(name = "number_likes")
     private int likes;
+
+    @Column(name = "created_at")
+    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -81,5 +85,13 @@ public class Topic {
 
     public void setLanguageForum(LanguageForum languageForum) {
         this.languageForum = languageForum;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

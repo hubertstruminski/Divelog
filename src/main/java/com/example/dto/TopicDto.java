@@ -1,5 +1,7 @@
 package com.example.dto;
 
+import com.example.enums.ForumType;
+
 import java.util.List;
 
 public class TopicDto {
@@ -7,7 +9,7 @@ public class TopicDto {
     private String title;
     private String message;
     private int likes;
-    private String languageForum;
+    private ForumType languageForum;
     private String jwtToken;
     private List<FileDto> files;
 
@@ -35,11 +37,11 @@ public class TopicDto {
         this.likes = likes;
     }
 
-    public String getLanguageForum() {
+    public ForumType getLanguageForum() {
         return languageForum;
     }
 
-    public void setLanguageForum(String languageForum) {
+    public void setLanguageForum(ForumType languageForum) {
         this.languageForum = languageForum;
     }
 

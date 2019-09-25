@@ -44,3 +44,22 @@
 .isActiveFlag {
     border: 5px solid blue;
 }
+
+.wrapper-forum-box {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-column-gap: 10%;
+    margin-top: 2.5%;
+}
+
+.forum-topics-box {
+    min-height: 600px;
+    max-height: 1000px;
+}
+
+.forum-top-topics {
+    background-color: aqua;
+    min-height: 600px;
+    max-height: 1000px;
+}

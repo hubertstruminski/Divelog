@@ -8,8 +8,8 @@ import Friends from '../Friends';
 import Messenger from '../Messenger';
 import Notifications from '../Notifications';
 import Menu from '../Menu';
-import { withRouter } from 'react-router';
 import AuthService from '../../util/AuthService';
+import { withRouter } from 'react-router';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -60,16 +60,6 @@ class HeaderIn extends React.Component {
                 return;
             }
         }); 
-
-        // $(".facebook-container").click(function() {
-        //     if(isActive) {
-        //         if( this.id != 'left-menu' || this.id != 'left-menu-icon') {
-        //             $("#left-menu").animate({ left: '-15%' }, 500);
-        //             isActive = false;
-        //             return;
-        //         }
-        //     }
-        // });
     }
 
 
@@ -191,10 +181,7 @@ class HeaderIn extends React.Component {
                         </div>
                     </nav>
                 </header>
-                <div 
-                    // className="left-menu"
-                    id="left-menu"
-                >
+                <div id="left-menu">
                     <Menu />
                 </div>
             </div>

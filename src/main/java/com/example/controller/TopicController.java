@@ -1,19 +1,26 @@
 package com.example.controller;
 
 import com.example.config.JwtTokenProvider;
+import com.example.dto.FileDto;
 import com.example.dto.TopicDto;
 import com.example.model.Connection;
+import com.example.model.CustomFile;
+import com.example.model.LanguageForum;
+import com.example.model.Topic;
 import com.example.repository.ConnectionRepository;
+import com.example.repository.CustomFileRepository;
+import com.example.repository.ForumRepository;
+import com.example.repository.TopicRepository;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
 
 @Controller
 public class TopicController {
@@ -24,14 +31,62 @@ public class TopicController {
     @Autowired
     private ConnectionRepository connectionRepository;
 
-    @PostMapping(name = "/topic")
+    @Autowired
+    private ForumRepository forumRepository;
+
+    @Autowired
+    private TopicRepository topicRepository;
+
+    @Autowired
+    private CustomFileRepository fileRepository;
+
+    @PostMapping("/add/topic")
     public ResponseEntity<?> addTopicToForum(@RequestBody TopicDto topicDto) {
         String jwtToken = topicDto.getJwtToken();
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        if(jwtTokenProvider.validateToken(jwtToken)) {
+            Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+            Long userID = (Long) claimsFromJwt.get("userID");
 
-        return new ResponseEntity<Void>(HttpStatus.OK);
+            Connection foundedUser = connectionRepository.findByUserID(userID);
+            LanguageForum languageForum = forumRepository.findByForumType(topicDto.getLanguageForum());
+
+            if(foundedUser != null) {
+                Topic topic = new Topic();
+
+                topic.setTitle(topicDto.getTitle());
+                topic.setMessage(topicDto.getMessage());
+                topic.setLanguageForum(languageForum);
+                topic.setLikes(0);
+                topic.setUser(foundedUser);
+                topic.setCreatedAt(new Date());
+
+                Topic savedTopic = topicRepository.save(topic);
+
+                if(topicDto.getFiles().size() != 0) {
+                    for(FileDto element: topicDto.getFiles()) {
+                        CustomFile file = new CustomFile();
+
+                        file.setName(element.getName());
+                        file.setObjectId(element.getObjectId());
+                        file.setSize(element.getSize());
+                        file.setTopic(savedTopic);
+                        file.setType(element.getType());
+                        file.setUrl(element.getUrl());
+
+                        fileRepository.save(file);
+                    }
+                }
+                return new ResponseEntity<Void>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/get/topics/all")
+    public ResponseEntity<?> getAllTopics() {
+        return new ResponseEntity<Iterable<Topic>>(topicRepository.findAll(), HttpStatus.OK);
     }
 }

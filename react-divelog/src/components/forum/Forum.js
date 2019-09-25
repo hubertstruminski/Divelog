@@ -6,7 +6,8 @@ import england from '../../img/flags/england.jpg';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
-import { TypeForum } from '../../util/TypeForum';
+import Topic from './Topic';
+import ConvertTime from '../../util/ConvertTime';
 
 class Forum extends React.Component {
     constructor(props) {
@@ -16,10 +17,70 @@ class Forum extends React.Component {
             selectedForum: '',
             isEnglishForum: false,
             isPolishForum: false,
-            isGermanyForum: false
+            isGermanyForum: false,
+            englishTopics: [],
+            polishTopics: [],
+            germanyTopics: []
         }
+        this.ConvertTime = new ConvertTime();
+
         this.onFlagClick = this.onFlagClick.bind(this);
         this.onCreateTopicClick = this.onCreateTopicClick.bind(this);
+        this.generatePolishTopics = this.generatePolishTopics.bind(this);
+    }
+
+    componentDidMount() {
+        fetch("/get/topics/all", {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json())
+        .then(jsonData => {
+            console.log(jsonData);
+
+            jsonData.map((topic, index) => {
+                if(topic.languageForum.forumType === 'polish') {
+                    let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
+
+                    const element = {
+                        id: topic.id,
+                        likes: topic.likes,
+                        title: topic.title,
+                        createdAt: time[0],
+                        owner: topic.user.name
+                    }
+                    this.setState({ polishTopics: this.state.polishTopics.concat(element) });
+                }
+
+                if(topic.languageForum.forumType === 'english') {
+                    let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
+                    
+                    const element = {
+                        id: topic.id,
+                        likes: topic.likes,
+                        title: topic.title,
+                        createdAt: time[0],
+                        owner: topic.user.name
+                    }
+                    this.setState({ englishTopics: this.state.englishTopics.concat(element) });
+                }
+
+                if(topic.languageForum.forumType === 'germany') {
+                    let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
+                    
+                    const element = {
+                        id: topic.id,
+                        likes: topic.likes,
+                        title: topic.title,
+                        createdAt: time[0],
+                        owner: topic.user.name
+                    }
+                    this.setState({ germanyTopics: this.state.germanyTopics.concat(element) });
+                }
+            });
+        });
     }
 
     onFlagClick(e) {
@@ -27,7 +88,8 @@ class Forum extends React.Component {
 
         $("#polandFlag").click(() => {
             this.setState({ 
-                selectedForum: 'polish'
+                selectedForum: 'polish',
+                isPolishForum: true
             }, () => {
                 $("#polandFlag").addClass("isActiveFlag");
                 $("#germanyFlag").removeClass("isActiveFlag");
@@ -37,7 +99,8 @@ class Forum extends React.Component {
 
         $("#germanyFlag").click(() => {
             this.setState({ 
-                selectedForum: 'germany'
+                selectedForum: 'germany',
+                isGermanyForum: true
             }, () => {
                 $("#germanyFlag").addClass("isActiveFlag");
                 $("#polandFlag").removeClass("isActiveFlag");
@@ -47,7 +110,8 @@ class Forum extends React.Component {
 
         $("#englandFlag").click(() => {
             this.setState({ 
-                selectedForum: 'english'
+                selectedForum: 'english',
+                isEnglishForum: true
             }, () => {
                 $("#englandFlag").addClass("isActiveFlag");
                 $("#germanyFlag").removeClass("isActiveFlag");
@@ -63,7 +127,25 @@ class Forum extends React.Component {
         }
     }
 
+    generatePolishTopics() {
+        return this.state.polishTopics.map((topic, index) => {
+             return (
+                <Topic 
+                    id={topic.id}
+                    owner={topic.owner}
+                    likes={topic.likes}
+                    title={topic.title}
+                    createdAt={topic.createdAt}
+                />
+            );
+        })
+    }
+
     render() {
+        let isPolishForum = this.state.isPolishForum;
+        let isGermanyForum = this.state.isGermanyForum;
+        let isEnglishForum = this.state.isEnglishForum;
+
         return (
             <div className="forum-container">
                 <div className="forum-title">
@@ -103,6 +185,12 @@ class Forum extends React.Component {
                         CREATE TOPIC
                     </button>
                 </Link>
+                <div className="wrapper-forum-box">
+                    <div className="forum-topics-box">
+                        { isPolishForum && this.generatePolishTopics() }
+                    </div>
+                    <div className="forum-top-topics"></div>
+                </div>
             </div>
         );
     }

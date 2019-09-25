@@ -7,6 +7,7 @@ import ReactFilestack from 'filestack-react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { TypeForum } from '../../util/TypeForum';
+import { withRouter } from 'react-router';
 
 class AddTopic extends React.Component {
     constructor(props) {
@@ -119,15 +120,22 @@ class AddTopic extends React.Component {
             }
 
             axios({
-                url: "/topic",
+                url: "/add/topic",
                 method: 'POST',
-                data: topicDto,
+                data: JSON.stringify(topicDto),
                 headers: {
                     'Accept': 'application/json',
-                    'content-type': 'application/json'
+                    'Content-Type': 'application/json'
                 }
             }).then(response => {
                 console.log(response);
+                if(response.status !== 200) {
+                    swal("Error", "Something goes wrong.", "error");
+                } else {
+                    this.props.history.push("/forum");
+                }
+            }).catch(err => {
+                console.log(err);
             })
         }
     }
@@ -166,6 +174,7 @@ class AddTopic extends React.Component {
                     </div>
 
                     <form onSubmit={this.onSubmitForm}>
+                    {/* <form> */}
                         <div className="form-group">
                             <label for="title">Title</label>
                             <input 
@@ -212,7 +221,10 @@ class AddTopic extends React.Component {
                             { this.showFailureUploadedFiles(this.state.isFailureUploaded) }
                         </div>
 
-                        <button type="submit" className="btn btn-primary new-topic-btn">
+                        <button 
+                            type="submit" 
+                            className="btn btn-primary new-topic-btn"
+                        >
                             Publicate
                         </button>
                     </form>
@@ -222,4 +234,4 @@ class AddTopic extends React.Component {
     }
 }
 
-export default AddTopic;
+export default withRouter(AddTopic);

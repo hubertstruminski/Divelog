@@ -1,10 +1,17 @@
 package com.example.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum ForumType {
 
-    ENGLISH("ENGLISH"),
-    POLISH("POLISH"),
-    GERMANY("GERMANY");
+    @JsonProperty("english")
+    ENGLISH("english"),
+
+    @JsonProperty("polish")
+    POLISH("polish"),
+
+    @JsonProperty("germany")
+    GERMANY("germany");
 
     private String forumName;
 
