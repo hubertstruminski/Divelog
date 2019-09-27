@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 import java.util.Date;
 
@@ -25,6 +26,9 @@ public class Topic {
     @Column(name = "number_likes")
     private int likes;
 
+    @Column(name = "number_display")
+    private int displays;
+
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -35,6 +39,9 @@ public class Topic {
     @ManyToOne
     @JoinColumn(name = "language_forum_id")
     private LanguageForum languageForum;
+
+    @OneToMany(mappedBy = "topic")
+    private List<Post> posts;
 
     @OneToMany(mappedBy = "topic")
     private List<CustomFile> files;
@@ -71,6 +78,14 @@ public class Topic {
         this.likes = likes;
     }
 
+    public int getDisplays() {
+        return displays;
+    }
+
+    public void setDisplays(int displays) {
+        this.displays = displays;
+    }
+
     public Connection getUser() {
         return user;
     }
@@ -93,5 +108,21 @@ public class Topic {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<CustomFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<CustomFile> files) {
+        this.files = files;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }

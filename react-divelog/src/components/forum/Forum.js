@@ -38,8 +38,6 @@ class Forum extends React.Component {
             }
         }).then(response => response.json())
         .then(jsonData => {
-            console.log(jsonData);
-
             jsonData.map((topic, index) => {
                 if(topic.languageForum.forumType === 'polish') {
                     let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
@@ -136,6 +134,7 @@ class Forum extends React.Component {
                     likes={topic.likes}
                     title={topic.title}
                     createdAt={topic.createdAt}
+                    languageForum={this.state.selectedForum}
                 />
             );
         })

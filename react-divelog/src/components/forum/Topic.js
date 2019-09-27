@@ -1,9 +1,19 @@
 import React from 'react';
 import '../../css/Topic.css';
+import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Topic extends React.Component {
     constructor(props) {
         super(props);
+
+        this.onTopicClick = this.onTopicClick.bind(this);
+    }
+
+    onTopicClick(e) {
+        e.preventDefault();
+        this.props.history.push(`/topic/${this.props.id}/${this.props.languageForum}/posts`);
     }
 
     render() {
@@ -22,17 +32,18 @@ class Topic extends React.Component {
                         </div>
                     </div>
                     <div className="grid-topic-two">
-                        <div className="title-topic">
+                        <div className="title-topic" onClick={this.onTopicClick}>
                             { this.props.title }
                         </div>
                         <div className="owner-topic">
-                            {/* Created at { this.props.createdAt } by { this.props.owner } */}
                             <span className="floating-div">
                                 { this.props.owner }
                             </span>
+
                             <span className="floating-div float-two-right">
                                 {this.props.createdAt }
                             </span>
+
                             <div style={{ clear: 'both' }}></div>
                         </div>
                     </div>
@@ -50,4 +61,4 @@ class Topic extends React.Component {
     }
 }
 
-export default Topic;
+export default withRouter(Topic);

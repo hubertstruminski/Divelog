@@ -1,12 +1,8 @@
 import React from 'react';
 import '../../css/AddTopic.css';
-import $ from 'jquery';
-import Unsplash from 'unsplash-js';
-import { Redirect } from 'react-router-dom';
 import ReactFilestack from 'filestack-react';
 import swal from 'sweetalert';
 import axios from 'axios';
-import { TypeForum } from '../../util/TypeForum';
 import { withRouter } from 'react-router';
 
 class AddTopic extends React.Component {

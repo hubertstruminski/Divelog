@@ -19,6 +19,9 @@ public class LanguageForum {
     @OneToMany(mappedBy = "languageForum")
     private List<Topic> topics;
 
+    @OneToMany(mappedBy = "languageForum")
+    private List<Post> posts;
+
     public Long getId() {
         return id;
     }

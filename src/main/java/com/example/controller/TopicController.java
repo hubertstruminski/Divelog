@@ -17,10 +17,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class TopicController {
@@ -59,6 +61,7 @@ public class TopicController {
                 topic.setLanguageForum(languageForum);
                 topic.setLikes(0);
                 topic.setUser(foundedUser);
+                topic.setDisplays(0);
                 topic.setCreatedAt(new Date());
 
                 Topic savedTopic = topicRepository.save(topic);
@@ -88,5 +91,15 @@ public class TopicController {
     @GetMapping("/get/topics/all")
     public ResponseEntity<?> getAllTopics() {
         return new ResponseEntity<Iterable<Topic>>(topicRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/get/topic/posts/{topicId}")
+    public ResponseEntity<?> getTopicById(@PathVariable Long topicId) {
+        Topic topic = topicRepository.getById(topicId);
+
+        List<CustomFile> customFiles = fileRepository.getAllByTopic(topic);
+        topic.setFiles(customFiles);
+
+        return new ResponseEntity<Topic>(topic, HttpStatus.OK);
     }
 }

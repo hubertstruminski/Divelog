@@ -1,0 +1,105 @@
+.topic-posts-container {
+    width: 100%;
+    background-image: url("../img/hexellence.png");
+}
+
+.main-post-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.main-post-container {
+    width: 50%;
+    min-height: 250px;
+    margin-top: 5%;
+    background-image: linear-gradient(-90deg, #707070, #333A40);
+
+    display: grid;
+    grid-template-columns: 20% 80%;
+
+    margin-bottom: 2.5%;
+}
+
+.main-post-grid-one {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+
+    border-right: 1px solid white;
+}
+
+.main-post-grid-one img {
+    width: 75px;
+    height: 75px;
+}
+
+.main-post-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 30px;
+    color: white;
+    font-size: 1vw;
+    padding: 2%;
+}
+
+.main-post-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.main-post-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    color: white;
+    font-size: .8vw;
+    padding: 2%;
+}
+
+.main-post-grid-two {
+    color: white;
+    padding: 2%;
+    text-align: justify;
+}
+
+.main-post-title {
+    width: 100%;
+    overflow-y: scroll;
+    font-size: 1vw;
+    text-align: left;
+    font-weight: 700;
+    min-height: 40px;
+}
+
+.main-post-message {
+    width: 100%;
+    margin-top: 2%;
+    overflow-y: scroll;
+    font-size: 0.75vw;
+}
+
+.main-post-attachments {
+    width: 100%;
+}
+
+.attachment-images {
+    max-height: 150px;
+}
+
+.line-break-posts {
+    margin: 2.5%;
+}

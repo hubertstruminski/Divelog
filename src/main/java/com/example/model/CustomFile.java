@@ -1,5 +1,7 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -27,7 +29,13 @@ public class CustomFile {
 
     @ManyToOne
     @JoinColumn(name = "topic_id")
+    @JsonIgnore
     private Topic topic;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    @JsonIgnore
+    private Post post;
 
     public Long getId() {
         return id;
@@ -83,5 +91,13 @@ public class CustomFile {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }
