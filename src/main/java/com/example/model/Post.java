@@ -1,5 +1,7 @@
 package com.example.model;
 
+import com.example.enums.ForumType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -26,15 +28,9 @@ public class Post {
     @JoinColumn(name = "user_id")
     private Connection user;
 
-    @Column(name = "owner_post")
-    private boolean isPostOwner;
-
-    @ManyToOne
-    @JoinColumn(name = "language_forum_id")
-    private LanguageForum languageForum;
-
     @ManyToOne
     @JoinColumn(name = "topic_id")
+    @JsonIgnore
     private Topic topic;
 
     @OneToMany(mappedBy = "post")
@@ -70,22 +66,6 @@ public class Post {
 
     public void setUser(Connection user) {
         this.user = user;
-    }
-
-    public boolean isPostOwner() {
-        return isPostOwner;
-    }
-
-    public void setPostOwner(boolean postOwner) {
-        isPostOwner = postOwner;
-    }
-
-    public LanguageForum getLanguageForum() {
-        return languageForum;
-    }
-
-    public void setLanguageForum(LanguageForum languageForum) {
-        this.languageForum = languageForum;
     }
 
     public Topic getTopic() {

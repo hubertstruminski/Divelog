@@ -38,8 +38,9 @@ class Forum extends React.Component {
             }
         }).then(response => response.json())
         .then(jsonData => {
+            console.log(jsonData);
             jsonData.map((topic, index) => {
-                if(topic.languageForum.forumType === 'polish') {
+                if(topic.languageForum === 'polish') {
                     let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
 
                     const element = {
@@ -52,7 +53,7 @@ class Forum extends React.Component {
                     this.setState({ polishTopics: this.state.polishTopics.concat(element) });
                 }
 
-                if(topic.languageForum.forumType === 'english') {
+                if(topic.languageForum === 'english') {
                     let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
                     
                     const element = {
@@ -65,7 +66,7 @@ class Forum extends React.Component {
                     this.setState({ englishTopics: this.state.englishTopics.concat(element) });
                 }
 
-                if(topic.languageForum.forumType === 'germany') {
+                if(topic.languageForum === 'germany') {
                     let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
                     
                     const element = {

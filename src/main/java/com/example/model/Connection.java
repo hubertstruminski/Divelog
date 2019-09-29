@@ -54,9 +54,6 @@ public class Connection {
     @OneToMany(mappedBy = "user")
     private List<Topic> topics;
 
-    @OneToMany(mappedBy = "user")
-    private List<OwnerPost> ownerPosts;
-
     public Connection() {
 
     }

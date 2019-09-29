@@ -1,11 +1,12 @@
 package com.example.dto;
 
+import com.example.enums.ForumType;
+
 import java.util.List;
 
 public class PostDto {
 
     private String message;
-    private String languageForum;
     private Long topicId;
     private String jwtToken;
     private List<FileDto> files;
@@ -17,14 +18,6 @@ public class PostDto {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getLanguageForum() {
-        return languageForum;
-    }
-
-    public void setLanguageForum(String languageForum) {
-        this.languageForum = languageForum;
     }
 
     public Long getTopicId() {

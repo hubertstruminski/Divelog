@@ -88,6 +88,7 @@ class LogIn extends React.Component {
                             cssClass="btn btn-lg btn-fb fb-btn-white-font"
                             icon="<i className='fab fa-facebook-f pr-1' />"
                             textButton={this.props.t("login.facebook-btn")}
+                            installed={true}
                         />
                     </div>
                 </div>

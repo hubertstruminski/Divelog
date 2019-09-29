@@ -170,7 +170,6 @@ class AddTopic extends React.Component {
                     </div>
 
                     <form onSubmit={this.onSubmitForm}>
-                    {/* <form> */}
                         <div className="form-group">
                             <label for="title">Title</label>
                             <input 

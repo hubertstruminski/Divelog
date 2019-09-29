@@ -4,6 +4,7 @@ import ReactFilestack from 'filestack-react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import $ from 'jquery';
 
 class AddPosts extends React.Component {
     constructor(props) {
@@ -86,15 +87,12 @@ class AddPosts extends React.Component {
         if(this.errors.length === 0) {
             let jwtToken = localStorage.getItem("JwtToken");
             let topicId = this.props.topicId;
-            let languageForum = this.props.languageForum;
 
             const post = {
                 message: this.state.message,
-                languageForum: languageForum,
                 topicId: topicId,
                 jwtToken: jwtToken,
                 files: this.state.successFiles,
-                isPostOwner: true
             }
 
             axios({
@@ -109,7 +107,7 @@ class AddPosts extends React.Component {
                 if(response.status !== 200) {
                     swal("Error", "Something goes wrong.", "error");
                 } else {
-                    this.props.history.push("/forum");
+                    $(".new-post-textarea").val("");
                 }
             });
         }
@@ -142,9 +140,9 @@ class AddPosts extends React.Component {
 
     render() {
         return (
-            <div className="add-topic-center">
-                <div className="new-topic-box new-topic-box-shadow">
-                    <div className="new-topic-title">
+            <div className="add-post-center">
+                <div className="new-post-box">
+                    <div className="new-post-title">
                         Add new post
                     </div>
 
@@ -152,7 +150,7 @@ class AddPosts extends React.Component {
                         <div className="form-group">
                             <label className="new-post-label" for="message">Message</label>
                             <textarea
-                                className="form-control form-control-lg new-topic-textarea"
+                                className="form-control form-control-lg new-post-textarea"
                                 id="message"
                                 name="message"
                                 value={this.state.message}
@@ -184,7 +182,7 @@ class AddPosts extends React.Component {
 
                         <button 
                             type="submit" 
-                            className="btn btn-primary new-topic-btn"
+                            className="btn btn-primary new-post-btn"
                         >
                             Publicate
                         </button>

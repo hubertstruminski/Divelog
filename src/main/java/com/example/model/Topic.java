@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.example.enums.ForumType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 import java.util.Date;
@@ -36,9 +37,9 @@ public class Topic {
     @JoinColumn(name = "user_id")
     private Connection user;
 
-    @ManyToOne
-    @JoinColumn(name = "language_forum_id")
-    private LanguageForum languageForum;
+    @Column(name = "language_forum")
+    @Enumerated(EnumType.STRING)
+    private ForumType languageForum;
 
     @OneToMany(mappedBy = "topic")
     private List<Post> posts;
@@ -94,11 +95,11 @@ public class Topic {
         this.user = user;
     }
 
-    public LanguageForum getLanguageForum() {
+    public ForumType getLanguageForum() {
         return languageForum;
     }
 
-    public void setLanguageForum(LanguageForum languageForum) {
+    public void setLanguageForum(ForumType languageForum) {
         this.languageForum = languageForum;
     }
 

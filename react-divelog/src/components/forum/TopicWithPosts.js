@@ -2,6 +2,8 @@ import React from 'react';
 import '../../css/TopicWithPosts.css';
 import ConvertTime from '../../util/ConvertTime';
 import AddPosts from '../forum/AddPosts';
+import ReactPlayer from 'react-player';
+import Post from './Post';
 
 class TopicWithPosts extends React.Component {
     constructor(props) {
@@ -9,13 +11,18 @@ class TopicWithPosts extends React.Component {
 
         this.state = {
             mainPost: {},
-            isRetrieved: false
+            isRetrieved: false,
+            posts: [],
+            isOwner: false,
+            email: ''
         }
 
         this.files = []
         this.ConvertTime = new ConvertTime();
 
         this.addImages = this.addImages.bind(this);
+        this.addVideos = this.addVideos.bind(this);
+        this.addPosts = this.addPosts.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +36,7 @@ class TopicWithPosts extends React.Component {
             }
         }).then(response => response.json())
         .then(jsonData => {
+            // console.log(jsonData);
             this.files = [];
 
             jsonData.files.map((file, index) => {
@@ -43,6 +51,30 @@ class TopicWithPosts extends React.Component {
                 this.files.push(element);
             });
 
+            jsonData.posts.map((post, index) => {
+                let files = [];
+                post.files.map((file, index) => {
+                    const element = {
+                        id: file.id,
+                        objectId: file.objectId,
+                        url: file.url,
+                        size: file.size,
+                        name: file.name,
+                        type: file.type
+                    }
+                    files.push(element);
+                });
+
+                const element = {
+                    id: post.id,
+                    message: post.message,
+                    createdAt: this.ConvertTime.convertTime(post.createdAt, null, false),
+                    files: files,
+                    user: post.user
+                }
+                this.setState({ posts: this.state.posts.concat(element) });
+            });
+
             const element = {
                 title: jsonData.title,
                 message: jsonData.message,
@@ -54,6 +86,26 @@ class TopicWithPosts extends React.Component {
             this.setState({ 
                 mainPost: element, 
                 isRetrieved: true
+            }, () => {
+                let jwtToken = localStorage.getItem("JwtToken");
+
+                fetch(`/getuserdata/${jwtToken}`, {
+                    method: 'GET',
+                    headers: {
+                    'content-type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(jsonData => {
+                    this.setState({ email: jsonData.email }, () => {
+                        this.state.posts.map((post, index) => {
+                            if(post.user.email === this.state.email) {
+                                this.setState({ isOwner: true });
+                            }
+                        });
+                        
+                    });
+                }); 
             });
             console.log(this.state.mainPost);
         });
@@ -79,8 +131,43 @@ class TopicWithPosts extends React.Component {
         });
     }
 
+    addVideos() {
+        return this.state.mainPost.files.map((file, index) => {
+            if(file.type.includes('video')) {
+                return (
+                    <div>
+                        <br />
+                        <ReactPlayer 
+                            url={file.url} 
+                            playing
+                            controls="true"
+                        />
+                        <br />
+                        { file.name }
+                        <br />
+                    </div>
+                );
+            }
+        })
+    }
+
+    addPosts() {
+        return this.state.posts.map((post, index) => {
+            return (
+                <Post 
+                    id={post.id}
+                    message={post.message}
+                    createdAt={post.createdAt}
+                    files={post.files}
+                    user={post.user}
+                />
+            );
+        });
+    }
+
     render() {
         let isRetrieved = this.state.isRetrieved;
+        let isOwner = this.state.isOwner;
 
         return (
             <div className="topic-posts-container">
@@ -102,24 +189,36 @@ class TopicWithPosts extends React.Component {
                                 { this.state.mainPost.title }
                             </div>
                             <div className="main-post-message">
-                                { this.state.mainPost.message }
+                            markerID = this.props.id;      { this.state.mainPost.message }
                             </div>
                             <div className="main-post-attachments">
                                 { isRetrieved && this.addImages() }
+                                { isRetrieved && this.addVideos() }
+                            </div>
+
+                            <div>
+                                { isOwner &&
+                                    <>
+                                        <hr />
+                                        <button className="btn btn-warning">
+                                            EDIT
+                                        </button>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr className="line-break-posts"/>
+                
+                <div className="line-break-posts"></div>
 
                 <div className="main-post-center">
-                    {/* User posts */}
+                    { isRetrieved && this.addPosts() }
                 </div>
 
                 <div className="">
                     <AddPosts 
                         topicId={this.props.match.params.id}
-                        languageForum={this.props.match.params.languageForum}
                     />
                 </div>
             </div>

@@ -1,6 +1,6 @@
 .topic-posts-container {
     width: 100%;
-    background-image: url("../img/hexellence.png");
+    background-image: url("../img/tactile_noise.png");
 }
 
 .main-post-center {
@@ -11,15 +11,16 @@
 }
 
 .main-post-container {
-    width: 50%;
-    min-height: 250px;
-    margin-top: 5%;
+    width: 75%;
+    min-height: 100px;
+    margin-top: 2.5%;
     background-image: linear-gradient(-90deg, #707070, #333A40);
 
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 15% 85%;
 
-    margin-bottom: 2.5%;
+    margin-bottom: 0.5%;
+    border: 1px solid white;
 }
 
 .main-post-grid-one {
@@ -74,11 +75,11 @@
     color: white;
     padding: 2%;
     text-align: justify;
+    width: 100%;
 }
 
 .main-post-title {
     width: 100%;
-    overflow-y: scroll;
     font-size: 1vw;
     text-align: left;
     font-weight: 700;
@@ -88,7 +89,6 @@
 .main-post-message {
     width: 100%;
     margin-top: 2%;
-    overflow-y: scroll;
     font-size: 0.75vw;
 }
 
@@ -101,5 +101,17 @@
 }
 
 .line-break-posts {
-    margin: 2.5%;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid white;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.attachment-videos {
+    max-height: 250px;
+}
+
+.post-margin {
+    margin-top: 0.5% !important;
 }

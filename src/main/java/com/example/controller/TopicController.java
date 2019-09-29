@@ -5,11 +5,11 @@ import com.example.dto.FileDto;
 import com.example.dto.TopicDto;
 import com.example.model.Connection;
 import com.example.model.CustomFile;
-import com.example.model.LanguageForum;
 import com.example.model.Topic;
+import com.example.model.Post;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.CustomFileRepository;
-import com.example.repository.ForumRepository;
+import com.example.repository.PostRepository;
 import com.example.repository.TopicRepository;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +34,13 @@ public class TopicController {
     private ConnectionRepository connectionRepository;
 
     @Autowired
-    private ForumRepository forumRepository;
-
-    @Autowired
     private TopicRepository topicRepository;
 
     @Autowired
     private CustomFileRepository fileRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @PostMapping("/add/topic")
     public ResponseEntity<?> addTopicToForum(@RequestBody TopicDto topicDto) {
@@ -51,14 +51,13 @@ public class TopicController {
             Long userID = (Long) claimsFromJwt.get("userID");
 
             Connection foundedUser = connectionRepository.findByUserID(userID);
-            LanguageForum languageForum = forumRepository.findByForumType(topicDto.getLanguageForum());
 
             if(foundedUser != null) {
                 Topic topic = new Topic();
 
                 topic.setTitle(topicDto.getTitle());
                 topic.setMessage(topicDto.getMessage());
-                topic.setLanguageForum(languageForum);
+                topic.setLanguageForum(topicDto.getLanguageForum());
                 topic.setLikes(0);
                 topic.setUser(foundedUser);
                 topic.setDisplays(0);
@@ -100,6 +99,13 @@ public class TopicController {
         List<CustomFile> customFiles = fileRepository.getAllByTopic(topic);
         topic.setFiles(customFiles);
 
+        List<Post> posts = postRepository.getAllByTopic(topic);
+        for(Post post: posts) {
+            List<CustomFile> postFiles = fileRepository.getAllByPost(post);
+            post.setFiles(postFiles);
+        }
+
+        topic.setPosts(posts);
         return new ResponseEntity<Topic>(topic, HttpStatus.OK);
     }
 }

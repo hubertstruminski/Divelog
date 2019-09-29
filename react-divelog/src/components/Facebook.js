@@ -3,6 +3,7 @@ import '../css/Facebook.css';
 import LeftCard from './Layout/LeftCard';
 import withAuth from '../util/withAuth';
 import $ from 'jquery';
+import FB from 'fb';
 
 class Facebook extends React.Component {
     constructor(props) {
@@ -36,6 +37,12 @@ class Facebook extends React.Component {
                 pictureUrl: jsonData.pictureUrl
             });
         }); 
+
+        FB.api('455695445269575/accounts/test-users', 'GET', {"fields":"id,access_token,login_url"},
+            function(response) {
+                console.log(response);
+            }
+        );
     }
 
     render() {
