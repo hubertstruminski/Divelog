@@ -12,6 +12,15 @@ public class PostDto {
     private List<FileDto> files;
     private boolean isPostOwner;
 
+    public PostDto() {
+
+    }
+
+    public PostDto(String message, List<FileDto> files) {
+        this.message = message;
+        this.files = files;
+    }
+
     public String getMessage() {
         return message;
     }

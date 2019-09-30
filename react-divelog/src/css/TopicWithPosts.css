@@ -19,7 +19,6 @@
     display: grid;
     grid-template-columns: 15% 85%;
 
-    margin-bottom: 0.5%;
     border: 1px solid white;
 }
 
@@ -105,13 +104,56 @@
     height: 1px;
     border-top: 1px solid white;
     margin-top: 2.5%;
-    margin-bottom: 2.5%;
 }
 
 .attachment-videos {
     max-height: 250px;
 }
 
-.post-margin {
-    margin-top: 0.5% !important;
+.post-message {
+    width: 100%;
+    margin-top: 0.25%;
+    font-size: 0.75vw;
+}
+
+.edit-textarea {
+    width: 100%;
+    color: white;
+}
+
+.edit-post-div {
+    width: 100%;
+    min-height: 50px;
+}
+
+.btn-success-float {
+    float: right;
+}
+
+.edit-post-upload-files-div {
+    text-align: center;
+}
+
+.edit-post-upload-file {
+    float: left;
+}
+
+.page-item {
+    background-color: #FEFEFE;
+}
+
+.page-link {
+    background-color: #238AF1;
+    color: black;
+}
+
+.page-active {
+    background-color: #238AF1;
+    color: black;
+}
+
+.pagination-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5%;
 }

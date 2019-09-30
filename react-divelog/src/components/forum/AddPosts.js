@@ -108,6 +108,7 @@ class AddPosts extends React.Component {
                     swal("Error", "Something goes wrong.", "error");
                 } else {
                     $(".new-post-textarea").val("");
+                    this.props.fetchTopicAndPosts();
                 }
             });
         }

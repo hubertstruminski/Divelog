@@ -4,6 +4,7 @@ import ConvertTime from '../../util/ConvertTime';
 import AddPosts from '../forum/AddPosts';
 import ReactPlayer from 'react-player';
 import Post from './Post';
+import Pagination from 'react-js-pagination';
 
 class TopicWithPosts extends React.Component {
     constructor(props) {
@@ -14,7 +15,10 @@ class TopicWithPosts extends React.Component {
             isRetrieved: false,
             posts: [],
             isOwner: false,
-            email: ''
+            email: '',
+            isUpdatingPost: false,
+            activePage: 1,
+            itemPerPage: 2
         }
 
         this.files = []
@@ -23,6 +27,8 @@ class TopicWithPosts extends React.Component {
         this.addImages = this.addImages.bind(this);
         this.addVideos = this.addVideos.bind(this);
         this.addPosts = this.addPosts.bind(this);
+        this.fetchTopicAndPosts = this.fetchTopicAndPosts.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
     }
 
     componentDidMount() {
@@ -36,7 +42,6 @@ class TopicWithPosts extends React.Component {
             }
         }).then(response => response.json())
         .then(jsonData => {
-            // console.log(jsonData);
             this.files = [];
 
             jsonData.files.map((file, index) => {
@@ -107,7 +112,98 @@ class TopicWithPosts extends React.Component {
                     });
                 }); 
             });
-            console.log(this.state.mainPost);
+        });
+    }
+
+    fetchTopicAndPosts() {
+        let id = this.props.match.params.id;
+
+        this.setState({
+            mainPost: {},
+            posts: [],
+            isRetrieved: false,
+            isOwner: false,
+            email: ''
+        }, () => {
+            fetch(`/get/topic/posts/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'content-type': 'application/json'
+                }
+            }).then(response => response.json())
+            .then(jsonData => {
+                this.files = [];
+    
+                jsonData.files.map((file, index) => {
+                    const element = {
+                        id: file.id,
+                        objectId: file.objectId,
+                        url: file.url,
+                        size: file.size,
+                        name: file.name,
+                        type: file.type
+                    }
+                    this.files.push(element);
+                });
+    
+                jsonData.posts.map((post, index) => {
+                    let files = [];
+                    post.files.map((file, index) => {
+                        const element = {
+                            id: file.id,
+                            objectId: file.objectId,
+                            url: file.url,
+                            size: file.size,
+                            name: file.name,
+                            type: file.type
+                        }
+                        files.push(element);
+                    });
+    
+                    const element = {
+                        id: post.id,
+                        message: post.message,
+                        createdAt: this.ConvertTime.convertTime(post.createdAt, null, false),
+                        files: files,
+                        user: post.user
+                    }
+                    this.setState({ posts: this.state.posts.concat(element) });
+                });
+    
+                const element = {
+                    title: jsonData.title,
+                    message: jsonData.message,
+                    createdAt: this.ConvertTime.convertTime(jsonData.createdAt, null, false)[0],
+                    owner: jsonData.user.name,
+                    pictureUrl: jsonData.user.pictureUrl,
+                    files: this.files
+                }
+                this.setState({ 
+                    mainPost: element, 
+                    isRetrieved: true
+                }, () => {
+                    let jwtToken = localStorage.getItem("JwtToken");
+    
+                    fetch(`/getuserdata/${jwtToken}`, {
+                        method: 'GET',
+                        headers: {
+                        'content-type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(jsonData => {
+                        this.setState({ email: jsonData.email }, () => {
+                            this.state.posts.map((post, index) => {
+                                if(post.user.email === this.state.email) {
+                                    this.setState({ isOwner: true });
+                                }
+                            });
+                            
+                        });
+                    }); 
+                });
+            });
         });
     }
 
@@ -152,17 +248,28 @@ class TopicWithPosts extends React.Component {
     }
 
     addPosts() {
-        return this.state.posts.map((post, index) => {
+        var lastIndex = this.state.activePage * this.state.itemPerPage;
+        var firstIndex = lastIndex - this.state.itemPerPage;
+
+        let count = 0;
+        return this.state.posts.slice(firstIndex, lastIndex).map((post, index) => {
             return (
                 <Post 
+                    key={index}
                     id={post.id}
+                    counter={count++}
                     message={post.message}
                     createdAt={post.createdAt}
                     files={post.files}
                     user={post.user}
+                    fetchTopicAndPosts={this.fetchTopicAndPosts}
                 />
             );
         });
+    }
+
+    handlePageChange(pageNumber) {
+        this.setState({ activePage: pageNumber });
     }
 
     render() {
@@ -189,7 +296,7 @@ class TopicWithPosts extends React.Component {
                                 { this.state.mainPost.title }
                             </div>
                             <div className="main-post-message">
-                            markerID = this.props.id;      { this.state.mainPost.message }
+                                { this.state.mainPost.message }
                             </div>
                             <div className="main-post-attachments">
                                 { isRetrieved && this.addImages() }
@@ -212,13 +319,27 @@ class TopicWithPosts extends React.Component {
                 
                 <div className="line-break-posts"></div>
 
-                <div className="main-post-center">
+                <div>
                     { isRetrieved && this.addPosts() }
+                    <div className="pagination-center">
+                        <Pagination
+                            hideNavigation
+                            activePage={this.state.activePage}
+                            itemsCountPerPage={this.state.itemPerPage}
+                            totalItemsCount={this.state.posts.length}
+                            pageRangeDisplayed={5}
+                            onChange={this.handlePageChange}
+                            itemClass="page-item"
+                            linkClass="page-link"
+                            activeClass="page-active"
+                        />
+                    </div>
                 </div>
 
                 <div className="">
                     <AddPosts 
                         topicId={this.props.match.params.id}
+                        fetchTopicAndPosts={this.fetchTopicAndPosts}
                     />
                 </div>
             </div>

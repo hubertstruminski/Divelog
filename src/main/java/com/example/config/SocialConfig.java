@@ -20,7 +20,7 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/login**", "/webjars/**", "/error**",
                         "/signin", "/getuserdata/**", "/add/marker/**", "/get/markers/**", "/delete/marker/**/**",
                         "/logout/**", "/add/logbook/**/**", "/get/logbook/**", "/logbook/**/**", "/**/**", "/edit/logbook/**/**",
-                        "/pdf/logbook/**/**", "/add/topic", "/get/topic/posts/**", "/add/post", "/delete/post/**/**")
+                        "/pdf/logbook/**/**", "/add/topic", "/get/topic/posts/**", "/add/post", "/delete/post/**/**", "/post/**/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
