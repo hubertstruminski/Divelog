@@ -57,7 +57,7 @@ class Post extends React.Component {
         return this.props.files.map((file, index) => {
             if(file.type.includes('image')) {
                 return (
-                    <div>
+                    <div id={`attachment${file.id}`}>
                         <br />
                         <img 
                             src={file.url} 
@@ -103,6 +103,9 @@ class Post extends React.Component {
                     id={file.id}
                     name={file.name}
                     type={file.type}
+                    counter={this.props.counter}
+                    postId={this.props.id}
+                    setDeletedFileForPost={this.props.setDeletedFileForPost}
                 />
             );
         });

@@ -47,6 +47,9 @@ public class Topic {
     @OneToMany(mappedBy = "topic")
     private List<CustomFile> files;
 
+    @OneToMany(mappedBy = "topic")
+    private List<TopicVote> topicVotes;
+
     public Long getId() {
         return id;
     }
@@ -125,5 +128,13 @@ public class Topic {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public List<TopicVote> getTopicVotes() {
+        return topicVotes;
+    }
+
+    public void setTopicVotes(List<TopicVote> topicVotes) {
+        this.topicVotes = topicVotes;
     }
 }

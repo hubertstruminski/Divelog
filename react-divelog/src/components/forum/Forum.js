@@ -45,7 +45,6 @@ class Forum extends React.Component {
 
                     const element = {
                         id: topic.id,
-                        likes: topic.likes,
                         title: topic.title,
                         createdAt: time[0],
                         owner: topic.user.name
@@ -58,7 +57,6 @@ class Forum extends React.Component {
                     
                     const element = {
                         id: topic.id,
-                        likes: topic.likes,
                         title: topic.title,
                         createdAt: time[0],
                         owner: topic.user.name
@@ -71,7 +69,6 @@ class Forum extends React.Component {
                     
                     const element = {
                         id: topic.id,
-                        likes: topic.likes,
                         title: topic.title,
                         createdAt: time[0],
                         owner: topic.user.name
@@ -132,7 +129,6 @@ class Forum extends React.Component {
                 <Topic 
                     id={topic.id}
                     owner={topic.owner}
-                    likes={topic.likes}
                     title={topic.title}
                     createdAt={topic.createdAt}
                     languageForum={this.state.selectedForum}

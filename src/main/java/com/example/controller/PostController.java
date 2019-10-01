@@ -103,6 +103,7 @@ public class PostController {
                 post.setMessage(postDto.getMessage());
 
                 Post updatedPost = postRepository.save(post);
+
                 saveFiles(postDto, null, updatedPost);
 
                 return new ResponseEntity<Void>(HttpStatus.OK);

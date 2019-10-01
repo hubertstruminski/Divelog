@@ -5,6 +5,8 @@ import AddPosts from '../forum/AddPosts';
 import ReactPlayer from 'react-player';
 import Post from './Post';
 import Pagination from 'react-js-pagination';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 class TopicWithPosts extends React.Component {
     constructor(props) {
@@ -29,6 +31,7 @@ class TopicWithPosts extends React.Component {
         this.addPosts = this.addPosts.bind(this);
         this.fetchTopicAndPosts = this.fetchTopicAndPosts.bind(this);
         this.handlePageChange = this.handlePageChange.bind(this);
+        this.setDeletedFileForPost = this.setDeletedFileForPost.bind(this);
     }
 
     componentDidMount() {
@@ -263,8 +266,25 @@ class TopicWithPosts extends React.Component {
                     files={post.files}
                     user={post.user}
                     fetchTopicAndPosts={this.fetchTopicAndPosts}
+                    setDeletedFileForPost={this.setDeletedFileForPost}
                 />
             );
+        });
+    }
+
+    setDeletedFileForPost(postId, fileId) {
+        console.log(postId);
+        this.state.posts.map((post, index) => {
+            if(post.id === postId) {
+                post.files.map((file, index) => {
+                    console.log(index);
+                    if(file.id === fileId) {
+                        // var index = this.state.posts.files.indexOf(file);
+                        console.log(index);
+                        this.setState({ files: this.state.posts.files.splice(index, 1) });
+                    }
+                });
+            }
         });
     }
 

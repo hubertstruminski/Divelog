@@ -66,7 +66,7 @@ class Logbook extends React.Component {
     }
 
     fetchLogbooks() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = localStorage.getItem("JwtToken"); 
 
         fetch(`/get/logbook/${jwtToken}`, {
             method: 'GET',
