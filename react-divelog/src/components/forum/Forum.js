@@ -20,7 +20,13 @@ class Forum extends React.Component {
             isGermanyForum: false,
             englishTopics: [],
             polishTopics: [],
-            germanyTopics: []
+            germanyTopics: [],
+            isTopEnglishForum: false,
+            isTopPolishForum: false,
+            isTopGermanyForum: false,
+            topEnglishTopics: [],
+            topPolishTopics: [],
+            topGermanyTopics: []
         }
         this.ConvertTime = new ConvertTime();
 
@@ -38,7 +44,9 @@ class Forum extends React.Component {
             }
         }).then(response => response.json())
         .then(jsonData => {
-            console.log(jsonData);
+            let countPolish = 0;
+            let countGermany = 0;
+            let countEnglish = 0;
             jsonData.map((topic, index) => {
                 if(topic.languageForum === 'polish') {
                     let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
@@ -47,33 +55,39 @@ class Forum extends React.Component {
                         id: topic.id,
                         title: topic.title,
                         createdAt: time[0],
-                        owner: topic.user.name
+                        owner: topic.user.name,
+                        countPolish: countPolish
                     }
                     this.setState({ polishTopics: this.state.polishTopics.concat(element) });
+                    countPolish++
                 }
 
                 if(topic.languageForum === 'english') {
                     let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
-                    
+
                     const element = {
                         id: topic.id,
                         title: topic.title,
                         createdAt: time[0],
-                        owner: topic.user.name
+                        owner: topic.user.name,
+                        countEnglish: countEnglish
                     }
                     this.setState({ englishTopics: this.state.englishTopics.concat(element) });
+                    countEnglish++
                 }
 
                 if(topic.languageForum === 'germany') {
                     let time = this.ConvertTime.convertTime(topic.createdAt, null, false);
-                    
+
                     const element = {
                         id: topic.id,
                         title: topic.title,
                         createdAt: time[0],
-                        owner: topic.user.name
+                        owner: topic.user.name,
+                        countGermany: countGermany
                     }
                     this.setState({ germanyTopics: this.state.germanyTopics.concat(element) });
+                    countGermany++
                 }
             });
         });
@@ -85,7 +99,12 @@ class Forum extends React.Component {
         $("#polandFlag").click(() => {
             this.setState({ 
                 selectedForum: 'polish',
-                isPolishForum: true
+                isPolishForum: true,
+                isEnglishForum: false,
+                isGermanyForum: false,
+                isTopPolishForum: true,
+                isTopEnglishForum: false,
+                isTopGermanyForum: false
             }, () => {
                 $("#polandFlag").addClass("isActiveFlag");
                 $("#germanyFlag").removeClass("isActiveFlag");
@@ -96,7 +115,12 @@ class Forum extends React.Component {
         $("#germanyFlag").click(() => {
             this.setState({ 
                 selectedForum: 'germany',
-                isGermanyForum: true
+                isGermanyForum: true,
+                isPolishForum: false,
+                isEnglishForum: false,
+                isTopGermanyForum: true,
+                isTopPolishForum: false,
+                isTopEnglishForum: false
             }, () => {
                 $("#germanyFlag").addClass("isActiveFlag");
                 $("#polandFlag").removeClass("isActiveFlag");
@@ -107,7 +131,12 @@ class Forum extends React.Component {
         $("#englandFlag").click(() => {
             this.setState({ 
                 selectedForum: 'english',
-                isEnglishForum: true
+                isEnglishForum: true,
+                isPolishForum: false,
+                isGermanyForum: false,
+                isTopEnglishForum: true,
+                isTopPolishForum: false,
+                isTopGermanyForum: false
             }, () => {
                 $("#englandFlag").addClass("isActiveFlag");
                 $("#germanyFlag").removeClass("isActiveFlag");
@@ -132,9 +161,41 @@ class Forum extends React.Component {
                     title={topic.title}
                     createdAt={topic.createdAt}
                     languageForum={this.state.selectedForum}
+                    count={topic.countPolish}
+
                 />
             );
-        })
+        });
+    }
+
+    generateGermanyTopics() {
+        return this.state.germanyTopics.map((topic, index) => {
+            return (
+               <Topic 
+                   id={topic.id}
+                   owner={topic.owner}
+                   title={topic.title}
+                   createdAt={topic.createdAt}
+                   languageForum={this.state.selectedForum}
+                   count={topic.countGermany}
+               />
+           );
+       });
+    }
+
+    generateEnglishTopics() {
+        return this.state.englishTopics.map((topic, index) => {
+            return (
+               <Topic 
+                   id={topic.id}
+                   owner={topic.owner}
+                   title={topic.title}
+                   createdAt={topic.createdAt}
+                   languageForum={this.state.selectedForum}
+                   count={topic.countEnglish}
+               />
+           );
+       });
     }
 
     render() {
@@ -184,6 +245,8 @@ class Forum extends React.Component {
                 <div className="wrapper-forum-box">
                     <div className="forum-topics-box">
                         { isPolishForum && this.generatePolishTopics() }
+                        { isGermanyForum && this.generateGermanyTopics() }
+                        { isEnglishForum && this.generateEnglishTopics() }
                     </div>
                     <div className="forum-top-topics"></div>
                 </div>

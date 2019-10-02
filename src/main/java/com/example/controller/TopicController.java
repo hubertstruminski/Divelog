@@ -84,19 +84,12 @@ public class TopicController {
 
     @GetMapping("/get/topics/all")
     public ResponseEntity<?> getAllTopics() {
-        return new ResponseEntity<Iterable<Topic>>(topicRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<List<Topic>>(topicRepository.findAllAndOrderByCreatedAtAsc(), HttpStatus.OK);
     }
 
     @GetMapping("/get/topic/posts/{topicId}")
-    public ResponseEntity<?> getTopicById(@PathVariable Long topicId) {
-        Topic topic = topicRepository.getById(topicId);
-
-        int displays = topic.getDisplays() + 1;
-        topic.setDisplays(displays);
-        topicRepository.save(topic);
-
-        List<CustomFile> customFiles = fileRepository.getAllByTopic(topic);
-        topic.setFiles(customFiles);
+    public ResponseEntity<?> getTopicWithPostsById(@PathVariable Long topicId) {
+        Topic topic = assignFilesToTopic(topicId, false);
 
         List<Post> posts = postRepository.getAllByTopicOrderByCreatedAtAsc(topic);
         for(Post post: posts) {
@@ -133,61 +126,59 @@ public class TopicController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/topic/likes/vote/{topicId}/{jwtToken}")
-    public ResponseEntity<?> voteForTopic(@RequestBody boolean isUpVoted, @PathVariable Long topicId, @PathVariable String jwtToken) {
-        if(jwtTokenProvider.validateToken(jwtToken)) {
-            Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-            Long userID = (Long) claimsFromJwt.get("userID");
+    @GetMapping("/get/topic/{topicId}")
+    public ResponseEntity<?> getTopicById(@PathVariable Long topicId) {
+        if(assignFilesToTopic(topicId, true) == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Topic>(assignFilesToTopic(topicId, true), HttpStatus.OK);
+    }
 
-            Connection foundedUser = connectionRepository.findByUserID(userID);
+    @PutMapping("/update/topic/{topicId}")
+    public ResponseEntity<?> updateTopicById(@RequestBody TopicDto topicDto, @PathVariable Long topicId) {
+        Topic topic = topicRepository.getById(topicId);
 
-            Topic topic = topicRepository.getById(topicId);
-            TopicVote topicVote = topicVoteRepository.getByTopic(topic);
+        if(topic != null) {
+            topic.setTitle(topicDto.getTitle());
+            topic.setMessage(topicDto.getMessage());
 
-            if(topic == null) {
-                return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+            for(FileDto fileDto: topicDto.getFiles()) {
+                CustomFile file = new CustomFile();
+
+                file.setPost(null);
+                file.setObjectId(fileDto.getObjectId());
+                file.setSize(fileDto.getSize());
+                file.setTopic(topic);
+                file.setType(fileDto.getType());
+                file.setUrl(fileDto.getUrl());
+                file.setName(fileDto.getName());
+
+                fileRepository.save(file);
             }
 
-            if(topicVote != null) {
-
-                setVoteForTopicVote(isUpVoted, topicVote, topic);
-                topicVote.setUser(foundedUser);
-                topicVoteRepository.save(topicVote);
-
-                return new ResponseEntity<Void>(HttpStatus.OK);
-            } else {
-                TopicVote newTopicVote = new TopicVote();
-
-                setVoteForTopicVote(isUpVoted, newTopicVote, topic);
-                newTopicVote.setTopic(topic);
-                newTopicVote.setUser(foundedUser);
-                topicVoteRepository.save(newTopicVote);
-
-                return new ResponseEntity<Void>(HttpStatus.OK);
-            }
+            topicRepository.save(topic);
+            return new ResponseEntity<Void>(HttpStatus.OK);
         }
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    private void setVoteForTopicVote(boolean isUpVoted, TopicVote topicVote, Topic topic) {
-        int likes = topic.getLikes();
-        if(isUpVoted) {
-            if(topicVote.getVote() == 0) {
-                topicVote.setVote(1);
-            } else if(topicVote.getVote() == -1) {
-                topicVote.setVote(0);
-            }
-            likes++;
-        } else {
-            if(topicVote.getVote() == 0) {
-                topicVote.setVote(-1);
-            } else if(topicVote.getVote() == 1) {
-                topicVote.setVote(0);
-            }
-            likes--;
+    private Topic assignFilesToTopic(Long topicId, boolean isUpdating) {
+        Topic topic = topicRepository.getById(topicId);
+
+        if(topic == null) {
+            return null;
         }
-        topic.setLikes(likes);
-        topicRepository.save(topic);
+
+        if(!isUpdating) {
+            int displays = topic.getDisplays() + 1;
+            topic.setDisplays(displays);
+            topicRepository.save(topic);
+        }
+
+        List<CustomFile> customFiles = fileRepository.getAllByTopic(topic);
+        topic.setFiles(customFiles);
+
+        return topic;
     }
 }
 

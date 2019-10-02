@@ -21,7 +21,8 @@ class Post extends React.Component {
             isSuccessUploaded: false,
             isFailureUploaded: false,
             failureNameFiles: [],
-            isError: false
+            isError: false,
+            wasUpdated: false
         }
         this.addImages = this.addImages.bind(this);
         this.addVideos = this.addVideos.bind(this);
@@ -79,7 +80,7 @@ class Post extends React.Component {
         return this.props.files.map((file, index) => {
             if(file.type.includes('video')) {
                 return (
-                    <div>
+                    <div id={`attachment${file.id}`}>
                         <br />
                         <ReactPlayer 
                             url={file.url} 
@@ -235,7 +236,10 @@ class Post extends React.Component {
         });
 
         response.filesFailed.map((file, index) => {
-            this.setState({ failureNameFiles: this.state.failureNameFiles.concat(file.originalFile.name) });
+            this.setState({ 
+                failureNameFiles: this.state.failureNameFiles.concat(file.originalFile.name),
+                isFailureUploaded: true 
+            });
         });
     }
 
@@ -246,6 +250,9 @@ class Post extends React.Component {
     render() {
         let isOwner = this.state.isOwner;
         let isUpdating = this.state.isUpdating;
+
+        let updatedAt = 'post updated at ' + this.props.updatedAt;
+        updatedAt = updatedAt.substr(0, updatedAt.length - 1);
 
         return (
             <div className="main-post-center">
@@ -289,6 +296,7 @@ class Post extends React.Component {
                                     </button>
                                 </>
                             }
+                            { this.props.wasUpdatedPost && <div className="post-updated-box">{updatedAt}</div> }
                             { isUpdating && this.renderDeleteButtonsForAttachments() }
                             {
                                 isUpdating && (

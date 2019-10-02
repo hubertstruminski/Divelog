@@ -50,6 +50,7 @@ public class PostController {
                 post.setMessage(postDto.getMessage());
                 post.setTopic(topic);
                 post.setCreatedAt(new Date());
+                post.setUpdatedAt(null);
                 post.setUser(foundedUser);
 
                 Post savedPost = postRepository.save(post);
@@ -101,6 +102,7 @@ public class PostController {
 
             if(post != null && foundedUser != null) {
                 post.setMessage(postDto.getMessage());
+                post.setUpdatedAt(new Date());
 
                 Post updatedPost = postRepository.save(post);
 

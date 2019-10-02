@@ -130,9 +130,7 @@ class AddTopic extends React.Component {
                 } else {
                     this.props.history.push("/forum");
                 }
-            }).catch(err => {
-                console.log(err);
-            })
+            });
         }
     }
 
@@ -164,7 +162,7 @@ class AddTopic extends React.Component {
     render() {
         return (
             <div className="add-topic-container add-topic-center">
-                <div className="new-topic-box new-topic-box-shadow">
+                <div className="new-topic-box">
                     <div className="new-topic-title">
                         Add new topic
                     </div>
@@ -173,13 +171,14 @@ class AddTopic extends React.Component {
                         <div className="form-group">
                             <label for="title">Title</label>
                             <input 
-                                className="form-control form-control-lg"
+                                className="form-control form-control-lg new-update-topic-inputs"
                                 type="text"
                                 id="title"
                                 name="title"
                                 placeholder="Enter title"
                                 value={this.state.title}
                                 onChange={this.onChange}
+                                style={{ color: 'white' }}
                             />
                         </div>
                         { this.showInvalidTitle(this.state.isInvalidTitle) }
@@ -187,12 +186,13 @@ class AddTopic extends React.Component {
                         <div className="form-group">
                             <label for="message">Message</label>
                             <textarea
-                                className="form-control form-control-lg"
+                                className="form-control form-control-lg new-update-topic-inputs"
                                 id="message"
                                 name="message"
                                 value={this.state.message}
                                 onChange={this.onChange}
                                 rows="17"
+                                style={{ color: 'white' }}
                             >
                             </textarea>
                         </div>

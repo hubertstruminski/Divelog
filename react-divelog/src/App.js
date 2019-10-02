@@ -28,6 +28,7 @@ import UpdateLogbook from './components/logbook/UpdateLogbook';
 import Forum from './components/forum/Forum';
 import AddTopic from './components/forum/AddTopic';
 import TopicWithPosts from './components/forum/TopicWithPosts';
+import UpdateTopic from './components/forum/UpdateTopic';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -66,6 +67,7 @@ function App() {
               <Route exact path="/forum" component={Forum} />
               <Route exact path="/create/topic/:selectedForum" component={AddTopic} />
               <Route exact path="/topic/:id/:languageForum/posts" component={TopicWithPosts} />
+              <Route exact path="/update/topic/:id" component={UpdateTopic} />
           </I18nextProvider>
         </div>
       </Router>

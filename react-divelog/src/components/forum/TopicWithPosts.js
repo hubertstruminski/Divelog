@@ -7,6 +7,7 @@ import Post from './Post';
 import Pagination from 'react-js-pagination';
 import axios from 'axios';
 import swal from 'sweetalert';
+import UpdateTopicButton from './UpdateTopicButton';
 
 class TopicWithPosts extends React.Component {
     constructor(props) {
@@ -20,7 +21,8 @@ class TopicWithPosts extends React.Component {
             email: '',
             isUpdatingPost: false,
             activePage: 1,
-            itemPerPage: 2
+            itemPerPage: 10,
+            wasUpdatedPost: false
         }
 
         this.files = []
@@ -73,10 +75,15 @@ class TopicWithPosts extends React.Component {
                     files.push(element);
                 });
 
+                if(post.updatedAt !== null) {
+                    this.setState({ wasUpdatedPost: true });
+                }
+
                 const element = {
                     id: post.id,
                     message: post.message,
                     createdAt: this.ConvertTime.convertTime(post.createdAt, null, false),
+                    updatedAt: this.ConvertTime.convertTime(post.updatedAt, null, false),
                     files: files,
                     user: post.user
                 }
@@ -163,11 +170,16 @@ class TopicWithPosts extends React.Component {
                         }
                         files.push(element);
                     });
+
+                    if(post.updatedAt !== null) {
+                        this.setState({ wasUpdatedPost: true });
+                    }
     
                     const element = {
                         id: post.id,
                         message: post.message,
                         createdAt: this.ConvertTime.convertTime(post.createdAt, null, false),
+                        updatedAt: this.ConvertTime.convertTime(post.updatedAt, null, false),
                         files: files,
                         user: post.user
                     }
@@ -263,24 +275,22 @@ class TopicWithPosts extends React.Component {
                     counter={count++}
                     message={post.message}
                     createdAt={post.createdAt}
+                    updatedAt={post.updatedAt}
                     files={post.files}
                     user={post.user}
                     fetchTopicAndPosts={this.fetchTopicAndPosts}
                     setDeletedFileForPost={this.setDeletedFileForPost}
+                    wasUpdatedPost={this.state.wasUpdatedPost}
                 />
             );
         });
     }
 
     setDeletedFileForPost(postId, fileId) {
-        console.log(postId);
         this.state.posts.map((post, index) => {
             if(post.id === postId) {
                 post.files.map((file, index) => {
-                    console.log(index);
                     if(file.id === fileId) {
-                        // var index = this.state.posts.files.indexOf(file);
-                        console.log(index);
                         this.setState({ files: this.state.posts.files.splice(index, 1) });
                     }
                 });
@@ -327,9 +337,9 @@ class TopicWithPosts extends React.Component {
                                 { isOwner &&
                                     <>
                                         <hr />
-                                        <button className="btn btn-warning">
-                                            EDIT
-                                        </button>
+                                        <UpdateTopicButton 
+                                            topicId={this.props.match.params.id}
+                                        />
                                     </>
                                 }
                             </div>

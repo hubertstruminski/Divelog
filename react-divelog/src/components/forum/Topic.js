@@ -43,14 +43,25 @@ class Topic extends React.Component {
                 vote: jsonData.vote
             }, () => {
                 if(this.state.vote === 1) {
-                    $(".fa-chevron-circle-up").css({ "color": "red" });
-                    this.setState({ isUpVoted: true });
+                    console.log(this.props.count);
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(0) > i`).css({ "color": "red" });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(2) > i`).css({ "color": "white" });
+                    this.setState({ 
+                        isUpVoted: true,
+                        isDownVoted: false
+                    });
                 } else if(this.state.vote === -1) {
-                    $(".fa-chevron-circle-down").css({ "color": "red" });
-                    this.setState({ isDownVoted: true });
+                    console.log(this.props.count);
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(2) > i`).css({ "color": "red" });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(0) > i`).css({ "color": "white" });
+                    this.setState({ 
+                        isDownVoted: true,
+                        isUpVoted: false 
+                    });
                 } else {
-                    $(".fa-chevron-circle-up").css({ "color": "white" });
-                    $(".fa-chevron-circle-down").css({ "color": "white" });
+                    console.log(this.props.count);
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(0) > i`).css({ "color": "white" });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(2) > i`).css({ "color": "white" });
                     this.setState({ 
                         isDownVoted: false,
                         isUpVoted: false
@@ -88,8 +99,8 @@ class Topic extends React.Component {
                         isUpVoted: true,
                         isDownVoted: false
                     }, () => {
-                        $(".fa-chevron-circle-up").css({ "color": "red" });
-                        $(".fa-chevron-circle-down").css({ "color": "white"});
+                        $(`.grid-topic-one:eq(${this.props.count}) > div:eq(0) > i`).css({ "color": "red" });
+                        $(`.grid-topic-one:eq(${this.props.count}) > div:eq(2) > i`).css({ "color": "white"});
                         this.fetchTopicData();
                     });
                 }
@@ -120,8 +131,8 @@ class Topic extends React.Component {
                         isDownVoted: true,
                         isUpVoted: false
                     }, () => {
-                        $(".fa-chevron-circle-up").css({ "color": "white" });
-                        $(".fa-chevron-circle-down").css({ "color": "red"});
+                        $(`.grid-topic-one:eq(${this.props.count}) > div:eq(0) > i`).css({ "color": "white" });
+                        $(`.grid-topic-one:eq(${this.props.count}) > div:eq(2) > i`).css({ "color": "red"});
                         this.fetchTopicData();
                     });
                 }
@@ -149,14 +160,22 @@ class Topic extends React.Component {
                 vote: jsonData.vote
             }, () => {
                 if(this.state.vote === 1) {
-                    $(".fa-chevron-circle-up").css({ "color": "red" });
-                    this.setState({ isUpVoted: true });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(0) > i`).css({ "color": "red" });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(2) > i`).css({ "color": "white" });
+                    this.setState({ 
+                        isUpVoted: true,
+                        isDownVoted: false
+                    });
                 } else if(this.state.vote === -1) {
-                    $(".fa-chevron-circle-down").css({ "color": "red" });
-                    this.setState({ isDownVoted: true });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(2) > i`).css({ "color": "red" });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(0) > i`).css({ "color": "white" });
+                    this.setState({ 
+                        isDownVoted: true,
+                        isUpVoted: false
+                    });
                 } else {
-                    $(".fa-chevron-circle-up").css({ "color": "white" });
-                    $(".fa-chevron-circle-down").css({ "color": "white" });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(0) > i`).css({ "color": "white" });
+                    $(`.grid-topic-one:eq(${this.props.count}) > div:eq(2) > i`).css({ "color": "white" });
                     this.setState({ 
                         isDownVoted: false,
                         isUpVoted: false
@@ -207,10 +226,9 @@ class Topic extends React.Component {
                     </div>
                     <div className="grid-topic-three">
                         <div>
-                            <span>{ this.state.numberComments }</span> comments
-                        </div>
-                        <div>
-                            <span>{ this.state.numberDisplays }</span> display
+                            { this.state.numberComments } comments
+                            <br />
+                            { this.state.numberDisplays } display
                         </div>
                     </div>
                 </div>

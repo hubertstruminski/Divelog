@@ -1,7 +1,8 @@
 .topic-container {
     width: 100%;
     height: 75px;
-    border-bottom: 2px solid white;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
 }
 
 .topic-body {
@@ -41,6 +42,10 @@
     flex-direction: column;
 
     color: white;
+}
+
+.grid-topic-three div {
+    text-align: left;
 }
 
 .like-icon {

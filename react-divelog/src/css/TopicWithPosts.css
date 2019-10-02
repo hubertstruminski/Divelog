@@ -157,3 +157,9 @@
     justify-content: center;
     margin-top: 2.5%;
 }
+
+.post-updated-box {
+    width: 100%;
+    text-align: right;
+    font-size: 0.75vw;
+}

@@ -13,6 +13,16 @@ public class TopicDto {
     private String jwtToken;
     private List<FileDto> files;
 
+    public TopicDto() {
+
+    }
+
+    public TopicDto(String title, String message, List<FileDto> files) {
+        this.title = title;
+        this.message = message;
+        this.files = files;
+    }
+
     public String getTitle() {
         return title;
     }
