@@ -35,7 +35,6 @@ class Topic extends React.Component {
             }
         }).then(response => response.json())
         .then(jsonData => {
-            console.log(jsonData);
             this.setState({
                 numberDisplays: jsonData.numberDisplay,
                 numberComments: jsonData.numberComments,
@@ -152,7 +151,6 @@ class Topic extends React.Component {
             }
         }).then(response => response.json())
         .then(jsonData => {
-            console.log(jsonData);
             this.setState({
                 numberDisplays: jsonData.numberDisplay,
                 numberComments: jsonData.numberComments,
@@ -208,8 +206,8 @@ class Topic extends React.Component {
                             </i>
                         </div>
                     </div>
-                    <div className="grid-topic-two">
-                        <div className="title-topic" onClick={this.onTopicClick}>
+                    <div className="grid-topic-two" onClick={this.onTopicClick}>
+                        <div className="title-topic">
                             { this.props.title }
                         </div>
                         <div className="owner-topic">

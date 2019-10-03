@@ -29,6 +29,10 @@
     color: white;
 }
 
+.btn-logout:hover {
+    background-color: none;
+}
+
 #left-menu-icon {
     font-size: 1.15vw;
 }
@@ -41,6 +45,7 @@
     width: 15%;
     left: -15%;
     z-index: 110;
+    padding-top: 78px;
 }
 
 .header-profil-picture {

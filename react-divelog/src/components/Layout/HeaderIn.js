@@ -44,7 +44,14 @@ class HeaderIn extends React.Component {
                 userID: jsonData.userID,
                 pictureUrl: jsonData.pictureUrl
             });
-        }); 
+        });
+
+        $("nav").css({ 
+            "position": "fixed", 
+            "top": "0", 
+            "width": "100%", 
+            "z-index": "1000" 
+        });
 
         let isActive = false;
         $("#left-menu-icon").click(function() {
@@ -59,7 +66,7 @@ class HeaderIn extends React.Component {
                 isActive = false;
                 return;
             }
-        }); 
+        });
     }
 
 
@@ -167,11 +174,11 @@ class HeaderIn extends React.Component {
                                 <li className="nav-item nav-link mt-3">
                                     {this.state.name}
                                 </li>
-                                <li className="nav-item mt-3">
+                                <li className="nav-item mt-1">
                                     <div className="nav-link">
                                         <button
                                             onClick={this.onSubmit}
-                                            className="btn-logout bg-dark"
+                                            className="btn btn-danger"
                                         >
                                             {this.props.t("header.logout")}
                                         </button>

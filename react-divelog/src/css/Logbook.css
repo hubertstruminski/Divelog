@@ -4,6 +4,7 @@
     width: 100%;
     background-image: url("../img/hexellence.png");
     height: 100vh;
+    padding-top: 78px;
 }
 
 .btn-padding {

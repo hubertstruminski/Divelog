@@ -242,14 +242,26 @@ class Forum extends React.Component {
                         CREATE TOPIC
                     </button>
                 </Link>
-                <div className="wrapper-forum-box">
-                    <div className="forum-topics-box">
-                        { isPolishForum && this.generatePolishTopics() }
-                        { isGermanyForum && this.generateGermanyTopics() }
-                        { isEnglishForum && this.generateEnglishTopics() }
-                    </div>
-                    <div className="forum-top-topics"></div>
-                </div>
+                { ( isPolishForum || isGermanyForum || isEnglishForum ) ?
+                    (
+                        <div className="wrapper-forum-box">
+                            <div className="forum-topics-box">
+                                { (isPolishForum || isGermanyForum || isEnglishForum) && <div className="topics-box-title">All topics</div> }
+                                
+                                { isPolishForum && this.generatePolishTopics() }
+                                { isGermanyForum && this.generateGermanyTopics() }
+                                { isEnglishForum && this.generateEnglishTopics() }
+                            </div>
+                            <div className="forum-top-topics">
+                                { (isPolishForum || isGermanyForum || isEnglishForum) && <div className="top-topics-title">The most popular topics</div> }
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="forum-diver">
+                            
+                        </div>
+                    )
+                }
             </div>
         );
     }
