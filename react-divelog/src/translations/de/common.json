@@ -184,5 +184,72 @@
             "UPDATE": "AKTUALISIEREN",
             "DELETE": "LÖSCHEN"
         }
+    },
+    "forum": {
+        "AddPosts": {
+            "form": {
+                "title": "Neuen Beitrag hinzufügen",
+                "labelMsg": "Botschaft",
+                "filestackBtn": "Daten hochladen",
+                "submit": "publizieren",
+                "validation": {
+                    "invalidMessage": "Die Nachrichtenlänge muss mindestens 10 Zeichen betragen.",
+                    "successUploaded": "Erfolgreich hochgeladene Dateien:",
+                    "failureUploaded": "Fehler beim Hochladen der Dateien:"
+                }
+            }
+        },
+        "AddTopic": {
+            "form": {
+                "title": "Neues Thema hinzufügen",
+                "labelTitle": "Titel",
+                "labelMsg": "Botschaft",
+                "filestackBtn": "Daten hochladen",
+                "submit": "publizieren",
+                "validation": {
+                    "invalidTitle": "Die Länge des Titels muss mindestens 10 bis 160 Zeichen betragen.",
+                    "invalidMessage": "Die Nachrichtenlänge muss mindestens 10 Zeichen betragen.",
+                    "successUploaded": "Erfolgreich hochgeladene Dateien:",
+                    "failureUploaded": "Fehler beim Hochladen der Dateien:"
+                }
+            }
+        },
+        "deleteAttachmentButton": "LÖSCHEN",
+        "forum": {
+            "title": "Forum auswählen",
+            "createBtn": "Thema erstellen",
+            "news": {
+                "title": "Warnung",
+                "message": "Sie müssen die Sprache für das Forum auswählen"
+            }
+        },
+        "post": {
+            "editBtn": "bearbeiten",
+            "deleteBtn": "LÖSCHEN",
+            "uploadFiles": "Daten hochladen",
+            "successUploaded": "Erfolgreich hochgeladene Dateien:",
+            "failureUploaded": "Fehler beim Hochladen der Dateien:",
+            "news": {
+                "title": "Erfolg",
+                "message": "Beitrag wurde erfolgreich entfernt."
+            }
+        },
+        "topic": {
+            "comments": "Bemerkungen",
+            "display": "Anzeige"
+        },
+        "updateTopic": {
+            "title": "Thema aktualisieren"
+        }
+    },
+    "error-500": {
+        "title": "Error 500",
+        "message": "interner Serverfehler"
+    },
+    "news": {
+        "fileUpload": {
+            "title": "Erfolg",
+            "message": "Datei wurde erfolgreich entfernt."
+        }
     }
 }

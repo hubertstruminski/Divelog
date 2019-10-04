@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import axios from 'axios';
 import swal from 'sweetalert';
 import $ from 'jquery';
+import { withTranslation } from 'react-i18next';
 
 class Topic extends React.Component {
     constructor(props) {
@@ -89,7 +90,7 @@ class Topic extends React.Component {
                 }
             }).then(response => {
                 if(response.status !== 200) {
-                    swal("Error", "Something goes wrong.", "error");
+                    swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                 } else {
                     this.setState({
                         numberDisplays: 0,
@@ -121,7 +122,7 @@ class Topic extends React.Component {
                 }
             }).then(response => {
                 if(response.status !== 200) {
-                    swal("Error", "Something goes wrong.", "error");
+                    swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                 } else {
                     this.setState({
                         numberDisplays: 0,
@@ -185,7 +186,7 @@ class Topic extends React.Component {
 
     render() {
         return(
-            <div className="topic-container">
+            <div className={`topic-container ${this.props.isLeft ? 'topic-container-border-left' : 'topic-container-border-right'}`}>
                 <div className="topic-body">
                     <div className="grid-topic-one">
                         <div>
@@ -224,9 +225,9 @@ class Topic extends React.Component {
                     </div>
                     <div className="grid-topic-three">
                         <div>
-                            { this.state.numberComments } comments
+                            { this.state.numberComments } { this.props.t("forum.topic.comments") }
                             <br />
-                            { this.state.numberDisplays } display
+                            { this.state.numberDisplays } { this.props.t("forum.topic.display") }
                         </div>
                     </div>
                 </div>
@@ -235,4 +236,4 @@ class Topic extends React.Component {
     }
 }
 
-export default withRouter(Topic);
+export default withTranslation("common")(withRouter(Topic));

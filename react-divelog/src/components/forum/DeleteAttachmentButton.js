@@ -1,6 +1,8 @@
 import React from 'react';
 import swal from 'sweetalert';
 import $ from 'jquery';
+import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router';
 
 class DeleteAttachmentButton extends React.Component {
     constructor(props) {
@@ -21,13 +23,12 @@ class DeleteAttachmentButton extends React.Component {
             }
         }).then(response => {
             if(response.status !== 200) {
-                swal("Error", "Something goes wrong.", "error");
+                swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
             } else {
                 let counter = this.props.counter;
                 $(`.main-post-attachments:eq(${counter})`).find(`#attachment${fileId}`).empty();
-                // $(`.post-buttons:eq(${counter})`).find(`#btnDeleteAttachment${this.props.id}`).remove();
                 this.props.setDeletedFileForPost(this.props.postId, this.props.id);
-                swal("Success", "File was removed successfully.", "success");
+                swal(this.props.t("news.fileUpload.title"), this.props.t("news.fileUpload.message"), "success");
             }
         });
     }
@@ -39,10 +40,10 @@ class DeleteAttachmentButton extends React.Component {
                 className="btn btn-danger"
                 onClick={this.onImageDeleteClick}
             >
-                DELETE {this.props.type} - {this.props.name}
+                {this.props.t("forum.deleteAttachmentButton")} {this.props.type} - {this.props.name}
             </button>
         );
     }
 }
 
-export default DeleteAttachmentButton;
+export default withTranslation("common")(withRouter(DeleteAttachmentButton));

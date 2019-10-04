@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import $ from 'jquery';
+import { withTranslation } from 'react-i18next';
 
 class AddPosts extends React.Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class AddPosts extends React.Component {
         if(isInvalidMessage) {
             return (
                 <div className="alert alert-danger">
-                    Message length must be minimum 10 characters.
+                    { this.props.t("forum.AddPosts.form.validation.invalidMessage") }
                 </div>
             );
         }
@@ -47,7 +48,7 @@ class AddPosts extends React.Component {
         if(isSuccessUploaded) {
             return (
                 <div className="alert alert-warning">
-                    Success uploaded files:
+                    { this.props.t("forum.AddPosts.form.validation.successUploaded") }
                     { this.state.successNameFiles.map((name, index) => {
                         return <p>{name}</p>
                     })}
@@ -61,7 +62,7 @@ class AddPosts extends React.Component {
         if(isFailureUploaded) {
             return (
                 <div className="alert alert-danger">
-                    Failure uploaded files:
+                    { this.props.t("forum.AddPosts.form.validation.failureUploaded") }
                     { this.state.failureNameFiles.map((name, index) => {
                         return <p>{name}</p>
                     })}
@@ -105,7 +106,7 @@ class AddPosts extends React.Component {
                 }
             }).then(response => {
                 if(response.status !== 200) {
-                    swal("Error", "Something goes wrong.", "error");
+                    swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                 } else {
                     $(".new-post-textarea").val("");
                     this.props.fetchTopicAndPosts();
@@ -136,7 +137,7 @@ class AddPosts extends React.Component {
     }
 
     onErrorFilestack() {
-        swal("Error", "Something goes wrong.", "error");
+        swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
     }
 
     render() {
@@ -144,12 +145,14 @@ class AddPosts extends React.Component {
             <div className="add-post-center">
                 <div className="new-post-box">
                     <div className="new-post-title">
-                        Add new post
+                        { this.props.t("forum.AddPosts.form.title") }
                     </div>
 
                     <form onSubmit={this.onSubmitForm}>
                         <div className="form-group">
-                            <label className="new-post-label" for="message">Message</label>
+                            <label className="new-post-label" for="message">
+                                { this.props.t("forum.AddPosts.form.labelMsg") }
+                            </label>
                             <textarea
                                 className="form-control form-control-lg new-post-textarea"
                                 id="message"
@@ -164,7 +167,9 @@ class AddPosts extends React.Component {
                         { this.showInvalidMessage(this.state.isInvalidMessage) }
 
                         <div className="form-group">
-                            <label className="new-post-label">Upload data</label>
+                            <label className="new-post-label">
+                                { this.props.t("forum.AddPosts.form.filestackBtn") }
+                            </label>
                             <br />
                             <ReactFilestack
                                 apikey="Abn3RoxlVQeWNtMpk2Gflz"
@@ -185,7 +190,7 @@ class AddPosts extends React.Component {
                             type="submit" 
                             className="btn btn-primary new-post-btn"
                         >
-                            Publicate
+                            { this.props.t("forum.AddPosts.form.submit") }
                         </button>
                     </form>
                 </div>
@@ -194,4 +199,4 @@ class AddPosts extends React.Component {
     }
 }
 
-export default withRouter(AddPosts);
+export default withTranslation("common")(withRouter(AddPosts));

@@ -190,5 +190,72 @@
             "UPDATE": "UPDATE",
             "DELETE": "DELETE"
         }
+    },
+    "forum": {
+        "AddPosts": {
+            "form": {
+                "title": "Add new post",
+                "labelMsg": "Message",
+                "filestackBtn": "Upload data",
+                "submit": "Publicate",
+                "validation": {
+                    "invalidMessage": "Message length must be minimum 10 characters.",
+                    "successUploaded": "Success uploaded files:",
+                    "failureUploaded": "Failure uploaded files:"
+                }
+            }
+        },
+        "AddTopic": {
+            "form": {
+                "title": "Add new topic",
+                "labelTitle": "Title",
+                "labelMsg": "Message",
+                "filestackBtn": "Upload data",
+                "submit": "Publicate",
+                "validation": {
+                    "invalidTitle": "Title length must be between 10 and 160 characters.",
+                    "invalidMessage": "Message length must be minimum 10 characters.",
+                    "successUploaded": "Success uploaded files:",
+                    "failureUploaded": "Failure uploaded files:"
+                }
+            }
+        },
+        "deleteAttachmentButton": "DELETE",
+        "forum": {
+            "title": "Select forum",
+            "createBtn": "CREATE TOPIC",
+            "news": {
+                "title": "Warning",
+                "message": "You have to select language for forum"
+            }
+        },
+        "post": {
+            "editBtn": "EDIT",
+            "deleteBtn": "DELETE",
+            "uploadFiles": "Upload data",
+            "successUploaded": "Success uploaded files:",
+            "failureUploaded": "Failure uploaded files:",
+            "news": {
+                "title": "Success",
+                "message": "Post has been removed successfully."
+            }
+        },
+        "topic": {
+            "comments": "comments",
+            "display": "display"
+        },
+        "updateTopic": {
+            "title": "Update topic"
+        }
+    },
+    "error-500": {
+        "title": "Error 500",
+        "message": "Internal server error"
+    },
+    "news": {
+        "fileUpload": {
+            "title": "Success",
+            "message": "File was removed successfully."
+        }
     }
 }

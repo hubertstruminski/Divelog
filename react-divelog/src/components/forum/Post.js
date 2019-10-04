@@ -7,6 +7,7 @@ import $ from 'jquery';
 import ReactFilestack from 'filestack-react';
 import axios from 'axios';
 import DeleteAttachmentButton from './DeleteAttachmentButton';
+import { withTranslation } from 'react-i18next';
 
 class Post extends React.Component {
     constructor(props) {
@@ -124,10 +125,10 @@ class Post extends React.Component {
             }
         }).then(response => {
             if(response.status !== 200) {
-                swal("Error", "Something goes wrong.", "error");
+                swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
             } else {
                 this.props.fetchTopicAndPosts();
-                swal("Success", "Post has been removed successfully.", "success");
+                swal(this.props.t("forum.post.news.title"), this.props.t("forum.post.news.message"), "success");
             }
         });
     }
@@ -157,7 +158,6 @@ class Post extends React.Component {
                         let jwtToken = localStorage.getItem("JwtToken");
 
                         let message = $(".edit-textarea").val();
-                        let files = this.state.successFiles;
 
                         const updatedPost = {
                             message: message,
@@ -174,7 +174,7 @@ class Post extends React.Component {
                             }
                         }).then(response => {
                             if(response.status !== 200) {
-                                swal("Error", "Something goes wrong.", "error");
+                                swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                             } else {
                                 this.setState({ isUpdating: false }, () => {
                                     $(`.post-message:eq(${counter})`).html("");
@@ -195,7 +195,7 @@ class Post extends React.Component {
         if(isSuccessUploaded) {
             return (
                 <div className="alert alert-warning">
-                    Success uploaded files:
+                    { this.props.t("forum.post.successUploaded") }
                     { this.state.successNameFiles.map((name, index) => {
                         return <p>{name}</p>
                     })}
@@ -209,7 +209,7 @@ class Post extends React.Component {
         if(isFailureUploaded) {
             return (
                 <div className="alert alert-danger">
-                    Failure uploaded files:
+                    { this.props.t("forum.post.failureUploaded") }
                     { this.state.failureNameFiles.map((name, index) => {
                         return <p>{name}</p>
                     })}
@@ -244,7 +244,7 @@ class Post extends React.Component {
     }
 
     onErrorFilestack() {
-        swal("Error", "Something goes wrong.", "error");
+        swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
     }
 
     render() {
@@ -285,14 +285,14 @@ class Post extends React.Component {
                                         className="btn btn-warning"
                                         onClick={this.onEditClick}
                                     >
-                                        EDIT
+                                        { this.props.t("forum.post.editBtn") }
                                     </button>
                                 
                                     <button 
                                         className="btn btn-danger"
                                         onClick={this.onDeleteClick}
                                     >
-                                        DELETE
+                                        { this.props.t("forum.post.deleteBtn") }
                                     </button>
                                 </>
                             }
@@ -301,7 +301,9 @@ class Post extends React.Component {
                             {
                                 isUpdating && (
                                 <div className="form-group edit-post-upload-files-div">
-                                    <label>Upload data</label>
+                                    <label>
+                                        { this.props.t("forum.post.uploadFiles") }
+                                    </label>
                                     <br />
                                     <ReactFilestack
                                         apikey="Abn3RoxlVQeWNtMpk2Gflz"
@@ -327,4 +329,4 @@ class Post extends React.Component {
     }
 }
 
-export default Post;
+export default withTranslation("common")(Post);

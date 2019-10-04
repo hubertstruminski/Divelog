@@ -10,6 +10,8 @@ import Notifications from '../Notifications';
 import Menu from '../Menu';
 import AuthService from '../../util/AuthService';
 import { withRouter } from 'react-router';
+import withAuth from '../../util/withAuth';
+import { compose } from 'redux';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -196,4 +198,4 @@ class HeaderIn extends React.Component {
     }
 }
 
-export default withTranslation("common")(withRouter(HeaderIn));
+export default withRouter(withAuth(withTranslation("common")(HeaderIn)));

@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { withTranslation } from 'react-i18next';
 
 class UpdateTopicButton extends React.Component {
     constructor(props) {
@@ -18,10 +19,10 @@ class UpdateTopicButton extends React.Component {
                 className="btn btn-warning"
                 onClick={this.onClick}
             >
-                EDIT
+                { this.props.t("forum.post.editBtn") }
             </button>
         );
     }
 }
 
-export default withRouter(UpdateTopicButton);
+export default withTranslation("common")(withRouter(UpdateTopicButton));

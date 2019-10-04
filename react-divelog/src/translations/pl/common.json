@@ -190,5 +190,72 @@
             "UPDATE": "AKTUALIZUJ",
             "DELETE": "USUŃ"
         }
+    },
+    "forum": {
+        "AddPosts": {
+            "form": {
+                "title": "Dodaj nowy post",
+                "labelMsg": "Wiadomość",
+                "filestackBtn": "Prześlij dane",
+                "submit": "Publikuj",
+                "validation": {
+                    "invalidMessage": "Długość wiadomości musi mieć co najmniej 10 znaków.",
+                    "successUploaded": "Pomyślnie przesłane pliki:",
+                    "failureUploaded": "Niepomyślnie przesłane pliki:"
+                }
+            }
+        },
+        "AddTopic": {
+            "form": {
+                "title": "Dodaj nowy temat",
+                "labelTitle": "Tytuł",
+                "labelMsg": "Wiadomość",
+                "filestackBtn": "Prześlij dane",
+                "submit": "Publikuj",
+                "validation": {
+                    "invalidTitle": "Długość tytułu musi mieć od 10 do 160 znaków.",
+                    "invalidMessage": "Długość wiadomości musi mieć co najmniej 10 znaków.",
+                    "successUploaded": "Pomyślnie przesłane pliki:",
+                    "failureUploaded": "Niepomyślnie przesłane pliki:"
+                }
+            }
+        },
+        "deleteAttachmentButton": "USUŃ",
+        "forum": {
+            "title": "Wybierz forum",
+            "createBtn": "DODAJ TEMAT",
+            "news": {
+                "title": "Ostrzeżenie",
+                "message": "Musisz wybrać język forum"
+            }
+        },
+        "post": {
+            "editBtn": "EDYTUJ",
+            "deleteBtn": "USUŃ",
+            "uploadFiles": "Prześlij dane",
+            "successUploaded": "Pomyślnie przesłane pliki:",
+            "failureUploaded": "Niepomyślnie przesłane pliki:",
+            "news": {
+                "title": "Sukces",
+                "message": "Post został usunięty pomyślnie."
+            }
+        },
+        "topic": {
+            "comments": "komentarzy",
+            "display": "wyświetleń"
+        },
+        "updateTopic": {
+            "title": "Edytuj temat"
+        }
+    },
+    "error-500": {
+        "title": "Błąd 500",
+        "message": "Wewnętrzny błąd po stronie serwera"
+    },
+    "news": {
+        "fileUpload": {
+            "title": "Sukces",
+            "message": "Plik został usunięty pomyślnie."
+        }
     }
 }

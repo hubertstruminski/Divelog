@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import Topic from './Topic';
 import ConvertTime from '../../util/ConvertTime';
+import TopTopics from './TopTopics';
+import forumDiver from '../../img/forum-diver-blue.png';
+import { withRouter } from 'react-router';
+import { withTranslation } from 'react-i18next';
 
 class Forum extends React.Component {
     constructor(props) {
@@ -26,13 +30,21 @@ class Forum extends React.Component {
             isTopGermanyForum: false,
             topEnglishTopics: [],
             topPolishTopics: [],
-            topGermanyTopics: []
+            topGermanyTopics: [],
+            isGermanyFive: false,
+            isPolishFive: false,
+            isEnglishFive: false,
+            isLeft: false
         }
         this.ConvertTime = new ConvertTime();
 
         this.onFlagClick = this.onFlagClick.bind(this);
         this.onCreateTopicClick = this.onCreateTopicClick.bind(this);
         this.generatePolishTopics = this.generatePolishTopics.bind(this);
+
+        this.setTopEnglishFive = this.setTopEnglishFive.bind(this);
+        this.setTopGermanyFive = this.setTopGermanyFive.bind(this);
+        this.setTopPolishFive = this.setTopPolishFive.bind(this);
     }
 
     componentDidMount() {
@@ -90,6 +102,7 @@ class Forum extends React.Component {
                     countGermany++
                 }
             });
+            this.setState({ isLeft: true });
         });
     }
 
@@ -148,7 +161,7 @@ class Forum extends React.Component {
     onCreateTopicClick(e) {
         if(this.state.selectedForum === '') {
             e.preventDefault();
-            swal("Warning", "You have to select language for forum", "warning");
+            swal(this.props.t("forum.forum.news.title"), this.props.t("forum.forum.news.message"), "warning");
         }
     }
 
@@ -162,7 +175,7 @@ class Forum extends React.Component {
                     createdAt={topic.createdAt}
                     languageForum={this.state.selectedForum}
                     count={topic.countPolish}
-
+                    isLeft={this.state.isLeft}
                 />
             );
         });
@@ -178,6 +191,7 @@ class Forum extends React.Component {
                    createdAt={topic.createdAt}
                    languageForum={this.state.selectedForum}
                    count={topic.countGermany}
+                   isLeft={this.state.isLeft}
                />
            );
        });
@@ -193,9 +207,22 @@ class Forum extends React.Component {
                    createdAt={topic.createdAt}
                    languageForum={this.state.selectedForum}
                    count={topic.countEnglish}
+                   isLeft={this.state.isLeft}
                />
            );
        });
+    }
+
+    setTopEnglishFive() {
+        this.setState({ isEnglishFive: true });
+    }
+
+    setTopGermanyFive() {
+        this.setState({ isGermanyFive: true });
+    }
+
+    setTopPolishFive() {
+        this.setState({ isPolishFive: true });
     }
 
     render() {
@@ -203,10 +230,18 @@ class Forum extends React.Component {
         let isGermanyForum = this.state.isGermanyForum;
         let isEnglishForum = this.state.isEnglishForum;
 
+        let isTopPolishForum = this.state.isTopPolishForum;
+        let isTopGermanyForum = this.state.isTopGermanyForum;
+        let isTopEnglishForum = this.state.isTopEnglishForum;
+
+        let isEnglishFive = this.state.isEnglishFive;
+        let isPolishFive = this.state.isPolishFive;
+        let isGermanyFive = this.state.isGermanyFive;
+
         return (
             <div className="forum-container">
                 <div className="forum-title">
-                    Select forum
+                    { this.props.t("forum.forum.title") }
                 </div>
                 <div className="language-forum-box language-forum-box-center language-shadow">
                     <div className="flag-item">
@@ -239,7 +274,7 @@ class Forum extends React.Component {
                         className="btn btn-primary btn-padding"
                         onClick={this.onCreateTopicClick}
                     >
-                        CREATE TOPIC
+                        { this.props.t("forum.forum.createBtn") }
                     </button>
                 </Link>
                 { ( isPolishForum || isGermanyForum || isEnglishForum ) ?
@@ -253,12 +288,21 @@ class Forum extends React.Component {
                                 { isEnglishForum && this.generateEnglishTopics() }
                             </div>
                             <div className="forum-top-topics">
-                                { (isPolishForum || isGermanyForum || isEnglishForum) && <div className="top-topics-title">The most popular topics</div> }
+                                { ( isEnglishFive || isGermanyFive || isPolishFive ) && <div className="top-topics-title">The most popular topics</div> }
+                                { (isTopPolishForum || isTopGermanyForum || isTopEnglishForum) && 
+                                    <TopTopics 
+                                        selectedForum={this.state.selectedForum}
+                                        setTopFiveIsTrue={this.setTopFiveIsTrue}
+                                        setTopEnglishFive={this.setTopEnglishFive}
+                                        setTopGermanyFive={this.setTopGermanyFive}
+                                        setTopPolishFive={this.setTopPolishFive}
+                                    />
+                                }
                             </div>
                         </div>
                     ) : (
                         <div className="forum-diver">
-                            
+                            <img src={forumDiver} alt="Forum diver" />
                         </div>
                     )
                 }
@@ -267,4 +311,4 @@ class Forum extends React.Component {
     }
 }
 
-export default Forum;
+export default withTranslation("common")(withRouter(Forum));

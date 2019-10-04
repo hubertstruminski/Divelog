@@ -4,6 +4,7 @@ import ReactFilestack from 'filestack-react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import { withTranslation } from 'react-i18next';
 
 class UpdateTopic extends React.Component {
     constructor(props) {
@@ -65,7 +66,6 @@ class UpdateTopic extends React.Component {
                 message: jsonData.message,
                 languageForum: jsonData.languageForum
             });
-            
         });
     }
 
@@ -73,7 +73,7 @@ class UpdateTopic extends React.Component {
         if(isInvalidTitle) {
             return (
                 <div className="alert alert-danger">
-                    Title length must be between 10 and 160 characters.
+                    { this.props.t("forum.AddTopic.form.invalidTitle") }
                 </div>
             );
         }
@@ -84,7 +84,7 @@ class UpdateTopic extends React.Component {
         if(isInvalidMessage) {
             return (
                 <div className="alert alert-danger">
-                    Message length must be minimum 10 characters.
+                    { this.props.t("forum.AddTopic.form.invalidMessage") }
                 </div>
             );
         }
@@ -95,7 +95,7 @@ class UpdateTopic extends React.Component {
         if(isSuccessUploaded) {
             return (
                 <div className="alert alert-warning">
-                    Success uploaded files:
+                    { this.props.t("forum.AddTopic.form.successUploaded") }
                     { this.state.successNameFiles.map((name, index) => {
                         return <p>{name}</p>
                     })}
@@ -109,7 +109,7 @@ class UpdateTopic extends React.Component {
         if(isFailureUploaded) {
             return (
                 <div className="alert alert-danger">
-                    Failure uploaded files:
+                    { this.props.t("forum.AddTopic.form.failureUploaded") }
                     { this.state.failureNameFiles.map((name, index) => {
                         return <p>{name}</p>
                     })}
@@ -157,7 +157,7 @@ class UpdateTopic extends React.Component {
                 }
             }).then(response => {
                 if(response.status !== 200) {
-                    swal("Error", "Something goes wrong.", "error");
+                    swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                 } else {
                     // this.props.history.push(`topic/${topicId}/${this.state.languageForum}/posts`);
                     this.props.history.push("/forum");
@@ -191,7 +191,7 @@ class UpdateTopic extends React.Component {
     }
 
     onErrorFilestack() {
-        swal("Error", "Something goes wrong.", "error");
+        swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
     }
 
     render() {
@@ -199,12 +199,14 @@ class UpdateTopic extends React.Component {
             <div className="add-topic-container add-topic-center">
                 <div className="new-topic-box">
                     <div className="new-topic-title">
-                        Update topic
+                        { this.props.t("forum.updateTopic.title") }
                     </div>
 
                     <form onSubmit={this.onSubmitForm}>
                         <div className="form-group">
-                            <label for="title">Title</label>
+                            <label for="title">
+                                { this.props.t("forum.AddTopic.form.labelTitle") }
+                            </label>
                             <input 
                                 className="form-control form-control-lg new-update-topic-inputs"
                                 type="text"
@@ -219,7 +221,9 @@ class UpdateTopic extends React.Component {
                         { this.showInvalidTitle(this.state.isInvalidTitle) }
 
                         <div className="form-group">
-                            <label for="message">Message</label>
+                            <label for="message">
+                                { this.props.t("forum.AddTopic.form.labelMsg") }
+                            </label>
                             <textarea
                                 className="form-control form-control-lg new-update-topic-inputs"
                                 id="message"
@@ -234,7 +238,9 @@ class UpdateTopic extends React.Component {
                         { this.showInvalidMessage(this.state.isInvalidMessage) }
 
                         <div className="form-group">
-                            <label>Upload data</label>
+                            <label>
+                                { this.props.t("forum.AddTopic.form.filestackBtn") }
+                            </label>
                             <br />
                             <ReactFilestack
                                 apikey="Abn3RoxlVQeWNtMpk2Gflz"
@@ -255,7 +261,7 @@ class UpdateTopic extends React.Component {
                             type="submit" 
                             className="btn btn-primary new-topic-btn"
                         >
-                            Publicate
+                            { this.props.t("forum.AddTopic.form.submit") }
                         </button>
                     </form>
                 </div>
@@ -264,4 +270,4 @@ class UpdateTopic extends React.Component {
     }
 }
 
-export default withRouter(UpdateTopic);
+export default withTranslation("common")(withRouter(UpdateTopic));

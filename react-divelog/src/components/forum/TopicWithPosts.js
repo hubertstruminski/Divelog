@@ -5,8 +5,6 @@ import AddPosts from '../forum/AddPosts';
 import ReactPlayer from 'react-player';
 import Post from './Post';
 import Pagination from 'react-js-pagination';
-import axios from 'axios';
-import swal from 'sweetalert';
 import UpdateTopicButton from './UpdateTopicButton';
 
 class TopicWithPosts extends React.Component {
@@ -117,8 +115,7 @@ class TopicWithPosts extends React.Component {
                             if(post.user.email === this.state.email) {
                                 this.setState({ isOwner: true });
                             }
-                        });
-                        
+                        });     
                     });
                 }); 
             });
@@ -213,8 +210,7 @@ class TopicWithPosts extends React.Component {
                                 if(post.user.email === this.state.email) {
                                     this.setState({ isOwner: true });
                                 }
-                            });
-                            
+                            });      
                         });
                     }); 
                 });
