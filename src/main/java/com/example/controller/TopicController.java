@@ -162,6 +162,11 @@ public class TopicController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/get/top/topics/all")
+    public ResponseEntity<?> getAllTopTopics() {
+        return new ResponseEntity<List<Topic>>(topicRepository.findAllAndOrderByLikesDesc(), HttpStatus.OK);
+    }
+
     private Topic assignFilesToTopic(Long topicId, boolean isUpdating) {
         Topic topic = topicRepository.getById(topicId);
 

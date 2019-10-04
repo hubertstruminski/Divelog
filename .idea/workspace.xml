@@ -2,19 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Layout/HeaderIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/AddPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/AddPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/AddTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/AddTopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/DeleteAttachmentButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/DeleteAttachmentButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/Forum.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/Forum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/Post.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/Topic.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/Topic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/AddDive.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/AddDive.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/AddTopic.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/AddTopic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Facebook.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Facebook.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/TopicWithPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/TopicWithPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/UpdateTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/UpdateTopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/UpdateTopicButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/UpdateTopicButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/settings/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/settings/Settings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Forum.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/GoogleMap.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/GoogleMap.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Logbook.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Logbook.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Topic.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Topic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TopicWithPosts.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TopicWithPosts.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TopicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TopicController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/repository/TopicRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/repository/TopicRepository.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="86" column="94" selection-start-line="86" selection-start-column="94" selection-end-line="86" selection-end-column="94" />
+            <state relative-caret-position="194">
+              <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,15 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#0#46#1" expanded="true" />
-              </folding>
+            <state relative-caret-position="194">
+              <caret line="115" selection-start-line="115" selection-start-column="4" selection-end-line="119" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -164,7 +171,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/FacebookConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/enums/Provider.java" />
@@ -215,6 +221,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java" />
       </list>
     </option>
   </component>
@@ -225,7 +232,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="67" />
     <option name="y" value="25" />
     <option name="width" value="927" />
@@ -237,8 +244,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -342,10 +347,20 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -356,10 +371,20 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -421,18 +446,20 @@
       <workItem from="1569937449951" duration="45000" />
       <workItem from="1569940209899" duration="757000" />
       <workItem from="1569942872806" duration="19178000" />
-      <workItem from="1570088341673" duration="708000" />
+      <workItem from="1570088341673" duration="2314000" />
+      <workItem from="1570099186221" duration="1459000" />
+      <workItem from="1570106500479" duration="7041000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="304976000" />
+    <option name="totallyTimeSpent" value="315082000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24737133" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25290537" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -443,7 +470,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.44276458" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.44276458" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -532,13 +559,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/TemporalType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/MapErrorValidatorService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -608,13 +628,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="115" selection-start-line="115" selection-start-column="4" selection-end-line="119" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -873,8 +886,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="86" column="94" selection-start-line="86" selection-start-column="94" selection-end-line="86" selection-end-column="94" />
+        <state relative-caret-position="-1351">
+          <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -958,13 +981,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="194">
+          <caret line="115" selection-start-line="115" selection-start-column="4" selection-end-line="119" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#0#46#1" expanded="true" />
           </folding>
         </state>
       </provider>

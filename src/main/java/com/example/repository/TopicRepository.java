@@ -14,4 +14,7 @@ public interface TopicRepository extends CrudRepository<Topic, Long> {
 
     @Query("SELECT t FROM Topic t ORDER BY t.createdAt ASC")
     List<Topic> findAllAndOrderByCreatedAtAsc();
+
+    @Query("SELECT t FROM Topic t ORDER BY t.likes DESC")
+    List<Topic> findAllAndOrderByLikesDesc();
 }
