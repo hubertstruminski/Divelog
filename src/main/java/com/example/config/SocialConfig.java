@@ -22,7 +22,7 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
                         "/logout/**", "/add/logbook/**/**", "/get/logbook/**", "/logbook/**/**", "/**/**", "/edit/logbook/**/**",
                         "/pdf/logbook/**/**", "/add/topic", "/get/topic/posts/**", "/add/post", "/delete/post/**/**", "/post/**/**",
                         "/delete/post/file/**/**", "/get/topic/number/comments/**/**", "/update/topic/number/displays/**",
-                        "/topic/likes/vote/**/**", "/update/topic/**")
+                        "/topic/likes/vote/**/**", "/update/topic/**", "/callback", "/signin", "/oauth/request_token")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

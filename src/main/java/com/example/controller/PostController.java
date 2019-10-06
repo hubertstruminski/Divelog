@@ -40,8 +40,9 @@ public class PostController {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
             Long userID = (Long) claimsFromJwt.get("userID");
+            String email = (String) claimsFromJwt.get("email");
 
-            Connection foundedUser = connectionRepository.findByUserID(userID);
+            Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
             Topic topic = topicRepository.getById(postDto.getTopicId());
 
             if(foundedUser != null && topic != null) {
@@ -70,8 +71,9 @@ public class PostController {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
             Long userID = (Long) claimsFromJwt.get("userID");
+            String email = (String) claimsFromJwt.get("email");
 
-            Connection foundedUser = connectionRepository.findByUserID(userID);
+            Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
             Post post = postRepository.getByIdAndUser(postId, foundedUser);
 
             if(foundedUser != null && post != null) {
@@ -95,8 +97,9 @@ public class PostController {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
             Long userID = (Long) claimsFromJwt.get("userID");
+            String email = (String) claimsFromJwt.get("email");
 
-            Connection foundedUser = connectionRepository.findByUserID(userID);
+            Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
             Post post = postRepository.getByIdAndUser(postId, foundedUser);
             Topic topic = topicRepository.getById(post.getTopic().getId());
 

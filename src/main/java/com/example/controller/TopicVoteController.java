@@ -36,8 +36,9 @@ public class TopicVoteController {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
             Long userID = (Long) claimsFromJwt.get("userID");
+            String email = (String) claimsFromJwt.get("email");
 
-            Connection foundedUser = connectionRepository.findByUserID(userID);
+            Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
             Topic topic = topicRepository.getById(topicId);
             TopicVote topicVote = topicVoteRepository.getByTopic(topic);

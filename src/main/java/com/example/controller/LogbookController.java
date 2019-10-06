@@ -37,8 +37,9 @@ public class LogbookController {
     public ResponseEntity<?> addDiveToLogbook(@RequestBody Logbook logbook, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
         setTime(logbook, logbook);
 
@@ -56,8 +57,9 @@ public class LogbookController {
     public ResponseEntity<?> getDivesFromLogbook(@PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
         List<Logbook> logbooks = logbookRepository.findAllByUser(foundedUser);
         return new ResponseEntity<List<Logbook>>(logbooks, HttpStatus.OK);
@@ -67,8 +69,9 @@ public class LogbookController {
     public ResponseEntity<?> deleteLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
         Logbook logbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
 
@@ -84,8 +87,9 @@ public class LogbookController {
     public ResponseEntity<?> getLogbookById(@PathVariable String jwtToken, @PathVariable Long logbookId) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
         Logbook logbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
 
@@ -99,8 +103,9 @@ public class LogbookController {
     public ResponseEntity<?> updateLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken, @RequestBody Logbook logbook) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
         Logbook foundedLogbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
         Marker marker = foundedLogbook.getMarker();
@@ -142,8 +147,9 @@ public class LogbookController {
     public ResponseEntity<?> getPDFFromLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
         Logbook foundedLogbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
 

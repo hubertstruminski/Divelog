@@ -15,11 +15,11 @@ class Settings extends React.Component {
                 'content-type': 'application/json'
             },
             responseType: 'blob'
-        // }).then(response => }
-            // console.log(response.text());
-            // const file = new Blob([response.data], { type: 'application/pdf' });
-            // const fileURL = URL.createObjectURL(file);
-            // window.open(fileURL);
+        // }).then(response => {
+        //     console.log(response.text());
+        //     const file = new Blob([response.data], { type: 'application/pdf' });
+        //     const fileURL = URL.createObjectURL(file);
+        //     window.open(fileURL);
         // });
         }).then(response => response.blob()).then(this.showFile)
     }

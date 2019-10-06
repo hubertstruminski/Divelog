@@ -2,8 +2,6 @@ import React from 'react';
 import '../css/Facebook.css';
 import LeftCard from './Layout/LeftCard';
 import withAuth from '../util/withAuth';
-import $ from 'jquery';
-import FB from 'fb';
 
 class Facebook extends React.Component {
     constructor(props) {
@@ -19,6 +17,8 @@ class Facebook extends React.Component {
     }
 
     componentDidMount() {
+        window.twttr.widgets.load();
+        console.log("componentDidMount()");
         let jwtToken = localStorage.getItem("JwtToken");
 
         fetch(`/getuserdata/${jwtToken}`, {
@@ -35,14 +35,15 @@ class Facebook extends React.Component {
                 name: jsonData.name,
                 userID: jsonData.userID,
                 pictureUrl: jsonData.pictureUrl
+            }, () => {
+                // fetch(`https://graph.facebook.com/${this.state.userID}/posts?fields=id,name,full_picture,message,place,created_time&access_token=${this.state.accessToken}`, {
+                //     method: 'GET'
+                // }).then(response => response.json())
+                // .then(jsonData => {
+                   
+                // });
             });
         }); 
-
-        FB.api('455695445269575/accounts/test-users', 'GET', {"fields":"id,access_token,login_url"},
-            function(response) {
-                console.log(response);
-            }
-        );
     }
 
     render() {

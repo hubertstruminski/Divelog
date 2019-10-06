@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @CrossOrigin
@@ -28,36 +27,23 @@ public class LogInController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> saveUserData(@RequestBody LoginRequest loginRequest) throws IOException {
-
-        Connection foundByEmail = connectionRepository.findByEmail(loginRequest.getEmail());
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndProviderId(loginRequest.getUserID(), loginRequest.getEmail(), Provider.FACEBOOK.getProvider());
         String jwtToken = null;
 
-        if(foundByEmail == null) {
+        if(foundedUser == null) {
             Connection connection = new Connection();
 
-            connection.setUserID(loginRequest.getUserID());
-            connection.setEmail(loginRequest.getEmail());
-            connection.setName(loginRequest.getName());
-            connection.setAccessToken(loginRequest.getAccessToken());
-            connection.setAuthenticated(true);
-            connection.setPictureUrl(loginRequest.getPictureUrl());
-            connection.setProviderId(Provider.FACEBOOK.getProvider());
-            connection.setLoggedAt(new Date());
+            setConnection(connection, loginRequest);
             connection.setCreatedAt(new Date());
 
             connectionRepository.save(connection);
 
             jwtToken = jwtTokenProvider.generateToken(connection);
         } else {
-            foundByEmail.setName(loginRequest.getName());
-            foundByEmail.setAccessToken(loginRequest.getAccessToken());
-            foundByEmail.setAuthenticated(true);
-            foundByEmail.setPictureUrl(loginRequest.getPictureUrl());
-            foundByEmail.setLoggedAt(new Date());
+            setConnection(foundedUser, loginRequest);
+            connectionRepository.save(foundedUser);
 
-            connectionRepository.save(foundByEmail);
-
-            jwtToken = jwtTokenProvider.generateToken(foundByEmail);
+            jwtToken = jwtTokenProvider.generateToken(foundedUser);
         }
         return new ResponseEntity<String>(jwtToken, HttpStatus.OK);
     }
@@ -70,5 +56,16 @@ public class LogInController {
         boolean isValidAccessToken = jwtTokenProvider.validateToken(accessToken);
 
         return new ResponseEntity<Claims>(claimsFromJwt, HttpStatus.OK);
+    }
+
+    private void setConnection(Connection foundedUser, LoginRequest loginRequest) {
+        foundedUser.setUserID(loginRequest.getUserID());
+        foundedUser.setEmail(loginRequest.getEmail());
+        foundedUser.setName(loginRequest.getName());
+        foundedUser.setAccessToken(loginRequest.getAccessToken());
+        foundedUser.setAuthenticated(true);
+        foundedUser.setPictureUrl(loginRequest.getPictureUrl());
+        foundedUser.setProviderId(Provider.FACEBOOK.getProvider());
+        foundedUser.setLoggedAt(new Date());
     }
 }

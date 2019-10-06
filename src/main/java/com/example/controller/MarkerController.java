@@ -36,8 +36,9 @@ public class MarkerController {
     public ResponseEntity<?> addMarker(@RequestBody Marker marker, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
         marker.setUser(foundedUser);
 
         markerRepository.save(marker);
@@ -49,8 +50,9 @@ public class MarkerController {
     public ResponseEntity<?> getAllMarkers(@PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
         List<Marker> markersList = markerRepository.findAllByUser(foundedUser);
 
         return new ResponseEntity<List<Marker>>(markersList, HttpStatus.OK);
@@ -60,8 +62,9 @@ public class MarkerController {
     public ResponseEntity<?> deleteMarker(@PathVariable String jwtToken, @PathVariable Long markerID) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Long userID = (Long) claimsFromJwt.get("userID");
+        String email = (String) claimsFromJwt.get("email");
 
-        Connection foundedUser = connectionRepository.findByUserID(userID);
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
         Marker marker = markerRepository.findByIdAndUser(markerID, foundedUser);
         Logbook foundedLogbook = logbookRepository.findByMarker(marker);

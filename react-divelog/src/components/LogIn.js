@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 import { AuthObject } from '../util/AuthObject';
 import AuthService from '../util/AuthService';
 import $ from 'jquery';
+import TwitterLogin from 'react-twitter-auth';
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class LogIn extends React.Component {
         }
         this.Auth = new AuthService();
         this.responseFacebook = this.responseFacebook.bind(this);
+        this.onTwitterClick = this.onTwitterClick.bind(this);
     }
 
     componentDidMount() {
@@ -57,6 +59,16 @@ class LogIn extends React.Component {
         return <Redirect to="/dashboard/" />
     }
 
+    onTwitterClick() {
+        fetch("/generate/token/twitter", {
+            method: 'GET'
+        }).then(response => response.json())
+        .then(jsonData => {
+
+        }); 
+        
+        window.location.href = "http://localhost:8080/signin";
+    }
 
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/dashboard' }}
@@ -90,6 +102,10 @@ class LogIn extends React.Component {
                             textButton={this.props.t("login.facebook-btn")}
                             installed={true}
                         />
+                        <br />
+                        <button className="btn btn-primary" onClick={this.onTwitterClick}>
+                            LOGIN WITH TWITTER
+                        </button>
                     </div>
                 </div>
             </div>

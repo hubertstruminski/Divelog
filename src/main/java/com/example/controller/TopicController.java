@@ -44,8 +44,9 @@ public class TopicController {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
             Long userID = (Long) claimsFromJwt.get("userID");
+            String email = (String) claimsFromJwt.get("email");
 
-            Connection foundedUser = connectionRepository.findByUserID(userID);
+            Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
             if(foundedUser != null) {
                 Topic topic = new Topic();
@@ -106,8 +107,9 @@ public class TopicController {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
             Long userID = (Long) claimsFromJwt.get("userID");
+            String email = (String) claimsFromJwt.get("email");
 
-            Connection foundedUser = connectionRepository.findByUserID(userID);
+            Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
 
             Topic topic = topicRepository.getById(topicId);
             List<Post> posts = postRepository.getAllByTopic(topic);

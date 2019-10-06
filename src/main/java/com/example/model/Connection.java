@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "facebook_connection")
+@Table(name = "connection")
 public class Connection {
 
     @Id
@@ -56,6 +56,9 @@ public class Connection {
 
     @OneToMany(mappedBy = "user")
     private List<TopicVote> topicVotes;
+
+    @OneToOne(mappedBy = "user")
+    private CustomTwitter customTwitter;
 
     public Connection() {
 
