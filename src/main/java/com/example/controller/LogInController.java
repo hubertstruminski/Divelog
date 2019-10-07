@@ -50,12 +50,11 @@ public class LogInController {
 
     @GetMapping("/getuserdata/{jwtToken}")
     public ResponseEntity<?> getUserData(@PathVariable String jwtToken) {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-
-        String accessToken = String.valueOf(claimsFromJwt.get("accessToken"));
-        boolean isValidAccessToken = jwtTokenProvider.validateToken(accessToken);
-
-        return new ResponseEntity<Claims>(claimsFromJwt, HttpStatus.OK);
+        if(jwtTokenProvider.validateToken(jwtToken)) {
+            Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+            return new ResponseEntity<Claims>(claimsFromJwt, HttpStatus.OK);
+        }
+        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
     private void setConnection(Connection foundedUser, LoginRequest loginRequest) {

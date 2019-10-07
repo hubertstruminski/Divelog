@@ -29,7 +29,14 @@ class HeaderIn extends React.Component {
     }
 
     componentDidMount() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = null;
+
+        if(this.Auth.getTwitterToken() !== null) {
+            jwtToken = this.Auth.getTwitterToken();
+        }
+        if(this.Auth.getToken() !== null) {
+            jwtToken = this.Auth.getToken();
+        }
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
@@ -46,7 +53,7 @@ class HeaderIn extends React.Component {
                 userID: jsonData.userID,
                 pictureUrl: jsonData.pictureUrl
             });
-        });
+        }); 
 
         $("nav").css({ 
             "position": "fixed", 
@@ -74,8 +81,13 @@ class HeaderIn extends React.Component {
 
     onSubmit() {
         this.logout();
-        
-        this.Auth.logout();
+
+        if(this.Auth.getTwitterToken() !== null) {
+            this.Auth.logoutTwitter();
+        }
+        if(this.Auth.getToken() !== null) {
+            this.Auth.logout();
+        }
         this.props.history.push("/login");
     }
 

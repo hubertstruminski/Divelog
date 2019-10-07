@@ -90,7 +90,6 @@ class LogIn extends React.Component {
                         <br />
                         <span className="logo-text">Divelog</span>
                         <br />
-                        <br />
                         <FacebookLogin
                             appId="455695445269575"
                             autoLoad={false}
@@ -103,7 +102,12 @@ class LogIn extends React.Component {
                             installed={true}
                         />
                         <br />
-                        <button className="btn btn-primary" onClick={this.onTwitterClick}>
+                        <button 
+                            type="button" 
+                            className="btn btn-tw fb-btn-white-font btn-tw-background btn-tw-width"
+                            onClick={this.onTwitterClick}
+                        >
+                            <i class="fab fa-twitter pr-1"></i> 
                             LOGIN WITH TWITTER
                         </button>
                     </div>

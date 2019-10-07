@@ -7,12 +7,8 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
 
-    /* position: absolute;
-    top: 0;
-    bottom: 0; */
     width: 100%;
     min-height: 100%;
-    /* z-index: -100; */
 
     display: flex;
     justify-content: center;
@@ -33,7 +29,6 @@
 
 .form-size {
     width: 20%;
-    height: 30em; 
 }
 
 .logo-space {
@@ -51,22 +46,38 @@
 }
 
 .btn-fb {
-    height: 12%;
-    width: 90%;
     background-color: #3B5999;
     border: 1px solid #3B5999;
-    border-radius: 5px;
+    width: 90%;
+    height: 10%;
+}
+
+.btn-tw-width {
+    width: 90%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin-bottom: 6%;
 }
 
 .fb-btn-white-font {
     color: white;
 }
 
+.fb-btn-white-font:hover {
+    color: white;
+}
+
+.btn-tw-background {
+    background-color: #3FAFEC;
+}
+
+.social-icon-login {
+    
+}
 
 @media screen and (max-width: 500px) and (min-width: 300px) {
     .form-size {
-        width: 40%;
-        height: 17em; 
+        width: 40%; 
     }
 
     .logo-text {
@@ -81,8 +92,7 @@
 
 @media screen and (max-width: 800px) and (min-width: 500px) {
     .form-size {
-        width: 40%;
-        height: 26em; 
+        width: 40%; 
     }
 
     .logo-text {
@@ -93,7 +103,6 @@
 @media screen and (max-width: 1100px) and (min-width: 800px) {
     .form-size {
         width: 40%;
-        height: 36em; 
     }
 
     .logo-text {
@@ -106,8 +115,7 @@
 }
 @media screen and (max-width: 1100px) and (min-width: 800px) and (min-height: 1900px) {
     .form-size {
-        width: 40%;
-        height: 36em; 
+        width: 40%; 
     }
 
     .logo-text {
@@ -118,7 +126,6 @@
 @media screen and (max-width: 1600px) and (min-width: 1100px) {
     .form-size {
         width: 45%;
-        height: 45em; 
     }
 
     .logo-text {
@@ -134,7 +141,6 @@
 @media screen and (max-width: 850px) and (min-width: 600px) and (orientation: landscape) {
     .form-size {
         width: 40%;
-        height: 28em; 
     }
 
     .logo-text {
@@ -153,7 +159,6 @@
             and (max-height: 800px) and (min-height: 350px) {
     .form-size {
         width: 30%;
-        height: 26em; 
     }
 
     .logo-text {
@@ -169,7 +174,6 @@
 @media screen and (max-width: 1500px) and (min-width: 1100px) and (orientation: landscape) {
     .form-size {
         width: 40%;
-        height: 43em; 
     }
 
     .logo-text {
@@ -185,7 +189,6 @@
 @media screen and (max-height: 2200px) and (min-height: 1500px) {
     .form-size {
         width: 30%;
-        height: 64em; 
     }
 
     .logo-text {

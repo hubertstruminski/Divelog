@@ -2,6 +2,8 @@ import React from 'react';
 import '../css/Facebook.css';
 import LeftCard from './Layout/LeftCard';
 import withAuth from '../util/withAuth';
+import Cookies from 'universal-cookie';
+import AuthService from '../util/AuthService';
 
 class Facebook extends React.Component {
     constructor(props) {
@@ -14,12 +16,21 @@ class Facebook extends React.Component {
             userID: '',
             pictureUrl: ''
         }
+        this.cookies = new Cookies();
+        this.Auth = new AuthService();
     }
 
     componentDidMount() {
         window.twttr.widgets.load();
-        console.log("componentDidMount()");
-        let jwtToken = localStorage.getItem("JwtToken");
+        
+        let jwtToken = null;
+
+        if(this.Auth.getTwitterToken() !== null) {
+            jwtToken = this.Auth.getTwitterToken();
+        }
+        if(this.Auth.getToken() !== null) {
+            jwtToken = this.Auth.getToken();
+        }
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
@@ -86,3 +97,4 @@ class Facebook extends React.Component {
 }
 
 export default withAuth(Facebook);
+// export default Facebook;

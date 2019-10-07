@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.math.BigInteger;
+
 @Controller
 public class TopicVoteController {
 
@@ -35,7 +37,7 @@ public class TopicVoteController {
     public ResponseEntity<?> voteForTopic(@RequestBody boolean isUpVoted, @PathVariable Long topicId, @PathVariable String jwtToken) {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-            Long userID = (Long) claimsFromJwt.get("userID");
+            BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
             String email = (String) claimsFromJwt.get("email");
 
             Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);

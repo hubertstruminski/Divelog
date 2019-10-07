@@ -30,6 +30,7 @@ import AddTopic from './components/forum/AddTopic';
 import TopicWithPosts from './components/forum/TopicWithPosts';
 import UpdateTopic from './components/forum/UpdateTopic';
 import Settings from './components/settings/Settings';
+import Twitter from './components/Twitter';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -70,6 +71,7 @@ function App() {
               <Route exact path="/topic/:id/:languageForum/posts" component={TopicWithPosts} />
               <Route exact path="/update/topic/:id" component={UpdateTopic} />
               <Route exact path="/settings" component={Settings} />
+              <Route exact path="/twitter" component={Twitter} />
           </I18nextProvider>
         </div>
       </Router>

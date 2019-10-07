@@ -1,11 +1,15 @@
 package com.example.controller;
 
+import com.example.config.JwtTokenProvider;
+import com.example.dto.ConnectionDto;
 import com.example.enums.Provider;
 import com.example.model.Connection;
 import com.example.model.CustomTwitter;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.CustomTwitterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import twitter4j.*;
@@ -14,10 +18,12 @@ import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 @RestController
@@ -28,6 +34,9 @@ public class TwitterController {
 
     @Autowired
     private CustomTwitterRepository twitterRepository;
+
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
     @GetMapping("/signin")
     public String loginWithTwitter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,8 +79,10 @@ public class TwitterController {
             return;
         }
 
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndProviderId(accessToken.getUserId(),
-                user.getEmail(), Provider.TWITTER.getProvider());
+        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndProviderId(
+                BigInteger.valueOf(accessToken.getUserId()), user.getEmail(), Provider.TWITTER.getProvider());
+
+        String jwtToken = null;
 
         if(foundedUser == null) {
             Connection connection = new Connection();
@@ -83,6 +94,7 @@ public class TwitterController {
             connectionRepository.save(connection);
             setTwitter(connection, accessToken, customTwitter);
 
+            jwtToken = jwtTokenProvider.generateTokenForTwitter(setConnectionDtoForTwitterToken(connection, customTwitter));
         } else {
             setUserInfo(foundedUser, accessToken, user);
             connectionRepository.save(foundedUser);
@@ -92,18 +104,33 @@ public class TwitterController {
             if(foundedTwitter == null) {
                 CustomTwitter customTwitter = new CustomTwitter();
                 setTwitter(foundedUser, accessToken, customTwitter);
+
+                jwtToken = jwtTokenProvider.generateTokenForTwitter(setConnectionDtoForTwitterToken(foundedUser, customTwitter));
             } else {
                 setTwitter(foundedUser, accessToken, foundedTwitter);
+
+                jwtToken = jwtTokenProvider.generateTokenForTwitter(setConnectionDtoForTwitterToken(foundedUser, foundedTwitter));
             }
 
         }
         request.getSession().removeAttribute("requestToken");
-        response.sendRedirect("http://localhost:3000/dashboard");
 
+        Cookie cookie = new Cookie("twitterJwtToken", jwtToken);
+        cookie.setSecure(false);
+        cookie.setMaxAge(60 * 60 * 24);
+        cookie.setPath("/");
+
+        response.addCookie(cookie);
+        response.sendRedirect("http://localhost:3000/twitter");
+    }
+
+    @GetMapping("/generate/twitter/token")
+    public ResponseEntity<?> generateJwtTokenForTwitter() {
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
-        connection.setUserID(accessToken.getUserId());
+        connection.setUserID(BigInteger.valueOf(accessToken.getUserId()));
         connection.setProviderId(Provider.TWITTER.getProvider());
         connection.setEmail(user.getEmail());
         connection.setPictureUrl(user.get400x400ProfileImageURL());
@@ -121,5 +148,23 @@ public class TwitterController {
         customTwitter.setScreenName(accessToken.getScreenName());
 
         twitterRepository.save(customTwitter);
+    }
+
+    private ConnectionDto setConnectionDtoForTwitterToken(Connection user, CustomTwitter twitter) {
+        ConnectionDto connectionDto = new ConnectionDto();
+
+        connectionDto.setUserID(user.getUserID());
+        connectionDto.setProviderId(user.getProviderId());
+        connectionDto.setPictureUrl(user.getPictureUrl());
+        connectionDto.setName(user.getName());
+        connectionDto.setLoggedAt(user.getLoggedAt());
+        connectionDto.setEmail(user.getEmail());
+        connectionDto.setCreatedAt(user.getCreatedAt());
+        connectionDto.setAccessToken(user.getAccessToken());
+
+        connectionDto.setTokenSecret(twitter.getTokenSecret());
+        connectionDto.setScreenName(twitter.getScreenName());
+
+        return connectionDto;
     }
 }

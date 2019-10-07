@@ -2,6 +2,7 @@ package com.example.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -15,35 +16,35 @@ public class Connection {
 
     @NotNull
     @Column(name = "user_id")
-    private Long userID;
+    protected BigInteger userID;
 
     @NotNull
-    private String email;
+    protected String email;
 
     @NotNull
-    private String name;
+    protected String name;
 
     @Column(name = "access_token")
-    private String accessToken;
+    protected String accessToken;
 
     @NotNull
     private boolean authenticated;
 
     @Column(name = "picture_url")
-    private String pictureUrl;
+    protected String pictureUrl;
 
     @NotNull
-    private String providerId;
+    protected String providerId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "logged_in_at")
     @NotNull
-    private Date loggedAt;
+    protected Date loggedAt;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "created_at")
     @NotNull
-    private Date createdAt;
+    protected Date createdAt;
 
     @OneToMany(mappedBy = "user")
     private List<Marker> markers;
@@ -72,11 +73,11 @@ public class Connection {
         this.id = id;
     }
 
-    public Long getUserID() {
+    public BigInteger getUserID() {
         return userID;
     }
 
-    public void setUserID(Long userID) {
+    public void setUserID(BigInteger userID) {
         this.userID = userID;
     }
 

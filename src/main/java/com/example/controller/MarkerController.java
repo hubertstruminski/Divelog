@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Controller
@@ -35,7 +36,7 @@ public class MarkerController {
     @PostMapping("/add/marker/{jwtToken}")
     public ResponseEntity<?> addMarker(@RequestBody Marker marker, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
@@ -49,7 +50,7 @@ public class MarkerController {
     @GetMapping("/get/markers/{jwtToken}")
     public ResponseEntity<?> getAllMarkers(@PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
@@ -61,7 +62,7 @@ public class MarkerController {
     @DeleteMapping("/delete/marker/{jwtToken}/{markerID}")
     public ResponseEntity<?> deleteMarker(@PathVariable String jwtToken, @PathVariable Long markerID) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);

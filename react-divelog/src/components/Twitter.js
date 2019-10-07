@@ -1,4 +1,6 @@
 import React from 'react';
+import withAuth from '../util/withAuth';
+import AuthService from '../util/AuthService';
 
 class Twitter extends React.Component {
     constructor(props) {
@@ -11,11 +13,20 @@ class Twitter extends React.Component {
             userID: '',
             pictureUrl: ''
         }
+        this.Auth = new AuthService();
     }
 
     componentDidMount() {
-        window.twttr.widgets.load();
-        let jwtToken = localStorage.getItem("JwtToken");
+        window.twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
+        
+        let jwtToken = null;
+
+        if(this.Auth.getTwitterToken() !== null) {
+            jwtToken = this.Auth.getTwitterToken();
+        }
+        if(this.Auth.getToken() !== null) {
+            jwtToken = this.Auth.getToken();
+        }
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
@@ -30,8 +41,24 @@ class Twitter extends React.Component {
                 email: jsonData.email,
                 name: jsonData.name,
                 userID: jsonData.userID,
-                pictureUrl: jsonData.pictureUrl
+                pictureUrl: jsonData.pictureUrl,
+                providerId: jsonData.providerId,
+                screenName: jsonData.screenName,
+                tokenSecret: jsonData.tokenSecret
             }, () => {
+                window.twttr.widgets.createTimeline(
+                {
+                    sourceType: 'profile',
+                    screenName: this.state.screenName
+                },
+                document.getElementsByClassName("feed-container")[0],
+                {
+                    width: '100%',
+                    height: '100%',
+                    related: 'twitterdev,twitterapi'
+                }).then(function (el) {
+                    console.log('Embedded a timeline.')
+                });
             });
         }); 
     }
@@ -53,13 +80,11 @@ class Twitter extends React.Component {
                                 </div>
                             </div>
                             <hr className="hr-margin" />
-                            <LeftCard />
+                            {/* <LeftCard /> */}
                         </div>
                     </div>
                     <div className="feed-container">
-                        <div className="feed-add-container">
-                            <i className="fas fa-plus fa-3x plus-shadow"></i>
-                        </div>
+                        {/* Hubert Strumiński - twitter account */}
                     </div>
                     <div className="fb-grid-item-3">
                         <div className="rl-container">
@@ -75,4 +100,4 @@ class Twitter extends React.Component {
     }
 }
 
-export default Twitter;
+export default withAuth(Twitter);

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class LogbookController {
     @PostMapping("/add/logbook/{jwtToken}")
     public ResponseEntity<?> addDiveToLogbook(@RequestBody Logbook logbook, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
@@ -56,7 +57,7 @@ public class LogbookController {
     @GetMapping("/get/logbook/{jwtToken}")
     public ResponseEntity<?> getDivesFromLogbook(@PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
@@ -68,7 +69,7 @@ public class LogbookController {
     @DeleteMapping("/logbook/{logbookId}/{jwtToken}")
     public ResponseEntity<?> deleteLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
@@ -86,7 +87,7 @@ public class LogbookController {
     @GetMapping("/get/logbook/{jwtToken}/{logbookId}")
     public ResponseEntity<?> getLogbookById(@PathVariable String jwtToken, @PathVariable Long logbookId) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
@@ -102,7 +103,7 @@ public class LogbookController {
     @PutMapping("/edit/logbook/{logbookId}/{jwtToken}")
     public ResponseEntity<?> updateLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken, @RequestBody Logbook logbook) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
@@ -146,7 +147,7 @@ public class LogbookController {
     @GetMapping("/pdf/logbook/{logbookId}/{jwtToken}")
     public ResponseEntity<?> getPDFFromLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        Long userID = (Long) claimsFromJwt.get("userID");
+        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
         String email = (String) claimsFromJwt.get("email");
 
         Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);

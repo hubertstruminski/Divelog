@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class TopicController {
 
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-            Long userID = (Long) claimsFromJwt.get("userID");
+            BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
             String email = (String) claimsFromJwt.get("email");
 
             Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
@@ -106,7 +107,7 @@ public class TopicController {
     public ResponseEntity<?> fetchNumberOfComments(@PathVariable Long topicId, @PathVariable String jwtToken) {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-            Long userID = (Long) claimsFromJwt.get("userID");
+            BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
             String email = (String) claimsFromJwt.get("email");
 
             Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);

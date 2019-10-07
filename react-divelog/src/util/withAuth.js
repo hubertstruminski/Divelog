@@ -7,12 +7,24 @@ export default function withAuth(AuthComponent) {
     class AuthWrapped extends React.Component {
         componentWillMount() {
             if(!Auth.loggedIn()) {
-                this.props.history.replace("/login")
+                this.props.history.replace("/login");
             } else {
+                let twitterJwtToken = Auth.getTwitterToken();
+                let facebookJwtToken = Auth.getToken();
                 try {
-                    this.props.history.replace("/dashboard");
+                    if(twitterJwtToken) {
+                        this.props.history.replace("/twitter");
+                    }
+                    if(facebookJwtToken) {
+                        this.props.history.replace("/dashboard");
+                    }
                 } catch(err) {
-                    Auth.logout();
+                    if(twitterJwtToken) {
+                        Auth.logoutTwitter();
+                    }
+                    if(facebookJwtToken) {
+                        Auth.logout();
+                    }
                     this.props.history.replace("/login");
                 }
             }

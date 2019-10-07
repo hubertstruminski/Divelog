@@ -1,17 +1,19 @@
 package com.example.model;
 
+import java.math.BigInteger;
+
 public class LoginRequest {
 
     private String accessToken;
     private String email;
     private String name;
-    private Long userID;
+    private BigInteger userID;
     private String pictureUrl;
 
     public LoginRequest() {
     }
 
-    public LoginRequest(String accessToken, String email, String name, Long userID, String pictureUrl) {
+    public LoginRequest(String accessToken, String email, String name, BigInteger userID, String pictureUrl) {
         this.accessToken = accessToken;
         this.email = email;
         this.name = name;
@@ -43,11 +45,11 @@ public class LoginRequest {
         this.name = name;
     }
 
-    public Long getUserID() {
+    public BigInteger getUserID() {
         return userID;
     }
 
-    public void setUserID(Long userID) {
+    public void setUserID(BigInteger userID) {
         this.userID = userID;
     }
 
