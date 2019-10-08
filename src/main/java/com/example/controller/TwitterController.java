@@ -7,10 +7,13 @@ import com.example.model.Connection;
 import com.example.model.CustomTwitter;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.CustomTwitterRepository;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
@@ -124,9 +127,16 @@ public class TwitterController {
         response.sendRedirect("http://localhost:3000/twitter");
     }
 
-    @GetMapping("/generate/twitter/token")
-    public ResponseEntity<?> generateJwtTokenForTwitter() {
-        return new ResponseEntity<Void>(HttpStatus.OK);
+    @PostMapping("/twitter/users/search/{searchInput}/{jwtToken}")
+    public ResponseEntity<?> findTwitterPeople(@PathVariable String searchInput, @PathVariable String jwtToken) throws TwitterException {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        String accessToken = (String) claimsFromJwt.get("accessToken");
+        String tokenSecret = (String) claimsFromJwt.get("tokenSecret");
+
+        Twitter twitter = setTwitterConfiguration(accessToken, tokenSecret);
+        ResponseList<User> users = twitter.searchUsers(searchInput, 1);
+
+        return new ResponseEntity<ResponseList<User>>(users, HttpStatus.OK);
     }
 
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
@@ -166,5 +176,17 @@ public class TwitterController {
         connectionDto.setScreenName(twitter.getScreenName());
 
         return connectionDto;
+    }
+
+    private Twitter setTwitterConfiguration(String accessToken, String tokenSecret) {
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+                .setOAuthConsumerKey("todfC8BjhF9MbQ7VUeGY8EyWH")
+                .setOAuthConsumerSecret("ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2")
+                .setOAuthAccessToken(accessToken)
+                .setOAuthAccessTokenSecret(tokenSecret);
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        Twitter twitter = tf.getInstance();
+        return twitter;
     }
 }

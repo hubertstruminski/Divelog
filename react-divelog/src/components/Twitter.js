@@ -1,6 +1,9 @@
 import React from 'react';
 import withAuth from '../util/withAuth';
 import AuthService from '../util/AuthService';
+import axios from 'axios';
+import TwitterCategoriesCard from './Layout/TwitterCategoriesCard';
+import TwitterGroupsCard from './Layout/TwitterGroupsCard';
 
 class Twitter extends React.Component {
     constructor(props) {
@@ -11,13 +14,19 @@ class Twitter extends React.Component {
             email: '',
             name: '',
             userID: '',
-            pictureUrl: ''
+            pictureUrl: '',
+            providerId: '',
+            screenName: '',
+            tokenSecret: ''
         }
         this.Auth = new AuthService();
     }
 
     componentDidMount() {
         window.twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
+        
+        const credentials = "todfC8BjhF9MbQ7VUeGY8EyWH:ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2";
+        const credentialsBase64Encoded = new Buffer(credentials).toString('base64');
         
         let jwtToken = null;
 
@@ -48,7 +57,7 @@ class Twitter extends React.Component {
             }, () => {
                 window.twttr.widgets.createTimeline(
                 {
-                    sourceType: 'profile',
+                    sourceType: 'likes',
                     screenName: this.state.screenName
                 },
                 document.getElementsByClassName("feed-container")[0],
@@ -80,7 +89,8 @@ class Twitter extends React.Component {
                                 </div>
                             </div>
                             <hr className="hr-margin" />
-                            {/* <LeftCard /> */}
+                            <TwitterCategoriesCard />
+                            
                         </div>
                     </div>
                     <div className="feed-container">
@@ -88,7 +98,9 @@ class Twitter extends React.Component {
                     </div>
                     <div className="fb-grid-item-3">
                         <div className="rl-container">
-                            <div className="groups-container"></div>
+                            <div className="groups-container">
+                                <TwitterGroupsCard />
+                            </div>
                         </div>
                         <div className="rr-container">
                             <div className="friends-container"></div>
