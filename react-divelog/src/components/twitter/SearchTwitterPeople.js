@@ -4,7 +4,7 @@ import AuthService from '../../util/AuthService';
 import axios from 'axios';
 import twitterVerified from '../../img/twitter-verified.png';
 
-class TwitterGroupsCard extends React.Component {
+class SearchTwitterPeople extends React.Component {
     constructor(props) {
         super(props);
 
@@ -27,7 +27,7 @@ class TwitterGroupsCard extends React.Component {
         this.setState({
             searchPeople: e.target.value
         }, () => {
-            if(this.state.searchPeople && this.state.searchPeople.length > 1) {
+            if(this.state.searchPeople && this.state.searchPeople.length > 0) {
                 this.getUsers();
             } else if(!this.state.searchPeople) {
                 this.setState({ searchPeopleList: [] });
@@ -36,10 +36,8 @@ class TwitterGroupsCard extends React.Component {
     }
 
     onBlur(e) {
-        if(e.keyCode === 8) {
-            if(this.state.searchPeople.length === 0) {
-                this.setState({ searchPeopleList: [] });
-            }
+        if(this.state.searchPeople.length === 0) {
+            this.setState({ searchPeopleList: [] });
         }
     }
 
@@ -111,7 +109,7 @@ class TwitterGroupsCard extends React.Component {
                         <input 
                             type="text"
                             value={this.state.searchPeople}
-                            placeholder="Search twitter people"
+                            placeholder="Search Twitter"
                             className="form-control input-search-twitter"
                             onChange={this.onTwitterSearchChange}
                             onBlur={this.onBlur}
@@ -126,4 +124,4 @@ class TwitterGroupsCard extends React.Component {
     }
 }
 
-export default TwitterGroupsCard;
+export default SearchTwitterPeople;

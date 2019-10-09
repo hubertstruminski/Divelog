@@ -27,7 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class TwitterController {
@@ -128,15 +130,29 @@ public class TwitterController {
     }
 
     @PostMapping("/twitter/users/search/{searchInput}/{jwtToken}")
-    public ResponseEntity<?> findTwitterPeople(@PathVariable String searchInput, @PathVariable String jwtToken) throws TwitterException {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        String accessToken = (String) claimsFromJwt.get("accessToken");
-        String tokenSecret = (String) claimsFromJwt.get("tokenSecret");
-
-        Twitter twitter = setTwitterConfiguration(accessToken, tokenSecret);
+    public ResponseEntity<?> findTwitterPeople(@PathVariable String searchInput, @PathVariable String jwtToken)
+            throws TwitterException {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
         ResponseList<User> users = twitter.searchUsers(searchInput, 1);
 
         return new ResponseEntity<ResponseList<User>>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/twitter/available/trends/{latitude}/{longitude}/{jwtToken}")
+    public ResponseEntity<?> getAvailableTrends(@PathVariable String latitude, @PathVariable String longitude,
+                                                @PathVariable String jwtToken) throws TwitterException {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
+
+        List<Trend[]> result = new ArrayList<>();
+
+        ResponseList<Location> availableTrends = twitter.getAvailableTrends();
+
+        for(Location location: availableTrends) {
+            Trends placeTrends = twitter.getPlaceTrends(location.getWoeid());
+            result.add(placeTrends.getTrends());
+
+        }
+        return new ResponseEntity<List<Trend[]>>(result, HttpStatus.OK);
     }
 
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
@@ -178,7 +194,11 @@ public class TwitterController {
         return connectionDto;
     }
 
-    private Twitter setTwitterConfiguration(String accessToken, String tokenSecret) {
+    private Twitter setTwitterConfiguration(String jwtToken) {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        String accessToken = (String) claimsFromJwt.get("accessToken");
+        String tokenSecret = (String) claimsFromJwt.get("tokenSecret");
+
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey("todfC8BjhF9MbQ7VUeGY8EyWH")

@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/TwitterCategoriesCard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/TwitterGroupsCard.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Twitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Twitter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Facebook.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Facebook.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TwitterCategoriesCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TwitterCategoriesCard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -77,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="138" selection-start-line="138" selection-end-line="138" />
+            <state relative-caret-position="179">
+              <caret line="143" selection-start-line="143" selection-end-line="143" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,7 +96,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
+            <state relative-caret-position="-16">
               <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -102,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="98" column="12" lean-forward="true" selection-start-line="98" selection-start-column="12" selection-end-line="100" selection-end-column="63" />
+              <caret line="98" column="12" selection-start-line="98" selection-start-column="12" selection-end-line="100" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -419,12 +426,12 @@
       <workItem from="1570217865661" duration="3551000" />
       <workItem from="1570290638423" duration="254000" />
       <workItem from="1570291117943" duration="28622000" />
-      <workItem from="1570400535505" duration="22506000" />
+      <workItem from="1570400535505" duration="32261000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="371252000" />
+    <option name="totallyTimeSpent" value="381007000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -896,16 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogoutController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
@@ -926,7 +923,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="98" column="12" lean-forward="true" selection-start-line="98" selection-start-column="12" selection-end-line="100" selection-end-column="63" />
+          <caret line="98" column="12" selection-start-line="98" selection-start-column="12" selection-end-line="100" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -940,10 +937,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16">
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
+        <state relative-caret-position="179">
+          <caret line="143" selection-start-line="143" selection-end-line="143" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

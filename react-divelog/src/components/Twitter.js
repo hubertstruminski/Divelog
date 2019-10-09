@@ -1,9 +1,11 @@
 import React from 'react';
+import '../css/Twitter.css';
 import withAuth from '../util/withAuth';
 import AuthService from '../util/AuthService';
-import axios from 'axios';
-import TwitterCategoriesCard from './Layout/TwitterCategoriesCard';
-import TwitterGroupsCard from './Layout/TwitterGroupsCard';
+import TwitterCategoriesCard from './twitter/TwitterCategoriesCard';
+import SearchTwitterPeople from './twitter/SearchTwitterPeople';
+import AvailableTrends from './twitter/AvailableTrends';
+
 
 class Twitter extends React.Component {
     constructor(props) {
@@ -24,10 +26,7 @@ class Twitter extends React.Component {
 
     componentDidMount() {
         window.twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
-        
-        const credentials = "todfC8BjhF9MbQ7VUeGY8EyWH:ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2";
-        const credentialsBase64Encoded = new Buffer(credentials).toString('base64');
-        
+
         let jwtToken = null;
 
         if(this.Auth.getTwitterToken() !== null) {
@@ -60,13 +59,11 @@ class Twitter extends React.Component {
                     sourceType: 'likes',
                     screenName: this.state.screenName
                 },
-                document.getElementsByClassName("feed-container")[0],
+                document.getElementsByClassName("tweets-likes-container")[0],
                 {
                     width: '100%',
                     height: '100%',
                     related: 'twitterdev,twitterapi'
-                }).then(function (el) {
-                    console.log('Embedded a timeline.')
                 });
             });
         }); 
@@ -89,17 +86,31 @@ class Twitter extends React.Component {
                                 </div>
                             </div>
                             <hr className="hr-margin" />
-                            <TwitterCategoriesCard />
+                            <TwitterCategoriesCard
+                                pictureUrl={this.state.pictureUrl}
+                                screenName={this.state.screenName}
+                            />
                             
                         </div>
                     </div>
                     <div className="feed-container">
-                        {/* Hubert Strumiński - twitter account */}
+                        <div className="twitter-user-profil">
+                            <div className="twitter-header-profile">
+
+                            </div>
+                            <div className="tweets-profile-container">
+                                <a class="twitter-timeline" href={`https://twitter.com/${this.state.screenName}?ref_src=twsrc%5Etfw`}>Tweets by {this.state.screenName}</a>
+                            </div>
+                        </div>
+                        <div className="tweets-likes-container">
+
+                        </div>
                     </div>
                     <div className="fb-grid-item-3">
                         <div className="rl-container">
                             <div className="groups-container">
-                                <TwitterGroupsCard />
+                                <SearchTwitterPeople />
+                                <AvailableTrends />
                             </div>
                         </div>
                         <div className="rr-container">
