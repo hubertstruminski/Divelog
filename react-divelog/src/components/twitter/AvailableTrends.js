@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../css/AvailableTrends.css';
 import AuthService from '../../util/AuthService';
-import { geolocated } from 'react-geolocated';
-import GeoLocation from './GeoLocation';
+import swal from 'sweetalert';
+import Trend from './Trend';
 
 class AvailableTrends extends React.Component {
     constructor(props) {
@@ -10,70 +10,131 @@ class AvailableTrends extends React.Component {
 
         this.state = {
             longitude: 0.0,
-            latitude: 0.0
+            latitude: 0.0,
+            isGeolocationRejected: false,
+            isGeolocationNotSupported: false,
+            trends: [],
+            isRetrievedTrends: false
         }
         this.Auth = new AuthService();
         this.twitterJwtToken = this.Auth.getTwitterToken();
-
-        this.setGeolocation = this.setGeolocation.bind(this);
+        this.geolocationError = this.geolocationError.bind(this);
+        this.geolocationSuccess = this.geolocationSuccess.bind(this);
+        this.renderTwitterTrends = this.renderTwitterTrends.bind(this);
     }
 
     componentDidMount() {
-        let latitude = this.state.latitude;
-        let longitude = this.state.longitude
-        fetch(`/twitter/available/trends/${this.state.latitude}/${this.state.longitude}/${this.twitterJwtToken}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
-            }
-        }).then(response => response.json())
-        .then(json => {
-            console.log(json);
+        if(!navigator.geolocation) {
+            this.setState({ isGeolocationNotSupported: true });
+        } else {
+            navigator.geolocation.getCurrentPosition(this.geolocationSuccess, this.geolocationError);
+        }
+        
+    }
+
+    geolocationError() {
+        this.setState({ isGeolocationRejected: true });
+    }
+
+    geolocationSuccess(position) {
+        this.setState({ 
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        }, () => {
+            fetch(`/twitter/available/closest/trends/${this.state.latitude}/${this.state.longitude}/${this.twitterJwtToken}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'content-type': 'application/json'
+                }
+            }).then(response => response.json())
+            .then(json => {
+                json.map((trend, index) => {
+                    if(trend.tweetVolume !== -1) {
+                        const element = {
+                            name: trend.name,
+                            countryName: trend.countryName,
+                            tweetVolume: trend.tweetVolume
+                        }
+                        this.setState({ trends: this.state.trends.concat(element) });
+                    }
+                });
+                this.setState({
+                    isGeolocationNotSupported: false,
+                    isGeolocationRejected: false,
+                    isRetrievedTrends: true
+                });
+            });
         });
     }
 
-    componentDidUpdate() {
-        let latitude = this.state.latitude;
-        let longitude = this.state.longitude
-        fetch(`/twitter/available/trends/${this.state.latitude}/${this.state.longitude}/${this.twitterJwtToken}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
-            }
-        }).then(response => response.json())
-        .then(json => {
-            console.log(json);
+    notSupportedGeolocation(isGeolocationNotSupported) {
+        if(isGeolocationNotSupported) {
+            return (
+                <div className="alert alert-danger">
+                    Your browser does not support geolocation.
+                </div>
+            );
+        }
+        return null;
+    }
+
+    rejectGeolocation(isGeolocationRejected) {
+        if(isGeolocationRejected) {
+            return (
+                <div className="alert alert-danger">
+                    Location process rejected.
+                    <br />
+                    Unable to retrieve twitter trends.
+                    <br />
+                    Turn on your location.
+                </div>
+            );
+        }
+        return null;
+    }
+
+    renderTwitterTrends() {
+        return this.state.trends.map((trend, index) => {
+            return (
+                <li className="list-group-item trends-list-item">
+                    <Trend 
+                        name={trend.name}
+                        countryName={trend.countryName}
+                        tweetVolume={trend.tweetVolume}
+                    />
+                </li>
+            );
         });
     }
 
-    setGeolocation(longitude, latitude) {
-        this.setState({
-            longitude: longitude,
-            latitude: latitude
-        });
-    }
 
     render() {
+        let isGeolocationRejected = this.state.isGeolocationRejected;
+        let isGeolocationNotSupported = this.state.isGeolocationNotSupported;
+        let isRetrievedTrends = this.state.isRetrievedTrends;
+
         return (
-            <div>
-                <ul className="list-group">
+            <div className="trends-div-box">
+                { isGeolocationRejected &&
                     <div className="geolocation-twitter-trends-box">
-                        <GeoLocation 
-                            {...this.props}
-                            setGeolocation={this.setGeolocation} 
-                        />
+                        { this.rejectGeolocation(isGeolocationRejected) }
                     </div>
-                </ul>
+                }
+                {
+                    isGeolocationNotSupported &&
+                    <div className="geolocation-twitter-trends-box">
+                        { this.notSupportedGeolocation(isGeolocationNotSupported) }
+                    </div>
+                }
+                { isRetrievedTrends &&
+                    <ul className="list-group trends-list">
+                        { this.renderTwitterTrends() }
+                    </ul>
+                }
             </div>
         );
     }
 }
 
-export default geolocated({
-    positionOptions: {
-        enableHighAccuracy: false,
-    },
-    userDecisionTimeout: 25000,
-})(AvailableTrends);
+export default AvailableTrends;

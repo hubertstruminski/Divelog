@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.config.JwtTokenProvider;
 import com.example.dto.ConnectionDto;
+import com.example.dto.TrendDto;
 import com.example.enums.Provider;
 import com.example.model.Connection;
 import com.example.model.CustomTwitter;
@@ -133,26 +134,43 @@ public class TwitterController {
     public ResponseEntity<?> findTwitterPeople(@PathVariable String searchInput, @PathVariable String jwtToken)
             throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
-        ResponseList<User> users = twitter.searchUsers(searchInput, 1);
 
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+        ResponseList<User> users = twitter.searchUsers(searchInput, 1);
         return new ResponseEntity<ResponseList<User>>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/twitter/available/trends/{latitude}/{longitude}/{jwtToken}")
-    public ResponseEntity<?> getAvailableTrends(@PathVariable String latitude, @PathVariable String longitude,
+    @GetMapping("/twitter/available/closest/trends/{latitude}/{longitude}/{jwtToken}")
+    public ResponseEntity<?> getAvailableTrends(@PathVariable double latitude, @PathVariable double longitude,
                                                 @PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 
-        List<Trend[]> result = new ArrayList<>();
-
-        ResponseList<Location> availableTrends = twitter.getAvailableTrends();
-
-        for(Location location: availableTrends) {
-            Trends placeTrends = twitter.getPlaceTrends(location.getWoeid());
-            result.add(placeTrends.getTrends());
-
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<List<Trend[]>>(result, HttpStatus.OK);
+
+        GeoLocation geoLocation = new GeoLocation(latitude, longitude);
+        ResponseList<Location> closestTrends = twitter.getClosestTrends(geoLocation);
+
+        List<TrendDto> trendList = new ArrayList<>();
+
+        for(Location location: closestTrends) {
+            Trends placeTrends = twitter.getPlaceTrends(location.getWoeid());
+            Trend[] trends = placeTrends.getTrends();
+
+            for(Trend trend: trends) {
+                TrendDto trendDto = new TrendDto();
+
+                trendDto.setCountryName(location.getCountryName());
+                trendDto.setName(trend.getName());
+                trendDto.setTweetVolume(trend.getTweetVolume());
+
+                trendList.add(trendDto);
+            }
+        }
+        return new ResponseEntity<List<TrendDto>>(trendList, HttpStatus.OK);
     }
 
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
@@ -195,18 +213,21 @@ public class TwitterController {
     }
 
     private Twitter setTwitterConfiguration(String jwtToken) {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        String accessToken = (String) claimsFromJwt.get("accessToken");
-        String tokenSecret = (String) claimsFromJwt.get("tokenSecret");
+        if(jwtTokenProvider.validateToken(jwtToken)) {
+            Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+            String accessToken = (String) claimsFromJwt.get("accessToken");
+            String tokenSecret = (String) claimsFromJwt.get("tokenSecret");
 
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey("todfC8BjhF9MbQ7VUeGY8EyWH")
-                .setOAuthConsumerSecret("ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2")
-                .setOAuthAccessToken(accessToken)
-                .setOAuthAccessTokenSecret(tokenSecret);
-        TwitterFactory tf = new TwitterFactory(cb.build());
-        Twitter twitter = tf.getInstance();
-        return twitter;
+            ConfigurationBuilder cb = new ConfigurationBuilder();
+            cb.setDebugEnabled(true)
+                    .setOAuthConsumerKey("todfC8BjhF9MbQ7VUeGY8EyWH")
+                    .setOAuthConsumerSecret("ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2")
+                    .setOAuthAccessToken(accessToken)
+                    .setOAuthAccessTokenSecret(tokenSecret);
+            TwitterFactory tf = new TwitterFactory(cb.build());
+            Twitter twitter = tf.getInstance();
+            return twitter;
+        }
+        return null;
     }
 }

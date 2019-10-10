@@ -109,8 +109,10 @@ class Twitter extends React.Component {
                     <div className="fb-grid-item-3">
                         <div className="rl-container">
                             <div className="groups-container">
-                                <SearchTwitterPeople />
-                                <AvailableTrends />
+                                {/* <ul className="list-group groups-list"> */}
+                                    <SearchTwitterPeople />
+                                    <AvailableTrends />
+                                {/* </ul> */}
                             </div>
                         </div>
                         <div className="rr-container">

@@ -103,22 +103,24 @@ class SearchTwitterPeople extends React.Component {
         let isSearched = this.state.isSearched;
 
         return (
-            <div>
-                <ul className="list-group">
-                    <li id="search-twitter-people" className="list-group-item">
-                        <input 
-                            type="text"
-                            value={this.state.searchPeople}
-                            placeholder="Search Twitter"
-                            className="form-control input-search-twitter"
-                            onChange={this.onTwitterSearchChange}
-                            onBlur={this.onBlur}
-                        />
-                    </li>
+            <div className="search-people-bar">
+            <ul className="list-group">
+                <li id="search-twitter-people" className="list-group-item">
+                    <input 
+                        type="text"
+                        value={this.state.searchPeople}
+                        placeholder="Search Twitter"
+                        className="form-control input-search-twitter"
+                        onChange={this.onTwitterSearchChange}
+                        onBlur={this.onBlur}
+                    />
+                </li>
+                { isSearched &&
                     <div className="list-searched-people">
-                        { isSearched && this.getPeopleList() }
+                        {this.getPeopleList() }
                     </div>
-                </ul>
+                }
+            </ul>
             </div>
         );
     }

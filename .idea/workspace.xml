@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/TwitterCategoriesCard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Layout/TwitterGroupsCard.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Twitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Twitter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/AvailableTrends.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/AvailableTrends.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/SearchTwitterPeople.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/SearchTwitterPeople.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/TwitterCategoriesCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/TwitterCategoriesCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/AvailableTrends.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/AvailableTrends.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Twitter.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Twitter.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TwitterCategoriesCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TwitterCategoriesCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TwitterGroupsCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TwitterGroupsCard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -84,10 +85,32 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="143" selection-start-line="143" selection-end-line="143" />
+            <state relative-caret-position="1229">
+              <caret line="230" column="20" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+              <folding>
+                <element signature="e#137#138#0" expanded="true" />
+                <element signature="e#164#165#0" expanded="true" />
+                <element signature="e#204#205#0" expanded="true" />
+                <element signature="e#236#237#0" expanded="true" />
+                <element signature="e#123#124#0" expanded="true" />
+                <element signature="e#157#158#0" expanded="true" />
+                <element signature="e#211#212#0" expanded="true" />
+                <element signature="e#257#258#0" expanded="true" />
+                <element signature="e#506#507#0" expanded="true" />
+                <element signature="e#557#558#0" expanded="true" />
+                <element signature="e#603#604#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -143,7 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dto/FileDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/service/ForumService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/repository/ForumRepository.java" />
@@ -193,6 +215,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/dto/ConnectionDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" />
       </list>
     </option>
@@ -426,12 +449,12 @@
       <workItem from="1570217865661" duration="3551000" />
       <workItem from="1570290638423" duration="254000" />
       <workItem from="1570291117943" duration="28622000" />
-      <workItem from="1570400535505" duration="32261000" />
+      <workItem from="1570400535505" duration="37619000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="381007000" />
+    <option name="totallyTimeSpent" value="386365000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -537,13 +560,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/WaterEntryType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/WaterType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -947,10 +963,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding>
+            <element signature="e#137#138#0" expanded="true" />
+            <element signature="e#164#165#0" expanded="true" />
+            <element signature="e#204#205#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#123#124#0" expanded="true" />
+            <element signature="e#157#158#0" expanded="true" />
+            <element signature="e#211#212#0" expanded="true" />
+            <element signature="e#257#258#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#557#558#0" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="143" selection-start-line="143" selection-end-line="143" />
+        <state relative-caret-position="1229">
+          <caret line="230" column="20" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -47,7 +47,7 @@ class TwitterCategoriesCard extends React.Component {
                             className="twitter-categories-avatar"
                         /> Profile
                     </li>
-                    <li className="list-group-item add-tweet-button">
+                    <li className="list-group-item list-group-item-hover add-tweet-button">
                         <a 
                             className="twitter-share-button"
                             href="https://twitter.com/intent/tweet"

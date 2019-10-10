@@ -62,3 +62,15 @@
     top: 30%;
     left: 90%;
 }
+
+.search-people-bar {
+    height: 8.5%;
+}
+
+.search-people-bar > ul {
+    height: 100%;
+}
+
+.search-people-bar > ul > li {
+    height: 100%;
+}
