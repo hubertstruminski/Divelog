@@ -1,30 +1,22 @@
 package com.example.controller;
 
-import com.example.config.JwtTokenProvider;
 import com.example.dto.FileDto;
 import com.example.dto.TopicDto;
 import com.example.dto.TopicTemplate;
 import com.example.model.*;
 import com.example.repository.*;
-import io.jsonwebtoken.Claims;
+import com.example.service.ClaimsConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 public class TopicController {
-
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
-
-    @Autowired
-    private ConnectionRepository connectionRepository;
 
     @Autowired
     private TopicRepository topicRepository;
@@ -38,48 +30,42 @@ public class TopicController {
     @Autowired
     private TopicVoteRepository topicVoteRepository;
 
+    @Autowired
+    private ClaimsConverter claimsConverter;
+
     @PostMapping("/add/topic")
     public ResponseEntity<?> addTopicToForum(@RequestBody TopicDto topicDto) {
         String jwtToken = topicDto.getJwtToken();
+        Connection foundedUser = claimsConverter.findUser(jwtToken);
 
-        if(jwtTokenProvider.validateToken(jwtToken)) {
-            Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-            BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
-            String email = (String) claimsFromJwt.get("email");
+        if(foundedUser != null) {
+            Topic topic = new Topic();
 
-            Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
+            topic.setTitle(topicDto.getTitle());
+            topic.setMessage(topicDto.getMessage());
+            topic.setLanguageForum(topicDto.getLanguageForum());
+            topic.setLikes(0);
+            topic.setUser(foundedUser);
+            topic.setDisplays(0);
+            topic.setCreatedAt(new Date());
 
-            if(foundedUser != null) {
-                Topic topic = new Topic();
+            Topic savedTopic = topicRepository.save(topic);
 
-                topic.setTitle(topicDto.getTitle());
-                topic.setMessage(topicDto.getMessage());
-                topic.setLanguageForum(topicDto.getLanguageForum());
-                topic.setLikes(0);
-                topic.setUser(foundedUser);
-                topic.setDisplays(0);
-                topic.setCreatedAt(new Date());
+            if(topicDto.getFiles().size() != 0) {
+                for(FileDto element: topicDto.getFiles()) {
+                    CustomFile file = new CustomFile();
 
-                Topic savedTopic = topicRepository.save(topic);
+                    file.setName(element.getName());
+                    file.setObjectId(element.getObjectId());
+                    file.setSize(element.getSize());
+                    file.setTopic(savedTopic);
+                    file.setType(element.getType());
+                    file.setUrl(element.getUrl());
 
-                if(topicDto.getFiles().size() != 0) {
-                    for(FileDto element: topicDto.getFiles()) {
-                        CustomFile file = new CustomFile();
-
-                        file.setName(element.getName());
-                        file.setObjectId(element.getObjectId());
-                        file.setSize(element.getSize());
-                        file.setTopic(savedTopic);
-                        file.setType(element.getType());
-                        file.setUrl(element.getUrl());
-
-                        fileRepository.save(file);
-                    }
+                    fileRepository.save(file);
                 }
-                return new ResponseEntity<Void>(HttpStatus.OK);
-            } else {
-                return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
             }
+            return new ResponseEntity<Void>(HttpStatus.OK);
         }
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
@@ -105,41 +91,41 @@ public class TopicController {
 
     @GetMapping("/get/topic/number/comments/{topicId}/{jwtToken}")
     public ResponseEntity<?> fetchNumberOfComments(@PathVariable Long topicId, @PathVariable String jwtToken) {
-        if(jwtTokenProvider.validateToken(jwtToken)) {
-            Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-            BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
-            String email = (String) claimsFromJwt.get("email");
+        Connection foundedUser = claimsConverter.findUser(jwtToken);
 
-            Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
+        Topic topic = topicRepository.getById(topicId);
+        List<Post> posts = postRepository.getAllByTopic(topic);
 
-            Topic topic = topicRepository.getById(topicId);
-            List<Post> posts = postRepository.getAllByTopic(topic);
+        TopicVote topicVote = topicVoteRepository.getByTopicAndUser(topic, foundedUser);
 
-            TopicVote topicVote = topicVoteRepository.getByTopicAndUser(topic, foundedUser);
-
-            TopicTemplate topicTemplate = null;
-            if(topicVote == null) {
-                topicTemplate = new TopicTemplate(topic.getDisplays(), posts.size(), topic.getLikes(), 0);
-            } else {
-                topicTemplate = new TopicTemplate(topic.getDisplays(), posts.size(), topic.getLikes(), topicVote.getVote());
-            }
-
-            return new ResponseEntity<TopicTemplate>(topicTemplate, HttpStatus.OK);
+        TopicTemplate topicTemplate = null;
+        if(topicVote == null) {
+            topicTemplate = new TopicTemplate(topic.getDisplays(), posts.size(), topic.getLikes(), 0);
+        } else {
+            topicTemplate = new TopicTemplate(topic.getDisplays(), posts.size(), topic.getLikes(), topicVote.getVote());
         }
-        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<TopicTemplate>(topicTemplate, HttpStatus.OK);
     }
 
     @GetMapping("/get/topic/{topicId}")
     public ResponseEntity<?> getTopicById(@PathVariable Long topicId) {
-        if(assignFilesToTopic(topicId, true) == null) {
+        Topic topic = assignFilesToTopic(topicId, true);
+        if(topic == null) {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<Topic>(assignFilesToTopic(topicId, true), HttpStatus.OK);
+        return new ResponseEntity<Topic>(topic, HttpStatus.OK);
     }
 
-    @PutMapping("/update/topic/{topicId}")
-    public ResponseEntity<?> updateTopicById(@RequestBody TopicDto topicDto, @PathVariable Long topicId) {
-        Topic topic = topicRepository.getById(topicId);
+    @PutMapping("/update/topic/{topicId}/{jwtToken}")
+    public ResponseEntity<?> updateTopicById(@RequestBody TopicDto topicDto, @PathVariable Long topicId,
+                                             @PathVariable String jwtToken) {
+        Connection foundedUser = claimsConverter.findUser(jwtToken);
+
+        if(foundedUser == null) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
+
+        Topic topic = topicRepository.getByIdAndUser(topicId, foundedUser);
 
         if(topic != null) {
             topic.setTitle(topicDto.getTitle());

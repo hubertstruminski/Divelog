@@ -4,7 +4,7 @@ public class TrendDto {
 
     private String name;
     private String countryName;
-    private int tweetVolume;
+    private String tweetVolume;
 
     public String getName() {
         return name;
@@ -22,11 +22,11 @@ public class TrendDto {
         this.countryName = countryName;
     }
 
-    public int getTweetVolume() {
+    public String getTweetVolume() {
         return tweetVolume;
     }
 
-    public void setTweetVolume(int tweetVolume) {
+    public void setTweetVolume(String tweetVolume) {
         this.tweetVolume = tweetVolume;
     }
 }

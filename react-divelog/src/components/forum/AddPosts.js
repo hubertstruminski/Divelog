@@ -6,6 +6,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router';
 import $ from 'jquery';
 import { withTranslation } from 'react-i18next';
+import AuthService from '../../util/AuthService';
 
 class AddPosts extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class AddPosts extends React.Component {
             isFailureUploaded: false,
             failureNameFiles: []
         }
+        this.Auth = new AuthService();
         this.errors = [];
 
         this.onChange = this.onChange.bind(this);
@@ -86,7 +88,7 @@ class AddPosts extends React.Component {
         this.validateForm(e);
 
         if(this.errors.length === 0) {
-            let jwtToken = localStorage.getItem("JwtToken");
+            let jwtToken = this.Auth.getRightSocialToken();
             let topicId = this.props.topicId;
 
             const post = {

@@ -246,6 +246,10 @@
         "title": "Error 500",
         "message": "interner Serverfehler"
     },
+    "error-404": {
+        "title": "Error 404",
+        "message": "Benutzer existiert nicht."
+    },
     "news": {
         "fileUpload": {
             "title": "Erfolg",

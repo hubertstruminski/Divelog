@@ -1,11 +1,34 @@
 import React from 'react';
 import AuthService from './AuthService';
 
-export default function withAuth(AuthComponent) {
+// export default function withAuth(AuthComponent) {
+export default function withAuth(AuthComponent, props) {
     const Auth =  new AuthService();
+    let customAuthComponent = false;
 
     class AuthWrapped extends React.Component {
-        componentWillMount() {
+        constructor(props) {
+            super(props);
+        }
+
+        setRedirectForTwitterExplore(props, url) {
+            if(props.hasOwnProperty("twitterExploreForCategories")) {
+                if(props.twitterExploreForCategories) {
+                    this.props.history.replace(url);
+                }
+            }
+
+            if(props.hasOwnProperty("twitterExplore")) {
+                if(props.twitterExplore) {
+                    this.props.history.replace(url);
+                }
+            }
+        }
+
+        componentDidMount() {
+            console.log(props);
+            customAuthComponent = true;
+
             if(!Auth.loggedIn()) {
                 this.props.history.replace("/login");
             } else {
@@ -13,10 +36,17 @@ export default function withAuth(AuthComponent) {
                 let facebookJwtToken = Auth.getToken();
                 try {
                     if(twitterJwtToken) {
-                        this.props.history.replace("/twitter");
+                        if(props !== undefined) {
+                            if(this.props.location.pathname === "/twitter/explore") {
+                                customAuthComponent && this.setRedirectForTwitterExplore(props, "/twitter/explore");
+                            }
+                        } else {
+                            customAuthComponent && this.props.history.replace("/twitter");
+                        }
                     }
+
                     if(facebookJwtToken) {
-                        this.props.history.replace("/dashboard");
+                        customAuthComponent && this.props.history.replace("/dashboard");
                     }
                 } catch(err) {
                     if(twitterJwtToken) {
@@ -30,10 +60,14 @@ export default function withAuth(AuthComponent) {
             }
         }
 
+        componentWillUnmount() {
+            customAuthComponent = false;
+        }
+
         render() {
             if(Auth.loggedIn()) {
                 return (
-                    <AuthComponent history={this.props.history} />
+                    customAuthComponent && <AuthComponent history={this.props.history} />
                 );
             } else {
                 return null;

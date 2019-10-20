@@ -16,6 +16,7 @@
 
 .list-group-search-person {
     height: 67px;
+    z-index: 500;
 }
 
 .list-group-search-person:hover {

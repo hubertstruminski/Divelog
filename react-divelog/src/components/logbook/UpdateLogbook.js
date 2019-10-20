@@ -52,7 +52,7 @@ class UpdateLogbook extends React.Component {
 
     componentDidMount() {
         let logbookId = this.props.match.params.id;
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/get/logbook/${jwtToken}/${logbookId}`, {
             method: 'GET',
@@ -231,7 +231,7 @@ class UpdateLogbook extends React.Component {
         this.validateForm(e);
         
         if(this.validator.length === 0) {
-            let jwtToken = this.Auth.getToken();
+            let jwtToken = this.Auth.getRightSocialToken();
             let logbookId = this.props.match.params.id;
             
             const logbookObject = {
@@ -264,10 +264,12 @@ class UpdateLogbook extends React.Component {
                     "Content-type": "application/json"
                 }
             }).then(response => {
-                if(response.status !== 200) {
-                    swal(this.props.t("googleMap.modal.swalError.title"), this.props.t("googleMap.modal.swalError.text"), "error");
-                } else {
+                if(response.status === 404) {
+                    swal(this.props.t("error-404.title"), this.props.t("error-404.message"),"error");
+                } else if(response.status === 200) {
                     this.props.history.push("/logbook");
+                } else {
+                    swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                 }
             });
         }   

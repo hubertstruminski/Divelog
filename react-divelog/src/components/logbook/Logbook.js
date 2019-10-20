@@ -7,6 +7,7 @@ import DeleteTableButton from './DeleteTableButton';
 import UpdateLogbookButton from './UpdateLogbookButton';
 import PDFTableButton from './PDFTableButton';
 import ConvertTime from '../../util/ConvertTime';
+import AuthService from '../../util/AuthService';
 
 class Logbook extends React.Component {
     constructor() {
@@ -16,6 +17,7 @@ class Logbook extends React.Component {
             isEmptyLogbook: true,
             deletedLogbookId: 0
         }
+        this.Auth = new AuthService();
         this.logbooks = [];
         this.bodyTableRef = React.createRef();
         
@@ -27,7 +29,7 @@ class Logbook extends React.Component {
     }
 
     componentDidMount() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/get/logbook/${jwtToken}`, {
             method: 'GET',
@@ -66,7 +68,7 @@ class Logbook extends React.Component {
     }
 
     fetchLogbooks() {
-        let jwtToken = localStorage.getItem("JwtToken"); 
+        let jwtToken = this.Auth.getRightSocialToken(); 
 
         fetch(`/get/logbook/${jwtToken}`, {
             method: 'GET',

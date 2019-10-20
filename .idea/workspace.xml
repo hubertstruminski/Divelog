@@ -2,17 +2,64 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/LogIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Twitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Twitter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/AddPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/AddPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/AddTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/AddTopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/DeleteAttachmentButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/DeleteAttachmentButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/Topic.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/Topic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/TopicWithPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/TopicWithPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/forum/UpdateTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/forum/UpdateTopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/DeleteButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/DeleteButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/googleMaps/GoogleModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/AddDive.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/AddDive.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/DeleteLogbookButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/DeleteLogbookButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/DeleteTableButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/DeleteTableButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/GoogleLogbookMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/GoogleLogbookMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/Logbook.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/Logbook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/PDFTableButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/PDFTableButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/UpdateLogbook.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/UpdateLogbook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/UpdateLogbookButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/UpdateLogbookButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/settings/MyDoc.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/AvailableTrends.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/AvailableTrends.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/GeoLocation.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/SearchTwitterPeople.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/SearchTwitterPeople.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/TwitterCategoriesCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/TwitterCategoriesCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/AvailableTrends.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/AvailableTrends.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Twitter.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Twitter.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Facebook.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Facebook.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Twitter.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TwitterCategoriesCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TwitterCategoriesCard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TwitterGroupsCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TwitterGroupsCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/util/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/util/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/util/withAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/util/withAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TopicVoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TopicVoteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/config/JwtTokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/config/JwtTokenProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/LogInController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/LogInController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/MarkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/MarkerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/dto/TrendDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/dto/TrendDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/Connection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/LoginRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/repository/ConnectionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/repository/ConnectionRepository.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,53 +75,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="89" selection-start-line="21" selection-start-column="89" selection-end-line="21" selection-end-column="89" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#0#45#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogoutController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
+            <state relative-caret-position="390">
               <caret line="44" selection-start-line="43" selection-end-line="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+            <state relative-caret-position="214">
+              <caret line="190" selection-start-line="190" selection-end-line="190" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,44 +96,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1229">
-              <caret line="230" column="20" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-              <folding>
-                <element signature="e#137#138#0" expanded="true" />
-                <element signature="e#164#165#0" expanded="true" />
-                <element signature="e#204#205#0" expanded="true" />
-                <element signature="e#236#237#0" expanded="true" />
-                <element signature="e#123#124#0" expanded="true" />
-                <element signature="e#157#158#0" expanded="true" />
-                <element signature="e#211#212#0" expanded="true" />
-                <element signature="e#257#258#0" expanded="true" />
-                <element signature="e#506#507#0" expanded="true" />
-                <element signature="e#557#558#0" expanded="true" />
-                <element signature="e#603#604#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-16">
-              <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+            <state relative-caret-position="570">
+              <caret line="38" column="106" selection-start-line="38" selection-start-column="106" selection-end-line="38" selection-end-column="106" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="98" column="12" selection-start-line="98" selection-start-column="12" selection-end-line="100" selection-end-column="63" />
+            <state relative-caret-position="269">
+              <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,10 +120,75 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SecurityConstants.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/FileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="309">
+              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicVoteController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-181">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="945">
+              <caret line="114" column="9" lean-forward="true" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-152">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#0#46#1" expanded="true" />
+                <element signature="e#0#43#1" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,7 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dto/FileDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/service/ForumService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/repository/ForumRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/enums/ForumType.java" />
@@ -191,7 +234,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/repository/TopicVoteRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Post.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dto/TopicDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/UserPojo.java" />
@@ -203,20 +245,22 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Twitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/CustomTwitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/repository/CustomTwitterRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TopicVoteController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogoutController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dto/ConnectionDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TopicVoteController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java" />
       </list>
     </option>
   </component>
@@ -239,6 +283,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -355,7 +400,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -449,18 +493,21 @@
       <workItem from="1570217865661" duration="3551000" />
       <workItem from="1570290638423" duration="254000" />
       <workItem from="1570291117943" duration="28622000" />
-      <workItem from="1570400535505" duration="37619000" />
+      <workItem from="1570400535505" duration="39863000" />
+      <workItem from="1570860714283" duration="719000" />
+      <workItem from="1570988679136" duration="7117000" />
+      <workItem from="1571588957634" duration="16509000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="386365000" />
+    <option name="totallyTimeSpent" value="412954000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.257886" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26674044" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -470,8 +517,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.44276458" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.6187905" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.44276458" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -560,13 +607,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/WaterType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -652,16 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="62" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -759,16 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="116" selection-start-line="24" selection-start-column="116" selection-end-line="24" selection-end-column="116" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/TwitterConfig.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/CustomFile.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -783,16 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/CustomTwitterRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -803,66 +813,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/CustomTwitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/FileController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="660">
+          <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="149" column="69" selection-start-line="149" selection-start-column="69" selection-end-line="149" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-106">
-          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-781">
-          <caret line="109" column="73" selection-start-line="109" selection-start-column="73" selection-end-line="109" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicVoteController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-331">
-          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1417#1418#0" expanded="true" />
+            <element signature="e#1479#1480#0" expanded="true" />
+            <element signature="e#1529#1530#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -874,28 +850,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="89" selection-start-line="21" selection-start-column="89" selection-end-line="21" selection-end-column="89" />
+        <state relative-caret-position="279">
+          <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#0#45#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/CustomTwitter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+        <state relative-caret-position="914">
+          <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -904,32 +872,116 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/ConnectionDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="60">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="86" selection-start-line="24" selection-start-column="86" selection-end-line="24" selection-end-column="86" />
           <folding>
-            <element signature="e#1707#1708#0" expanded="true" />
-            <element signature="e#1741#1742#0" expanded="true" />
-            <element signature="e#1795#1796#0" expanded="true" />
-            <element signature="e#1841#1842#0" expanded="true" />
-            <element signature="e#1878#1879#0" expanded="true" />
-            <element signature="e#1911#1912#0" expanded="true" />
-            <element signature="e#1963#1964#0" expanded="true" />
-            <element signature="e#2007#2008#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#0#45#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="24" column="116" selection-start-line="24" selection-start-column="116" selection-end-line="24" selection-end-column="116" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3174#3175#0" expanded="true" />
+            <element signature="e#3210#3211#0" expanded="true" />
+            <element signature="e#3272#3273#0" expanded="true" />
+            <element signature="e#3322#3323#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="150" selection-start-line="150" selection-end-line="150" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogoutController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
+        <state relative-caret-position="390">
           <caret line="44" selection-start-line="43" selection-end-line="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="214">
+          <caret line="190" selection-start-line="190" selection-end-line="190" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#0#46#1" expanded="true" />
+            <element signature="e#0#43#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/FileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -938,55 +990,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="98" column="12" selection-start-line="98" selection-start-column="12" selection-end-line="100" selection-end-column="63" />
+        <state relative-caret-position="269">
+          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicVoteController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+        <state relative-caret-position="-181">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+        <state relative-caret-position="945">
+          <caret line="114" column="9" lean-forward="true" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
           <folding>
-            <element signature="e#137#138#0" expanded="true" />
-            <element signature="e#164#165#0" expanded="true" />
-            <element signature="e#204#205#0" expanded="true" />
-            <element signature="e#236#237#0" expanded="true" />
-            <element signature="e#123#124#0" expanded="true" />
-            <element signature="e#157#158#0" expanded="true" />
-            <element signature="e#211#212#0" expanded="true" />
-            <element signature="e#257#258#0" expanded="true" />
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1229">
-          <caret line="230" column="20" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="20" />
+        <state relative-caret-position="-152">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="106" selection-start-line="38" selection-start-column="106" selection-end-line="38" selection-end-column="106" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

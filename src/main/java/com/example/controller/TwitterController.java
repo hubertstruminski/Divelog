@@ -85,8 +85,8 @@ public class TwitterController {
             return;
         }
 
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndProviderId(
-                BigInteger.valueOf(accessToken.getUserId()), user.getEmail(), Provider.TWITTER.getProvider());
+        Connection foundedUser = connectionRepository.findByUserIDOrTwitterUserIdOrEmail(null,
+                BigInteger.valueOf(accessToken.getUserId()), user.getEmail());
 
         String jwtToken = null;
 
@@ -94,6 +94,7 @@ public class TwitterController {
             Connection connection = new Connection();
             connection = setUserInfo(connection, accessToken, user);
             connection.setCreatedAt(new Date());
+            connection.setUserID(null);
 
             CustomTwitter customTwitter = new CustomTwitter();
 
@@ -161,11 +162,16 @@ public class TwitterController {
             Trend[] trends = placeTrends.getTrends();
 
             for(Trend trend: trends) {
+                if(trend.getTweetVolume() == -1) {
+                    continue;
+                }
                 TrendDto trendDto = new TrendDto();
 
                 trendDto.setCountryName(location.getCountryName());
                 trendDto.setName(trend.getName());
-                trendDto.setTweetVolume(trend.getTweetVolume());
+
+                String tweetVolume = convertTweetVolume(trend.getTweetVolume());
+                trendDto.setTweetVolume(tweetVolume);
 
                 trendList.add(trendDto);
             }
@@ -173,8 +179,32 @@ public class TwitterController {
         return new ResponseEntity<List<TrendDto>>(trendList, HttpStatus.OK);
     }
 
+    @GetMapping("/twitter/friends/list/{jwtToken}")
+    public ResponseEntity<?> getFriendsList(@PathVariable String jwtToken) throws TwitterException {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
+
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        Object twitterUserID = claimsFromJwt.get("twitterUserID");
+
+        User user = twitter.showUser(String.valueOf(claimsFromJwt.get("screenName")));
+        long id1 = user.getId();
+
+        IDs followersIDs = twitter.getFollowersIDs(id1, -1);
+        List<User> friendsList = new ArrayList<>();
+
+        for(long id: followersIDs.getIDs()) {
+            friendsList.add(user);
+        }
+
+        return new ResponseEntity<List<User>>(friendsList, HttpStatus.OK);
+    }
+
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
-        connection.setUserID(BigInteger.valueOf(accessToken.getUserId()));
+        connection.setTwitterUserId(BigInteger.valueOf(accessToken.getUserId()));
         connection.setProviderId(Provider.TWITTER.getProvider());
         connection.setEmail(user.getEmail());
         connection.setPictureUrl(user.get400x400ProfileImageURL());
@@ -197,7 +227,7 @@ public class TwitterController {
     private ConnectionDto setConnectionDtoForTwitterToken(Connection user, CustomTwitter twitter) {
         ConnectionDto connectionDto = new ConnectionDto();
 
-        connectionDto.setUserID(user.getUserID());
+        connectionDto.setTwitterUserId(user.getTwitterUserId());
         connectionDto.setProviderId(user.getProviderId());
         connectionDto.setPictureUrl(user.getPictureUrl());
         connectionDto.setName(user.getName());
@@ -229,5 +259,18 @@ public class TwitterController {
             return twitter;
         }
         return null;
+    }
+
+    private String convertTweetVolume(int tweetVolume) {
+        String result = String.valueOf(tweetVolume);
+        StringBuilder builder = new StringBuilder();
+
+        for(int i=0; i<result.length(); i++) {
+            if(i == result.length() - 3) {
+                builder.append(",");
+            }
+            builder.append(result.charAt(i));
+        }
+        return builder.toString();
     }
 }

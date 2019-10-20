@@ -6,6 +6,7 @@ import $ from 'jquery';
 import DeleteButton from './DeleteButton';
 import { withTranslation } from 'react-i18next';
 import { compose } from 'redux';
+import AuthService from '../../util/AuthService';
 
 class GoogleMap extends React.Component {
     constructor(props) {
@@ -23,6 +24,8 @@ class GoogleMap extends React.Component {
             isDeletedMarker: false,
             deletedMarkerId: 0
         }
+        this.Auth = new AuthService();
+
         this.onMapClick = this.onMapClick.bind(this);
         this.setFinishMarker = this.setFinishMarker.bind(this);
         this.setIsDeletedMarker = this.setIsDeletedMarker.bind(this);
@@ -33,7 +36,8 @@ class GoogleMap extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading: false });
-        let jwtToken = localStorage.getItem("JwtToken");
+        
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/get/markers/${jwtToken}`, {
             method: 'GET',
@@ -44,22 +48,25 @@ class GoogleMap extends React.Component {
         })
         .then(response => response.json())
         .then(jsonData => {
-            jsonData.map((marker, index) => {
-                let element = {
-                    id: marker.id,
-                    name: marker.name,
-                    latitude: marker.latitude,
-                    longitude: marker.longitude
-                }
-                this.setState({
-                    markers: this.state.markers.concat(element)
-                })
-            })
+            console.log(jsonData);
+            if(jsonData.length !== 0) {
+                jsonData.map((marker, index) => {
+                    let element = {
+                        id: marker.id,
+                        name: marker.name,
+                        latitude: marker.latitude,
+                        longitude: marker.longitude
+                    }
+                    this.setState({
+                        markers: this.state.markers.concat(element)
+                    })
+                });
+            }
         }); 
     }
 
     fetchMarkers() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         this.setState({ markers: [] }, () => {
             fetch(`/get/markers/${jwtToken}`, {

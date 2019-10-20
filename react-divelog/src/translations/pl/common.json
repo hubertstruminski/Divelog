@@ -252,6 +252,10 @@
         "title": "Błąd 500",
         "message": "Wewnętrzny błąd po stronie serwera"
     },
+    "error-404": {
+        "title": "Błąd 404",
+        "message": "Użytkownik nie istnieje."
+    },
     "news": {
         "fileUpload": {
             "title": "Sukces",

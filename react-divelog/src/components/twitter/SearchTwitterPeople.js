@@ -5,6 +5,8 @@ import axios from 'axios';
 import twitterVerified from '../../img/twitter-verified.png';
 
 class SearchTwitterPeople extends React.Component {
+    isMountedSearchTwitterPeople = false;
+    
     constructor(props) {
         super(props);
 
@@ -21,6 +23,10 @@ class SearchTwitterPeople extends React.Component {
         this.getUsers = this.getUsers.bind(this);
         this.getPeopleList = this.getPeopleList.bind(this);
         this.onBlur = this.onBlur.bind(this);
+    }
+
+    componentDidMount() {
+        this.isMountedSearchTwitterPeople = true;
     }
 
     onTwitterSearchChange(e) {
@@ -52,23 +58,25 @@ class SearchTwitterPeople extends React.Component {
                 'content-type': 'application/json'
             }
         }).then(response => {
-            this.setState({ searchPeopleList: [] });
-            let counter = 0;
-            response.data.map((person, index) => {
-                if(counter === 10) {
-                    return;
-                }
-                const element = {
-                    id: person.id,
-                    name: person.name,
-                    pictureUrl: person['400x400ProfileImageURL'],
-                    screenName: person.screenName,
-                    verified: person.verified
-                }
-                this.setState({ searchPeopleList: this.state.searchPeopleList.concat(element) });
-                counter++;
-            }); 
-            this.setState({ isSearched: true });
+            if(this.isMountedSearchTwitterPeople) {
+                this.setState({ searchPeopleList: [] });
+                let counter = 0;
+                response.data.map((person, index) => {
+                    if(counter === 10) {
+                        return;
+                    }
+                    const element = {
+                        id: person.id,
+                        name: person.name,
+                        pictureUrl: person['400x400ProfileImageURL'],
+                        screenName: person.screenName,
+                        verified: person.verified
+                    }
+                    this.setState({ searchPeopleList: this.state.searchPeopleList.concat(element) });
+                    counter++;
+                }); 
+                this.setState({ isSearched: true });
+            }
         });
     }
 
@@ -82,21 +90,25 @@ class SearchTwitterPeople extends React.Component {
             }
             return (
                 <div>
-                <li className="list-group-item list-group-search-person">
-                    <div className="search-li-item-float search-1-div">
-                        <img src={person.pictureUrl} className="search-picture-person" alt="Person" />
-                    </div>
-                    <div className="search-li-item-float search-2-div">
-                        {person.verified && <img src={twitterVerified} className="twitter-verified" alt="Twitter user verified" /> }
-                        {person.name} 
-                        <br />
-                        @{person.screenName}
-                    </div>
-                    <div style={{ clear: 'both' }}></div>
-                </li>
+                    <li className="list-group-item list-group-search-person">
+                        <div className="search-li-item-float search-1-div">
+                            <img src={person.pictureUrl} className="search-picture-person" alt="Person" />
+                        </div>
+                        <div className="search-li-item-float search-2-div">
+                            {person.verified && <img src={twitterVerified} className="twitter-verified" alt="Twitter user verified" /> }
+                            {person.name} 
+                            <br />
+                            @{person.screenName}
+                        </div>
+                        <div style={{ clear: 'both' }}></div>
+                    </li>
                 </div>
             );
         });
+    }
+
+    componentWillUnmount() {
+        this.isMountedSearchTwitterPeople = false;
     }
 
     render() {

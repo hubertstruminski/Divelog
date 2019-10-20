@@ -1,17 +1,19 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import swal from 'sweetalert';
+import AuthService from '../../util/AuthService';
 
 class DeleteButton extends React.Component {
     constructor(props) {
         super(props);
 
+        this.Auth = new AuthService();
         this.onSubmit = this.onSubmit.bind(this);
     }
 
     onSubmit() {
         let markerID = this.props.id;
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/delete/marker/${jwtToken}/${markerID}`, {
             method: 'DELETE',
@@ -20,7 +22,9 @@ class DeleteButton extends React.Component {
                 'content-type': 'application/json'
             }
         }).then(response => {
-            if(response.status === 400) {
+            if(response.status === 404) {
+                swal(this.props.t("error-404.title"), this.props.t("error-404.message"),"error");
+            } else if(response.status === 400) {
                 swal("No access", "You can not remove marker assigned to dive from logbook.", "error");
             } else {
                 swal("Success", "Record has been removed successfully.", "success");

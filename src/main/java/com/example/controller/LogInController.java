@@ -27,7 +27,8 @@ public class LogInController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> saveUserData(@RequestBody LoginRequest loginRequest) throws IOException {
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndProviderId(loginRequest.getUserID(), loginRequest.getEmail(), Provider.FACEBOOK.getProvider());
+        Connection foundedUser = connectionRepository.findByUserIDOrTwitterUserIdOrEmail(loginRequest.getUserID(),
+                null, loginRequest.getEmail());
         String jwtToken = null;
 
         if(foundedUser == null) {
@@ -35,6 +36,7 @@ public class LogInController {
 
             setConnection(connection, loginRequest);
             connection.setCreatedAt(new Date());
+            connection.setTwitterUserId(null);
 
             connectionRepository.save(connection);
 

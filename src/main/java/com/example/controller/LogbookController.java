@@ -1,20 +1,17 @@
 package com.example.controller;
 
-import com.example.config.JwtTokenProvider;
 import com.example.model.Connection;
 import com.example.model.Logbook;
 import com.example.model.Marker;
-import com.example.repository.ConnectionRepository;
 import com.example.repository.LogbookRepository;
 import com.example.repository.MarkerRepository;
-import io.jsonwebtoken.Claims;
+import com.example.service.ClaimsConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -23,25 +20,21 @@ import java.util.List;
 public class LogbookController {
 
     @Autowired
-    private ConnectionRepository connectionRepository;
-
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
-
-    @Autowired
     private MarkerRepository markerRepository;
 
     @Autowired
     private LogbookRepository logbookRepository;
 
+    @Autowired
+    private ClaimsConverter claimsConverter;
+
     @PostMapping("/add/logbook/{jwtToken}")
     public ResponseEntity<?> addDiveToLogbook(@RequestBody Logbook logbook, @PathVariable String jwtToken) {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
-        String email = (String) claimsFromJwt.get("email");
+        Connection foundedUser = claimsConverter.findUser(jwtToken);
 
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
-
+        if(foundedUser == null) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
         setTime(logbook, logbook);
 
         Marker marker = logbook.getMarker();
@@ -56,24 +49,22 @@ public class LogbookController {
 
     @GetMapping("/get/logbook/{jwtToken}")
     public ResponseEntity<?> getDivesFromLogbook(@PathVariable String jwtToken) {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
-        String email = (String) claimsFromJwt.get("email");
+        Connection foundedUser = claimsConverter.findUser(jwtToken);
 
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
-
+        if(foundedUser == null) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
         List<Logbook> logbooks = logbookRepository.findAllByUser(foundedUser);
         return new ResponseEntity<List<Logbook>>(logbooks, HttpStatus.OK);
     }
 
     @DeleteMapping("/logbook/{logbookId}/{jwtToken}")
     public ResponseEntity<?> deleteLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
-        String email = (String) claimsFromJwt.get("email");
+        Connection foundedUser = claimsConverter.findUser(jwtToken);
 
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
-
+        if(foundedUser == null) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
         Logbook logbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
 
         if(logbook != null) {
@@ -86,28 +77,16 @@ public class LogbookController {
 
     @GetMapping("/get/logbook/{jwtToken}/{logbookId}")
     public ResponseEntity<?> getLogbookById(@PathVariable String jwtToken, @PathVariable Long logbookId) {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
-        String email = (String) claimsFromJwt.get("email");
-
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
-
-        Logbook logbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
-
-        if(logbook != null) {
-            return new ResponseEntity<Logbook>(logbook, HttpStatus.OK);
-        }
-        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        return findLogbookById(jwtToken, logbookId);
     }
 
     @PutMapping("/edit/logbook/{logbookId}/{jwtToken}")
     public ResponseEntity<?> updateLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken, @RequestBody Logbook logbook) {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
-        String email = (String) claimsFromJwt.get("email");
+        Connection foundedUser = claimsConverter.findUser(jwtToken);
 
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
-
+        if(foundedUser == null) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
         Logbook foundedLogbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
         Marker marker = foundedLogbook.getMarker();
 
@@ -146,18 +125,7 @@ public class LogbookController {
 
     @GetMapping("/pdf/logbook/{logbookId}/{jwtToken}")
     public ResponseEntity<?> getPDFFromLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
-        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-        BigInteger userID = (BigInteger) claimsFromJwt.get("userID");
-        String email = (String) claimsFromJwt.get("email");
-
-        Connection foundedUser = connectionRepository.findByUserIDAndEmailAndAuthenticated(userID, email, true);
-
-        Logbook foundedLogbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
-
-        if(foundedLogbook != null) {
-            return new ResponseEntity<Logbook>(foundedLogbook, HttpStatus.OK);
-        }
-        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        return findLogbookById(jwtToken, logbookId);
     }
 
     private void setTime(Logbook logbook, Logbook foundedLogbook) {
@@ -172,5 +140,20 @@ public class LogbookController {
         time2 = time2 - 7200000;
         exitTime.setTime(time2);
         foundedLogbook.setExitTime(exitTime);
+    }
+
+    private ResponseEntity<?> findLogbookById(String jwtToken, Long logbookId) {
+        Connection foundedUser = claimsConverter.findUser(jwtToken);
+
+        if(foundedUser == null) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
+
+        Logbook logbook = logbookRepository.findByIdAndUser(logbookId, foundedUser);
+
+        if(logbook != null) {
+            return new ResponseEntity<Logbook>(logbook, HttpStatus.OK);
+        }
+        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 }

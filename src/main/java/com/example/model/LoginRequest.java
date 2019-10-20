@@ -8,6 +8,7 @@ public class LoginRequest {
     private String email;
     private String name;
     private BigInteger userID;
+    private BigInteger twitterUserId;
     private String pictureUrl;
 
     public LoginRequest() {
@@ -59,5 +60,13 @@ public class LoginRequest {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
+    }
+
+    public BigInteger getTwitterUserId() {
+        return twitterUserId;
+    }
+
+    public void setTwitterUserId(BigInteger twitterUserId) {
+        this.twitterUserId = twitterUserId;
     }
 }

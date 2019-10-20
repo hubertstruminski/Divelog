@@ -5,6 +5,8 @@ import swal from 'sweetalert';
 import Trend from './Trend';
 
 class AvailableTrends extends React.Component {
+    isMountedAvailableTrends = false
+
     constructor(props) {
         super(props);
 
@@ -17,6 +19,7 @@ class AvailableTrends extends React.Component {
             isRetrievedTrends: false
         }
         this.Auth = new AuthService();
+
         this.twitterJwtToken = this.Auth.getTwitterToken();
         this.geolocationError = this.geolocationError.bind(this);
         this.geolocationSuccess = this.geolocationSuccess.bind(this);
@@ -24,12 +27,15 @@ class AvailableTrends extends React.Component {
     }
 
     componentDidMount() {
-        if(!navigator.geolocation) {
-            this.setState({ isGeolocationNotSupported: true });
-        } else {
-            navigator.geolocation.getCurrentPosition(this.geolocationSuccess, this.geolocationError);
+        this.isMountedAvailableTrends = true;
+
+        if(this.isMountedAvailableTrends) {
+            if(!navigator.geolocation) {
+                this.setState({ isGeolocationNotSupported: true });
+            } else {
+                navigator.geolocation.getCurrentPosition(this.geolocationSuccess, this.geolocationError);
+            }
         }
-        
     }
 
     geolocationError() {
@@ -49,21 +55,23 @@ class AvailableTrends extends React.Component {
                 }
             }).then(response => response.json())
             .then(json => {
-                json.map((trend, index) => {
-                    if(trend.tweetVolume !== -1) {
-                        const element = {
-                            name: trend.name,
-                            countryName: trend.countryName,
-                            tweetVolume: trend.tweetVolume
+                if(this.isMountedAvailableTrends) {
+                    json.map((trend, index) => {
+                        if(trend.tweetVolume !== -1) {
+                            const element = {
+                                name: trend.name,
+                                countryName: trend.countryName,
+                                tweetVolume: trend.tweetVolume
+                            }
+                            this.setState({ trends: this.state.trends.concat(element) });
                         }
-                        this.setState({ trends: this.state.trends.concat(element) });
-                    }
-                });
-                this.setState({
-                    isGeolocationNotSupported: false,
-                    isGeolocationRejected: false,
-                    isRetrievedTrends: true
-                });
+                    });
+                    this.setState({
+                        isGeolocationNotSupported: false,
+                        isGeolocationRejected: false,
+                        isRetrievedTrends: true
+                    });
+                }
             });
         });
     }
@@ -106,6 +114,10 @@ class AvailableTrends extends React.Component {
                 </li>
             );
         });
+    }
+
+    componentWillUnmount() {
+        this.isMountedAvailableTrends = false;
     }
 
 

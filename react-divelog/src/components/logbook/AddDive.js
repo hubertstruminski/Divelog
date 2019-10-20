@@ -183,7 +183,7 @@ class AddDive extends React.Component {
         this.validateForm(e);
         
         if(this.validator.length === 0) {
-            let jwtToken = this.Auth.getToken();
+            let jwtToken = this.Auth.getRightSocialToken();
 
             const logbookObject = {
                 partnerName: this.state.partnerName,
@@ -215,7 +215,11 @@ class AddDive extends React.Component {
                     "Content-type": "application/json"
                 }
             }).then(response => {
-                this.props.history.push("/logbook");
+                if(response.status === 404) {
+                    swal(this.props.t("error-404.title"), this.props.t("error-404.message"),"error");
+                } else if(response.status === 200) {
+                    this.props.history.push("/logbook");
+                }  
             }).catch(function(error) {
                 swal(this.props.t("googleMap.modal.swalError.title"), this.props.t("googleMap.modal.swalError.text"), "error");
             })

@@ -1,6 +1,7 @@
 package com.example.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 import java.util.Date;
@@ -14,9 +15,13 @@ public class Connection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Column(name = "user_id")
+    @Digits(integer = 24, fraction = 0)
+    @Column(name = "facebook_user_id")
     protected BigInteger userID;
+
+    @Digits(integer = 24, fraction = 0)
+    @Column(name = "twitter_user_id")
+    protected BigInteger twitterUserId;
 
     @NotNull
     protected String email;
@@ -143,5 +148,13 @@ public class Connection {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public BigInteger getTwitterUserId() {
+        return twitterUserId;
+    }
+
+    public void setTwitterUserId(BigInteger twitterUserId) {
+        this.twitterUserId = twitterUserId;
     }
 }

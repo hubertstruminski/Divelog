@@ -8,6 +8,7 @@ import ReactFilestack from 'filestack-react';
 import axios from 'axios';
 import DeleteAttachmentButton from './DeleteAttachmentButton';
 import { withTranslation } from 'react-i18next';
+import AuthService from '../../util/AuthService';
 
 class Post extends React.Component {
     constructor(props) {
@@ -25,6 +26,8 @@ class Post extends React.Component {
             isError: false,
             wasUpdated: false
         }
+        this.Auth = new AuthService();
+        
         this.addImages = this.addImages.bind(this);
         this.addVideos = this.addVideos.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
@@ -35,7 +38,7 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
@@ -115,7 +118,7 @@ class Post extends React.Component {
 
     onDeleteClick() {
         let postId = this.props.id;
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/delete/post/${postId}/${jwtToken}`, {
             method: 'DELETE',
@@ -155,7 +158,7 @@ class Post extends React.Component {
                         );
                     } else {
                         let postId = this.props.id;
-                        let jwtToken = localStorage.getItem("JwtToken");
+                        let jwtToken = this.Auth.getRightSocialToken();
 
                         let message = $(".edit-textarea").val();
 

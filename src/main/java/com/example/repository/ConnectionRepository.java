@@ -20,4 +20,7 @@ public interface ConnectionRepository extends CrudRepository<Connection, Long> {
     public Connection findByUserIDAndEmailAndProviderId(BigInteger userID, String email, String provider);
 
     public Connection findByEmailAndAuthenticated(String email, boolean isAuthenticated);
+
+    // new method to log in
+    public Connection findByUserIDOrTwitterUserIdOrEmail(BigInteger userId, BigInteger twitterUserId, String email);
 }

@@ -60,13 +60,6 @@ class LogIn extends React.Component {
     }
 
     onTwitterClick() {
-        fetch("/generate/token/twitter", {
-            method: 'GET'
-        }).then(response => response.json())
-        .then(jsonData => {
-
-        }); 
-        
         window.location.href = "http://localhost:8080/signin";
     }
 

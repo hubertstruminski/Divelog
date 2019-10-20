@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import DeleteLogbookButton from '../logbook/DeleteLogbookButton';
 import swal from 'sweetalert';
 import GoogleLogbookMarkerModal from './GoogleLogbookMarkerModal';
+import AuthService from '../../util/AuthService';
 
 class GoogleLogbookMap extends React.Component {
     constructor() {
@@ -27,6 +28,8 @@ class GoogleLogbookMap extends React.Component {
             existingMarkerLongitude: '',
             isUpdateLogbookRow: false
         }
+        this.Auth = new AuthService();
+
         this.onMapClick = this.onMapClick.bind(this);
         this.updateMarker = this.updateMarker.bind(this);
         this.setFinishMarker = this.setFinishMarker.bind(this);
@@ -42,7 +45,7 @@ class GoogleLogbookMap extends React.Component {
             "position": "static"
         });
 
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/get/markers/${jwtToken}`, {
             method: 'GET',

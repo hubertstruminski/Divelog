@@ -5,6 +5,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import $ from 'jquery';
 import { withTranslation } from 'react-i18next';
+import AuthService from '../../util/AuthService';
 
 class Topic extends React.Component {
     constructor(props) {
@@ -18,6 +19,8 @@ class Topic extends React.Component {
             isUpVoted: false,
             isDownVoted: false
         }
+        this.Auth = new AuthService();
+        
         this.onTopicClick = this.onTopicClick.bind(this);
         this.onUpVote = this.onUpVote.bind(this);
         this.onDownVote = this.onDownVote.bind(this);
@@ -25,7 +28,7 @@ class Topic extends React.Component {
     }
 
     componentDidMount() {
-        let jwtToken = localStorage.getItem("JwtToken"); 
+        let jwtToken = this.Auth.getRightSocialToken();
         let topicId = this.props.id;
 
         fetch(`/get/topic/number/comments/${topicId}/${jwtToken}`, {
@@ -77,7 +80,7 @@ class Topic extends React.Component {
     }
 
     onUpVote() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
         if(!this.state.isUpVoted) {
             let isUpVoted = true;    
             axios({
@@ -109,7 +112,7 @@ class Topic extends React.Component {
     }
 
     onDownVote() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
         if(!this.state.isDownVoted) {
             let isUpVoted = false;
             axios({
@@ -141,7 +144,7 @@ class Topic extends React.Component {
     }
 
     fetchTopicData() {
-        let jwtToken = localStorage.getItem("JwtToken"); 
+        let jwtToken = this.Auth.getRightSocialToken();
         let topicId = this.props.id;
         
         fetch(`/get/topic/number/comments/${topicId}/${jwtToken}`, {

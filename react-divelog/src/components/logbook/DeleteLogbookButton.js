@@ -23,7 +23,6 @@ class DeleteLogbookButton extends React.Component {
 
         if(this.props.isUpdating) {
             this.props.setUpdateLogbookRow();
-
         }
     }
 

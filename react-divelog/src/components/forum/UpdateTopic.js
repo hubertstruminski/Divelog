@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
+import AuthService from '../../util/AuthService';
 
 class UpdateTopic extends React.Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class UpdateTopic extends React.Component {
             failureNameFiles: [],
             languageForum: ''
         }
+        this.Auth = new AuthService();
         this.errors = [];
         this.files = []
 
@@ -140,7 +142,8 @@ class UpdateTopic extends React.Component {
 
         if(this.errors.length === 0) {
             let topicId = this.props.match.params.id;
-            
+            let jwtToken = this.Auth.getRightSocialToken();
+
             const updatedTopic = {
                 title: this.state.title,
                 message: this.state.message,
@@ -149,7 +152,7 @@ class UpdateTopic extends React.Component {
 
             axios({
                 method: 'PUT',
-                url: `/update/topic/${topicId}`,
+                url: `/update/topic/${topicId}/${jwtToken}`,
                 data: updatedTopic,
                 headers: {
                     "Accept": "application/json",
@@ -159,7 +162,7 @@ class UpdateTopic extends React.Component {
                 if(response.status !== 200) {
                     swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                 } else {
-                    // this.props.history.push(`topic/${topicId}/${this.state.languageForum}/posts`);
+                    // this.props.history.replace(`topic/${topicId}/${this.state.languageForum}/posts`);
                     this.props.history.push("/forum");
                 }
             });

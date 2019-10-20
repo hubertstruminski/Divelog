@@ -30,6 +30,18 @@ export default class AuthService {
         }
     }
 
+    getRightSocialToken() {
+        let jwtToken = null;
+
+        if(this.getTwitterToken() !== null) {
+            jwtToken = this.getTwitterToken();
+        }
+        if(this.getToken() !== null) {
+            jwtToken = this.getToken();
+        }
+        return jwtToken;
+    }
+
     loggedIn() {
         let facebookJwtToken = this.getToken();
         let twitterJwtToken = this.getTwitterToken();

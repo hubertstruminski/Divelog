@@ -5,6 +5,7 @@ import divelogLogo from '../../img/logo.png';
 import ConvertTime from '../../util/ConvertTime';
 import $ from 'jquery';
 import '../../css/PdfLogbook.css';
+import AuthService from '../../util/AuthService';
 
 class PDFTableButton extends React.Component {
     constructor(props) {
@@ -30,6 +31,8 @@ class PDFTableButton extends React.Component {
             divingType: 'NONE',
             comment: ''
         }
+        this.Auth = new AuthService();
+
         this.ConvertTime = new ConvertTime();
         this.onClick = this.onClick.bind(this);
     }
@@ -44,7 +47,7 @@ class PDFTableButton extends React.Component {
         e.preventDefault();
 
         const id = this.props.id;
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/pdf/logbook/${id}/${jwtToken}`, {
             method: 'GET',

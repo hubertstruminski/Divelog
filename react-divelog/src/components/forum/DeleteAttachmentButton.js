@@ -3,17 +3,19 @@ import swal from 'sweetalert';
 import $ from 'jquery';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router';
+import AuthService from '../../util/AuthService';
 
 class DeleteAttachmentButton extends React.Component {
     constructor(props) {
         super(props);
 
+        this.Auth = new AuthService();
         this.onImageDeleteClick = this.onImageDeleteClick.bind(this);
     }
 
     onImageDeleteClick() {
         let fileId = this.props.id;
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/delete/post/file/${fileId}/${jwtToken}`, {
             method: 'DELETE',

@@ -5,6 +5,7 @@ import com.example.model.Connection;
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.util.*;
 
 import static com.example.config.SecurityConstants.EXPIRATION_TIME;
@@ -78,6 +79,7 @@ public class JwtTokenProvider {
             user = (ConnectionDto) connectionDto;
         }
         claims.put("userID", user.getUserID());
+        claims.put("twitterUserID", user.getTwitterUserId());
         claims.put("email", user.getEmail());
         claims.put("name", user.getName());
         claims.put("accessToken", user.getAccessToken());

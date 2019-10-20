@@ -6,6 +6,7 @@ import ReactPlayer from 'react-player';
 import Post from './Post';
 import Pagination from 'react-js-pagination';
 import UpdateTopicButton from './UpdateTopicButton';
+import AuthService from '../../util/AuthService';
 
 class TopicWithPosts extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class TopicWithPosts extends React.Component {
             itemPerPage: 10,
             wasUpdatedPost: false
         }
-
+        this.Auth = new AuthService();
         this.files = []
         this.ConvertTime = new ConvertTime();
 
@@ -73,15 +74,18 @@ class TopicWithPosts extends React.Component {
                     files.push(element);
                 });
 
+                let updatedAt = '';
+
                 if(post.updatedAt !== null) {
                     this.setState({ wasUpdatedPost: true });
+                    updatedAt = this.ConvertTime.convertTime(post.updatedAt, null, false);
                 }
 
                 const element = {
                     id: post.id,
                     message: post.message,
                     createdAt: this.ConvertTime.convertTime(post.createdAt, null, false),
-                    updatedAt: this.ConvertTime.convertTime(post.updatedAt, null, false),
+                    updatedAt: updatedAt,
                     files: files,
                     user: post.user
                 }
@@ -100,7 +104,7 @@ class TopicWithPosts extends React.Component {
                 mainPost: element, 
                 isRetrieved: true
             }, () => {
-                let jwtToken = localStorage.getItem("JwtToken");
+                let jwtToken = this.Auth.getRightSocialToken();
 
                 fetch(`/getuserdata/${jwtToken}`, {
                     method: 'GET',
@@ -168,15 +172,18 @@ class TopicWithPosts extends React.Component {
                         files.push(element);
                     });
 
+                    let updatedAt = '';
+
                     if(post.updatedAt !== null) {
                         this.setState({ wasUpdatedPost: true });
+                        updatedAt = this.ConvertTime.convertTime(post.updatedAt, null, false);
                     }
     
                     const element = {
                         id: post.id,
                         message: post.message,
                         createdAt: this.ConvertTime.convertTime(post.createdAt, null, false),
-                        updatedAt: this.ConvertTime.convertTime(post.updatedAt, null, false),
+                        updatedAt: updatedAt,
                         files: files,
                         user: post.user
                     }
@@ -195,7 +202,7 @@ class TopicWithPosts extends React.Component {
                     mainPost: element, 
                     isRetrieved: true
                 }, () => {
-                    let jwtToken = localStorage.getItem("JwtToken");
+                    let jwtToken = this.Auth.getRightSocialToken();
     
                     fetch(`/getuserdata/${jwtToken}`, {
                         method: 'GET',
