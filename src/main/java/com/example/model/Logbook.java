@@ -26,7 +26,7 @@ public class Logbook {
     @Size(max = 100)
     private String partnerSurname;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "marker_id")
     @NotNull
     private Marker marker;

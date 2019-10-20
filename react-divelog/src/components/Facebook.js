@@ -2,6 +2,8 @@ import React from 'react';
 import '../css/Facebook.css';
 import LeftCard from './Layout/LeftCard';
 import withAuth from '../util/withAuth';
+import Cookies from 'universal-cookie';
+import AuthService from '../util/AuthService';
 
 class Facebook extends React.Component {
     constructor(props) {
@@ -14,10 +16,21 @@ class Facebook extends React.Component {
             userID: '',
             pictureUrl: ''
         }
+        this.cookies = new Cookies();
+        this.Auth = new AuthService();
     }
 
     componentDidMount() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        window.twttr.widgets.load();
+        
+        let jwtToken = null;
+
+        if(this.Auth.getTwitterToken() !== null) {
+            jwtToken = this.Auth.getTwitterToken();
+        }
+        if(this.Auth.getToken() !== null) {
+            jwtToken = this.Auth.getToken();
+        }
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
@@ -33,6 +46,13 @@ class Facebook extends React.Component {
                 name: jsonData.name,
                 userID: jsonData.userID,
                 pictureUrl: jsonData.pictureUrl
+            }, () => {
+                // fetch(`https://graph.facebook.com/${this.state.userID}/posts?fields=id,name,full_picture,message,place,created_time&access_token=${this.state.accessToken}`, {
+                //     method: 'GET'
+                // }).then(response => response.json())
+                // .then(jsonData => {
+                   
+                // });
             });
         }); 
     }
@@ -77,3 +97,4 @@ class Facebook extends React.Component {
 }
 
 export default withAuth(Facebook);
+// export default Facebook;

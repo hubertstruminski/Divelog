@@ -1,55 +1,70 @@
 package com.example.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "facebook_connection")
+@Table(name = "connection")
 public class Connection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Column(name = "user_id")
-    private Long userID;
+    @Digits(integer = 24, fraction = 0)
+    @Column(name = "facebook_user_id")
+    protected BigInteger userID;
+
+    @Digits(integer = 24, fraction = 0)
+    @Column(name = "twitter_user_id")
+    protected BigInteger twitterUserId;
 
     @NotNull
-    private String email;
+    protected String email;
 
     @NotNull
-    private String name;
+    protected String name;
 
     @Column(name = "access_token")
-    private String accessToken;
+    protected String accessToken;
 
     @NotNull
     private boolean authenticated;
 
     @Column(name = "picture_url")
-    private String pictureUrl;
+    protected String pictureUrl;
 
     @NotNull
-    private String providerId;
+    protected String providerId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "logged_in_at")
     @NotNull
-    private Date loggedAt;
+    protected Date loggedAt;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "created_at")
     @NotNull
-    private Date createdAt;
+    protected Date createdAt;
 
     @OneToMany(mappedBy = "user")
     private List<Marker> markers;
 
     @OneToMany(mappedBy = "user")
     private List<Logbook> logbooks;
+
+    @OneToMany(mappedBy = "user")
+    private List<Topic> topics;
+
+    @OneToMany(mappedBy = "user")
+    private List<TopicVote> topicVotes;
+
+    @OneToOne(mappedBy = "user")
+    private CustomTwitter customTwitter;
 
     public Connection() {
 
@@ -63,11 +78,11 @@ public class Connection {
         this.id = id;
     }
 
-    public Long getUserID() {
+    public BigInteger getUserID() {
         return userID;
     }
 
-    public void setUserID(Long userID) {
+    public void setUserID(BigInteger userID) {
         this.userID = userID;
     }
 
@@ -133,5 +148,13 @@ public class Connection {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public BigInteger getTwitterUserId() {
+        return twitterUserId;
+    }
+
+    public void setTwitterUserId(BigInteger twitterUserId) {
+        this.twitterUserId = twitterUserId;
     }
 }

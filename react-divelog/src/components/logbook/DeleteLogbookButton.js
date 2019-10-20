@@ -20,6 +20,10 @@ class DeleteLogbookButton extends React.Component {
         this.props.setMarker(markerObject);
         this.props.setIsAccessible();
         this.props.setFinishMarker(false);
+
+        if(this.props.isUpdating) {
+            this.props.setUpdateLogbookRow();
+        }
     }
 
     render() {

@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import swal from 'sweetalert';
 import { withTranslation } from 'react-i18next';
+import AuthService from '../../util/AuthService';
 
 class GoogleModal extends React.Component {
     constructor(props) {
@@ -10,6 +11,8 @@ class GoogleModal extends React.Component {
         this.state = {
             name: ''
         }
+        this.Auth = new AuthService();
+
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -27,7 +30,7 @@ class GoogleModal extends React.Component {
             longitude: this.props.longitude
         }
 
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/add/marker/${jwtToken}`, {
             method: 'POST',
@@ -36,16 +39,16 @@ class GoogleModal extends React.Component {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(googleMarker)
+        }).then(response => {
+            if(response.status === 200) {
+                this.props.setFinishMarker();
+                this.props.addMarkerToArray(googleMarker);
+                this.props.fetchMarkers();
+                $("#modalCenter").modal('hide');
+            } else if(response.status === 404) {
+                swal(this.props.t("error-404.title"), this.props.t("error-404.message"),"error");
+            }
         });
-
-        this.props.setFinishMarker();
-        $("#modalCenter").modal('hide');
-
-        swal(
-            this.props.t("googleMap.modal.swal.title"), 
-            this.props.t("googleMap.modal.swal.text"), 
-            "success"
-        );
     }
 
     render() {

@@ -2,32 +2,34 @@ import React from 'react';
 import '../../css/Logbook.css';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Trans } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
 import DeleteTableButton from './DeleteTableButton';
 import UpdateLogbookButton from './UpdateLogbookButton';
 import PDFTableButton from './PDFTableButton';
+import ConvertTime from '../../util/ConvertTime';
+import AuthService from '../../util/AuthService';
 
 class Logbook extends React.Component {
     constructor() {
         super();
         
         this.state = {
-            logbooks: [],
             isEmptyLogbook: true,
-            isDeletedRow: false,
             deletedLogbookId: 0
         }
+        this.Auth = new AuthService();
         this.logbooks = [];
         this.bodyTableRef = React.createRef();
         
         this.showTableRows = this.showTableRows.bind(this);
-        this.setIsDeletedRow = this.setIsDeletedRow.bind(this);
         this.setDeletedLogbookId = this.setDeletedLogbookId.bind(this);
+        this.fetchLogbooks = this.fetchLogbooks.bind(this);
+
+        this.ConvertTime = new ConvertTime();
     }
 
     componentDidMount() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/get/logbook/${jwtToken}`, {
             method: 'GET',
@@ -38,12 +40,14 @@ class Logbook extends React.Component {
         }).then(response => response.json())
         .then(jsonData => {
             jsonData.map((jsonElement, index) => {
+                let time = this.ConvertTime.convertTime(jsonElement.entryTime, jsonElement.exitTime, false);
+
                 const element = {
                     id: jsonElement.id,
                     partnerName: jsonElement.partnerName,
                     partnerSurname: jsonElement.partnerSurname,
-                    entryTime: jsonElement.entryTime,
-                    exitTime: jsonElement.exitTime,
+                    entryTime: time[0],
+                    exitTime: time[1],
                     marker: jsonElement.marker.name,
                     averageDepth: jsonElement.averageDepth,
                     maxDepth: jsonElement.maxDepth,
@@ -63,36 +67,56 @@ class Logbook extends React.Component {
         });
     }
 
-    componentDidUpdate() {
-        for(let i=0; i<this.logbooks.length; i++) {
-            if(this.logbooks[i].id === this.state.deletedLogbookId) {
-                this.logbooks.splice(i, 1);
-            }
-        }
-        this.bodyTableRef.current = "";
-        this.showTable();
-    }
+    fetchLogbooks() {
+        let jwtToken = this.Auth.getRightSocialToken(); 
 
-    componentWillReceiveProps() {
-        this.bodyTableRef.current = "";
-        this.showTable();
+        fetch(`/get/logbook/${jwtToken}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json())
+        .then(jsonData => {
+            this.logbooks = [];
+            jsonData.map((jsonElement, index) => {
+                let time = this.ConvertTime.convertTime(jsonElement.entryTime, jsonElement.exitTime, false);
+
+                const element = {
+                    id: jsonElement.id,
+                    partnerName: jsonElement.partnerName,
+                    partnerSurname: jsonElement.partnerSurname,
+                    entryTime: time[0],
+                    exitTime: time[1],
+                    marker: jsonElement.marker.name,
+                    averageDepth: jsonElement.averageDepth,
+                    maxDepth: jsonElement.maxDepth,
+                    airTemperature: jsonElement.airTemperature,
+                    waterTemperature: jsonElement.waterTemperature,
+                    divingType: jsonElement.divingType
+                }
+                this.logbooks.push(element);
+            });
+            if(this.logbooks.length === 0) {
+                this.setState({ isEmptyLogbook: true });
+            } else {
+                if(this.state.isEmptyLogbook === true) {
+                    this.setState({ isEmptyLogbook: false });
+                }
+            }
+        });
     }
 
     showTableRows() {
         let rowNumber = 0;
         return this.logbooks.map((logbook, index) => {
-            let entryTime = logbook.entryTime;
-            entryTime = entryTime.substr(0, 10) + " " + entryTime.substr(11, 5);
-
-            let exitTime = logbook.exitTime;
-            exitTime = exitTime.substr(0, 10) + " " + exitTime.substr(11, 5);
             return (
                 <tr key={index}>
                     <th scope="row">{++rowNumber}</th>
                     <td>{logbook.partnerName}</td>
                     <td>{logbook.partnerSurname}</td>
-                    <td>{entryTime}</td>
-                    <td>{exitTime}</td>
+                    <td>{logbook.entryTime}</td>
+                    <td>{logbook.exitTime}</td>
                     <td>{logbook.marker}</td>
                     <td>{logbook.averageDepth}m</td>
                     <td>{logbook.maxDepth}m</td>
@@ -110,6 +134,7 @@ class Logbook extends React.Component {
                             id={logbook.id} 
                             setIsDeletedRow={this.setIsDeletedRow}
                             setDeletedLogbookId={this.setDeletedLogbookId}
+                            fetchLogbooks={this.fetchLogbooks}
                         />
                     </td>
                 </tr>
@@ -173,17 +198,22 @@ class Logbook extends React.Component {
         );
     }
 
-    setIsDeletedRow(value) {
-        this.setState({ isDeletedRow: value });
-    }
-
     setDeletedLogbookId(value) {
-        this.setState({ deletedLogbookId: value });
+        this.setState({ deletedLogbookId: value }, () => {
+            let id = this.state.deletedLogbookId;
+            let index = 0;
+            this.logbooks.map((logbook, index) => {
+                if(logbook.id === id) {
+                    this.logbooks.splice(index, 1);
+                    this.forceUpdate();
+                }
+                index++;
+            });
+        });
     }
 
     render() {
         let isEmptyLogbook = this.state.isEmptyLogbook;
-        let isDeletedRow = this.state.isDeletedRow;
 
         return (
             <div className="logbook-container">
@@ -194,7 +224,7 @@ class Logbook extends React.Component {
                         {this.props.t("logbook.addButton")}
                     </div>
                 </Link>
-                { !isEmptyLogbook && this.showTable() }   
+                { !isEmptyLogbook && this.showTable() } 
                 <NoLogbookData isEmptyLogbook={this.state.isEmptyLogbook} />
             </div>
         );

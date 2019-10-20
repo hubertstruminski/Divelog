@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 import { AuthObject } from '../util/AuthObject';
 import AuthService from '../util/AuthService';
 import $ from 'jquery';
+import TwitterLogin from 'react-twitter-auth';
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -18,6 +19,15 @@ class LogIn extends React.Component {
         }
         this.Auth = new AuthService();
         this.responseFacebook = this.responseFacebook.bind(this);
+        this.onTwitterClick = this.onTwitterClick.bind(this);
+    }
+
+    componentDidMount() {
+        $("nav").css({ "position": "fixed", "width": "100%"});
+    }
+
+    componentWillUnmount() {
+        $("nav").css({ "position": "static"});
     }
 
     responseFacebook(response) {
@@ -49,6 +59,9 @@ class LogIn extends React.Component {
         return <Redirect to="/dashboard/" />
     }
 
+    onTwitterClick() {
+        window.location.href = "http://localhost:8080/signin";
+    }
 
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/dashboard' }}
@@ -70,7 +83,6 @@ class LogIn extends React.Component {
                         <br />
                         <span className="logo-text">Divelog</span>
                         <br />
-                        <br />
                         <FacebookLogin
                             appId="455695445269575"
                             autoLoad={false}
@@ -80,7 +92,17 @@ class LogIn extends React.Component {
                             cssClass="btn btn-lg btn-fb fb-btn-white-font"
                             icon="<i className='fab fa-facebook-f pr-1' />"
                             textButton={this.props.t("login.facebook-btn")}
+                            installed={true}
                         />
+                        <br />
+                        <button 
+                            type="button" 
+                            className="btn btn-tw fb-btn-white-font btn-tw-background btn-tw-width"
+                            onClick={this.onTwitterClick}
+                        >
+                            <i class="fab fa-twitter pr-1"></i> 
+                            LOGIN WITH TWITTER
+                        </button>
                     </div>
                 </div>
             </div>

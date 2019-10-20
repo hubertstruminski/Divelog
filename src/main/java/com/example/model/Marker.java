@@ -25,7 +25,7 @@ public class Marker {
     @JoinColumn(name = "user_id")
     private Connection user;
 
-    @OneToMany(mappedBy = "marker")
+    @OneToMany(mappedBy = "marker", cascade = CascadeType.ALL)
     @Transient
     private List<Logbook> logbooks;
 
