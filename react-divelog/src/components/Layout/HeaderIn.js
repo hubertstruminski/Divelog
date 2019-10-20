@@ -8,8 +8,10 @@ import Friends from '../Friends';
 import Messenger from '../Messenger';
 import Notifications from '../Notifications';
 import Menu from '../Menu';
-import { withRouter } from 'react-router';
 import AuthService from '../../util/AuthService';
+import { withRouter } from 'react-router';
+import withAuth from '../../util/withAuth';
+import { compose } from 'redux';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -27,7 +29,14 @@ class HeaderIn extends React.Component {
     }
 
     componentDidMount() {
-        let jwtToken = localStorage.getItem("JwtToken");
+        let jwtToken = null;
+
+        if(this.Auth.getTwitterToken() !== null) {
+            jwtToken = this.Auth.getTwitterToken();
+        }
+        if(this.Auth.getToken() !== null) {
+            jwtToken = this.Auth.getToken();
+        }
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
@@ -46,6 +55,13 @@ class HeaderIn extends React.Component {
             });
         }); 
 
+        $("nav").css({ 
+            "position": "fixed", 
+            "top": "0", 
+            "width": "100%", 
+            "z-index": "1000" 
+        });
+
         let isActive = false;
         $("#left-menu-icon").click(function() {
             if(!isActive) {
@@ -60,23 +76,18 @@ class HeaderIn extends React.Component {
                 return;
             }
         });
-
-        // $(".facebook-container").click(function() {
-        //     if(isActive) {
-        //         if( this.id != 'left-menu' || this.id != 'left-menu-icon') {
-        //             $("#left-menu").animate({ left: '-15%' }, 500);
-        //             isActive = false;
-        //             return;
-        //         }
-        //     }
-        // });
     }
 
 
     onSubmit() {
         this.logout();
-        
-        this.Auth.logout();
+
+        if(this.Auth.getTwitterToken() !== null) {
+            this.Auth.logoutTwitter();
+        }
+        if(this.Auth.getToken() !== null) {
+            this.Auth.logout();
+        }
         this.props.history.push("/login");
     }
 
@@ -177,11 +188,11 @@ class HeaderIn extends React.Component {
                                 <li className="nav-item nav-link mt-3">
                                     {this.state.name}
                                 </li>
-                                <li className="nav-item mt-3">
+                                <li className="nav-item mt-1">
                                     <div className="nav-link">
                                         <button
                                             onClick={this.onSubmit}
-                                            className="btn-logout bg-dark"
+                                            className="btn btn-danger"
                                         >
                                             {this.props.t("header.logout")}
                                         </button>
@@ -191,10 +202,7 @@ class HeaderIn extends React.Component {
                         </div>
                     </nav>
                 </header>
-                <div 
-                    // className="left-menu"
-                    id="left-menu"
-                >
+                <div id="left-menu">
                     <Menu />
                 </div>
             </div>
@@ -202,4 +210,4 @@ class HeaderIn extends React.Component {
     }
 }
 
-export default withTranslation("common")(withRouter(HeaderIn));
+export default withRouter(withAuth(withTranslation("common")(HeaderIn)));

@@ -3,6 +3,7 @@
 .google-container {
     width: 100%;
     background-image: url("../img/hexellence.png");
+    padding-top: 78px;
 }
 .google-center {
     display: flex;

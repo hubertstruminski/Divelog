@@ -35,3 +35,7 @@ spring:
         jdbc:
           lob:
              non_contextual_creation: true
+  social:
+    twitter:
+      appId: todfC8BjhF9MbQ7VUeGY8EyWH
+      appSecret: ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2
