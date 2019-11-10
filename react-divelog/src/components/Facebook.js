@@ -22,15 +22,7 @@ class Facebook extends React.Component {
 
     componentDidMount() {
         window.twttr.widgets.load();
-        
-        let jwtToken = null;
-
-        if(this.Auth.getTwitterToken() !== null) {
-            jwtToken = this.Auth.getTwitterToken();
-        }
-        if(this.Auth.getToken() !== null) {
-            jwtToken = this.Auth.getToken();
-        }
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',

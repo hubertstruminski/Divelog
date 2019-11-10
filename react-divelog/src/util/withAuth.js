@@ -40,6 +40,9 @@ export default function withAuth(AuthComponent, props) {
                             if(this.props.location.pathname === "/twitter/explore") {
                                 customAuthComponent && this.setRedirectForTwitterExplore(props, "/twitter/explore");
                             }
+                            if(this.props.location.pathname === "/twitter/home") {
+                                customAuthComponent && this.props.history.replace("/twitter/home");
+                            }
                         } else {
                             customAuthComponent && this.props.history.replace("/twitter");
                         }

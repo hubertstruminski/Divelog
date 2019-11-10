@@ -3,23 +3,44 @@ import '../../css/TwitterCategoriesCard.css';
 import { withRouter } from 'react-router';
 import withAuth from '../../util/withAuth';
 import { Link } from 'react-router-dom';
+import AuthService from '../../util/AuthService';
 
 class TwitterCategoriesCard extends React.Component {
     constructor(props) {
         super(props);
-        
+
+        this.state = {
+            pictureUrl: ''
+        }
+        this.Auth = new AuthService();
+    }
+
+    componentDidMount() {
+        let jwtToken = this.Auth.getRightSocialToken();
+
+        fetch(`/getuserdata/${jwtToken}`, {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(jsonData => {
+            this.setState({
+                pictureUrl: jsonData.pictureUrl,
+            });
+        });
     }
 
     render() {
         return (
             <div className="twitter-categories-container">
                 <ul className="list-group twitter-categories-list">
-                    <li className="list-group-item list-group-item-hover">
-
+                    <Link to="/twitter/home" className="list-group-item list-group-item-hover">
                         <div className="twitter-categories-icons-box">
                             <i className="fas fa-home"></i> Home
                         </div>
-                    </li>
+                    </Link>
                     <Link to="/twitter/explore" className="list-group-item list-group-item-hover">
                         <div className="twitter-categories-icons-box">
                             <span style={{ fontWeight: '900' }}>#</span> Explore
@@ -45,7 +66,7 @@ class TwitterCategoriesCard extends React.Component {
                     >
                         <div className="twitter-categories-icons-box">
                             <img 
-                            src={this.props.pictureUrl} 
+                            src={this.state.pictureUrl} 
                             alt="Avatar" 
                             className="twitter-categories-avatar"
                             /> Profile

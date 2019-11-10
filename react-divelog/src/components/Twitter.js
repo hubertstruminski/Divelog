@@ -29,15 +29,7 @@ class Twitter extends React.Component {
         this.isMountedTwitter = true;
 
         this.isMountedTwitter && window.twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
-
-        let jwtToken = null;
-
-        if(this.Auth.getTwitterToken() !== null) {
-            jwtToken = this.Auth.getTwitterToken();
-        }
-        if(this.Auth.getToken() !== null) {
-            jwtToken = this.Auth.getToken();
-        }
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
@@ -94,14 +86,6 @@ class Twitter extends React.Component {
                         </div>
                     </div>
                     <div className="feed-container">
-                        {/* <div className="twitter-user-profil">
-                            <div className="twitter-header-profile">
-
-                            </div>
-                            <div className="tweets-profile-container">
-                            
-                            </div>
-                        </div> */}
                         <div className="tweets-likes-container">
 
                         </div>

@@ -203,6 +203,29 @@ public class TwitterController {
         return new ResponseEntity<List<User>>(friendsList, HttpStatus.OK);
     }
 
+    @GetMapping("/twitter/home/timeline/{jwtToken}")
+    public ResponseEntity<?> getHomeTimeline(@PathVariable String jwtToken) throws TwitterException {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
+
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
+        ResponseList<Status> homeTimeline = twitter.getHomeTimeline();
+        List<String> oEmbedTweets = new ArrayList<>();
+        StringBuilder builder = new StringBuilder();
+
+        for(Status tweet: homeTimeline) {
+            String url= "https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId();
+            OEmbedRequest oEmbedRequest = new OEmbedRequest(tweet.getId(), url);
+
+            OEmbed oEmbed = twitter.getOEmbed(oEmbedRequest);
+            builder.append(oEmbed.getHtml());
+        }
+        return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
+//        return new ResponseEntity<ResponseList<Status>>(homeTimeline, HttpStatus.OK);
+    }
+
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
         connection.setTwitterUserId(BigInteger.valueOf(accessToken.getUserId()));
         connection.setProviderId(Provider.TWITTER.getProvider());

@@ -32,6 +32,7 @@ import UpdateTopic from './components/forum/UpdateTopic';
 import Settings from './components/settings/Settings';
 import Twitter from './components/Twitter';
 import TwitterExplore from './components/twitter/TwitterExplore';
+import TwitterHome from './components/twitter/twitter-home/TwitterHome';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -74,6 +75,7 @@ function App() {
               <Route exact path="/settings" component={Settings} />
               
               <Route exact path="/twitter/explore" component={TwitterExplore} twitterExplore={true} />
+              <Route exact path="/twitter/home" component={TwitterHome} />
               <Route exact path="/twitter" component={Twitter} />
               
           </I18nextProvider>
