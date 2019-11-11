@@ -3,6 +3,8 @@ package com.example.controller;
 import com.example.config.JwtTokenProvider;
 import com.example.dto.ConnectionDto;
 import com.example.dto.TrendDto;
+import com.example.dto.TweetDto;
+import com.example.dto.TweetFileDto;
 import com.example.enums.Provider;
 import com.example.model.Connection;
 import com.example.model.CustomTwitter;
@@ -12,25 +14,30 @@ import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 
 @RestController
 public class TwitterController {
@@ -223,7 +230,52 @@ public class TwitterController {
             builder.append(oEmbed.getHtml());
         }
         return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
-//        return new ResponseEntity<ResponseList<Status>>(homeTimeline, HttpStatus.OK);
+    }
+
+    @PostMapping("/twitter/create/tweet/{jwtToken}")
+    public ResponseEntity<?> createTweet(@PathVariable String jwtToken, @RequestBody TweetDto tweetDto)
+            throws TwitterException, IOException, URISyntaxException {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
+
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+        long[] mediaIds = null;
+
+        if(tweetDto.getFiles().size() > 0) {
+            mediaIds = new long[tweetDto.getFiles().size()];
+            int count = 0;
+
+            for(TweetFileDto file: tweetDto.getFiles()) {
+                URL url = new URL(file.getUrl());
+
+                BufferedImage image = ImageIO.read(url);
+                ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+                if(file.getType().contains("png")) {
+                    ImageIO.write(image, "png", os);
+                } else {
+                    ImageIO.write(image, "jpg", os);
+                }
+                InputStream is = new ByteArrayInputStream(os.toByteArray());
+
+                UploadedMedia uploadedMedia = twitter.uploadMedia(file.getName(), is);
+
+                mediaIds[count] = uploadedMedia.getMediaId();
+                count++;
+            }
+        }
+
+        StatusUpdate update = new StatusUpdate(tweetDto.getMessage());
+        update.setMediaIds(mediaIds);
+
+        Status status = twitter.updateStatus(update);
+
+        String url= "https://twitter.com/" + status.getUser().getScreenName() + "/status/" + status.getId();
+        OEmbedRequest oEmbedRequest = new OEmbedRequest(status.getId(), url);
+        OEmbed oEmbed = twitter.getOEmbed(oEmbedRequest);
+
+        return new ResponseEntity<String>(oEmbed.getHtml(), HttpStatus.OK);
     }
 
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {

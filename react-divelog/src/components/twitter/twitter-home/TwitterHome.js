@@ -23,10 +23,12 @@ class TwitterHome extends React.Component {
             providerId: '',
             screenName: '',
             tokenSecret: '',
-            tweets: [],
+            tweets: '',
             isTweetsRetrieved: false
         }
         this.Auth = new AuthService();
+
+        this.addNewTweet = this.addNewTweet.bind(this);
     }
 
     componentDidMount() {
@@ -61,11 +63,20 @@ class TwitterHome extends React.Component {
                     }).then(response => {
                         return response.text();
                     }).then(text => {
-                        $(".home-timeline-container").html(text);
-                        $(".twitter-tweet").attr("data-width", "520px");                      
+                        this.setState({ tweets: text }, () => {
+                            $(".home-timeline-container").html(text);
+                            $(".twitter-tweet").attr("data-width", "520px");
+                        });                      
                     });
                 });
             }
+        });
+    }
+
+    addNewTweet(newTweet) {
+        this.setState({ tweets: newTweet + this.state.tweets }, () => {
+            $(".home-timeline-container").html(this.state.tweets);
+            $(".twitter-tweet").attr("data-width", "520px");
         });
     }
 
@@ -91,6 +102,7 @@ class TwitterHome extends React.Component {
                     <div className="twitter-home-container">
                         <TwitterHomeAdd 
                             pictureUrl={this.state.pictureUrl}
+                            addNewTweet={this.addNewTweet}
                         />
                         <div className="home-timeline-container">
 

@@ -2,69 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/FilestackController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/TweetDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/TweetFileDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/build-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/build-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/cjs/react-is.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/cjs/react-is.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/cjs/react-is.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/cjs/react-is.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/umd/react-is.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/umd/react-is.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/umd/react-is.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/airbnb-prop-types/node_modules/react-is/umd/react-is.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/build/ReactSixteenAdapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/build/ReactSixteenAdapter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/build/ReactSixteenAdapter.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/build/ReactSixteenAdapter.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/build/detectFiberTags.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/build/detectFiberTags.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/build/detectFiberTags.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/build/detectFiberTags.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/src/ReactSixteenAdapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/src/ReactSixteenAdapter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/src/detectFiberTags.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-react-16/src/detectFiberTags.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/build/Utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/build/Utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/build/Utils.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/build/Utils.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/build/createMountWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/build/createMountWrapper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/build/createMountWrapper.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/build/createMountWrapper.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/src/Utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/src/Utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/src/createMountWrapper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/enzyme-adapter-utils/src/createMountWrapper.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/test/.eslintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/test/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/functions-have-names/test/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/build-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/build-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/cjs/react-test-renderer-shallow.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/cjs/react-test-renderer-shallow.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/cjs/react-test-renderer-shallow.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/cjs/react-test-renderer-shallow.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/cjs/react-test-renderer.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/cjs/react-test-renderer.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/cjs/react-test-renderer.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/cjs/react-test-renderer.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/build-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/build-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-tracing.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-tracing.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-tracing.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-tracing.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-tracing.profiling.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-tracing.profiling.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-unstable_mock.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-unstable_mock.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-unstable_mock.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler-unstable_mock.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/cjs/scheduler.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/umd/scheduler-unstable_mock.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/umd/scheduler-unstable_mock.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/umd/scheduler-unstable_mock.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/node_modules/scheduler/umd/scheduler-unstable_mock.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/umd/react-test-renderer-shallow.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/umd/react-test-renderer-shallow.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/umd/react-test-renderer-shallow.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/umd/react-test-renderer-shallow.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/umd/react-test-renderer.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/umd/react-test-renderer.development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/umd/react-test-renderer.production.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-test-renderer/umd/react-test-renderer.production.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/node_modules/react-twitter-embed/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/node_modules/react-twitter-embed/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Facebook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/Twitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/Twitter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/TwitterCategoriesCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/TwitterCategoriesCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/TwitterFriendsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/TwitterFriendsList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TimelineLikes.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TimelineLikes.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TopicWithPosts.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TopicWithPosts.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TwitterCategoriesCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TwitterCategoriesCard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/TwitterGroupsCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/TwitterGroupsCard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/util/withAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/util/withAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/twitter-home/TwitterHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/twitter-home/TwitterHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/twitter/twitter-home/TwitterHomeAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/twitter/twitter-home/TwitterHomeAdd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" afterDir="false" />
     </list>
@@ -81,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2984">
-              <caret line="224" column="60" selection-start-line="224" selection-start-column="60" selection-end-line="224" selection-end-column="60" />
+            <state relative-caret-position="334">
+              <caret line="277" selection-start-line="277" selection-end-line="277" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,10 +38,86 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="127" selection-start-line="127" selection-end-line="127" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TweetFileDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+              <folding>
+                <element signature="e#158#159#0" expanded="true" />
+                <element signature="e#202#203#0" expanded="true" />
+                <element signature="e#238#239#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TweetDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+              <folding>
+                <element signature="e#338#339#0" expanded="true" />
+                <element signature="e#368#369#0" expanded="true" />
+                <element signature="e#414#415#0" expanded="true" />
+                <element signature="e#452#453#0" expanded="true" />
+                <element signature="e#491#492#0" expanded="true" />
+                <element signature="e#519#520#0" expanded="true" />
+                <element signature="e#568#569#0" expanded="true" />
+                <element signature="e#602#603#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/FileDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="e#236#237#0" expanded="true" />
+                <element signature="e#268#269#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/PostDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
+            <state relative-caret-position="810">
               <caret line="54" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -106,97 +127,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="38" column="106" selection-start-line="38" selection-start-column="106" selection-end-line="38" selection-end-column="106" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="780">
+              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PostController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/FilestackController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/FileController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicVoteController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1515">
-              <caret line="114" column="9" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/TopicRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -218,9 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/ForumRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/ForumType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/WaterEntryType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/enums/WaterType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/enums/DivingSuit.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/enums/DivingType.java" />
@@ -242,7 +182,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/Post.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dto/TopicDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/PDFController.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/UserPojo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/repository/TwitterDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" />
@@ -268,6 +207,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TopicController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/model/gd.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/FilestackController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dto/TweetFileDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dto/TweetDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" />
       </list>
     </option>
@@ -511,12 +454,12 @@
       <workItem from="1572356965444" duration="6677000" />
       <workItem from="1573131174313" duration="599000" />
       <workItem from="1573141841433" duration="3056000" />
-      <workItem from="1573231101590" duration="4534000" />
+      <workItem from="1573231101590" duration="12633000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430219000" />
+    <option name="totallyTimeSpent" value="438318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
@@ -622,11 +565,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/LanguageForum.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/OwnerPost.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/OwnerPostRepository.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/ForumRepository.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/ForumService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/CommandLineService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -641,16 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/PostDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -700,13 +628,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1860">
-          <caret line="124" column="21" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -818,17 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="e#236#237#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/CustomTwitter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -917,13 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="779">
@@ -942,16 +845,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/gd.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2984">
-          <caret line="224" column="60" selection-start-line="224" selection-start-column="60" selection-end-line="224" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -1032,10 +925,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/FilestackController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
+        <state relative-caret-position="810">
           <caret line="54" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/FileDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TrendDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/PostDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TweetFileDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding>
+            <element signature="e#158#159#0" expanded="true" />
+            <element signature="e#202#203#0" expanded="true" />
+            <element signature="e#238#239#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/TweetDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding>
+            <element signature="e#338#339#0" expanded="true" />
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#491#492#0" expanded="true" />
+            <element signature="e#519#520#0" expanded="true" />
+            <element signature="e#568#569#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/twitter4j/twitter4j-core/4.0.7/twitter4j-core-4.0.7.jar!/twitter4j/StatusUpdate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="103" column="16" selection-start-line="103" selection-start-column="16" selection-end-line="103" selection-end-column="16" />
+          <folding>
+            <element signature="e#2653#2654#0" expanded="true" />
+            <element signature="e#2693#2694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="127" selection-start-line="127" selection-end-line="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="277" selection-start-line="277" selection-end-line="277" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
