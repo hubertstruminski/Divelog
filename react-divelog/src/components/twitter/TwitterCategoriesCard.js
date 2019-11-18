@@ -46,11 +46,11 @@ class TwitterCategoriesCard extends React.Component {
                             <span style={{ fontWeight: '900' }}>#</span> Explore
                         </div>
                     </Link>
-                    <li className="list-group-item list-group-item-hover">
+                    <Link to="/twitter" className="list-group-item list-group-item-hover">
                         <div className="twitter-categories-icons-box">
                             <i className="fas fa-clock"></i> Timeline likes
                         </div>
-                    </li>
+                    </Link>
                     <li className="list-group-item list-group-item-hover">
                         <div className="twitter-categories-icons-box">
                             <i className="fas fa-bell"></i> Notifications

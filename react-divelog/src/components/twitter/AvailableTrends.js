@@ -3,6 +3,7 @@ import '../../css/AvailableTrends.css';
 import AuthService from '../../util/AuthService';
 import swal from 'sweetalert';
 import Trend from './Trend';
+import $ from 'jquery';
 
 class AvailableTrends extends React.Component {
     isMountedAvailableTrends = false
@@ -28,6 +29,7 @@ class AvailableTrends extends React.Component {
 
     componentDidMount() {
         this.isMountedAvailableTrends = true;
+        $(".trends-div-box").html("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
 
         if(this.isMountedAvailableTrends) {
             if(!navigator.geolocation) {
@@ -56,6 +58,8 @@ class AvailableTrends extends React.Component {
             }).then(response => response.json())
             .then(json => {
                 if(this.isMountedAvailableTrends) {
+                    $(".trends-div-box").html("");
+
                     json.map((trend, index) => {
                         if(trend.tweetVolume !== -1) {
                             const element = {

@@ -31,7 +31,7 @@ import TopicWithPosts from './components/forum/TopicWithPosts';
 import UpdateTopic from './components/forum/UpdateTopic';
 import Settings from './components/settings/Settings';
 import Twitter from './components/Twitter';
-import TwitterExplore from './components/twitter/TwitterExplore';
+import TwitterExplore from './components/twitter/twitter-explore/TwitterExplore';
 import TwitterHome from './components/twitter/twitter-home/TwitterHome';
 
 i18next.init({

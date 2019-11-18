@@ -33,7 +33,7 @@ class TwitterHome extends React.Component {
 
     componentDidMount() {
         this.isMountedTwitter = true;
-
+        $(".home-timeline-container").html("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
         let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/getuserdata/${jwtToken}`, {

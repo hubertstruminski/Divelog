@@ -223,11 +223,7 @@ public class TwitterController {
         StringBuilder builder = new StringBuilder();
 
         for(Status tweet: homeTimeline) {
-            String url= "https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId();
-            OEmbedRequest oEmbedRequest = new OEmbedRequest(tweet.getId(), url);
-
-            OEmbed oEmbed = twitter.getOEmbed(oEmbedRequest);
-            builder.append(oEmbed.getHtml());
+            builder = createOEmbedTweet(tweet, twitter, builder);
         }
         return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
     }
@@ -276,6 +272,27 @@ public class TwitterController {
         OEmbed oEmbed = twitter.getOEmbed(oEmbedRequest);
 
         return new ResponseEntity<String>(oEmbed.getHtml(), HttpStatus.OK);
+    }
+
+    @PostMapping("/twitter/search/tweets/{jwtToken}")
+    public ResponseEntity<?> getSearchTweets(@RequestBody String query, @PathVariable String jwtToken) throws TwitterException {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
+
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
+        Query tweetsQuery = new Query(query);
+
+        QueryResult queryResult = twitter.search(tweetsQuery);
+        List<Status> tweets = queryResult.getTweets();
+        StringBuilder builder = new StringBuilder();
+
+        for(Status tweet: tweets) {
+            builder = createOEmbedTweet(tweet, twitter, builder);
+        }
+
+        return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
     }
 
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
@@ -347,5 +364,13 @@ public class TwitterController {
             builder.append(result.charAt(i));
         }
         return builder.toString();
+    }
+
+    private StringBuilder createOEmbedTweet(Status tweet, Twitter twitter, StringBuilder builder) throws TwitterException {
+        String url= "https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId();
+        OEmbedRequest oEmbedRequest = new OEmbedRequest(tweet.getId(), url);
+
+        OEmbed oEmbed = twitter.getOEmbed(oEmbedRequest);
+        return builder.append(oEmbed.getHtml());
     }
 }
