@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.config.JwtTokenProvider;
+import com.example.config.SecurityConstants;
 import com.example.dto.ConnectionDto;
 import com.example.dto.TrendDto;
 import com.example.dto.TweetDto;
@@ -295,6 +296,19 @@ public class TwitterController {
         return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
     }
 
+    @GetMapping("/twitter/direct/messages/{jwtToken}")
+    public ResponseEntity<?> getDirectMessages(@PathVariable String jwtToken) throws TwitterException {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
+
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
+        DirectMessageList directMessages = twitter.getDirectMessages(50);
+
+        return new ResponseEntity<DirectMessageList>(directMessages, HttpStatus.OK);
+    }
+
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
         connection.setTwitterUserId(BigInteger.valueOf(accessToken.getUserId()));
         connection.setProviderId(Provider.TWITTER.getProvider());
@@ -342,8 +356,8 @@ public class TwitterController {
 
             ConfigurationBuilder cb = new ConfigurationBuilder();
             cb.setDebugEnabled(true)
-                    .setOAuthConsumerKey("todfC8BjhF9MbQ7VUeGY8EyWH")
-                    .setOAuthConsumerSecret("ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2")
+                    .setOAuthConsumerKey(SecurityConstants.TWITTER_CONSUMER_KEY)
+                    .setOAuthConsumerSecret(SecurityConstants.TWITTER_CONSUMER_SECRET)
                     .setOAuthAccessToken(accessToken)
                     .setOAuthAccessTokenSecret(tokenSecret);
             TwitterFactory tf = new TwitterFactory(cb.build());

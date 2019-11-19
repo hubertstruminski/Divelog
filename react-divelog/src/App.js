@@ -33,6 +33,7 @@ import Settings from './components/settings/Settings';
 import Twitter from './components/Twitter';
 import TwitterExplore from './components/twitter/twitter-explore/TwitterExplore';
 import TwitterHome from './components/twitter/twitter-home/TwitterHome';
+import TwitterMessagesBox from './components/twitter/twitter-messages/TwitterMessagesBox';
 
 i18next.init({
   interpolation: { escapeValue: false },
@@ -74,6 +75,7 @@ function App() {
               <Route exact path="/update/topic/:id" component={UpdateTopic} />
               <Route exact path="/settings" component={Settings} />
               
+              <Route exact path="/twitter/messages" component={TwitterMessagesBox} />
               <Route exact path="/twitter/explore" component={TwitterExplore} twitterExplore={true} />
               <Route exact path="/twitter/home" component={TwitterHome} />
               <Route exact path="/twitter" component={Twitter} />

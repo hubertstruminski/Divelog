@@ -28,6 +28,15 @@ class TwitterCategoriesCard extends React.Component {
         .then(jsonData => {
             this.setState({
                 pictureUrl: jsonData.pictureUrl,
+            }, () => {
+                fetch(`/twitter/webhooks/register/${jwtToken}`, {
+                    method: 'GET',
+                    headers: {
+                      'content-type': 'application/json'
+                    }
+                }).then(response => {
+                    console.log(response);
+                });
             });
         });
     }
@@ -56,11 +65,11 @@ class TwitterCategoriesCard extends React.Component {
                             <i className="fas fa-bell"></i> Notifications
                         </div>
                     </li>
-                    <li className="list-group-item list-group-item-hover">
+                    <Link to="/twitter/messages" className="list-group-item list-group-item-hover">
                         <div className="twitter-categories-icons-box">
                             <i className="far fa-envelope"></i> Messages
                         </div>
-                    </li>
+                    </Link>
                     <li 
                         className="list-group-item list-group-item-hover"
                     >
