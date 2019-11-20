@@ -2,10 +2,7 @@ package com.example.controller;
 
 import com.example.config.JwtTokenProvider;
 import com.example.config.SecurityConstants;
-import com.example.dto.ConnectionDto;
-import com.example.dto.TrendDto;
-import com.example.dto.TweetDto;
-import com.example.dto.TweetFileDto;
+import com.example.dto.*;
 import com.example.enums.Provider;
 import com.example.model.Connection;
 import com.example.model.CustomTwitter;
@@ -26,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Null;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -34,9 +32,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import org.apache.commons.io.FileUtils;
 
@@ -306,7 +302,47 @@ public class TwitterController {
 
         DirectMessageList directMessages = twitter.getDirectMessages(50);
 
-        return new ResponseEntity<DirectMessageList>(directMessages, HttpStatus.OK);
+        while(directMessages.getNextCursor() != null) {
+            DirectMessageList directMessagesFromNextCursor = twitter.getDirectMessages(50, directMessages.getNextCursor());
+
+            directMessages.addAll(directMessagesFromNextCursor);
+        }
+
+        Set<TwitterInboxDto> messagesSet = new HashSet<>();
+        List<Long> recipientIds = new ArrayList<>();
+        List<Long> senderIds = new ArrayList<>();
+
+        for(DirectMessage message: directMessages) {
+            if(!checkIfConversationExist(senderIds, recipientIds, message)) {
+                TwitterInboxDto twitterInboxDto = new TwitterInboxDto();
+
+                twitterInboxDto.setRecipientId(String.valueOf(message.getRecipientId()));
+                twitterInboxDto.setSenderId(String.valueOf(message.getSenderId()));
+                twitterInboxDto.setCreatedAt(message.getCreatedAt());
+                twitterInboxDto.setText(message.getText());
+
+                User user = twitter.showUser(message.getRecipientId());
+                twitterInboxDto.setName(user.getName());
+                twitterInboxDto.setScreenName(user.getScreenName());
+                twitterInboxDto.setPictureUrl(user.get400x400ProfileImageURL());
+
+                messagesSet.add(twitterInboxDto);
+                recipientIds.add(message.getRecipientId());
+                senderIds.add(message.getSenderId());
+            }
+        }
+        return new ResponseEntity<Set<TwitterInboxDto>>(messagesSet, HttpStatus.OK);
+    }
+
+    @PostMapping("/twitter/direct/messages/specified/person/{jwtToken}")
+    public ResponseEntity<?> getDirectMessagesWithSpecifiedPerson(@PathVariable String jwtToken) {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
+
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
@@ -386,5 +422,10 @@ public class TwitterController {
 
         OEmbed oEmbed = twitter.getOEmbed(oEmbedRequest);
         return builder.append(oEmbed.getHtml());
+    }
+
+    private boolean checkIfConversationExist(List<Long> senderIds, List<Long> recipientIds, DirectMessage message) {
+        return (recipientIds.contains(message.getRecipientId()) && senderIds.contains(message.getSenderId())) ||
+                (recipientIds.contains(message.getSenderId()) && senderIds.contains(message.getRecipientId()));
     }
 }

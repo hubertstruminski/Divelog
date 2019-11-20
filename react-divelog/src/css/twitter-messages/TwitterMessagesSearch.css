@@ -1,6 +1,6 @@
 .twitter-messages-search-input-container {
     width: 100%;
-    height: 50px;
+    height: 7%;
 
     background-color: white;
 
@@ -9,6 +9,7 @@
     align-items: center;
 
     border-bottom: 1px solid lightgray;
+    font-size: 0.7vw;
 }
 
 .twitter-messages-search-input {
@@ -20,8 +21,8 @@
 
     background-image: url("../../img/twitter/twitter-explore/search-tool.png");
     background-repeat: no-repeat;
-    background-size: 25px 25px;
-    background-position: 10px 5px;
-
+    background-size: 20px 20px;
+    /* background-position: 10px 5px; */
+    background-position: 5% 50%;
     background-color: #E5ECF0;
 }

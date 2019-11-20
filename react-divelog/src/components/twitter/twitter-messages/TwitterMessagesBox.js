@@ -78,12 +78,20 @@ class TwitterMessagesBox extends React.Component {
                                 <i className="far fa-envelope twitter-messages-add-icon"></i>
                             </div>
                             <TwitterMessagesSearch />
+                            {/* <div className="twitter-messages-list-persons-spinner">
+                                <TwitterMessagesInbox />
+                            </div> */}
                             <TwitterMessagesInbox />
                         </div>
                         <div className="twitter-messages-person-box">
-                            <div className="twitter-messages-person-title-box">
-                                <div className="twitter-messages-person-title">Messages</div>
-                                <i className="far fa-envelope twitter-messages-add-icon"></i>
+                            <div className="twitter-messages-person-invite-wrapper">
+                                <div className="twitter-messages-person-invite">
+                                    <span style={{ fontWeight: 700, fontSize: '1.1vw' }}>You don't have a message selected</span>
+                                    <br />
+                                    Choose one from your existing messages, or start a new one.
+                                    <br />
+                                    <button className="twitter-message-person-btn-new-message">New message</button>
+                                </div>
                             </div>
                         </div>
                     </div>
