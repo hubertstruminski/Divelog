@@ -2,6 +2,7 @@ import React from 'react';
 import AuthService from '../../../util/AuthService';
 import TwitterConversationContact from './TwitterConversationContact';
 import $ from 'jquery';
+import TwitterMessagesSearch from './TwitterMessagesSearch';
 
 class TwitterMessagesInbox extends React.Component {
     constructor() {
@@ -9,10 +10,16 @@ class TwitterMessagesInbox extends React.Component {
 
         this.state = {
             conversations: [],
-            isConversationsRetrieved: false
+            isConversationsRetrieved: false,
+            copyOfConversations: [],
+            isLoading: true
         }
         this.Auth = new AuthService();
+        this.copyOfConversations = [];
         this.renderConversations = this.renderConversations.bind(this);
+        this.searchInList = this.searchInList.bind(this);
+        this.retrieveConversations = this.retrieveConversations.bind(this);
+        this.setIsConversationRetrieved = this.setIsConversationRetrieved.bind(this);
     }
 
     componentDidMount() {
@@ -39,6 +46,8 @@ class TwitterMessagesInbox extends React.Component {
                 this.setState({ conversations: this.state.conversations.concat(element) });
             });
             this.setState({ isConversationsRetrieved: true }, () => {
+                this.setState({ isLoading: false });
+                this.copyOfConversations = this.state.conversations.map((x) => x);
                 $(".twitter-messages-list-persons-spinner").css({ display: "block" });
             });
         })
@@ -62,24 +71,70 @@ class TwitterMessagesInbox extends React.Component {
         });
     }
 
+    searchInList(searchInput) {
+        this.setState({ 
+            isConversationsRetrieved: true,
+            conversations: this.copyOfConversations.map((x) => x)
+        
+        }, () => {
+            return this.state.conversations.map((conversation, index) => {
+                if(conversation.name.includes(searchInput) || conversation.screenName.includes(searchInput)) {
+                    this.setState({ conversations: this.state.conversations.filter((item, i) => i === index)});
+                }
+            });
+        });
+        return null;
+    }
+
+    retrieveConversations() {
+        return this.copyOfConversations
+            .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+            .map((conversation, index) => {
+            return (
+                <TwitterConversationContact 
+                    recipientId={conversation.recipientId}
+                    senderId={conversation.senderId}
+                    name={conversation.name}
+                    screenName={conversation.screenName}
+                    createdAt={conversation.createdAt}
+                    text={conversation.text}
+                    pictureUrl={conversation.pictureUrl}
+                />
+            );
+        });
+    }
+
+    setIsConversationRetrieved(value) {
+        this.setState({ isConversationsRetrieved: value });
+    }
+
     render() {
         let isConversationsRetrieved = this.state.isConversationsRetrieved;
+        let isLoading = this.state.isLoading;
         return (
-            <div className="twitter-messages-list-persons-spinner">
-                <ul className="list-group">
-                    { isConversationsRetrieved && this.renderConversations() }
-                </ul>
-                { !isConversationsRetrieved &&
-                    <div 
-                        className='spinner-border text-primary' 
-                        role='status'
-                    >
-                        <span class='sr-only'>
-                            Loading...
-                        </span>
-                    </div>
-                }
-            </div>
+            <React.Fragment>
+                <TwitterMessagesSearch 
+                    searchInList={this.searchInList}
+                    retrieveConversations={this.retrieveConversations}
+                    setIsConversationRetrieved={this.setIsConversationRetrieved}
+                />
+                <div className="twitter-messages-list-persons-spinner">
+                    <ul className="list-group">
+                        { isConversationsRetrieved && this.renderConversations() }
+                        { !isConversationsRetrieved && this.retrieveConversations() }
+                    </ul>
+                    { isLoading &&
+                        <div 
+                            className='spinner-border text-primary' 
+                            role='status'
+                        >
+                            <span class='sr-only'>
+                                Loading...
+                            </span>
+                        </div>
+                    }
+                </div>
+            </React.Fragment>
         );
     }
 }

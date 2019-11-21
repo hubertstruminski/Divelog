@@ -77,10 +77,6 @@ class TwitterMessagesBox extends React.Component {
                                 <div className="twitter-messages-title">Messages</div>
                                 <i className="far fa-envelope twitter-messages-add-icon"></i>
                             </div>
-                            <TwitterMessagesSearch />
-                            {/* <div className="twitter-messages-list-persons-spinner">
-                                <TwitterMessagesInbox />
-                            </div> */}
                             <TwitterMessagesInbox />
                         </div>
                         <div className="twitter-messages-person-box">
@@ -96,10 +92,6 @@ class TwitterMessagesBox extends React.Component {
                         </div>
                     </div>
                     <div className="twitter-messages-grid-item-3">
-                        {/* <div className="twitter-messages-rl-container">
-                            <div className="twitter-messages-groups-container">
-                            </div>
-                        </div> */}
                         <div className="twitter-messages-rr-container">
                             <div className="twitter-messages-friends-container">
                                 {/* <TwitterFriendsList /> */}
