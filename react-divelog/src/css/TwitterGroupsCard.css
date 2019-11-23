@@ -2,12 +2,13 @@
     border-radius: 25px;
 
     background-image: url("../img/twitter.png");
-    background-size: 25px 25px;
-    background-position: 345px 7px;
+    background-size: 20px 20px;
+    background-position: 15px 7.5px;
     background-repeat: no-repeat;
 
     padding: 5%;
-    font-size: 1vw;
+    padding-left: 15%;
+    font-size: 0.9vw;
 }
 
 .search-people-container {

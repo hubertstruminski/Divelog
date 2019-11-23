@@ -6,6 +6,7 @@ import TwitterCategoriesCard from './twitter/TwitterCategoriesCard';
 import SearchTwitterPeople from './twitter/SearchTwitterPeople';
 import AvailableTrends from './twitter/AvailableTrends';
 import TwitterFriendsList from './twitter/TwitterFriendsList';
+import $ from 'jquery';
 
 class Twitter extends React.Component {
     isMountedTwitter = false;
@@ -27,17 +28,10 @@ class Twitter extends React.Component {
 
     componentDidMount() {
         this.isMountedTwitter = true;
+        $(".tweets-likes-container").html("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
 
         this.isMountedTwitter && window.twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
-
-        let jwtToken = null;
-
-        if(this.Auth.getTwitterToken() !== null) {
-            jwtToken = this.Auth.getTwitterToken();
-        }
-        if(this.Auth.getToken() !== null) {
-            jwtToken = this.Auth.getToken();
-        }
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
@@ -48,6 +42,7 @@ class Twitter extends React.Component {
         .then(response => response.json())
         .then(jsonData => {
             if(this.isMountedTwitter) {
+                $(".tweets-likes-container").html("");
                 this.setState({
                     accessToken: jsonData.accessToken,
                     email: jsonData.email,
@@ -94,14 +89,6 @@ class Twitter extends React.Component {
                         </div>
                     </div>
                     <div className="feed-container">
-                        {/* <div className="twitter-user-profil">
-                            <div className="twitter-header-profile">
-
-                            </div>
-                            <div className="tweets-profile-container">
-                            
-                            </div>
-                        </div> */}
                         <div className="tweets-likes-container">
 
                         </div>

@@ -21,14 +21,7 @@ class TwitterFriendsList extends React.Component {
     componentDidMount() {
         this.isMountedFriendsList = true;
 
-        let jwtToken = null;
-
-        if(this.Auth.getTwitterToken() !== null) {
-            jwtToken = this.Auth.getTwitterToken();
-        }
-        if(this.Auth.getToken() !== null) {
-            jwtToken = this.Auth.getToken();
-        }
+        let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`/twitter/friends/list/${jwtToken}`, {
             method: 'GET',

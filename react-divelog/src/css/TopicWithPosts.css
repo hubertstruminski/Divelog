@@ -2,6 +2,7 @@
     width: 100%;
     background-image: url("../img/tactile_noise.png");
     padding-top: 78px;
+    min-height: 100vh;
 }
 
 .main-post-center {

@@ -1,0 +1,14 @@
+.twitter-single-message-container {
+    width: 85%;
+    border-radius: 25px;
+    background-color: white;
+    text-align: right;
+}
+
+.twitter-single-message-text {
+    width: 100%;
+    border-radius: 25px 25px 25px 25px;
+    background-color: lightskyblue;
+    text-align: justify;
+    padding: 5%;
+}
