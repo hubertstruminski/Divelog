@@ -6,6 +6,7 @@ import TwitterFriendsList from '../TwitterFriendsList';
 import $ from 'jquery';
 import TwitterMessagesSearch from './TwitterMessagesSearch';
 import TwitterMessagesInbox from './TwitterMessagesInbox';
+import SearchPeopleConversationModal from './SearchPeopleConversationModal';
 
 class TwitterMessagesBox extends React.Component {
     isMountedTwitterMessagesBox = false;
@@ -21,8 +22,11 @@ class TwitterMessagesBox extends React.Component {
             providerId: '',
             screenName: '',
             tokenSecret: '',
+            isVisibleModalToSearch: false
         }
         this.Auth = new AuthService();
+        this.searchPeopleToConversation = this.searchPeopleToConversation.bind(this);
+        this.setIsNotVisibleModalToSearch = this.setIsNotVisibleModalToSearch.bind(this);
     }
 
     componentDidMount() {
@@ -52,54 +56,56 @@ class TwitterMessagesBox extends React.Component {
         });
     }
 
+    searchPeopleToConversation() {
+        this.setState({ isVisibleModalToSearch: true });
+    }
+
+    setIsNotVisibleModalToSearch() {
+        this.setState({ isVisibleModalToSearch: false });
+    }
+
     componentWillUnmount() {
         this.isMountedTwitterMessagesBox = false;
     }
 
     render() {
+        let isVisibleModalToSearch = this.state.isVisibleModalToSearch;
         return (
-            <div className="twitter-messages-container">
-                <div className="twitter-messages-grid-container">
-                    <div className="twitter-messages-grid-item-1">
-                        <div className="twitter-messages-left-categories-container">
-                            <div className="twitter-messages-profil-container">
-                                { this.state.name }
+            <React.Fragment>
+                {
+                    isVisibleModalToSearch && 
+                    <SearchPeopleConversationModal
+                        setIsNotVisibleModalToSearch={this.setIsNotVisibleModalToSearch}
+                    />
+                }
+                <div className="twitter-messages-container">
+                    <div className="twitter-messages-grid-container">
+                        <div className="twitter-messages-grid-item-1">
+                            <div className="twitter-messages-left-categories-container">
+                                <div className="twitter-messages-profil-container">
+                                    { this.state.name }
+                                </div>
+                                <TwitterCategoriesCard
+                                    pictureUrl={this.state.pictureUrl}
+                                    screenName={this.state.screenName}
+                                />    
                             </div>
-                            <TwitterCategoriesCard
-                                pictureUrl={this.state.pictureUrl}
-                                screenName={this.state.screenName}
-                            />    
                         </div>
-                    </div>
-                    <div className="twitter-messages-container-feed">
-                        <div className="twitter-messages-list-inbox">
-                            <div className="twitter-messages-title-box">
-                                <div className="twitter-messages-title">Messages</div>
-                                <i className="far fa-envelope twitter-messages-add-icon"></i>
-                            </div>
-                            <TwitterMessagesInbox />
+                        <div className="twitter-messages-container-feed">
+                            <TwitterMessagesInbox 
+                                searchPeopleToConversation={this.searchPeopleToConversation}
+                            />
                         </div>
-                        <div className="twitter-messages-person-box">
-                            <div className="twitter-messages-person-invite-wrapper">
-                                <div className="twitter-messages-person-invite">
-                                    <span style={{ fontWeight: 700, fontSize: '1.1vw' }}>You don't have a message selected</span>
-                                    <br />
-                                    Choose one from your existing messages, or start a new one.
-                                    <br />
-                                    <button className="twitter-message-person-btn-new-message">New message</button>
+                        <div className="twitter-messages-grid-item-3">
+                            <div className="twitter-messages-rr-container">
+                                <div className="twitter-messages-friends-container">
+                                    {/* <TwitterFriendsList /> */}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="twitter-messages-grid-item-3">
-                        <div className="twitter-messages-rr-container">
-                            <div className="twitter-messages-friends-container">
-                                {/* <TwitterFriendsList /> */}
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

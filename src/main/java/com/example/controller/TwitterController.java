@@ -300,13 +300,7 @@ public class TwitterController {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
 
-        DirectMessageList directMessages = twitter.getDirectMessages(50);
-
-        while(directMessages.getNextCursor() != null) {
-            DirectMessageList directMessagesFromNextCursor = twitter.getDirectMessages(50, directMessages.getNextCursor());
-
-            directMessages.addAll(directMessagesFromNextCursor);
-        }
+        DirectMessageList directMessages = getDirectMessagesByRestAPI(twitter);
 
         Set<TwitterInboxDto> messagesSet = new HashSet<>();
         List<Long> recipientIds = new ArrayList<>();
@@ -335,14 +329,78 @@ public class TwitterController {
     }
 
     @PostMapping("/twitter/direct/messages/specified/person/{jwtToken}")
-    public ResponseEntity<?> getDirectMessagesWithSpecifiedPerson(@PathVariable String jwtToken) {
+    public ResponseEntity<?> getDirectMessagesWithSpecifiedPerson(@RequestBody RecipientSender recipientSender,
+                                                                  @PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 
         if(twitter == null) {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        long twitterUserID = (long) claimsFromJwt.get("twitterUserID");
+
+        DirectMessageList directMessages = getDirectMessagesByRestAPI(twitter);
+        List<SingleDirectMessage> privateMessages = new ArrayList<>();
+
+        for(DirectMessage message: directMessages) {
+            if(checkIfMessagesFromSpecifiedPerson(recipientSender, message)) {
+                SingleDirectMessage singleMessage = new SingleDirectMessage();
+
+                singleMessage.setId(message.getId());
+                singleMessage.setText(message.getText());
+                singleMessage.setSenderId(message.getSenderId());
+                singleMessage.setRecipientId(message.getRecipientId());
+                singleMessage.setCreatedAt(message.getCreatedAt());
+                singleMessage.setTwitterOwnerId(twitterUserID);
+
+                EntitySupport entitySupport = message;
+                singleMessage.setMediaEntities(entitySupport.getMediaEntities());
+                singleMessage.setUrlEntities(entitySupport.getURLEntities());
+
+                privateMessages.add(singleMessage);
+            }
+        }
+        return new ResponseEntity<>(privateMessages, HttpStatus.OK);
+    }
+
+    @PostMapping("/twitter/direct/messages/search/people/{jwtToken}")
+    public ResponseEntity<?> searchPeopleToStartConversations(@RequestBody String searchInput,
+                                                              @PathVariable String jwtToken) throws TwitterException {
+        Twitter twitter = setTwitterConfiguration(jwtToken);
+
+        if(twitter == null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        long twitterUserID = (long) claimsFromJwt.get("twitterUserID");
+
+        ResponseList<User> users = twitter.searchUsers(searchInput, 1);
+        List<ContactDirectMessage> contacts = new ArrayList<>();
+
+        int count = 0;
+        for(User user: users) {
+            if(count == 5) {
+                break;
+            }
+            Relationship relationship = twitter.showFriendship(twitterUserID, user.getId());
+
+            ContactDirectMessage contact = new ContactDirectMessage();
+
+            contact.setName(user.getName());
+            contact.setScreenName(user.getScreenName());
+            contact.setPictureUrl(user.get400x400ProfileImageURL());
+
+            if(relationship.canSourceDm()) {
+                contact.setDMAccessible(true);
+            } else {
+                contact.setDMAccessible(false);
+            }
+            contacts.add(contact);
+            count++;
+        }
+        return new ResponseEntity<List<ContactDirectMessage>>(contacts, HttpStatus.OK);
     }
 
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
@@ -427,5 +485,23 @@ public class TwitterController {
     private boolean checkIfConversationExist(List<Long> senderIds, List<Long> recipientIds, DirectMessage message) {
         return (recipientIds.contains(message.getRecipientId()) && senderIds.contains(message.getSenderId())) ||
                 (recipientIds.contains(message.getSenderId()) && senderIds.contains(message.getRecipientId()));
+    }
+
+    private boolean checkIfMessagesFromSpecifiedPerson(RecipientSender recipientSender, DirectMessage message) {
+        return (recipientSender.getRecipientId().equals(String.valueOf(message.getRecipientId())) &&
+                recipientSender.getSenderId().equals(String.valueOf(message.getSenderId()))) ||
+                (recipientSender.getSenderId().equals(String.valueOf(message.getRecipientId())) &&
+                        recipientSender.getRecipientId().equals(String.valueOf(message.getSenderId())));
+    }
+
+    private DirectMessageList getDirectMessagesByRestAPI(Twitter twitter) throws TwitterException {
+        DirectMessageList directMessages = twitter.getDirectMessages(50);
+
+        while(directMessages.getNextCursor() != null) {
+            DirectMessageList directMessagesFromNextCursor = twitter.getDirectMessages(50, directMessages.getNextCursor());
+
+            directMessages.addAll(directMessagesFromNextCursor);
+        }
+        return directMessages;
     }
 }

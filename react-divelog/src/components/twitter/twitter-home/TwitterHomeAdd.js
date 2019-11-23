@@ -102,7 +102,6 @@ class TwitterHomeAdd extends React.Component {
     }
 
     filestackCallback(response) {
-        console.log(response);
         response.filesUploaded.map((fileUploaded, index) => {
             const element = {
                 objectId: fileUploaded.uploadId,

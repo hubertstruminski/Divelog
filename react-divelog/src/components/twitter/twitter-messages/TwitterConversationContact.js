@@ -6,9 +6,10 @@ class TwitterConversationContact extends React.Component {
     constructor(props) {
         super(props);
 
-        this.onSubmit = this.onSubmit.bind(this);
+        this.state = {
+
+        }
     }
-    
     formatDate(inputDate) {
         let months = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "June.", "July.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
 
@@ -53,23 +54,13 @@ class TwitterConversationContact extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-
-        const element = {
-            recipientId: this.props.recipientId,
-            senderId: this.props.senderId
-        }
-
-        // axios({
-        //     url: ``,
-        //     method: 'POST',
-        //     headers: {
-
-        //     }
-        // }).then(response => response.json())
-        // .then(json => {
-        //     console.log(json);
-        // });
-
+        this.props.setIsLoadingConversation(
+            true,
+            this.props.recipientId,
+            this.props.senderId,
+            this.props.name,
+            this.props.screenName   
+        );
     }
 
     render() {
@@ -83,7 +74,7 @@ class TwitterConversationContact extends React.Component {
         let date = this.formatDate(this.props.createdAt);
 
         return (
-            <li className="conversation-contact-wrapper" onClick={this.onSubmit}>
+            <li className="conversation-contact-wrapper" onClick={this.onSubmit.bind(this)}>
                 <div className="conversation-contact-avatar">
                     <img src={this.props.pictureUrl} alt="Avatar" />
                 </div>
