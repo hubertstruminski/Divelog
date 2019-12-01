@@ -8,6 +8,7 @@ public class CustomTwitter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "token_secret")
@@ -17,7 +18,7 @@ public class CustomTwitter {
     private String screenName;
 
     @OneToOne
-    @JoinColumn(name = "connection_id")
+    @JoinColumn(name = "user_id")
     private Connection user;
 
     public Long getId() {

@@ -7,4 +7,8 @@ public class SecurityConstants {
 
     public static final String TWITTER_CONSUMER_KEY = "todfC8BjhF9MbQ7VUeGY8EyWH";
     public static final String TWITTER_CONSUMER_SECRET = "ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2";
+
+    public static final String OAUTH_SIGNATURE_METHOD = "HMAC-SHA1";
+    public static final String OAUTH_VERSION = "1.0";
+
 }
