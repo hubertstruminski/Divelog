@@ -10,6 +10,7 @@ public class CustomFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "object_id")

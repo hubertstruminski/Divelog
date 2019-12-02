@@ -13,10 +13,11 @@ public class Connection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @Digits(integer = 24, fraction = 0)
-    @Column(name = "facebook_user_id")
+    @Column(name = "user_id")
     protected BigInteger userID;
 
     @Digits(integer = 24, fraction = 0)
@@ -24,31 +25,35 @@ public class Connection {
     protected BigInteger twitterUserId;
 
     @NotNull
+    @Column(name = "email")
     protected String email;
 
     @NotNull
+    @Column(name = "name")
     protected String name;
 
     @Column(name = "access_token")
     protected String accessToken;
 
     @NotNull
+    @Column(name = "is_authenticated")
     private boolean authenticated;
 
     @Column(name = "picture_url")
     protected String pictureUrl;
 
     @NotNull
+    @Column(name = "provider_id")
     protected String providerId;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "logged_in_at")
     @NotNull
+    @Column(name = "logged_at")
     protected Date loggedAt;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "created_at")
     @NotNull
+    @Column(name = "created_at")
     protected Date createdAt;
 
     @OneToMany(mappedBy = "user")
@@ -65,10 +70,6 @@ public class Connection {
 
     @OneToOne(mappedBy = "user")
     private CustomTwitter customTwitter;
-
-    public Connection() {
-
-    }
 
     public Long getId() {
         return id;

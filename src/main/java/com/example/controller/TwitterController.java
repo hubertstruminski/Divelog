@@ -2,23 +2,51 @@ package com.example.controller;
 
 import com.example.config.JwtTokenProvider;
 import com.example.config.SecurityConstants;
+import com.example.config.Signature;
 import com.example.dto.*;
 import com.example.enums.Provider;
 import com.example.model.Connection;
 import com.example.model.CustomTwitter;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.CustomTwitterRepository;
+import com.sun.jndi.toolkit.url.Uri;
 import io.jsonwebtoken.Claims;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.CircularRedirectException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.config.CookieSpecs;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIUtils;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.util.UriUtils;
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +56,21 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 import java.math.BigInteger;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.net.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.apache.commons.io.FileUtils;
+
+import static javax.xml.crypto.dsig.SignatureMethod.HMAC_SHA1;
 
 @RestController
 public class TwitterController {
@@ -47,6 +83,9 @@ public class TwitterController {
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
+
+    @Autowired
+    private Signature signature;
 
     @GetMapping("/signin")
     public String loginWithTwitter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -132,7 +171,7 @@ public class TwitterController {
         cookie.setPath("/");
 
         response.addCookie(cookie);
-        response.sendRedirect("http://localhost:3000/twitter");
+        response.sendRedirect("http://divelog.eu/twitter");
     }
 
     @PostMapping("/twitter/users/search/{searchInput}/{jwtToken}")
@@ -403,6 +442,57 @@ public class TwitterController {
         return new ResponseEntity<List<ContactDirectMessage>>(contacts, HttpStatus.OK);
     }
 
+
+    public String getTwitterServerTime() throws IOException, ParseException {
+        HttpsURLConnection con = (HttpsURLConnection)
+                new URL("https://api.twitter.com/oauth/request_token").openConnection();
+        con.setRequestMethod("HEAD");
+        con.getResponseCode();
+        String twitterDate= con.getHeaderField("Date");
+        DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
+        Date date = formatter.parse(twitterDate);
+        return String.valueOf(date.getTime() / 1000L);
+    }
+
+    @PostMapping("/twitter/direct/message/person/photo/retrieve/{jwtToken}")
+    public ResponseEntity<?> getPhotoFromSingleDirectMessage(@RequestBody String photoUrl, @PathVariable String jwtToken) throws IOException, InvalidKeyException, NoSuchAlgorithmException, SignatureException, ParseException {
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+
+        String accessToken = (String) claimsFromJwt.get("accessToken");
+        String tokenSecret = (String) claimsFromJwt.get("tokenSecret");
+
+        String randomData = RandomStringUtils.randomAlphanumeric(32).toUpperCase();
+        byte[] bytes = randomData.getBytes("UTF-8");
+        String base64OAuthNonce = Base64.getEncoder().encodeToString(bytes);
+
+        String twitterServerTime = getTwitterServerTime();
+
+        String OAUTH_CONSUMER_KEY = SecurityConstants.TWITTER_CONSUMER_KEY;
+        String OAUTH_SIGNATURE_METHOD = SecurityConstants.OAUTH_SIGNATURE_METHOD;
+        String OAUTH_TIMESTAMP = twitterServerTime;
+
+        String mySignatureString = myFunctionGetSignature(accessToken, photoUrl, tokenSecret, OAUTH_TIMESTAMP);
+
+        String authorizationHeader = URLEncoder.encode("oauth_consumer_key", "UTF-8") + "=" + quoted(URLEncoder.encode(OAUTH_CONSUMER_KEY, "UTF-8"), false)
+                + URLEncoder.encode("oauth_nonce", "UTF-8") + "=" + quoted(URLEncoder.encode(base64OAuthNonce, "UTF-8"), false)
+                + URLEncoder.encode("oauth_signature", "UTF-8") + "=" + quoted(URLEncoder.encode(mySignatureString, "UTF-8"), false)
+                + URLEncoder.encode("oauth_signature_method", "UTF-8") + "=" + quoted(URLEncoder.encode(OAUTH_SIGNATURE_METHOD, "UTF-8"), false)
+                + URLEncoder.encode("oauth_timestamp", "UTF-8") + "=" + quoted(URLEncoder.encode(OAUTH_TIMESTAMP, "UTF-8"), false)
+                + URLEncoder.encode("oauth_token", "UTF-8") + "=" + quoted(URLEncoder.encode(accessToken, "UTF-8"), false)
+                + URLEncoder.encode("oauth_version", "UTF-8") + "=" + quoted(URLEncoder.encode("1.0", "UTF-8"), true);
+
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet(photoUrl);
+
+        httpGet.addHeader("Authorization", "OAuth " + authorizationHeader);
+        httpGet.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        httpGet.addHeader("Accept-Encoding", "multipart/form-data");
+
+        CloseableHttpResponse response = httpClient.execute(httpGet);
+        HttpEntity entity = response.getEntity();
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
     private Connection setUserInfo(Connection connection, AccessToken accessToken, User user) {
         connection.setTwitterUserId(BigInteger.valueOf(accessToken.getUserId()));
         connection.setProviderId(Provider.TWITTER.getProvider());
@@ -503,5 +593,80 @@ public class TwitterController {
             directMessages.addAll(directMessagesFromNextCursor);
         }
         return directMessages;
+    }
+
+    private String createHeaderForGetPhotoRequest(String methodRequest, String apiUrl, String parameterString,
+                                                  String tokenSecret) throws UnsupportedEncodingException {
+        String signatureBaseString = methodRequest + "&" + URLEncoder.encode(apiUrl, "UTF-8") + "&" +
+                URLEncoder.encode(parameterString, "UTF-8");
+
+        String signingKey = URLEncoder.encode(SecurityConstants.TWITTER_CONSUMER_SECRET, "UTF-8") + "&" +
+                URLEncoder.encode(tokenSecret, "UTF-8");
+
+
+        return signatureBaseString;
+    }
+
+    private static String getSignature(String url, String params)
+            throws UnsupportedEncodingException, NoSuchAlgorithmException,
+            InvalidKeyException {
+        /**
+         * base has three parts, they are connected by "&": 1) protocol 2) URL
+         * (need to be URLEncoded) 3) Parameter List (need to be URLEncoded).
+         */
+        StringBuilder base = new StringBuilder();
+        base.append("GET&");
+        base.append(url);
+        base.append("&");
+        base.append(params);
+        System.out.println("Stirng for oauth_signature generation:" + base);
+        // yea, don't ask me why, it is needed to append a "&" to the end of
+        // secret key.
+        byte[] keyBytes = (SecurityConstants.TWITTER_CONSUMER_SECRET + "&").getBytes("UTF-8");
+
+        SecretKey key = new SecretKeySpec(keyBytes, "HmacSHA1");
+
+        Mac mac = Mac.getInstance("HmacSHA1");
+        mac.init(key);
+
+        // encode it, base64 it, change it to string and return.
+        return new String(Base64.getEncoder().encode(mac.doFinal(base.toString().getBytes(
+                "UTF-8"))), "UTF-8").trim();
+    }
+
+    private String quoted(String string, boolean last) {
+        if(last) {
+            return "\"" + string + "\"";
+        }
+        return "\"" + string + "\"" + ", ";
+    }
+
+    private String myFunctionGetSignature(String accessToken, String photoUrl, String tokenSecret, String timestamp) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, SignatureException {
+        String randomData = RandomStringUtils.randomAlphanumeric(32).toUpperCase();
+        byte[] bytes = randomData.getBytes("UTF-8");
+        System.out.println(bytes.length);
+        String base64OAuthNonce = Base64.getEncoder().encodeToString(bytes);
+
+        UriComponents encode = UriComponentsBuilder.newInstance()
+                .queryParam("include_entities", "true")
+                .queryParam("oauth_consumer_key", SecurityConstants.TWITTER_CONSUMER_KEY)
+                .queryParam("oauth_nonce", base64OAuthNonce)
+                .queryParam("oauth_signature_method", SecurityConstants.OAUTH_SIGNATURE_METHOD)
+                .queryParam("oauth_timestamp", timestamp)
+                .queryParam("oauth_token", accessToken)
+                .queryParam("oauth_version", "1.0")
+                .build().encode();
+
+        // PARAMETER STRING
+        String parameterString = encode.toUriString().substring(1);
+
+        // SIGNATURE BASE STRING
+        String signatureBaseString = "GET&" + URLEncoder.encode(photoUrl, "UTF-8") + "&" + URLEncoder.encode(parameterString, "UTF-8");
+
+        // SIGNING KEY
+        String signingKey = URLEncoder.encode(SecurityConstants.TWITTER_CONSUMER_SECRET, "UTF-8") + "&"
+                + URLEncoder.encode(tokenSecret, "UTF-8");
+
+        return signature.calculateRFC2104HMAC(signatureBaseString, signingKey);
     }
 }

@@ -10,15 +10,18 @@ public class Marker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
     @NotNull
+    @Column(name = "latitude")
     private double latitude;
 
     @NotNull
+    @Column(name = "longitude")
     private double longitude;
 
     @ManyToOne
