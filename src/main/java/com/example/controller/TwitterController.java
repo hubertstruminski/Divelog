@@ -34,6 +34,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriUtils;
@@ -72,6 +73,7 @@ import org.apache.commons.io.FileUtils;
 
 import static javax.xml.crypto.dsig.SignatureMethod.HMAC_SHA1;
 
+@CrossOrigin
 @RestController
 public class TwitterController {
 
@@ -87,7 +89,7 @@ public class TwitterController {
     @Autowired
     private Signature signature;
 
-    @GetMapping("/signin")
+    @PostMapping("/signin/twitter")
     public String loginWithTwitter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
@@ -95,6 +97,7 @@ public class TwitterController {
                 .setOAuthConsumerSecret("ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2")
                 .setIncludeEmailEnabled(true);
 
+        System.out.println("/signin function");
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
         request.getSession().setAttribute("twitter", twitter);
@@ -114,13 +117,13 @@ public class TwitterController {
         }
     }
 
-    @GetMapping("/callback")
+    @PostMapping("/callback")
     public void loginWithTwitterCallback(HttpServletRequest request, HttpServletResponse response)
             throws TwitterException, ServletException, IOException {
         Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
         RequestToken requestToken = (RequestToken) request.getSession().getAttribute("requestToken");
         String verifier = request.getParameter("oauth_verifier");
-
+        System.out.println("/callback function");
         AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
         User user = twitter.verifyCredentials();
 
@@ -170,8 +173,10 @@ public class TwitterController {
         cookie.setMaxAge(60 * 60 * 24);
         cookie.setPath("/");
 
+
         response.addCookie(cookie);
-        response.sendRedirect("http://divelog.eu/twitter");
+//        response.sendRedirect("http://divelog.eu/twitter");
+//        response.sendRedirect("http://localhost:3000/twitter");
     }
 
     @PostMapping("/twitter/users/search/{searchInput}/{jwtToken}")

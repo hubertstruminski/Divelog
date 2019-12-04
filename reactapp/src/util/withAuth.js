@@ -25,15 +25,20 @@ export default function withAuth(AuthComponent, props) {
             }
         }
 
-        componentDidMount() {
+        componentWillMount() {
+            console.log("Hubert Strumiński");
             console.log(props);
             customAuthComponent = true;
 
             if(!Auth.loggedIn()) {
+                console.log("!Auth.loggedIn()");
                 this.props.history.replace("/login");
             } else {
+                console.log("before retrieving JwtToken");
                 let twitterJwtToken = Auth.getTwitterToken();
                 let facebookJwtToken = Auth.getToken();
+                console.log(twitterJwtToken);
+                console.log(facebookJwtToken);
                 try {
                     if(twitterJwtToken) {
                         if(props !== undefined) {
@@ -44,6 +49,7 @@ export default function withAuth(AuthComponent, props) {
                                 customAuthComponent && this.props.history.replace("/twitter/home");
                             }
                         } else {
+                            console.log("/twitter");
                             customAuthComponent && this.props.history.replace("/twitter");
                         }
                     }
@@ -58,6 +64,7 @@ export default function withAuth(AuthComponent, props) {
                     if(facebookJwtToken) {
                         Auth.logout();
                     }
+                    console.log("/login");
                     this.props.history.replace("/login");
                 }
             }

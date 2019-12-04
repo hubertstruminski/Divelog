@@ -20,6 +20,8 @@ class LogIn extends React.Component {
         this.Auth = new AuthService();
         this.responseFacebook = this.responseFacebook.bind(this);
         this.onTwitterClick = this.onTwitterClick.bind(this);
+        this.onFailed = this.onFailed.bind(this);
+        this.onSuccess = this.onSuccess.bind(this);
     }
 
     componentDidMount() {
@@ -59,8 +61,19 @@ class LogIn extends React.Component {
         return <Redirect to="/dashboard/" />
     }
 
+    onFailed(response) {
+        console.log(response);
+    }
+
+    onSuccess(response) {
+        console.log(response);
+        response.json().then(body => {
+            alert(JSON.stringify(body));
+          });
+    }
+
     onTwitterClick() {
-        window.location.href = "http://divelog.us-east-1.elasticbeanstalk.com/signin";
+        window.location.href = "http://divelog.us-east-1.elasticbeanstalk.com/signin/twitter";
     }
 
     render() {
@@ -83,6 +96,8 @@ class LogIn extends React.Component {
                         <br />
                         <span className="logo-text">Divelog</span>
                         <br />
+                        Hubert Strumiński
+                        <br />
                         <FacebookLogin
                             appId="455695445269575"
                             autoLoad={false}
@@ -103,6 +118,15 @@ class LogIn extends React.Component {
                             <i class="fab fa-twitter pr-1"></i> 
                             LOGIN WITH TWITTER
                         </button>
+                        <TwitterLogin 
+                            // loginUrl="http://divelog.com.s3-website-us-east-1.amazonaws.com/signin/twitter"
+                            loginUrl="http://localhost:5000/signin/twitter"
+                            onFailure={this.onFailed}
+                            onSuccess={this.onSuccess}
+                            // requestTokenUrl="http://divelog.com.s3-website-us-east-1.amazonaws.com/callback"
+                            requestTokenUrl="http://localhost:5000/callback"
+                            credentials="include"
+                       />
                     </div>
                 </div>
             </div>

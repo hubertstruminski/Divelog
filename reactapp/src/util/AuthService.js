@@ -8,11 +8,14 @@ export default class AuthService {
     }
 
     getToken() {
+        console.log("localStorage facebookJwtToken -> getToken()");
         return localStorage.getItem("JwtToken");
     }
 
     getTwitterToken() {
         let cookie = new Cookies();
+        console.log("cookie twitterJwtToken -> getTwitterToken()");
+        console.log(cookie.get("twitterJwtToken"));
         return cookie.get("twitterJwtToken");
     }
 
@@ -53,6 +56,8 @@ export default class AuthService {
 
         if(twitterJwtToken !== null) {
             const twitterToken = this.getTwitterToken();
+            console.log("twitterJwtToken != null -> inside");
+            console.log(!!twitterToken && !this.isTokenExpired(twitterToken));
             return !!twitterToken && !this.isTokenExpired(twitterToken);
         }
         return false;
