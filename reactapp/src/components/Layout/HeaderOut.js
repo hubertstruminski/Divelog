@@ -2,6 +2,7 @@ import React from 'react';
 import '../../css/Header.css';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import logo from '../../img/eDivelog.png';
 
 class HeaderOut extends React.Component {
     render() {

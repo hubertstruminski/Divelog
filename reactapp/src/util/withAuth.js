@@ -1,7 +1,6 @@
 import React from 'react';
 import AuthService from './AuthService';
 
-// export default function withAuth(AuthComponent) {
 export default function withAuth(AuthComponent, props) {
     const Auth =  new AuthService();
     let customAuthComponent = false;
@@ -26,19 +25,14 @@ export default function withAuth(AuthComponent, props) {
         }
 
         componentWillMount() {
-            console.log("Hubert Strumiński");
-            console.log(props);
+            console.log(this.props);
             customAuthComponent = true;
 
             if(!Auth.loggedIn()) {
-                console.log("!Auth.loggedIn()");
                 this.props.history.replace("/login");
             } else {
-                console.log("before retrieving JwtToken");
                 let twitterJwtToken = Auth.getTwitterToken();
                 let facebookJwtToken = Auth.getToken();
-                console.log(twitterJwtToken);
-                console.log(facebookJwtToken);
                 try {
                     if(twitterJwtToken) {
                         if(props !== undefined) {
@@ -48,10 +42,11 @@ export default function withAuth(AuthComponent, props) {
                             if(this.props.location.pathname === "/twitter/home") {
                                 customAuthComponent && this.props.history.replace("/twitter/home");
                             }
-                        } else {
-                            console.log("/twitter");
-                            customAuthComponent && this.props.history.replace("/twitter");
-                        }
+                        } 
+                        // else {
+                        //     console.log("/twitter");
+                        //     customAuthComponent && this.props.history.replace("/twitter");
+                        // }
                     }
 
                     if(facebookJwtToken) {

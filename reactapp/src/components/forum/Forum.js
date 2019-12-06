@@ -9,7 +9,7 @@ import swal from 'sweetalert';
 import Topic from './Topic';
 import ConvertTime from '../../util/ConvertTime';
 import TopTopics from './TopTopics';
-import forumDiver from '../../img/forum-diver-blue.png';
+import logo from '../../img/eDivelog.png';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
 
@@ -302,7 +302,7 @@ class Forum extends React.Component {
                         </div>
                     ) : (
                         <div className="forum-diver">
-                            <img src={forumDiver} alt="Forum diver" />
+                            <img src={logo} alt="Forum diver" />
                         </div>
                     )
                 }

@@ -13,12 +13,11 @@ class TwitterCategoriesCard extends React.Component {
             pictureUrl: ''
         }
         this.Auth = new AuthService();
+        this.jwtToken = this.Auth.getRightSocialToken();
     }
 
     componentDidMount() {
-        let jwtToken = this.Auth.getRightSocialToken();
-
-        fetch(`/getuserdata/${jwtToken}`, {
+        fetch(`/getuserdata/${this.jwtToken}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json'
@@ -55,7 +54,7 @@ class TwitterCategoriesCard extends React.Component {
                             <span style={{ fontWeight: '900' }}>#</span> Explore
                         </div>
                     </Link>
-                    <Link to="/twitter" className="list-group-item list-group-item-hover">
+                    <Link to={`/twitter/likes/${this.jwtToken}`} className="list-group-item list-group-item-hover">
                         <div className="twitter-categories-icons-box">
                             <i className="fas fa-clock"></i> Timeline likes
                         </div>
@@ -96,4 +95,5 @@ class TwitterCategoriesCard extends React.Component {
     }
 }
 
-export default withRouter(withAuth(TwitterCategoriesCard, { twitterExploreForCategories: true }));
+// export default withRouter(withAuth(TwitterCategoriesCard, { twitterExploreForCategories: true }));
+export default withRouter(TwitterCategoriesCard);
