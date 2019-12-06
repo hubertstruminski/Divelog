@@ -75,7 +75,6 @@ public class PostController {
     public ResponseEntity<?> updatePostById(@RequestBody PostDto postDto, @PathVariable Long postId, @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
         Post post = postRepository.getByIdAndUser(postId, foundedUser);
-        Topic topic = topicRepository.getById(post.getTopic().getId());
 
         if(post != null && foundedUser != null) {
             post.setMessage(postDto.getMessage());

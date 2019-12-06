@@ -14,6 +14,7 @@ public class Topic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "topic_title")
