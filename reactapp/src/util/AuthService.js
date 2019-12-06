@@ -1,5 +1,4 @@
 import decode from 'jwt-decode';
-import Cookies from 'universal-cookie';
 
 export default class AuthService {
 
@@ -13,10 +12,9 @@ export default class AuthService {
     }
 
     getTwitterToken() {
-        let cookie = new Cookies();
         console.log("cookie twitterJwtToken -> getTwitterToken()");
-        console.log(cookie.get("twitterJwtToken"));
-        return cookie.get("twitterJwtToken");
+        console.log(localStorage.getItem("twitterJwtToken"));
+        return localStorage.getItem("twitterJwtToken");
     }
 
     isTokenExpired(token) {
@@ -50,15 +48,13 @@ export default class AuthService {
         let twitterJwtToken = this.getTwitterToken();
 
         if(facebookJwtToken !== null) {
-            const token = this.getToken();
-            return !!token && !this.isTokenExpired(token);
+            return !!facebookJwtToken && !this.isTokenExpired(facebookJwtToken);
         }
 
         if(twitterJwtToken !== null) {
-            const twitterToken = this.getTwitterToken();
             console.log("twitterJwtToken != null -> inside");
-            console.log(!!twitterToken && !this.isTokenExpired(twitterToken));
-            return !!twitterToken && !this.isTokenExpired(twitterToken);
+            console.log(!!twitterJwtToken && !this.isTokenExpired(twitterJwtToken));
+            return !!twitterJwtToken && !this.isTokenExpired(twitterJwtToken);
         }
         return false;
     }
@@ -68,7 +64,6 @@ export default class AuthService {
     }
 
     logoutTwitter() {
-        let cookie = new Cookies();
-        cookie.remove("twitterJwtToken");
+        localStorage.removeItem("twitterJwtToken");
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/LogIn.css';
-import logo from '../img/logo.png';
+import logo from '../img/eDivelog.png';
 import { withTranslation } from 'react-i18next';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
@@ -73,7 +73,8 @@ class LogIn extends React.Component {
     }
 
     onTwitterClick() {
-        window.location.href = "http://divelog.us-east-1.elasticbeanstalk.com/signin/twitter";
+        // window.location.href = "http://divelog.us-east-1.elasticbeanstalk.com/signin";
+        window.location.href="http://localhost:5000/signin"
     }
 
     render() {
@@ -94,10 +95,6 @@ class LogIn extends React.Component {
                         <br />
                         <img src={logo} alt="divelog" className="logo-space logo" />
                         <br />
-                        <span className="logo-text">Divelog</span>
-                        <br />
-                        Hubert Strumiński
-                        <br />
                         <FacebookLogin
                             appId="455695445269575"
                             autoLoad={false}
@@ -108,6 +105,7 @@ class LogIn extends React.Component {
                             icon="<i className='fab fa-facebook-f pr-1' />"
                             textButton={this.props.t("login.facebook-btn")}
                             installed={true}
+                            isDisabled={true}
                         />
                         <br />
                         <button 
@@ -118,15 +116,19 @@ class LogIn extends React.Component {
                             <i class="fab fa-twitter pr-1"></i> 
                             LOGIN WITH TWITTER
                         </button>
+                        {/* <TwitterLogin 
+                            loginUrl="http://divelog.us-east-1.elasticbeanstalk.com/signin/twitter"
+                            onFailure={this.onFailed}
+                            onSuccess={this.onSuccess}
+                            requestTokenUrl="http://divelog.us-east-1.elasticbeanstalk.com/callback"
+                       />
+                       <br />
                         <TwitterLogin 
-                            // loginUrl="http://divelog.com.s3-website-us-east-1.amazonaws.com/signin/twitter"
                             loginUrl="http://localhost:5000/signin/twitter"
                             onFailure={this.onFailed}
                             onSuccess={this.onSuccess}
-                            // requestTokenUrl="http://divelog.com.s3-website-us-east-1.amazonaws.com/callback"
                             requestTokenUrl="http://localhost:5000/callback"
-                            credentials="include"
-                       />
+                       /> */}
                     </div>
                 </div>
             </div>

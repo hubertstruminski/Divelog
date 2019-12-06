@@ -1,12 +1,13 @@
 import React from 'react';
 import '../css/TimelineLikes.css';
-import withAuth from '../util/withAuth';
+import withTwitterAuth from '../util/withTwitterAuth';
 import AuthService from '../util/AuthService';
 import TwitterCategoriesCard from './twitter/TwitterCategoriesCard';
 import SearchTwitterPeople from './twitter/SearchTwitterPeople';
 import AvailableTrends from './twitter/AvailableTrends';
 import TwitterFriendsList from './twitter/TwitterFriendsList';
 import $ from 'jquery';
+import ReactDOM from 'react-dom';
 
 class Twitter extends React.Component {
     isMountedTwitter = false;
@@ -28,15 +29,13 @@ class Twitter extends React.Component {
 
     componentDidMount() {
         this.isMountedTwitter = true;
-        $(".tweets-likes-container").html("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
-
-        this.isMountedTwitter && window.twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
         let jwtToken = this.Auth.getRightSocialToken();
+        this.isMountedTwitter && window.twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
 
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
-              'content-type': 'application/json'
+            'content-type': 'application/json'
             }
         })
         .then(response => response.json())
@@ -112,4 +111,4 @@ class Twitter extends React.Component {
     }
 }
 
-export default withAuth(Twitter);
+export default withTwitterAuth(Twitter);

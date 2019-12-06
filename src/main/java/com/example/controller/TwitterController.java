@@ -9,35 +9,20 @@ import com.example.model.Connection;
 import com.example.model.CustomTwitter;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.CustomTwitterRepository;
-import com.sun.jndi.toolkit.url.Uri;
 import io.jsonwebtoken.Claims;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.http.Header;
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.CircularRedirectException;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.config.CookieSpecs;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIUtils;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.springframework.web.util.UriUtils;
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
@@ -49,18 +34,13 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Null;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
 import java.math.BigInteger;
 import java.net.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
@@ -68,10 +48,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import org.apache.commons.io.FileUtils;
-
-import static javax.xml.crypto.dsig.SignatureMethod.HMAC_SHA1;
 
 @CrossOrigin
 @RestController
@@ -89,15 +65,15 @@ public class TwitterController {
     @Autowired
     private Signature signature;
 
-    @PostMapping("/signin/twitter")
-    public String loginWithTwitter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @GetMapping("/signin")
+    public void loginWithTwitter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey("todfC8BjhF9MbQ7VUeGY8EyWH")
                 .setOAuthConsumerSecret("ftDjrAI9KMaZOtYWpg0sZWGx6lqIq4Jhan7uokwMdC2yKHbDj2")
                 .setIncludeEmailEnabled(true);
 
-        System.out.println("/signin function");
+        System.out.println("/signin JSP function");
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
         request.getSession().setAttribute("twitter", twitter);
@@ -110,20 +86,18 @@ public class TwitterController {
             request.getSession().setAttribute("requestToken", requestToken);
 
             response.sendRedirect(requestToken.getAuthenticationURL());
-
-            return "redirect:https://api.twitter.com/oauth/authorize";
         } catch (TwitterException e) {
             throw new ServletException(e);
         }
     }
 
-    @PostMapping("/callback")
+    @GetMapping("/callback")
     public void loginWithTwitterCallback(HttpServletRequest request, HttpServletResponse response)
             throws TwitterException, ServletException, IOException {
         Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
         RequestToken requestToken = (RequestToken) request.getSession().getAttribute("requestToken");
         String verifier = request.getParameter("oauth_verifier");
-        System.out.println("/callback function");
+        System.out.println("/callback JSP function");
         AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
         User user = twitter.verifyCredentials();
 
@@ -168,15 +142,33 @@ public class TwitterController {
         }
         request.getSession().removeAttribute("requestToken");
 
-        Cookie cookie = new Cookie("twitterJwtToken", jwtToken);
-        cookie.setSecure(false);
-        cookie.setMaxAge(60 * 60 * 24);
-        cookie.setPath("/");
+        response.sendRedirect("http://localhost:3000/twitter/likes/" + jwtToken);
+    }
 
+    @GetMapping("/twitter/login/validate/token/{jwtToken}")
+    public ResponseEntity<?> validateJwtTokenForTwitterLogin(@PathVariable String jwtToken) {
+        if(jwtTokenProvider.validateToken(jwtToken)) {
+            Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
 
-        response.addCookie(cookie);
-//        response.sendRedirect("http://divelog.eu/twitter");
-//        response.sendRedirect("http://localhost:3000/twitter");
+            BigInteger twitterUserID = BigInteger.valueOf((Long) claimsFromJwt.get("twitterUserID"));
+            String email = (String) claimsFromJwt.get("email");
+            String accessToken = (String) claimsFromJwt.get("accessToken");
+            Long createdAt = (Long) claimsFromJwt.get("createdAt");
+            String tokenSecret = (String) claimsFromJwt.get("tokenSecret");
+
+            Connection foundUser = connectionRepository.findByUserIDOrTwitterUserIdOrEmail(null, twitterUserID, email);
+            CustomTwitter twitterUser = twitterRepository.findByUser(foundUser);
+
+            if(foundUser == null || twitterUser == null) {
+                return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+            }
+
+            if(checkTwitterCredentialsForJwtToken(accessToken, createdAt, tokenSecret, foundUser, twitterUser)) {
+                return new ResponseEntity<Void>(HttpStatus.OK);
+            }
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/twitter/users/search/{searchInput}/{jwtToken}")
@@ -598,6 +590,13 @@ public class TwitterController {
             directMessages.addAll(directMessagesFromNextCursor);
         }
         return directMessages;
+    }
+
+    private boolean checkTwitterCredentialsForJwtToken(String accessToken, long createdAt, String tokenSecret,
+                                                    Connection foundUser, CustomTwitter twitterUser) {
+        return accessToken.equals(foundUser.getAccessToken()) &&
+                createdAt == foundUser.getCreatedAt().getTime() &&
+                tokenSecret.equals(twitterUser.getTokenSecret());
     }
 
     private String createHeaderForGetPhotoRequest(String methodRequest, String apiUrl, String parameterString,

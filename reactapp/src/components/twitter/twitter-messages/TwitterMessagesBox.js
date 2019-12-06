@@ -30,6 +30,8 @@ class TwitterMessagesBox extends React.Component {
     }
 
     componentDidMount() {
+        // $(".twitter-container").html("");
+        // $(".twitter-container").css({ "width": "0", "height": "0" });
         this.isMountedTwitterMessagesBox = true;
         let jwtToken = this.Auth.getRightSocialToken();
 

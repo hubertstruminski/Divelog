@@ -78,7 +78,7 @@ function App() {
               <Route exact path="/twitter/messages" component={TwitterMessagesBox} />
               <Route exact path="/twitter/explore" component={TwitterExplore} twitterExplore={true} />
               <Route exact path="/twitter/home" component={TwitterHome} />
-              <Route exact path="/twitter" component={Twitter} />
+              <Route exact path={"/twitter/likes", "/twitter/likes/:jwtToken"} component={Twitter} />
               
           </I18nextProvider>
         </div>

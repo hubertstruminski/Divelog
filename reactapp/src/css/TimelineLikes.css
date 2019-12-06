@@ -139,3 +139,7 @@
     padding-top: 78px;
     overflow-y: scroll;
 }
+
+#receiver {
+    display: none;
+}
