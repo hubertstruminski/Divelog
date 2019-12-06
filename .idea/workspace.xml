@@ -1,27 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="">
+    <list default="true" id="fe87efba-9ed2-482d-8e00-fef5068c4016" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterJspController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/redirecttwitter.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/AddDive.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/AddDive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/components/logbook/Logbook.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/components/logbook/Logbook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/css/Logbook.css" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/css/Logbook.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/de/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/en/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/react-divelog/src/translations/pl/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/build/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/build/precache-manifest.eb8654299854c4de72710742050cdbc5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/build/service-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/build/static/js/2.d69a9f62.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/build/static/js/2.d69a9f62.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/build/static/js/main.8100bfe5.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/build/static/js/main.8100bfe5.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/00ab309e75090929470de191df3cc661.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/22035ee6a7fd50c468ace989524da4a3.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/28386cbca63dbcef685996d5e89055cb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/2b409216310f6d4de849620898c1e9fc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/32466d362b0cd96689108255ae58a94a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/443ae3c098d117e05aef3af7d37c88f0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/48dd8d4d701774650464d5752ff55055.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/4d53a76fe988b8c0ffb65276b16420df.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/647ce2c41b7c77007a30c27d7a3a4fe3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/65227dcc09fa8e89d3ca222f1f01e864.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/7af36d0326cfaa624326860145fcdda5.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/7ba11f983defd5842ba1d8a9c8f875ac.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/827595074f039dbec7025634c438ac5d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/86e90cf239e0ebe0eecc9998f862b195.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/887fc72da3c46a8f26999a24a6b9e8c6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/8d98eeb233fc35c2fc493ebefa022ed5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/926f909eda78118badf069f5c126e568.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/9564c3b37a1b8087792ab320ba2c9490.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/9699f0b75185cfe3f13c7f5cb742aace.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/a295be7582266b0eac049d8b90cb0404.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/a4212ef6058837cf05b10c6ebefd5027.json.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/adc21859177a1d954566593791bb3f8d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/b82800cf9f6469379eaf313a18190ea2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/c4128da6b52bd99948c7d621df6cb51e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/cb9b83047c10ff313a7c3a44b3275811.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/d963ae3d52da81d28fc2e2bace3f4a45.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/dca94bc13edeabc9b6ef7af7511155a5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/e36536d094a395ad63b2d4f87d5a28b3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/f311759cc2856ed82381c674391fc4ff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/f52acfabe882956de81ea1c1d0f7de1a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/f9ddd2eed2679caec2820f64be7d13fc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/babel-loader/feb472e422eb928e22e1658564e232fa.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/content-v2/sha512/24/0b/26fd629e777ec8fa527f56bf49362e76da37500d0ea012dc5fffe17b1f3e45b5b68c4cba44202029d59f6be8287e42189c77af572aefa0297096560b1d8d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/content-v2/sha512/38/e8/d6cbbbda1539c57e3dd368765a9dfa9daaa471e509b2e5f134985c93b83a6a43942e86fcb61d21f8f742275564752fb6493784e8cb8152b5a7073c3d0162" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/content-v2/sha512/39/9e/eb460da90bcd4e6ff3c468d4836999de495eede8f2083c0c60ea52c0f38a02d83ff26f129f53e125e4276ab37b735748ad87082d222df75a0e8c8f987879" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/content-v2/sha512/48/36/2ef18655d9b832e759d33e2319ef41c1efdadfc07ecbd232ef220b883528a34a5543955e315b25a690e565ae8534b23851a99d7b9f7fb3a942fa52ad8e08" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/content-v2/sha512/a0/c1/39e2eb2e2de7be0254f5f31631ff286a65c8a07efd3bbc4744b53e106c7b0c09fa427f1c5ccc0bbc4bbab71a5c4e9efd9c51396af61f0b8a7e375447b1e5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/content-v2/sha512/cd/6b/ac3021f0418f8eb5ef6a3d841546c357ccc1d3f05b02ca3cb9b8572315fa031d1093abce5ce4c9bc15cb400aa24a5322dd8fa968148f1f0a78f6e4182c06" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/index-v5/06/5e/dd25118f87f809def423bb4df5ebb078ade6726a5a25937bf269dff28f74" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/index-v5/24/64/c90194f4b2727b1248e0c69dd4a8691a1107a948c65b6e9718fd9653d696" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/index-v5/3d/52/19ec01c50fce33602b496152dc6c83a429aa1dc4a3c0dc67c17a3ff6c482" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/index-v5/3d/52/19ec01c50fce33602b496152dc6c83a429aa1dc4a3c0dc67c17a3ff6c482" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/index-v5/59/df/96d60bff42c69c97517591863e80541bd659d45f47286a004f1269832c31" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/index-v5/8e/4b/a881fe87cbf5476878028271e00e4e38259f6a6549349de699bf120755c6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/index-v5/b1/e2/76aab4aea28d3409f003e3affa3ee8db76ab5ea76f2695ecc5d5f087ed0b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/.cache/terser-webpack-plugin/index-v5/e6/69/b46fe7bb65f1197988716f0775917f64356c3f4361adafa0ec64bdff5697" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/void-elements/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/node_modules/void-elements/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/void-elements/.npmignore" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/node_modules/void-elements/.npmignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/void-elements/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/node_modules/void-elements/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/void-elements/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/node_modules/void-elements/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/void-elements/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/node_modules/void-elements/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/void-elements/pre-publish.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/node_modules/void-elements/pre-publish.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/node_modules/void-elements/test/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/node_modules/void-elements/test/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/Layout/HeaderOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/Layout/HeaderOut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/LogIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/Twitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/Twitter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/forum/Forum.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/forum/Forum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/TwitterCategoriesCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/TwitterCategoriesCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-home/TwitterHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-home/TwitterHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/TwitterMessagesBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/TwitterMessagesBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/css/Forum.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/Forum.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/Header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/css/LogIn.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/LogIn.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/css/TimelineLikes.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/TimelineLikes.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/util/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/util/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/util/CookieService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/util/withAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/util/withAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/util/withTwitterAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/util/withTwitterAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/LogbookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/LogbookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/Logbook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/model/Logbook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/repository/LogbookRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/repository/LogbookRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/reactapp/node_modules/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,127 +101,103 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/Signature.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1575">
+              <caret line="144" column="67" selection-start-line="144" selection-start-column="67" selection-end-line="144" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="92" column="51" lean-forward="true" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterJspController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/CustomTwitter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="4" selection-start-column="4" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="90">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
-              <folding>
-                <element signature="e#735#736#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="465">
+              <caret line="38" column="74" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="74" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="480">
+              <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="42" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/ConnectionDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="121" selection-start-line="121" selection-end-line="121" />
+            <state relative-caret-position="60">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="33" column="104" selection-start-line="33" selection-start-column="104" selection-end-line="33" selection-end-column="104" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="37" column="12" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2431#2432#0" expanded="true" />
-                <element signature="e#2456#2457#0" expanded="true" />
-                <element signature="e#2490#2491#0" expanded="true" />
-                <element signature="e#2518#2519#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogoutController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-76">
-              <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="90">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -160,11 +207,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>response</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -172,102 +222,64 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/filter/SimpleCorsFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/filter/SimpleCORSFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/config/ClientResources.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/handler/MySimpleUrlAuthenticationSuccessHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/hubert.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/handler/SimpleUrlAuthenticationSuccessHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LoginResponeController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/model/FacebookConnection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/Provider.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/config/SecurityConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/redirect.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/redirecttwitter.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterJspController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogoutController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/Cylinder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/model/Marker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/model/Connection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/WaterEntryType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/WaterType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/GloveType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/DivingType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/enums/DivingSuit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/service/MapErrorValidatorService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java" />
       </list>
     </option>
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="vmOptionsForImporter" value="-Xmx768m" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="927" />
+    <option name="x" value="993" />
+    <option name="y" value="27" />
+    <option name="width" value="917" />
     <option name="height" value="1053" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="example" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -275,8 +287,8 @@
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -284,17 +296,17 @@
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="enums" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -302,8 +314,8 @@
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -311,8 +323,8 @@
               <item name="repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -320,16 +332,49 @@
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="divelog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="social-simple" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Divelog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -342,8 +387,14 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -371,43 +422,25 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="33a479eb-ba02-4728-a73c-0395bdf1ef8e" name="Default Changelist" comment="" />
-      <created>1565817966824</created>
+      <changelist id="fe87efba-9ed2-482d-8e00-fef5068c4016" name="Default Changelist" comment="" />
+      <created>1575459385107</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1565817966824</updated>
-      <workItem from="1565817969255" duration="1418000" />
-      <workItem from="1565819391144" duration="4000" />
-      <workItem from="1565819774792" duration="406000" />
-      <workItem from="1565878829902" duration="11291000" />
-      <workItem from="1565936681792" duration="21603000" />
-      <workItem from="1565985925167" duration="1417000" />
-      <workItem from="1566036436426" duration="4234000" />
-      <workItem from="1566042285872" duration="7326000" />
-      <workItem from="1566203900859" duration="8594000" />
-      <workItem from="1566301396898" duration="2024000" />
-      <workItem from="1566311318906" duration="19355000" />
-      <workItem from="1566382982484" duration="20329000" />
-      <workItem from="1566804457535" duration="5664000" />
-      <workItem from="1566888667722" duration="1519000" />
-      <workItem from="1566892416265" duration="7420000" />
-      <workItem from="1566906751078" duration="11440000" />
-      <workItem from="1567070907632" duration="16015000" />
-      <workItem from="1567798909447" duration="331000" />
-      <workItem from="1567886256108" duration="26000" />
-      <workItem from="1568367726027" duration="21611000" />
-      <workItem from="1568481496395" duration="21626000" />
+      <updated>1575459385107</updated>
+      <workItem from="1575459386471" duration="19339000" />
+      <workItem from="1575553481039" duration="2049000" />
+      <workItem from="1575638692273" duration="766000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195906000" />
+    <option name="totallyTimeSpent" value="22154000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23076923" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.255119" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -416,9 +449,9 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.44276458" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39956802" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -441,353 +474,202 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25235197" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39956802" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32937366" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32937366" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/handler/SimpleUrlAuthenticationSuccessHandler.java</url>
-          <line>27</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/handler/SimpleUrlAuthenticationSuccessHandler.java</url>
-          <line>28</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="SpringBootApplicationConfigurationType">
-        <watch expression="((OAuth2Authentication)authentication).userAuthentication" custom="org.springframework.security.oauth2.provider.OAuth2Authentication" />
-        <watch expression="((InvocationTargetException)ex).target" custom="java.lang.reflect.InvocationTargetException" />
-        <watch expression="foundByEmail" />
-        <watch expression="((InvocationTargetException)ex).target" custom="java.lang.reflect.InvocationTargetException" />
-      </configuration>
-    </watches-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/filter/SimpleCorsFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/filter/SimpleCORSFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/ClientResources.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/handler/MySimpleUrlAuthenticationSuccessHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/hubert.html" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="488" selection-start-line="488" selection-end-line="488" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LoginResponeController.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.5.RELEASE/spring-context-5.0.5.RELEASE.jar!/org/springframework/context/annotation/ConfigurationClassEnhancer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.0.4.RELEASE/spring-security-core-5.0.4.RELEASE.jar!/org/springframework/security/authentication/AbstractAuthenticationToken.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state relative-caret-position="45">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+        <state relative-caret-position="379">
+          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/redirecttwitter.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="39" column="70" selection-start-line="39" selection-start-column="70" selection-end-line="39" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.11.RELEASE/spring-web-5.0.11.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1635">
+          <caret line="127" selection-start-line="127" selection-end-line="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/Signature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/handler/SimpleUrlAuthenticationSuccessHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterJspController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/jsonwebtoken/jjwt/0.9.1/jjwt-0.9.1.jar!/io/jsonwebtoken/impl/JwtMap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="96" selection-start-line="96" selection-end-line="96" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
           <folding>
-            <element signature="e#2492#2493#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/CustomTwitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="38" column="74" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="42" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dto/ConnectionDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="144" column="67" selection-start-line="144" selection-start-column="67" selection-end-line="144" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="109" column="21" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SecurityConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/CorsFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/Cylinder.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#0#45#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar!/javax/persistence/TemporalType.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/TemporalType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/JwtTokenProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Marker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/Provider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/WaterType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/service/MapErrorValidatorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="21" column="91" selection-start-line="21" selection-start-column="91" selection-end-line="21" selection-end-column="91" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/WaterEntryType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/DivingSuit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/DivingType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/enums/GloveType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/MarkerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogInController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#735#736#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/MarkerRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/repository/LogbookRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="33" column="104" selection-start-line="33" selection-start-column="104" selection-end-line="33" selection-end-column="104" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/model/Logbook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="37" column="12" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2431#2432#0" expanded="true" />
-            <element signature="e#2456#2457#0" expanded="true" />
-            <element signature="e#2490#2491#0" expanded="true" />
-            <element signature="e#2518#2519#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        <state relative-caret-position="129">
+          <caret line="92" column="51" lean-forward="true" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/LogbookController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
-      <state key="ScopeChooserConfigurable.UI">
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
         <settings>
           <splitter-proportions>
             <option name="proportions">

@@ -10,22 +10,25 @@ public class Marker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
     @NotNull
+    @Column(name = "latitude")
     private double latitude;
 
     @NotNull
+    @Column(name = "longitude")
     private double longitude;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Connection user;
 
-    @OneToMany(mappedBy = "marker")
+    @OneToMany(mappedBy = "marker", cascade = CascadeType.ALL)
     @Transient
     private List<Logbook> logbooks;
 

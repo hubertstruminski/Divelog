@@ -1,9 +1,11 @@
 package com.example.config;
 
+import com.example.dto.ConnectionDto;
 import com.example.model.Connection;
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.util.*;
 
 import static com.example.config.SecurityConstants.EXPIRATION_TIME;
@@ -18,15 +20,27 @@ public class JwtTokenProvider {
         Date expirationDate = new Date(now.getTime() + EXPIRATION_TIME);
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userID", user.getUserID());
-        claims.put("email", user.getEmail());
-        claims.put("name", user.getName());
-        claims.put("accessToken", user.getAccessToken());
-        claims.put("pictureUrl", user.getPictureUrl());
-        claims.put("providerId", user.getProviderId());
-        claims.put("createdAt", user.getCreatedAt());
-        claims.put("loggedAt", user.getLoggedAt());
+        setClaims(claims, user, null);
 
+        return Jwts.builder()
+                .setSubject(String.valueOf(user.getId()))
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(expirationDate)
+                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .compact();
+    }
+
+    public String generateTokenForTwitter(ConnectionDto user) {
+        Date now = new Date(System.currentTimeMillis());
+
+        Date expirationDate = new Date(now.getTime() + EXPIRATION_TIME);
+
+        Map<String, Object> claims = new HashMap<>();
+
+        setClaims(claims, null, user);
+        claims.put("screenName", user.getScreenName());
+        claims.put("tokenSecret", user.getTokenSecret());
 
         return Jwts.builder()
                 .setSubject(String.valueOf(user.getId()))
@@ -58,5 +72,20 @@ public class JwtTokenProvider {
     public Claims getClaimsFromJwt(String token) {
         Claims claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
         return claims;
+    }
+
+    private void setClaims(Map<String, Object> claims, Connection user, ConnectionDto connectionDto) {
+        if(user == null) {
+            user = (ConnectionDto) connectionDto;
+        }
+        claims.put("userID", user.getUserID());
+        claims.put("twitterUserID", user.getTwitterUserId());
+        claims.put("email", user.getEmail());
+        claims.put("name", user.getName());
+        claims.put("accessToken", user.getAccessToken());
+        claims.put("pictureUrl", user.getPictureUrl());
+        claims.put("providerId", user.getProviderId());
+        claims.put("createdAt", user.getCreatedAt());
+        claims.put("loggedAt", user.getLoggedAt());
     }
 }

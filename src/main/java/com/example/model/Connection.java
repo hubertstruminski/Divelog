@@ -1,49 +1,60 @@
 package com.example.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "facebook_connection")
+@Table(name = "connection")
 public class Connection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
-    @NotNull
+    @Digits(integer = 24, fraction = 0)
     @Column(name = "user_id")
-    private Long userID;
+    protected BigInteger userID;
+
+    @Digits(integer = 24, fraction = 0)
+    @Column(name = "twitter_user_id")
+    protected BigInteger twitterUserId;
 
     @NotNull
-    private String email;
+    @Column(name = "email")
+    protected String email;
 
     @NotNull
-    private String name;
+    @Column(name = "name")
+    protected String name;
 
     @Column(name = "access_token")
-    private String accessToken;
+    protected String accessToken;
 
     @NotNull
+    @Column(name = "is_authenticated")
     private boolean authenticated;
 
     @Column(name = "picture_url")
-    private String pictureUrl;
+    protected String pictureUrl;
 
     @NotNull
-    private String providerId;
+    @Column(name = "provider_id")
+    protected String providerId;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "logged_in_at")
     @NotNull
-    private Date loggedAt;
+    @Column(name = "logged_at")
+    protected Date loggedAt;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "created_at")
     @NotNull
-    private Date createdAt;
+    @Column(name = "created_at")
+    protected Date createdAt;
 
     @OneToMany(mappedBy = "user")
     private List<Marker> markers;
@@ -51,9 +62,14 @@ public class Connection {
     @OneToMany(mappedBy = "user")
     private List<Logbook> logbooks;
 
-    public Connection() {
+    @OneToMany(mappedBy = "user")
+    private List<Topic> topics;
 
-    }
+    @OneToMany(mappedBy = "user")
+    private List<TopicVote> topicVotes;
+
+    @OneToOne(mappedBy = "user")
+    private CustomTwitter customTwitter;
 
     public Long getId() {
         return id;
@@ -63,11 +79,11 @@ public class Connection {
         this.id = id;
     }
 
-    public Long getUserID() {
+    public BigInteger getUserID() {
         return userID;
     }
 
-    public void setUserID(Long userID) {
+    public void setUserID(BigInteger userID) {
         this.userID = userID;
     }
 
@@ -133,5 +149,13 @@ public class Connection {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public BigInteger getTwitterUserId() {
+        return twitterUserId;
+    }
+
+    public void setTwitterUserId(BigInteger twitterUserId) {
+        this.twitterUserId = twitterUserId;
     }
 }

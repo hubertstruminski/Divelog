@@ -16,29 +16,30 @@ public class Logbook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "partner_name")
     @Size(max = 60)
+    @Column(name = "partner_name")
     private String partnerName;
 
     @Column(name = "partner_surname")
     @Size(max = 100)
     private String partnerSurname;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "marker_id")
     @NotNull
     private Marker marker;
 
     @Temporal(TemporalType.TIMESTAMP)
-//    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
+    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "entry_time")
     private Date entryTime;
 
     @Temporal(TemporalType.TIMESTAMP)
-//    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
+    @JsonFormat(pattern = "yyyy-mm-dd'T'HH:mm")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "exit_time")
     private Date exitTime;
