@@ -18,8 +18,8 @@ class DeleteTableButton extends React.Component {
         fetch(`/logbook/${id}/${jwtToken}`, {
             method: 'DELETE',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         }).then(response => {
             if(response.status === 404) {
@@ -31,6 +31,8 @@ class DeleteTableButton extends React.Component {
             } else {
                 swal("Error", "Bad Request. Something goes wrong.", "error");
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 

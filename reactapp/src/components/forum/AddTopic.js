@@ -133,6 +133,8 @@ class AddTopic extends React.Component {
                 } else {
                     this.props.history.push("/forum");
                 }
+            }).catch(err => {
+                console.log(err);
             });
         }
     }

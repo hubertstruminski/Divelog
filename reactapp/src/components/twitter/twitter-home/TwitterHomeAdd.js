@@ -159,6 +159,8 @@ class TwitterHomeAdd extends React.Component {
                 } else {
                     this.props.addNewTweet(response.data);
                 }
+            }).catch(err => {
+                console.log(err);
             });
         } else {
             e.preventDefault();

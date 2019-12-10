@@ -26,10 +26,10 @@ class TwitterFriendsList extends React.Component {
         fetch(`/twitter/friends/list/${jwtToken}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => { return response.json() })
         .then(json => {
             if(this.isMountedFriendsList) {
                 if(json.length !== 0) {
@@ -47,6 +47,8 @@ class TwitterFriendsList extends React.Component {
                     this.setState({ isEmptyFriendsList: true });
                 }
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 

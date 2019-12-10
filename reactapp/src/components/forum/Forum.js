@@ -51,10 +51,10 @@ class Forum extends React.Component {
         fetch("/get/topics/all", {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => {return response.json()})
         .then(jsonData => {
             let countPolish = 0;
             let countGermany = 0;
@@ -103,6 +103,8 @@ class Forum extends React.Component {
                 }
             });
             this.setState({ isLeft: true });
+        }).catch(err => {
+            console.log(err);
         });
     }
 

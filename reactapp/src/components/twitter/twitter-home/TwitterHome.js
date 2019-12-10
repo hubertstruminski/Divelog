@@ -39,7 +39,8 @@ class TwitterHome extends React.Component {
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
-              'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
         .then(response => response.json())
@@ -58,7 +59,8 @@ class TwitterHome extends React.Component {
                     fetch(`/twitter/home/timeline/${jwtToken}`, {
                         method: 'GET',
                         headers: {
-                            'content-type': 'application/json'
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
                         }
                     }).then(response => {
                         return response.text();
@@ -70,6 +72,8 @@ class TwitterHome extends React.Component {
                     });
                 });
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 

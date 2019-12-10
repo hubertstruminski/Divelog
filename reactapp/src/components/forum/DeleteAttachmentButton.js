@@ -20,8 +20,8 @@ class DeleteAttachmentButton extends React.Component {
         fetch(`/delete/post/file/${fileId}/${jwtToken}`, {
             method: 'DELETE',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         }).then(response => {
             if(response.status !== 200) {
@@ -32,6 +32,8 @@ class DeleteAttachmentButton extends React.Component {
                 this.props.setDeletedFileForPost(this.props.postId, this.props.id);
                 swal(this.props.t("news.fileUpload.title"), this.props.t("news.fileUpload.message"), "success");
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 

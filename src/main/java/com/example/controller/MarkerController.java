@@ -27,7 +27,7 @@ public class MarkerController {
     @Autowired
     private ClaimsConverter claimsConverter;
 
-    @PostMapping("/add/marker/{jwtToken}")
+    @PostMapping(value = "/add/marker/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> addMarker(@RequestBody Marker marker, @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 
@@ -41,7 +41,7 @@ public class MarkerController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @GetMapping("/get/markers/{jwtToken}")
+    @GetMapping(value = "/get/markers/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getAllMarkers(@PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 
@@ -53,7 +53,7 @@ public class MarkerController {
         return new ResponseEntity<List<Marker>>(markersList, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/marker/{jwtToken}/{markerID}")
+    @DeleteMapping(value = "/delete/marker/{jwtToken}/{markerID}", produces = "application/json")
     public ResponseEntity<?> deleteMarker(@PathVariable String jwtToken, @PathVariable Long markerID) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 

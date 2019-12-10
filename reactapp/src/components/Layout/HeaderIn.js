@@ -41,10 +41,11 @@ class HeaderIn extends React.Component {
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
-              'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => { return response.json() })
         .then(jsonData => {
             this.setState({
                 accessToken: jsonData.accessToken,
@@ -53,7 +54,9 @@ class HeaderIn extends React.Component {
                 userID: jsonData.userID,
                 pictureUrl: jsonData.pictureUrl
             });
-        }); 
+        }).catch(err => {
+            console.log(err);
+        });
 
         $("nav").css({ 
             "position": "fixed", 
@@ -95,8 +98,8 @@ class HeaderIn extends React.Component {
         await fetch(`/logout/${this.state.email}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         });
     }

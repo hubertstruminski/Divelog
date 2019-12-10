@@ -36,10 +36,11 @@ class TwitterExplore extends React.Component {
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
-              'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => { return response.json() })
         .then(jsonData => {
             if(this.isMountedTwitterExplore) {
                 this.setState({
@@ -53,6 +54,8 @@ class TwitterExplore extends React.Component {
                     tokenSecret: jsonData.tokenSecret
                 });
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 

@@ -35,7 +35,7 @@ public class TwitterWebhookController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    @GetMapping("/twitter/webhooks/register/{jwtToken}")
+    @GetMapping(value = "/twitter/webhooks/register/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> registerTwitterWebhooks(@PathVariable String jwtToken) throws IOException {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
@@ -87,7 +87,7 @@ public class TwitterWebhookController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @GetMapping("/twitter/webhook/callback")
+    @GetMapping(value = "/twitter/webhook/callback", produces = "application/json")
     public ResponseEntity<?> getTwitterWebhookCallback(HttpServletRequest request, HttpServletResponse response) {
         System.out.println(request);
         return new ResponseEntity<Void>(HttpStatus.OK);

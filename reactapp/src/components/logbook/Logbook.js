@@ -34,10 +34,10 @@ class Logbook extends React.Component {
         fetch(`/get/logbook/${jwtToken}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => { return response.json() })
         .then(jsonData => {
             jsonData.map((jsonElement, index) => {
                 let time = this.ConvertTime.convertTime(jsonElement.entryTime, jsonElement.exitTime, false);
@@ -64,6 +64,8 @@ class Logbook extends React.Component {
                     this.setState({ isEmptyLogbook: false });
                 }
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 
@@ -73,10 +75,10 @@ class Logbook extends React.Component {
         fetch(`/get/logbook/${jwtToken}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => { return response.json() })
         .then(jsonData => {
             this.logbooks = [];
             jsonData.map((jsonElement, index) => {
@@ -104,6 +106,8 @@ class Logbook extends React.Component {
                     this.setState({ isEmptyLogbook: false });
                 }
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 

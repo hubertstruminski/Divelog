@@ -20,10 +20,11 @@ class TwitterCategoriesCard extends React.Component {
         fetch(`/getuserdata/${this.jwtToken}`, {
             method: 'GET',
             headers: {
-              'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => { return response.json() })
         .then(jsonData => {
             this.setState({
                 pictureUrl: jsonData.pictureUrl,
@@ -37,6 +38,8 @@ class TwitterCategoriesCard extends React.Component {
                 //     console.log(response);
                 // });
             });
+        }).catch(err => {
+            console.log(err);
         });
     }
 

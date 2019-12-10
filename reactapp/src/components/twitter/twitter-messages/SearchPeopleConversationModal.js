@@ -80,6 +80,8 @@ class SearchPeopleConversationModal extends React.Component {
             }, () => {
                 $(".twitter-messages-search-people-modal-list-contacts").css({ display: "block" });
             });
+        }).catch(err => {
+            console.log(err);
         });
     }
 

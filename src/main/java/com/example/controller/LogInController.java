@@ -25,7 +25,7 @@ public class LogInController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    @PostMapping("/signin")
+    @PostMapping(value = "/signin", produces = "application/json")
     public ResponseEntity<?> saveUserData(@RequestBody LoginRequest loginRequest) throws IOException {
         Connection foundedUser = connectionRepository.findByUserIDOrTwitterUserIdOrEmail(loginRequest.getUserID(),
                 null, loginRequest.getEmail());
@@ -50,7 +50,7 @@ public class LogInController {
         return new ResponseEntity<String>(jwtToken, HttpStatus.OK);
     }
 
-    @GetMapping("/getuserdata/{jwtToken}")
+    @GetMapping(value = "/getuserdata/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getUserData(@PathVariable String jwtToken) {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);

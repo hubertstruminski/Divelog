@@ -28,7 +28,7 @@ public class LogbookController {
     @Autowired
     private ClaimsConverter claimsConverter;
 
-    @PostMapping("/add/logbook/{jwtToken}")
+    @PostMapping(value = "/add/logbook/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> addDiveToLogbook(@RequestBody Logbook logbook, @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 
@@ -47,7 +47,7 @@ public class LogbookController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @GetMapping("/get/logbook/{jwtToken}")
+    @GetMapping(value = "/get/logbook/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getDivesFromLogbook(@PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 
@@ -58,7 +58,7 @@ public class LogbookController {
         return new ResponseEntity<List<Logbook>>(logbooks, HttpStatus.OK);
     }
 
-    @DeleteMapping("/logbook/{logbookId}/{jwtToken}")
+    @DeleteMapping(value = "/logbook/{logbookId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> deleteLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 
@@ -75,12 +75,12 @@ public class LogbookController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/get/logbook/{jwtToken}/{logbookId}")
+    @GetMapping(value = "/get/logbook/{jwtToken}/{logbookId}", produces = "application/json")
     public ResponseEntity<?> getLogbookById(@PathVariable String jwtToken, @PathVariable Long logbookId) {
         return findLogbookById(jwtToken, logbookId);
     }
 
-    @PutMapping("/edit/logbook/{logbookId}/{jwtToken}")
+    @PutMapping(value = "/edit/logbook/{logbookId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> updateLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken, @RequestBody Logbook logbook) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 
@@ -123,7 +123,7 @@ public class LogbookController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/pdf/logbook/{logbookId}/{jwtToken}")
+    @GetMapping(value = "/pdf/logbook/{logbookId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getPDFFromLogbookById(@PathVariable Long logbookId, @PathVariable String jwtToken) {
         return findLogbookById(jwtToken, logbookId);
     }

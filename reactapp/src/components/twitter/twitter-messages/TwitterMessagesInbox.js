@@ -43,7 +43,7 @@ class TwitterMessagesInbox extends React.Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => { return response.json() })
         .then(json => {
             json.map((item, index) => {
                 const element = {
@@ -62,7 +62,9 @@ class TwitterMessagesInbox extends React.Component {
                 this.copyOfConversations = this.state.conversations.map((x) => x);
                 $(".twitter-messages-list-persons-spinner").css({ display: "block" });
             });
-        })
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     renderConversations() {

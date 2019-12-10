@@ -52,10 +52,10 @@ class AvailableTrends extends React.Component {
             fetch(`/twitter/available/closest/trends/${this.state.latitude}/${this.state.longitude}/${this.twitterJwtToken}`, {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'content-type': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
-            }).then(response => response.json())
+            }).then(response => { return response.json() })
             .then(json => {
                 if(this.isMountedAvailableTrends) {
                     $(".trends-div-box").html("");
@@ -76,6 +76,8 @@ class AvailableTrends extends React.Component {
                         isRetrievedTrends: true
                     });
                 }
+            }).catch(err => {
+                console.log(err);
             });
         });
     }

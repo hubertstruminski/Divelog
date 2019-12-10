@@ -41,8 +41,8 @@ class TopicWithPosts extends React.Component {
         fetch(`/get/topic/posts/${id}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         }).then(response => response.json())
         .then(jsonData => {
@@ -112,7 +112,7 @@ class TopicWithPosts extends React.Component {
                     'content-type': 'application/json'
                     }
                 })
-                .then(response => response.json())
+                .then(response => { return response.json() })
                 .then(jsonData => {
                     this.setState({ email: jsonData.email }, () => {
                         this.state.posts.map((post, index) => {
@@ -123,6 +123,8 @@ class TopicWithPosts extends React.Component {
                     });
                 }); 
             });
+        }).catch(err => {
+            console.log(err);
         });
     }
 
@@ -139,8 +141,8 @@ class TopicWithPosts extends React.Component {
             fetch(`/get/topic/posts/${id}`, {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'content-type': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             }).then(response => response.json())
             .then(jsonData => {
@@ -207,10 +209,11 @@ class TopicWithPosts extends React.Component {
                     fetch(`/getuserdata/${jwtToken}`, {
                         method: 'GET',
                         headers: {
-                        'content-type': 'application/json'
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
                         }
                     })
-                    .then(response => response.json())
+                    .then(response => { return response.json() })
                     .then(jsonData => {
                         this.setState({ email: jsonData.email }, () => {
                             this.state.posts.map((post, index) => {
@@ -221,6 +224,8 @@ class TopicWithPosts extends React.Component {
                         });
                     }); 
                 });
+            }).catch(err => {
+                console.log(err);
             });
         });
     }

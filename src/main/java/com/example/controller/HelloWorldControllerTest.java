@@ -8,6 +8,6 @@ public class HelloWorldControllerTest {
 
     @GetMapping("hello-world")
     public String helloWorld() {
-        return "Hello World";
+        return "Hello World - Hubert Strumiński 09.12.2019 23:00";
     }
 }

@@ -41,7 +41,7 @@ class TwitterMessagesBox extends React.Component {
               'content-type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => { return response.json() })
         .then(jsonData => {
             if(this.isMountedTwitterMessagesBox) {
                 this.setState({
@@ -55,6 +55,8 @@ class TwitterMessagesBox extends React.Component {
                     tokenSecret: jsonData.tokenSecret
                 });
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 

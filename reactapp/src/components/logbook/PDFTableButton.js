@@ -52,11 +52,11 @@ class PDFTableButton extends React.Component {
         fetch(`/pdf/logbook/${id}/${jwtToken}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => { return response.json() })
         .then(jsonData => {
             let time = this.ConvertTime.convertTime(jsonData.entryTime, jsonData.exitTime, false);
 
@@ -141,7 +141,9 @@ class PDFTableButton extends React.Component {
         
                 doc.save("pdf");
             });
-        }); 
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     specialElementHandlers = {

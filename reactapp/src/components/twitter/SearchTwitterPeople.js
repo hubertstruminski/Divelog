@@ -54,8 +54,8 @@ class SearchTwitterPeople extends React.Component {
             method: 'POST',
             body: searchPeople,
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         }).then(response => {
             if(this.isMountedSearchTwitterPeople) {
@@ -77,6 +77,8 @@ class SearchTwitterPeople extends React.Component {
                 }); 
                 this.setState({ isSearched: true });
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 

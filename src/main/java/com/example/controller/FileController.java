@@ -21,7 +21,7 @@ public class FileController {
     @Autowired
     private CustomFileRepository fileRepository;
 
-    @DeleteMapping("/delete/post/file/{fileId}/{jwtToken}")
+    @DeleteMapping(value = "/delete/post/file/{fileId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> deletePostFileById(@PathVariable Long fileId, @PathVariable String jwtToken) {
         if (jwtTokenProvider.validateToken(jwtToken)) {
             fileRepository.deleteById(fileId);

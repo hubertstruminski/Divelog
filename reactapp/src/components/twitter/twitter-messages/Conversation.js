@@ -71,6 +71,8 @@ class Conversation extends React.Component {
                 $(".twitter-messages-person-invite-wrapper").css({ "display": "block", "height": "92%" });
                 $(".twitter-messages-list-inbox").css({ "max-height": "92%" })
             });
+        }).catch(err => {
+            console.log(err);
         });
     }
 

@@ -18,8 +18,8 @@ class DeleteButton extends React.Component {
         fetch(`/delete/marker/${jwtToken}/${markerID}`, {
             method: 'DELETE',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         }).then(response => {
             if(response.status === 404) {
@@ -31,6 +31,8 @@ class DeleteButton extends React.Component {
                 this.props.setDeletedMarkerId(markerID);
                 this.props.fetchMarkers();
             }
+        }).catch(err => {
+            console.log(err);
         });
         this.props.setIsDeletedMarker();
     }

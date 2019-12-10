@@ -65,7 +65,7 @@ public class TwitterController {
     @Autowired
     private Signature signature;
 
-    @GetMapping("/signin")
+    @GetMapping(value = "/signin", produces = "application/json")
     public void loginWithTwitter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
@@ -91,7 +91,7 @@ public class TwitterController {
         }
     }
 
-    @GetMapping("/callback")
+    @GetMapping(value = "/callback", produces = "application/json")
     public void loginWithTwitterCallback(HttpServletRequest request, HttpServletResponse response)
             throws TwitterException, ServletException, IOException {
         Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
@@ -142,10 +142,11 @@ public class TwitterController {
         }
         request.getSession().removeAttribute("requestToken");
 
-        response.sendRedirect("http://localhost:3000/twitter/likes/" + jwtToken);
+//        response.sendRedirect("http://localhost:3000/twitter/likes/" + jwtToken);
+        response.sendRedirect("http://divelog.eu/twitter/likes/" + jwtToken);
     }
 
-    @GetMapping("/twitter/login/validate/token/{jwtToken}")
+    @GetMapping(value = "/twitter/login/validate/token/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> validateJwtTokenForTwitterLogin(@PathVariable String jwtToken) {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
@@ -171,7 +172,7 @@ public class TwitterController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/twitter/users/search/{searchInput}/{jwtToken}")
+    @PostMapping(value = "/twitter/users/search/{searchInput}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> findTwitterPeople(@PathVariable String searchInput, @PathVariable String jwtToken)
             throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
@@ -183,7 +184,7 @@ public class TwitterController {
         return new ResponseEntity<ResponseList<User>>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/twitter/available/closest/trends/{latitude}/{longitude}/{jwtToken}")
+    @GetMapping(value = "/twitter/available/closest/trends/{latitude}/{longitude}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getAvailableTrends(@PathVariable double latitude, @PathVariable double longitude,
                                                 @PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
@@ -219,7 +220,7 @@ public class TwitterController {
         return new ResponseEntity<List<TrendDto>>(trendList, HttpStatus.OK);
     }
 
-    @GetMapping("/twitter/friends/list/{jwtToken}")
+    @GetMapping(value = "/twitter/friends/list/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getFriendsList(@PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 
@@ -243,7 +244,7 @@ public class TwitterController {
         return new ResponseEntity<List<User>>(friendsList, HttpStatus.OK);
     }
 
-    @GetMapping("/twitter/home/timeline/{jwtToken}")
+    @GetMapping(value = "/twitter/home/timeline/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getHomeTimeline(@PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 
@@ -261,7 +262,7 @@ public class TwitterController {
         return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
     }
 
-    @PostMapping("/twitter/create/tweet/{jwtToken}")
+    @PostMapping(value = "/twitter/create/tweet/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> createTweet(@PathVariable String jwtToken, @RequestBody TweetDto tweetDto)
             throws TwitterException, IOException, URISyntaxException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
@@ -307,7 +308,7 @@ public class TwitterController {
         return new ResponseEntity<String>(oEmbed.getHtml(), HttpStatus.OK);
     }
 
-    @PostMapping("/twitter/search/tweets/{jwtToken}")
+    @PostMapping(value = "/twitter/search/tweets/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getSearchTweets(@RequestBody String query, @PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 
@@ -328,7 +329,7 @@ public class TwitterController {
         return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
     }
 
-    @GetMapping("/twitter/direct/messages/{jwtToken}")
+    @GetMapping(value = "/twitter/direct/messages/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getDirectMessages(@PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 
@@ -364,7 +365,7 @@ public class TwitterController {
         return new ResponseEntity<Set<TwitterInboxDto>>(messagesSet, HttpStatus.OK);
     }
 
-    @PostMapping("/twitter/direct/messages/specified/person/{jwtToken}")
+    @PostMapping(value = "/twitter/direct/messages/specified/person/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getDirectMessagesWithSpecifiedPerson(@RequestBody RecipientSender recipientSender,
                                                                   @PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
@@ -400,7 +401,7 @@ public class TwitterController {
         return new ResponseEntity<>(privateMessages, HttpStatus.OK);
     }
 
-    @PostMapping("/twitter/direct/messages/search/people/{jwtToken}")
+    @PostMapping(value = "/twitter/direct/messages/search/people/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> searchPeopleToStartConversations(@RequestBody String searchInput,
                                                               @PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
@@ -451,7 +452,7 @@ public class TwitterController {
         return String.valueOf(date.getTime() / 1000L);
     }
 
-    @PostMapping("/twitter/direct/message/person/photo/retrieve/{jwtToken}")
+    @PostMapping(value = "/twitter/direct/message/person/photo/retrieve/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> getPhotoFromSingleDirectMessage(@RequestBody String photoUrl, @PathVariable String jwtToken) throws IOException, InvalidKeyException, NoSuchAlgorithmException, SignatureException, ParseException {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
 

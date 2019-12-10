@@ -34,8 +34,8 @@ class Topic extends React.Component {
         fetch(`/get/topic/number/comments/${topicId}/${jwtToken}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         }).then(response => response.json())
         .then(jsonData => {
@@ -71,6 +71,8 @@ class Topic extends React.Component {
                     });
                 }
             });
+        }).catch(err => {
+            console.log(err);
         });
     }
 
@@ -107,6 +109,8 @@ class Topic extends React.Component {
                         this.fetchTopicData();
                     });
                 }
+            }).catch(err => {
+                console.log(err);
             });
         } 
     }
@@ -139,6 +143,8 @@ class Topic extends React.Component {
                         this.fetchTopicData();
                     });
                 }
+            }).catch(err => {
+                console.log(err);
             });
         }
     }
@@ -153,7 +159,7 @@ class Topic extends React.Component {
                 'Accept': 'application/json, text/plain, */*',
                 'content-type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => { return response.json() })
         .then(jsonData => {
             this.setState({
                 numberDisplays: jsonData.numberDisplay,
@@ -184,6 +190,8 @@ class Topic extends React.Component {
                     });
                 }
             });
+        }).catch(err => {
+            console.log(err);
         });
     }
 

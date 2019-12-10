@@ -27,7 +27,7 @@ public class LogoutController {
     @Autowired
     private ConnectionRepository connectionRepository;
 
-    @GetMapping("/logout/{email}")
+    @GetMapping(value = "/logout/{email}", produces = "application/json")
     public ResponseEntity<?> logoutUser(@PathVariable String email) {
         Connection foundedUser = connectionRepository.findByEmailAndAuthenticated(email, true);
 

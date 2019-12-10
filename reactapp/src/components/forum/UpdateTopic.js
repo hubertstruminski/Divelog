@@ -44,10 +44,10 @@ class UpdateTopic extends React.Component {
         fetch(`/get/topic/${topicId}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => { return response.json() })
         .then(jsonData => {
             jsonData.files.map((file, index) => {
                 const element = {
@@ -68,6 +68,8 @@ class UpdateTopic extends React.Component {
                 message: jsonData.message,
                 languageForum: jsonData.languageForum
             });
+        }).catch(err => {
+            console.log(err);
         });
     }
 

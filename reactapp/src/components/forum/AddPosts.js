@@ -113,6 +113,8 @@ class AddPosts extends React.Component {
                     $(".new-post-textarea").val("");
                     this.props.fetchTopicAndPosts();
                 }
+            }).catch(err => {
+                console.log(err);
             });
         }
     }

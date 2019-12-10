@@ -26,10 +26,10 @@ class TopTopics extends React.Component {
         fetch("/get/top/topics/all", {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => { return response.json() })
         .then(jsonData => {
             let countTopPolish = 0;
             let countTopGermany = 0;
@@ -97,6 +97,8 @@ class TopTopics extends React.Component {
                     });
                 }
             });
+        }).catch(err => {
+            console.log(err);
         });
     }
 

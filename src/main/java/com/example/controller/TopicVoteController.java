@@ -26,7 +26,7 @@ public class TopicVoteController {
     @Autowired
     private ClaimsConverter claimsConverter;
 
-    @PutMapping("/topic/likes/vote/{topicId}/{jwtToken}")
+    @PutMapping(value = "/topic/likes/vote/{topicId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> voteForTopic(@RequestBody boolean isUpVoted, @PathVariable Long topicId, @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 

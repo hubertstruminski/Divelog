@@ -35,10 +35,11 @@ class Twitter extends React.Component {
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
-            'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => {return response.json()})
         .then(jsonData => {
             if(this.isMountedTwitter) {
                 $(".tweets-likes-container").html("");
@@ -65,7 +66,9 @@ class Twitter extends React.Component {
                     });
                 });
             }
-        }); 
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     componentWillUnmount() {

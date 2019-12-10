@@ -43,17 +43,20 @@ class Post extends React.Component {
         fetch(`/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
-              'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => { return response.json()})
         .then(jsonData => {
             this.setState({ email: jsonData.email }, () => {
                 if(this.props.user.email === this.state.email) {
                     this.setState({ isOwner: true });
                 }
             });
-        }); 
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     addImages() {
@@ -133,6 +136,8 @@ class Post extends React.Component {
                 this.props.fetchTopicAndPosts();
                 swal(this.props.t("forum.post.news.title"), this.props.t("forum.post.news.message"), "success");
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 
@@ -187,6 +192,8 @@ class Post extends React.Component {
                                     this.props.fetchTopicAndPosts();
                                 });
                             }
+                        }).catch(err => {
+                            console.log(err);
                         });
                     }
                 });

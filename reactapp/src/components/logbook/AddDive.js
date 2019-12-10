@@ -221,6 +221,7 @@ class AddDive extends React.Component {
                     this.props.history.push("/logbook");
                 }  
             }).catch(function(error) {
+                console.log(error);
                 swal(this.props.t("googleMap.modal.swalError.title"), this.props.t("googleMap.modal.swalError.text"), "error");
             })
         }

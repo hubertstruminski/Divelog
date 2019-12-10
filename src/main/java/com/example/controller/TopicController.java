@@ -33,7 +33,7 @@ public class TopicController {
     @Autowired
     private ClaimsConverter claimsConverter;
 
-    @PostMapping("/add/topic")
+    @PostMapping(value = "/add/topic", produces = "application/json")
     public ResponseEntity<?> addTopicToForum(@RequestBody TopicDto topicDto) {
         String jwtToken = topicDto.getJwtToken();
         Connection foundedUser = claimsConverter.findUser(jwtToken);
@@ -70,12 +70,12 @@ public class TopicController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/get/topics/all")
+    @GetMapping(value = "/get/topics/all", produces = "application/json")
     public ResponseEntity<?> getAllTopics() {
         return new ResponseEntity<List<Topic>>(topicRepository.findAllAndOrderByCreatedAtAsc(), HttpStatus.OK);
     }
 
-    @GetMapping("/get/topic/posts/{topicId}")
+    @GetMapping(value = "/get/topic/posts/{topicId}", produces = "application/json")
     public ResponseEntity<?> getTopicWithPostsById(@PathVariable Long topicId) {
         Topic topic = assignFilesToTopic(topicId, false);
 
@@ -89,7 +89,7 @@ public class TopicController {
         return new ResponseEntity<Topic>(topic, HttpStatus.OK);
     }
 
-    @GetMapping("/get/topic/number/comments/{topicId}/{jwtToken}")
+    @GetMapping(value = "/get/topic/number/comments/{topicId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> fetchNumberOfComments(@PathVariable Long topicId, @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
 
@@ -107,7 +107,7 @@ public class TopicController {
         return new ResponseEntity<TopicTemplate>(topicTemplate, HttpStatus.OK);
     }
 
-    @GetMapping("/get/topic/{topicId}")
+    @GetMapping(value = "/get/topic/{topicId}", produces = "application/json")
     public ResponseEntity<?> getTopicById(@PathVariable Long topicId) {
         Topic topic = assignFilesToTopic(topicId, true);
         if(topic == null) {
@@ -116,7 +116,7 @@ public class TopicController {
         return new ResponseEntity<Topic>(topic, HttpStatus.OK);
     }
 
-    @PutMapping("/update/topic/{topicId}/{jwtToken}")
+    @PutMapping(value = "/update/topic/{topicId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> updateTopicById(@RequestBody TopicDto topicDto, @PathVariable Long topicId,
                                              @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
@@ -151,7 +151,7 @@ public class TopicController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/get/top/topics/all")
+    @GetMapping(value = "/get/top/topics/all", produces = "application/json")
     public ResponseEntity<?> getAllTopTopics() {
         return new ResponseEntity<List<Topic>>(topicRepository.findAllAndOrderByLikesDesc(), HttpStatus.OK);
     }

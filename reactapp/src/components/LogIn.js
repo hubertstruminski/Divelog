@@ -20,8 +20,6 @@ class LogIn extends React.Component {
         this.Auth = new AuthService();
         this.responseFacebook = this.responseFacebook.bind(this);
         this.onTwitterClick = this.onTwitterClick.bind(this);
-        this.onFailed = this.onFailed.bind(this);
-        this.onSuccess = this.onSuccess.bind(this);
     }
 
     componentDidMount() {
@@ -51,6 +49,8 @@ class LogIn extends React.Component {
             }
         }).then(response => {
             this.Auth.setToken(response["data"]);
+        }).catch(err => {
+            console.log(err);
         });
 
         AuthObject.authenticate(() => {
@@ -61,20 +61,9 @@ class LogIn extends React.Component {
         return <Redirect to="/dashboard/" />
     }
 
-    onFailed(response) {
-        console.log(response);
-    }
-
-    onSuccess(response) {
-        console.log(response);
-        response.json().then(body => {
-            alert(JSON.stringify(body));
-          });
-    }
-
     onTwitterClick() {
-        // window.location.href = "http://divelog.us-east-1.elasticbeanstalk.com/signin";
-        window.location.href="http://localhost:5000/signin"
+        window.location.href = "http://divelog.us-east-1.elasticbeanstalk.com/signin"
+        // window.location.href="http://localhost:5000/signin"
     }
 
     render() {
@@ -95,6 +84,8 @@ class LogIn extends React.Component {
                         <br />
                         <img src={logo} alt="divelog" className="logo-space logo" />
                         <br />
+                        09.12.2019 23:40
+                        <br />
                         <FacebookLogin
                             appId="455695445269575"
                             autoLoad={false}
@@ -114,7 +105,7 @@ class LogIn extends React.Component {
                             onClick={this.onTwitterClick}
                         >
                             <i class="fab fa-twitter pr-1"></i> 
-                            LOGIN WITH TWITTER
+                            LOG IN WITH TWITTER
                         </button>
                         {/* <TwitterLogin 
                             loginUrl="http://divelog.us-east-1.elasticbeanstalk.com/signin/twitter"

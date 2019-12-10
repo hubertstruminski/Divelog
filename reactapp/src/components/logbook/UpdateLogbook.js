@@ -57,11 +57,11 @@ class UpdateLogbook extends React.Component {
         fetch(`/get/logbook/${jwtToken}/${logbookId}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => { return response.json() })
         .then(jsonData => {
             let time = this.ConvertTime.convertTime(jsonData.entryTime, jsonData.exitTime, true);
 
@@ -92,7 +92,9 @@ class UpdateLogbook extends React.Component {
                 divingType: jsonData.divingType,
                 comment: jsonData.comment
             });
-        }); 
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     onChange(e) {
@@ -271,6 +273,8 @@ class UpdateLogbook extends React.Component {
                 } else {
                     swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                 }
+            }).catch(err => {
+                console.log(err);
             });
         }   
     }

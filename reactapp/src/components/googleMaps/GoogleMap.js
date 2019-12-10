@@ -42,11 +42,11 @@ class GoogleMap extends React.Component {
         fetch(`/get/markers/${jwtToken}`, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
+        .then(response => { return response.json() })
         .then(jsonData => {
             console.log(jsonData);
             if(jsonData.length !== 0) {
@@ -62,7 +62,9 @@ class GoogleMap extends React.Component {
                     })
                 });
             }
-        }); 
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     fetchMarkers() {
@@ -72,11 +74,11 @@ class GoogleMap extends React.Component {
             fetch(`/get/markers/${jwtToken}`, {
                 method: 'GET',
                 headers: {
-                    'Accept': 'application/json, text/plain, */*',
+                    'Accept': 'application/json',
                     'content-type': 'application/json'
                 }
             })
-            .then(response => response.json())
+            .then(response => { return response.json() })
             .then(jsonData => {
                 jsonData.map((marker, index) => {
                     let element = {
@@ -89,7 +91,9 @@ class GoogleMap extends React.Component {
                         markers: this.state.markers.concat(element)
                     })
                 })
-            }); 
+            }).catch(err => {
+                console.log(err);
+            });
         });
     }
 

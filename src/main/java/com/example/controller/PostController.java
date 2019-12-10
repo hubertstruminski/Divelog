@@ -29,7 +29,7 @@ public class PostController {
     @Autowired
     private ClaimsConverter claimsConverter;
 
-    @PostMapping("/add/post")
+    @PostMapping(value = "/add/post", produces = "application/json")
     public ResponseEntity<?> addPost(@RequestBody PostDto postDto) {
         String jwtToken = postDto.getJwtToken();
 
@@ -53,7 +53,7 @@ public class PostController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping("/delete/post/{postId}/{jwtToken}")
+    @DeleteMapping(value = "/delete/post/{postId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> deletePostById(@PathVariable Long postId, @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
         Post post = postRepository.getByIdAndUser(postId, foundedUser);
@@ -71,7 +71,7 @@ public class PostController {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/post/{postId}/{jwtToken}")
+    @PutMapping(value = "/post/{postId}/{jwtToken}", produces = "application/json")
     public ResponseEntity<?> updatePostById(@RequestBody PostDto postDto, @PathVariable Long postId, @PathVariable String jwtToken) {
         Connection foundedUser = claimsConverter.findUser(jwtToken);
         Post post = postRepository.getByIdAndUser(postId, foundedUser);

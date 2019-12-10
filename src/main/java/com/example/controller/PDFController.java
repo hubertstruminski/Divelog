@@ -20,7 +20,7 @@ public class PDFController {
 
     private static final String FILE_NAME = "itext.pdf";
 
-    @GetMapping("/generate/pdf")
+    @GetMapping(value = "/generate/pdf", produces = "application/json")
     public ResponseEntity<byte[]> displayProcessFile() throws DocumentException, IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/pdf"));

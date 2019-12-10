@@ -31,8 +31,8 @@ class TwitterExploreSearch extends React.Component {
                 method: 'POST',
                 data: this.state.search,
                 headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'content-type': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             }).then(response => {
                 if(response.status !== 200) {
@@ -40,6 +40,8 @@ class TwitterExploreSearch extends React.Component {
                 } else {
                     this.props.addNewTweet(response.data);
                 }
+            }).catch(err => {
+                console.log(err);
             });
         }
     }

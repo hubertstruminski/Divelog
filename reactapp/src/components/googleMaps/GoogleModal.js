@@ -35,8 +35,8 @@ class GoogleModal extends React.Component {
         fetch(`/add/marker/${jwtToken}`, {
             method: 'POST',
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'content-type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(googleMarker)
         }).then(response => {
@@ -48,6 +48,8 @@ class GoogleModal extends React.Component {
             } else if(response.status === 404) {
                 swal(this.props.t("error-404.title"), this.props.t("error-404.message"),"error");
             }
+        }).catch(err => {
+            console.log(err);
         });
     }
 
