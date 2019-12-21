@@ -7,6 +7,7 @@ import DeleteButton from './DeleteButton';
 import { withTranslation } from 'react-i18next';
 import { compose } from 'redux';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class GoogleMap extends React.Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class GoogleMap extends React.Component {
         
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/get/markers/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/get/markers/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -71,7 +72,7 @@ class GoogleMap extends React.Component {
         let jwtToken = this.Auth.getRightSocialToken();
 
         this.setState({ markers: [] }, () => {
-            fetch(`/get/markers/${jwtToken}`, {
+            fetch(`${BACKEND_API_URL}/get/markers/${jwtToken}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

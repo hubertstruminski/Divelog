@@ -31,19 +31,9 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
                         "/topic/likes/vote/**/**", "/update/topic/**", "/callback", "/signin", "/oauth/request_token")
                 .permitAll()
                 .anyRequest()
-                .authenticated()
+                .authenticated();
 
-                .and()
-                .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
-    }
-
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
+//                .and()
+//                .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
     }
 }

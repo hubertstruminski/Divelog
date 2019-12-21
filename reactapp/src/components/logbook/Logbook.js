@@ -8,6 +8,7 @@ import UpdateLogbookButton from './UpdateLogbookButton';
 import PDFTableButton from './PDFTableButton';
 import ConvertTime from '../../util/ConvertTime';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class Logbook extends React.Component {
     constructor() {
@@ -31,7 +32,7 @@ class Logbook extends React.Component {
     componentDidMount() {
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/get/logbook/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/get/logbook/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -72,7 +73,7 @@ class Logbook extends React.Component {
     fetchLogbooks() {
         let jwtToken = this.Auth.getRightSocialToken(); 
 
-        fetch(`/get/logbook/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/get/logbook/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

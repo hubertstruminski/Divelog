@@ -51,6 +51,7 @@ public class LogInController {
     }
 
     @GetMapping(value = "/getuserdata/{jwtToken}", produces = "application/json")
+    @CrossOrigin
     public ResponseEntity<?> getUserData(@PathVariable String jwtToken) {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);

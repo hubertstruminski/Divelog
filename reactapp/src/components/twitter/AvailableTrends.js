@@ -4,6 +4,7 @@ import AuthService from '../../util/AuthService';
 import swal from 'sweetalert';
 import Trend from './Trend';
 import $ from 'jquery';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class AvailableTrends extends React.Component {
     isMountedAvailableTrends = false
@@ -49,7 +50,7 @@ class AvailableTrends extends React.Component {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         }, () => {
-            fetch(`/twitter/available/closest/trends/${this.state.latitude}/${this.state.longitude}/${this.twitterJwtToken}`, {
+            fetch(`${BACKEND_API_URL}/twitter/available/closest/trends/${this.state.latitude}/${this.state.longitude}/${this.twitterJwtToken}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

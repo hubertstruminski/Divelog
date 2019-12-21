@@ -9,6 +9,7 @@ import axios from 'axios';
 import DeleteAttachmentButton from './DeleteAttachmentButton';
 import { withTranslation } from 'react-i18next';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class Post extends React.Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class Post extends React.Component {
     componentDidMount() {
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/getuserdata/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -123,7 +124,7 @@ class Post extends React.Component {
         let postId = this.props.id;
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/delete/post/${postId}/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/delete/post/${postId}/${jwtToken}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -174,7 +175,7 @@ class Post extends React.Component {
                         
                         axios({
                             method: 'PUT',
-                            url: `/post/${postId}/${jwtToken}`,
+                            url: `${BACKEND_API_URL}/post/${postId}/${jwtToken}`,
                             data: updatedPost,
                             headers: {
                                 "Accept": "application/json",

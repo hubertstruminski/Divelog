@@ -1,6 +1,7 @@
 import React from 'react';
 import Topic from './Topic';
 import ConvertTime from '../../util/ConvertTime';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class TopTopics extends React.Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class TopTopics extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/get/top/topics/all", {
+        fetch(`${BACKEND_API_URL}/get/top/topics/all`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

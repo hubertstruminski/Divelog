@@ -12,6 +12,7 @@ import AuthService from '../../util/AuthService';
 import { withRouter } from 'react-router';
 import withAuth from '../../util/withAuth';
 import { compose } from 'redux';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class HeaderIn extends React.Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class HeaderIn extends React.Component {
             jwtToken = this.Auth.getToken();
         }
 
-        fetch(`/getuserdata/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -95,7 +96,7 @@ class HeaderIn extends React.Component {
     }
 
     logout = async () => {
-        await fetch(`/logout/${this.state.email}`, {
+        await fetch(`${BACKEND_API_URL}/logout/${this.state.email}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

@@ -7,6 +7,7 @@ import Post from './Post';
 import Pagination from 'react-js-pagination';
 import UpdateTopicButton from './UpdateTopicButton';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class TopicWithPosts extends React.Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class TopicWithPosts extends React.Component {
     componentDidMount() {
         let id = this.props.match.params.id;
 
-        fetch(`/get/topic/posts/${id}`, {
+        fetch(`${BACKEND_API_URL}/get/topic/posts/${id}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -206,7 +207,7 @@ class TopicWithPosts extends React.Component {
                 }, () => {
                     let jwtToken = this.Auth.getRightSocialToken();
     
-                    fetch(`/getuserdata/${jwtToken}`, {
+                    fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
                         method: 'GET',
                         headers: {
                             'Accept': 'application/json',

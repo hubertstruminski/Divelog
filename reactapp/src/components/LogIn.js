@@ -9,6 +9,7 @@ import { AuthObject } from '../util/AuthObject';
 import AuthService from '../util/AuthService';
 import $ from 'jquery';
 import TwitterLogin from 'react-twitter-auth';
+import { BACKEND_API_URL } from '../actions/types';
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class LogIn extends React.Component {
 
         axios({
             method: 'POST',
-            url: '/signin',
+            url: `${BACKEND_API_URL}/signin`,
             data: loginRequest,
             headers: {
                 "Accept": "application/json",
@@ -62,7 +63,7 @@ class LogIn extends React.Component {
     }
 
     onTwitterClick() {
-        window.location.href = "http://divelog.us-east-1.elasticbeanstalk.com/signin"
+        window.location.href = "https://api.divelog.eu/signin"
         // window.location.href="http://localhost:5000/signin"
     }
 
@@ -84,7 +85,9 @@ class LogIn extends React.Component {
                         <br />
                         <img src={logo} alt="divelog" className="logo-space logo" />
                         <br />
-                        09.12.2019 23:40
+                        Divelog
+                        <br />
+                        <hr />
                         <br />
                         <FacebookLogin
                             appId="455695445269575"

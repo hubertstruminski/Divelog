@@ -6,6 +6,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class AddTopic extends React.Component {
     constructor(props) {
@@ -119,7 +120,7 @@ class AddTopic extends React.Component {
             }
 
             axios({
-                url: "/add/topic",
+                url: `${BACKEND_API_URL}/add/topic`,
                 method: 'POST',
                 data: JSON.stringify(topicDto),
                 headers: {

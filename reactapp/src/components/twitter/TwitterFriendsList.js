@@ -2,6 +2,7 @@ import React from 'react';
 import '../../css/TwitterFriendsList.css';
 import AuthService from '../../util/AuthService';
 import Friend from './Friend';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class TwitterFriendsList extends React.Component {
     isMountedFriendsList = false;
@@ -23,7 +24,7 @@ class TwitterFriendsList extends React.Component {
 
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/twitter/friends/list/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/twitter/friends/list/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

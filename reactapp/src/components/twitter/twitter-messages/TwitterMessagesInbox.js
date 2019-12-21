@@ -5,6 +5,7 @@ import TwitterConversationContact from './TwitterConversationContact';
 import $ from 'jquery';
 import TwitterMessagesSearch from './TwitterMessagesSearch';
 import Conversation from './Conversation';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class TwitterMessagesInbox extends React.Component {
     constructor() {
@@ -37,7 +38,7 @@ class TwitterMessagesInbox extends React.Component {
         $(".twitter-messages-list-inbox").css({ "max-height": "100%" });
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/twitter/direct/messages/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/twitter/direct/messages/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

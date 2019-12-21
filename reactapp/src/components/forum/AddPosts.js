@@ -7,6 +7,7 @@ import { withRouter } from 'react-router';
 import $ from 'jquery';
 import { withTranslation } from 'react-i18next';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class AddPosts extends React.Component {
     constructor(props) {
@@ -99,7 +100,7 @@ class AddPosts extends React.Component {
             }
 
             axios({
-                url: "/add/post",
+                url: `${BACKEND_API_URL}/add/post`,
                 method: 'POST',
                 data: JSON.stringify(post),
                 headers: {

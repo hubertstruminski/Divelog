@@ -6,6 +6,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class UpdateTopic extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class UpdateTopic extends React.Component {
     componentDidMount() {
         let topicId = this.props.match.params.id;
 
-        fetch(`/get/topic/${topicId}`, {
+        fetch(`${BACKEND_API_URL}/get/topic/${topicId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -154,7 +155,7 @@ class UpdateTopic extends React.Component {
 
             axios({
                 method: 'PUT',
-                url: `/update/topic/${topicId}/${jwtToken}`,
+                url: `${BACKEND_API_URL}/update/topic/${topicId}/${jwtToken}`,
                 data: updatedTopic,
                 headers: {
                     "Accept": "application/json",

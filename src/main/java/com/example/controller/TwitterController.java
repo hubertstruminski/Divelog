@@ -19,7 +19,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -142,11 +141,11 @@ public class TwitterController {
         }
         request.getSession().removeAttribute("requestToken");
 
-//        response.sendRedirect("http://localhost:3000/twitter/likes/" + jwtToken);
-        response.sendRedirect("http://divelog.eu/twitter/likes/" + jwtToken);
+        response.sendRedirect("http://localhost:3000/twitter/likes/" + jwtToken);
+//        response.sendRedirect("https://divelog.eu/twitter/likes/" + jwtToken);
     }
 
-    @GetMapping(value = "/twitter/login/validate/token/{jwtToken}", produces = "application/json")
+    @GetMapping(value = "/twitter/login/validate/token/{jwtToken}")
     public ResponseEntity<?> validateJwtTokenForTwitterLogin(@PathVariable String jwtToken) {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
@@ -185,6 +184,7 @@ public class TwitterController {
     }
 
     @GetMapping(value = "/twitter/available/closest/trends/{latitude}/{longitude}/{jwtToken}", produces = "application/json")
+    @CrossOrigin
     public ResponseEntity<?> getAvailableTrends(@PathVariable double latitude, @PathVariable double longitude,
                                                 @PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
@@ -244,7 +244,7 @@ public class TwitterController {
         return new ResponseEntity<List<User>>(friendsList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/twitter/home/timeline/{jwtToken}", produces = "application/json")
+    @GetMapping(value = "/twitter/home/timeline/{jwtToken}")
     public ResponseEntity<?> getHomeTimeline(@PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 

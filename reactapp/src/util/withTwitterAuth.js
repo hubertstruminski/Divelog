@@ -1,5 +1,6 @@
 import React from 'react';
 import AuthService from './AuthService';
+import { BACKEND_API_URL } from '../actions/types';
 
 export default function withTwitterAuth(AuthComponent, props) {
     const Auth =  new AuthService();
@@ -30,10 +31,7 @@ export default function withTwitterAuth(AuthComponent, props) {
 
         componentWillMount() {
             customAuthComponent = true;
-            console.log(this.props);
-
-            // if(this.pr)
-
+            
             if(this.props.match.path === "/twitter/likes/:jwtToken") {
                 if(props !== undefined) {
                     if(this.props.location.pathname === "/twitter/explore") {
@@ -45,7 +43,7 @@ export default function withTwitterAuth(AuthComponent, props) {
                         return;
                     }
                 } 
-                fetch(`/twitter/login/validate/token/${this.props.match.params.jwtToken}`, {
+                fetch(`${BACKEND_API_URL}/twitter/login/validate/token/${this.props.match.params.jwtToken}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'

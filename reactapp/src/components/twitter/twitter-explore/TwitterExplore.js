@@ -7,6 +7,7 @@ import SearchTwitterPeople from '../SearchTwitterPeople';
 import AvailableTrends from '../AvailableTrends';
 import TwitterExploreSearch from './TwitterExploreSearch';
 import $ from 'jquery';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class TwitterExplore extends React.Component {
     isMountedTwitterExplore = false;
@@ -33,7 +34,7 @@ class TwitterExplore extends React.Component {
 
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/getuserdata/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

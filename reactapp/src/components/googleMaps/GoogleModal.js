@@ -3,6 +3,7 @@ import $ from 'jquery';
 import swal from 'sweetalert';
 import { withTranslation } from 'react-i18next';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class GoogleModal extends React.Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class GoogleModal extends React.Component {
 
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/add/marker/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/add/marker/${jwtToken}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

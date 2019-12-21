@@ -6,6 +6,7 @@ import $ from 'jquery';
 import swal from 'sweetalert';
 import axios from 'axios';
 import AuthService from '../../../util/AuthService';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class TwitterHomeAdd extends React.Component {
     constructor() {
@@ -145,7 +146,7 @@ class TwitterHomeAdd extends React.Component {
             let jwtToken = this.Auth.getRightSocialToken();
 
             axios({
-                url: `/twitter/create/tweet/${jwtToken}`,
+                url: `${BACKEND_API_URL}/twitter/create/tweet/${jwtToken}`,
                 method: 'POST',
                 data: JSON.stringify(tweet),
                 headers: {

@@ -3,6 +3,7 @@ import '../../../css/TwitterExploreSearch.css';
 import AuthService from '../../../util/AuthService';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class TwitterExploreSearch extends React.Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class TwitterExploreSearch extends React.Component {
             let jwtToken = this.Auth.getRightSocialToken();
 
             axios({
-                url: `/twitter/search/tweets/${jwtToken}`,
+                url: `${BACKEND_API_URL}/twitter/search/tweets/${jwtToken}`,
                 method: 'POST',
                 data: this.state.search,
                 headers: {

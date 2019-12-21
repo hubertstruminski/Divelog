@@ -8,6 +8,7 @@ import DeleteLogbookButton from '../logbook/DeleteLogbookButton';
 import swal from 'sweetalert';
 import GoogleLogbookMarkerModal from './GoogleLogbookMarkerModal';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class GoogleLogbookMap extends React.Component {
     constructor() {
@@ -47,7 +48,7 @@ class GoogleLogbookMap extends React.Component {
 
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/get/markers/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/get/markers/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

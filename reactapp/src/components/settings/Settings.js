@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../css/Settings.css';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class Settings extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class Settings extends React.Component {
     }
     
     onClick() {
-        fetch("/generate/pdf", {
+        fetch(`${BACKEND_API_URL}/generate/pdf`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

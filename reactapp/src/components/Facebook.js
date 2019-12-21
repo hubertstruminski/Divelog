@@ -4,6 +4,7 @@ import LeftCard from './Layout/LeftCard';
 import withAuth from '../util/withAuth';
 import Cookies from 'universal-cookie';
 import AuthService from '../util/AuthService';
+import { BACKEND_API_URL } from '../actions/types';
 
 class Facebook extends React.Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class Facebook extends React.Component {
         window.twttr.widgets.load();
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/getuserdata/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

@@ -12,6 +12,7 @@ import TopTopics from './TopTopics';
 import logo from '../../img/eDivelog.png';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class Forum extends React.Component {
     constructor(props) {
@@ -48,7 +49,7 @@ class Forum extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/get/topics/all", {
+        fetch(`${BACKEND_API_URL}/get/topics/all`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

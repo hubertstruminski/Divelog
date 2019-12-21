@@ -4,6 +4,7 @@ import $ from 'jquery';
 import ConvertDMTime from '../../../util/ConvertDMTime';
 import axios from 'axios';
 import AuthService from '../../../util/AuthService';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class SingleMessage extends React.Component {
     constructor() {
@@ -22,7 +23,7 @@ class SingleMessage extends React.Component {
         this.props.mediaEntities.map((media, index) => {
             if(media.type === "photo") {
                 axios({
-                    url: `/twitter/direct/message/person/photo/retrieve/${jwtToken}`,
+                    url: `${BACKEND_API_URL}/twitter/direct/message/person/photo/retrieve/${jwtToken}`,
                     method: 'POST',
                     data: media.mediaUrl,
                     headers: {

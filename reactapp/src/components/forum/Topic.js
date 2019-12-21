@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import $ from 'jquery';
 import { withTranslation } from 'react-i18next';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class Topic extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class Topic extends React.Component {
         let jwtToken = this.Auth.getRightSocialToken();
         let topicId = this.props.id;
 
-        fetch(`/get/topic/number/comments/${topicId}/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/get/topic/number/comments/${topicId}/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -87,7 +88,7 @@ class Topic extends React.Component {
             let isUpVoted = true;    
             axios({
                 method: 'PUT',
-                url: `/topic/likes/vote/${this.props.id}/${jwtToken}`,
+                url: `${BACKEND_API_URL}/topic/likes/vote/${this.props.id}/${jwtToken}`,
                 data: isUpVoted,
                 headers: {
                     "Accept": "application/json",
@@ -121,7 +122,7 @@ class Topic extends React.Component {
             let isUpVoted = false;
             axios({
                 method: 'PUT',
-                url: `/topic/likes/vote/${this.props.id}/${jwtToken}`,
+                url: `${BACKEND_API_URL}/topic/likes/vote/${this.props.id}/${jwtToken}`,
                 data: isUpVoted,
                 headers: {
                     "Accept": "application/json",
@@ -153,7 +154,7 @@ class Topic extends React.Component {
         let jwtToken = this.Auth.getRightSocialToken();
         let topicId = this.props.id;
         
-        fetch(`/get/topic/number/comments/${topicId}/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/get/topic/number/comments/${topicId}/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json, text/plain, */*',

@@ -6,6 +6,7 @@ import ConvertTime from '../../util/ConvertTime';
 import $ from 'jquery';
 import '../../css/PdfLogbook.css';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class PDFTableButton extends React.Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class PDFTableButton extends React.Component {
         const id = this.props.id;
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/pdf/logbook/${id}/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/pdf/logbook/${id}/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

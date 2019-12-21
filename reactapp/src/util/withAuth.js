@@ -25,7 +25,6 @@ export default function withAuth(AuthComponent, props) {
         }
 
         componentWillMount() {
-            console.log(this.props);
             customAuthComponent = true;
 
             if(!Auth.loggedIn()) {
@@ -43,10 +42,6 @@ export default function withAuth(AuthComponent, props) {
                                 customAuthComponent && this.props.history.replace("/twitter/home");
                             }
                         } 
-                        // else {
-                        //     console.log("/twitter");
-                        //     customAuthComponent && this.props.history.replace("/twitter");
-                        // }
                     }
 
                     if(facebookJwtToken) {

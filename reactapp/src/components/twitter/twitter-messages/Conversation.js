@@ -4,6 +4,7 @@ import axios from 'axios';
 import AuthService from '../../../util/AuthService';
 import SingleMessage from './SingleMessage';
 import $ from 'jquery';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class Conversation extends React.Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class Conversation extends React.Component {
         let jwtToken = this.Auth.getRightSocialToken();
 
         axios({
-            url: `/twitter/direct/messages/specified/person/${jwtToken}`,
+            url: `${BACKEND_API_URL}/twitter/direct/messages/specified/person/${jwtToken}`,
             method: 'POST',
             data: DM,
             headers: {

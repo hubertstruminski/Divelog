@@ -7,6 +7,7 @@ import { withRouter } from 'react-router';
 import swal from 'sweetalert'; 
 import $ from 'jquery';  
 import { withTranslation } from 'react-i18next';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class AddDive extends React.Component {
     constructor(props) {
@@ -208,7 +209,7 @@ class AddDive extends React.Component {
 
             axios({
                 method: 'POST',
-                url: `/add/logbook/${jwtToken}`,
+                url: `${BACKEND_API_URL}/add/logbook/${jwtToken}`,
                 data: logbookObject,
                 headers: {
                     "Accept": "application/json",

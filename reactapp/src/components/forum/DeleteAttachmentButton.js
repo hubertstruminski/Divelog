@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class DeleteAttachmentButton extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class DeleteAttachmentButton extends React.Component {
         let fileId = this.props.id;
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/delete/post/file/${fileId}/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/delete/post/file/${fileId}/${jwtToken}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',

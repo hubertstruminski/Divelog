@@ -8,6 +8,7 @@ import AvailableTrends from '../AvailableTrends';
 import TwitterFriendsList from '../TwitterFriendsList';
 import $ from 'jquery';
 import TwitterHomeAdd from './TwitterHomeAdd';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class TwitterHome extends React.Component {
     isMountedTwitter = false;
@@ -36,7 +37,7 @@ class TwitterHome extends React.Component {
         $(".home-timeline-container").html("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/getuserdata/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -56,7 +57,7 @@ class TwitterHome extends React.Component {
                     screenName: jsonData.screenName,
                     tokenSecret: jsonData.tokenSecret
                 }, () => {
-                    fetch(`/twitter/home/timeline/${jwtToken}`, {
+                    fetch(`${BACKEND_API_URL}/twitter/home/timeline/${jwtToken}`, {
                         method: 'GET',
                         headers: {
                             'Accept': 'application/json',

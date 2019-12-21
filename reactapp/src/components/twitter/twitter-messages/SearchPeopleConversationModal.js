@@ -7,6 +7,7 @@ import TwitterMessagesSearch from './TwitterMessagesSearch';
 import axios from 'axios';
 import ContactModal from './ContactModal';
 import SelectedContact from './SelectedContact';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class SearchPeopleConversationModal extends React.Component {
     constructor(props) {
@@ -56,7 +57,7 @@ class SearchPeopleConversationModal extends React.Component {
         let jwtToken = this.Auth.getRightSocialToken();
 
         axios({
-            url: `/twitter/direct/messages/search/people/${jwtToken}`,
+            url: `${BACKEND_API_URL}/twitter/direct/messages/search/people/${jwtToken}`,
             method: 'POST',
             data: this.state.searchInput,
             headers: {

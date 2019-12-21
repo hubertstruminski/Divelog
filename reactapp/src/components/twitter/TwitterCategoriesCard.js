@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import withAuth from '../../util/withAuth';
 import { Link } from 'react-router-dom';
 import AuthService from '../../util/AuthService';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class TwitterCategoriesCard extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class TwitterCategoriesCard extends React.Component {
     }
 
     componentDidMount() {
-        fetch(`/getuserdata/${this.jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/getuserdata/${this.jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

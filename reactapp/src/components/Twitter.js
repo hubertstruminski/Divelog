@@ -8,6 +8,7 @@ import AvailableTrends from './twitter/AvailableTrends';
 import TwitterFriendsList from './twitter/TwitterFriendsList';
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
+import { BACKEND_API_URL } from '../actions/types';
 
 class Twitter extends React.Component {
     isMountedTwitter = false;
@@ -30,9 +31,15 @@ class Twitter extends React.Component {
     componentDidMount() {
         this.isMountedTwitter = true;
         let jwtToken = this.Auth.getRightSocialToken();
-        this.isMountedTwitter && window.twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
 
-        fetch(`/getuserdata/${jwtToken}`, {
+        this.isMountedTwitter && window.twttr.ready(
+            function (twttr) {
+                twttr.widgets.load(document.getElementsByClassName("feed-container")[0]);
+            }
+          );
+        
+
+        fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

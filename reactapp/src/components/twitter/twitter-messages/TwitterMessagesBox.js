@@ -7,6 +7,7 @@ import $ from 'jquery';
 import TwitterMessagesSearch from './TwitterMessagesSearch';
 import TwitterMessagesInbox from './TwitterMessagesInbox';
 import SearchPeopleConversationModal from './SearchPeopleConversationModal';
+import { BACKEND_API_URL } from '../../../actions/types';
 
 class TwitterMessagesBox extends React.Component {
     isMountedTwitterMessagesBox = false;
@@ -35,7 +36,7 @@ class TwitterMessagesBox extends React.Component {
         this.isMountedTwitterMessagesBox = true;
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/getuserdata/${jwtToken}`, {
+        fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
             method: 'GET',
             headers: {
               'content-type': 'application/json'

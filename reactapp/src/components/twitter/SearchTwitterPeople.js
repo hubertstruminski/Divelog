@@ -3,6 +3,7 @@ import '../../css/TwitterGroupsCard.css';
 import AuthService from '../../util/AuthService';
 import axios from 'axios';
 import twitterVerified from '../../img/twitter-verified.png';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class SearchTwitterPeople extends React.Component {
     isMountedSearchTwitterPeople = false;
@@ -50,7 +51,7 @@ class SearchTwitterPeople extends React.Component {
     getUsers() {
         let searchPeople = this.state.searchPeople;
         axios({ 
-            url: `/twitter/users/search/${this.state.searchPeople}/${this.twitterJwtToken}`,
+            url: `${BACKEND_API_URL}/twitter/users/search/${this.state.searchPeople}/${this.twitterJwtToken}`,
             method: 'POST',
             body: searchPeople,
             headers: {

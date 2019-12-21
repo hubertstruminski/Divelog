@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import $ from 'jquery';  
 import { withTranslation } from 'react-i18next';
 import ConvertTime from '../../util/ConvertTime';
+import { BACKEND_API_URL } from '../../actions/types';
 
 class UpdateLogbook extends React.Component {
     constructor(props) {
@@ -54,7 +55,7 @@ class UpdateLogbook extends React.Component {
         let logbookId = this.props.match.params.id;
         let jwtToken = this.Auth.getRightSocialToken();
 
-        fetch(`/get/logbook/${jwtToken}/${logbookId}`, {
+        fetch(`${BACKEND_API_URL}/get/logbook/${jwtToken}/${logbookId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -259,7 +260,7 @@ class UpdateLogbook extends React.Component {
 
             axios({
                 method: 'PUT',
-                url: `/edit/logbook/${logbookId}/${jwtToken}`,
+                url: `${BACKEND_API_URL}/edit/logbook/${logbookId}/${jwtToken}`,
                 data: logbookObject,
                 headers: {
                     "Accept": "application/json",
