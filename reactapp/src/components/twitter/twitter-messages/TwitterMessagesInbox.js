@@ -35,7 +35,6 @@ class TwitterMessagesInbox extends React.Component {
     }
 
     componentDidMount() {
-        $(".twitter-messages-list-inbox").css({ "max-height": "100%" });
         let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`${BACKEND_API_URL}/twitter/direct/messages/${jwtToken}`, {
@@ -147,7 +146,7 @@ class TwitterMessagesInbox extends React.Component {
         let isLoading = this.state.isLoading;
         let isConversationClicked = this.state.isConversationClicked;
         return (
-            <div className="twitter-messages-inbox-container">
+            <>
                 <div className="twitter-messages-list-inbox">
                     <div className="twitter-messages-title-box">
                         <div className="twitter-messages-title">Messages</div>
@@ -203,8 +202,8 @@ class TwitterMessagesInbox extends React.Component {
                             screenName={this.state.screenName}
                         />
                     }
-                </div>                
-            </div>
+                </div>
+            </>
         );
     }
 }

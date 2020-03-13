@@ -12,7 +12,8 @@ class SingleMessage extends React.Component {
         this.state = {
             isRecipient: false,
             isPhotoMessage: false,
-            mediaUrls: []
+            mediaUrls: [],
+            mediaUrl: ''
         }
         this.Auth = new AuthService();
         this.convertTime = new ConvertDMTime();
@@ -27,12 +28,22 @@ class SingleMessage extends React.Component {
                     method: 'POST',
                     data: media.mediaUrl,
                     headers: {
-                        'Accept': 'application/json',
+                        'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
                     }
                 }).then(response => {
-                    console.log(response.data);
-                })
+                    console.log(response);
+                    this.setState({
+                        mediaUrl: response.data,
+                        isPhotoMessage: true
+                    });
+                });
+                // }).then(blob => {
+                    // this.setState({
+                    //     mediaUrl: URL.createObjectURL(blob),
+                    //     isPhotoMessage: true
+                    // });
+                // })
 
             }
         })
@@ -64,6 +75,7 @@ class SingleMessage extends React.Component {
             <>
                 {
                     isPhotoMessage && <img className="twitter-dm-photo-message" src={this.state.mediaUrl} />
+                    && <img src={`data:image/jpeg;base64,${this.state.mediaUrl}`} />
                 }
                 <div className="twitter-single-message-wrapper">
                     { isRecipient &&

@@ -32,8 +32,5 @@ public class SocialConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest()
                 .authenticated();
-
-//                .and()
-//                .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
     }
 }

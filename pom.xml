@@ -103,6 +103,18 @@
 			<artifactId>javassist</artifactId>
 			<version>3.25.0-GA</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.streams</groupId>
+			<artifactId>streams-provider-twitter</artifactId>
+			<version>0.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.filestack</groupId>
+			<artifactId>filestack-java</artifactId>
+			<version>0.9.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

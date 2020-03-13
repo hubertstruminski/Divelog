@@ -30,14 +30,14 @@ class TwitterCategoriesCard extends React.Component {
             this.setState({
                 pictureUrl: jsonData.pictureUrl,
             }, () => {
-                // fetch(`/twitter/webhooks/register/${jwtToken}`, {
-                //     method: 'GET',
-                //     headers: {
-                //       'content-type': 'application/json'
-                //     }
-                // }).then(response => {
-                //     console.log(response);
-                // });
+                fetch(`${BACKEND_API_URL}/twitter/webhooks/register/${this.jwtToken}`, {
+                    method: 'GET',
+                    headers: {
+                      'content-type': 'application/json'
+                    }
+                }).then(response => {
+                    console.log(response);
+                });
             });
         }).catch(err => {
             console.log(err);

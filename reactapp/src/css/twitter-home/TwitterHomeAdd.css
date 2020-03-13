@@ -1,7 +1,7 @@
 .add-tweet-container {
     width: 100%;
     background-color: white;
-    min-height: 100px;
+    min-height: 10%;
     padding: 2%;
     margin-top: 2%;
     border: 1px solid #E5ECF0;
@@ -60,12 +60,16 @@
     color: white;
     background-color: #7FD1F7;
     border-radius: 15px;
-    width: 20%;
-    height: 35px;
+    width: 17.5%;
+    margin-top: 2%;
     border: 1px solid #7FD1F7;
     font-weight: 900;
     letter-spacing: 1px;
     font-size: 0.85vw;
+}
+
+.add-tweet-button-home-timeline:focus {
+    outline: 0 !important;
 }
 
 .upload-file-delete {
@@ -76,7 +80,6 @@
     color: gray;
 }
 
-.tweet-add-rendered-file-image {
-    width: 100%;
-    height: 150px;
+.tweet-message-textarea {
+    outline: none;
 }

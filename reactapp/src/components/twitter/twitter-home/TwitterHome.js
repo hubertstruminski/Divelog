@@ -25,7 +25,8 @@ class TwitterHome extends React.Component {
             screenName: '',
             tokenSecret: '',
             tweets: '',
-            isTweetsRetrieved: false
+            isTweetsRetrieved: false,
+            isLoading: true
         }
         this.Auth = new AuthService();
 
@@ -34,7 +35,6 @@ class TwitterHome extends React.Component {
 
     componentDidMount() {
         this.isMountedTwitter = true;
-        $(".home-timeline-container").html("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
         let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
@@ -66,7 +66,11 @@ class TwitterHome extends React.Component {
                     }).then(response => {
                         return response.text();
                     }).then(text => {
-                        this.setState({ tweets: text }, () => {
+                        this.setState({ 
+                            tweets: text,
+                            isLoading: false
+                        }, () => {
+                            $(".home-timeline-container").css({ display: "block" });
                             $(".home-timeline-container").html(text);
                             $(".twitter-tweet").attr("data-width", "520px");
                         });                      
@@ -75,7 +79,7 @@ class TwitterHome extends React.Component {
             }
         }).catch(err => {
             console.log(err);
-        });
+        });   
     }
 
     addNewTweet(newTweet) {
@@ -90,6 +94,7 @@ class TwitterHome extends React.Component {
     }
 
     render() {
+        let isLoading = this.state.isLoading;
         return (
             <div className="twitter-container">
                 <div className="twitter-grid-container">
@@ -110,7 +115,16 @@ class TwitterHome extends React.Component {
                             addNewTweet={this.addNewTweet}
                         />
                         <div className="home-timeline-container">
-
+                            { isLoading &&
+                                <div 
+                                    className='spinner-border text-primary' 
+                                    role='status'
+                                >
+                                    <span class='sr-only'>
+                                        Loading...
+                                    </span>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className="twitter-grid-item-3">
@@ -133,4 +147,3 @@ class TwitterHome extends React.Component {
 }
 
 export default withAuth(TwitterHome, { twitterHome: true });
-// export default withAuth(TwitterHome);

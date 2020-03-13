@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../css/Trend.css';
 
 class Trend extends React.Component {
     constructor(props) {

@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import AuthService from '../../../util/AuthService';
 import { BACKEND_API_URL } from '../../../actions/types';
+import PhotoTweetHome from './PhotoTweetHome';
 
 class TwitterHomeAdd extends React.Component {
     constructor() {
@@ -17,8 +18,7 @@ class TwitterHomeAdd extends React.Component {
             failedFiles: [],
             isSuccessUploaded: false,
             isFailedUploaded: false,
-            message: '',
-            isScriptInjected: false
+            message: ''
         }
         this.Auth = new AuthService();
 
@@ -59,33 +59,22 @@ class TwitterHomeAdd extends React.Component {
 
     renderFiles(isSuccessUploaded) {
         if(isSuccessUploaded) {
+            let count = 0;
             $("tweet-add-uploaded-files").html("");
             return this.state.files.map((file, index) => {
                 return (
-                    <React.Fragment>
-                        <img
-                            key={index}
-                            className="tweet-add-rendered-file-image"
-                            src={file.url}
-                            alt={file.name}
-                        />
-                        <br />
-                        <button className="upload-file-delete" onClick={() => this.removeRenderedFile(file.handle)}>Delete - {file.name}</button>
-                    </React.Fragment>
+                    <PhotoTweetHome 
+                        count={count++}
+                        key={index}
+                        src={file.url}
+                        name={file.name}
+                        handle={file.handle}
+                        removeRenderedFile={this.removeRenderedFile}
+                    />
                 );
             });
         }
         return null;
-    }
-
-    showWarningBeforeInjectingScript(isScriptInjected) {
-        if(isScriptInjected) {
-            return (
-                <div className="alert alert-danger">
-                    You can not use script tags.
-                </div>
-            );
-        }
     }
 
     renderFailedFiles(isFailedUploaded) {
@@ -118,9 +107,12 @@ class TwitterHomeAdd extends React.Component {
             });
         });
 
-        response.filesFailed.map((fileFailed, index) => {
+        response.filesFailed.map((fileFailed) => {
+            const element = {
+                name: fileFailed.originalFile.name,
+            }
             this.setState({ 
-                failedFiles: this.state.failedFiles.concat(fileFailed),
+                failedFiles: this.state.failedFiles.concat(element),
                 isFailedUploaded: true
             });
         });
@@ -138,35 +130,30 @@ class TwitterHomeAdd extends React.Component {
     onSubmitTweet(e) {
         e.preventDefault();
 
-        if(!this.state.message.includes("<script>") && !this.state.message.includes("</script>")) {
-            const tweet = {
-                message: this.state.message,
-                files: this.state.files
-            }
-            let jwtToken = this.Auth.getRightSocialToken();
-
-            axios({
-                url: `${BACKEND_API_URL}/twitter/create/tweet/${jwtToken}`,
-                method: 'POST',
-                data: JSON.stringify(tweet),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if(response.status !== 200) {
-                    swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
-                    e.preventDefault();
-                } else {
-                    this.props.addNewTweet(response.data);
-                }
-            }).catch(err => {
-                console.log(err);
-            });
-        } else {
-            e.preventDefault();
-            this.setState({ isScriptInjected: true })
+        const tweet = {
+            message: this.state.message,
+            files: this.state.files
         }
+        let jwtToken = this.Auth.getRightSocialToken();
+
+        axios({
+            url: `${BACKEND_API_URL}/twitter/create/tweet/${jwtToken}`,
+            method: 'POST',
+            data: JSON.stringify(tweet),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if(response.status !== 200) {
+                swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
+                e.preventDefault();
+            } else {
+                this.props.addNewTweet(response.data);
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     render() {
@@ -187,10 +174,9 @@ class TwitterHomeAdd extends React.Component {
                             placeholder="What's happening?"
                             value={this.state.message}
                             onChange={this.onChange}
+                            className="tweet-message-textarea"
                         >  
                         </textarea>
-                        
-                    
                     </div>
                 </div>
                 <div className="tweet-add-uploaded-files">
@@ -203,7 +189,6 @@ class TwitterHomeAdd extends React.Component {
                             { this.renderFailedFiles(this.state.isFailedUploaded) }
                         </div>
                     }
-                    { this.showWarningBeforeInjectingScript(this.state.isScriptInjected) }
                 </div>
                 <div className="add-tweet-buttons">
                     <ReactFilestack

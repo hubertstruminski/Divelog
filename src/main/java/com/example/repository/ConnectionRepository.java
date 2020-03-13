@@ -23,4 +23,6 @@ public interface ConnectionRepository extends CrudRepository<Connection, Long> {
 
     // new method to log in
     public Connection findByUserIDOrTwitterUserIdOrEmail(BigInteger userId, BigInteger twitterUserId, String email);
+
+    public Connection findByTwitterUserId(BigInteger twitterUserId);
 }

@@ -21,22 +21,22 @@ public class ClaimsConverter {
     public Connection findUser(String jwtToken) {
         if(jwtTokenProvider.validateToken(jwtToken)) {
             Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-            Object userID = claimsFromJwt.get("userID");
-            Object twitterUserID = claimsFromJwt.get("twitterUserID");
+//            Object userID = claimsFromJwt.get("userID");
+//            Object twitterUserID = claimsFromJwt.get("twitterUserID");
             String email = (String) claimsFromJwt.get("email");
 
-            BigInteger facebookUserId = null;
-            BigInteger twitterUserId = null;
+//            BigInteger facebookUserId = null;
+//            BigInteger twitterUserId = null;
+//
+//            if(userID != null) {
+//                facebookUserId = BigInteger.valueOf((Long) userID);
+//            }
+//
+//            if(twitterUserID != null) {
+//                twitterUserId = BigInteger.valueOf((Long) twitterUserID);
+//            }
 
-            if(userID != null) {
-                facebookUserId = BigInteger.valueOf((Long) userID);
-            }
-
-            if(twitterUserID != null) {
-                twitterUserId = BigInteger.valueOf((Long) twitterUserID);
-            }
-
-            return connectionRepository.findByUserIDOrTwitterUserIdOrEmail(facebookUserId, twitterUserId, email);
+            return connectionRepository.findByEmail(email);
         }
         return null;
     }

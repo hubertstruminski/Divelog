@@ -3,7 +3,6 @@ import '../../../css/twitter-messages/Conversation.css';
 import axios from 'axios';
 import AuthService from '../../../util/AuthService';
 import SingleMessage from './SingleMessage';
-import $ from 'jquery';
 import { BACKEND_API_URL } from '../../../actions/types';
 
 class Conversation extends React.Component {
@@ -68,9 +67,6 @@ class Conversation extends React.Component {
             this.setState({ 
                 isLoadingConversation: false,
                 isSingleMessageRetrieved: true 
-            }, () => {
-                $(".twitter-messages-person-invite-wrapper").css({ "display": "block", "height": "92%" });
-                $(".twitter-messages-list-inbox").css({ "max-height": "92%" })
             });
         }).catch(err => {
             console.log(err);

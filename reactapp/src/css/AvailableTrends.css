@@ -16,12 +16,19 @@
 
 .trends-div-box {
     height: 91.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .trends-list-item {
     background-color: #F5F8FA;
+    text-align: left;
+    padding-left: 10%;
+    color: #728591;
 }
 
 .trends-list-item:hover {
     cursor: pointer;
+    background-color: #EDF1F4;
 }

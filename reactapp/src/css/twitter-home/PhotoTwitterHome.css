@@ -1,0 +1,25 @@
+.tweet-add-rendered-file-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    position: relative;
+}
+
+.tweet-add-rendered-file-image {
+    width: 90%;
+    height: 150px;
+}
+
+.tweet-add-image-cancel-icon {
+    position: absolute;
+    top: -2.5%;
+    right: 0;
+    font-size: 1.5vw;
+    color: #00A7EC;
+}
+
+.tweet-add-image-cancel-icon:hover {
+    cursor: pointer;
+}

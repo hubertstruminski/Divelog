@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../css/AvailableTrends.css';
 import AuthService from '../../util/AuthService';
-import swal from 'sweetalert';
 import Trend from './Trend';
 import $ from 'jquery';
 import { BACKEND_API_URL } from '../../actions/types';
@@ -30,11 +29,13 @@ class AvailableTrends extends React.Component {
 
     componentDidMount() {
         this.isMountedAvailableTrends = true;
-        $(".trends-div-box").html("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
 
         if(this.isMountedAvailableTrends) {
             if(!navigator.geolocation) {
-                this.setState({ isGeolocationNotSupported: true });
+                this.setState({ 
+                    isGeolocationNotSupported: true,
+                    isLoading: false
+                });
             } else {
                 navigator.geolocation.getCurrentPosition(this.geolocationSuccess, this.geolocationError);
             }
@@ -42,7 +43,10 @@ class AvailableTrends extends React.Component {
     }
 
     geolocationError() {
-        this.setState({ isGeolocationRejected: true });
+        this.setState({ 
+            isGeolocationRejected: true,
+            isLoading: false
+        });
     }
 
     geolocationSuccess(position) {
@@ -59,7 +63,7 @@ class AvailableTrends extends React.Component {
             }).then(response => { return response.json() })
             .then(json => {
                 if(this.isMountedAvailableTrends) {
-                    $(".trends-div-box").html("");
+                    // $(".trends-div-box").html("");
 
                     json.map((trend, index) => {
                         if(trend.tweetVolume !== -1) {
@@ -75,6 +79,8 @@ class AvailableTrends extends React.Component {
                         isGeolocationNotSupported: false,
                         isGeolocationRejected: false,
                         isRetrievedTrends: true
+                    }, () => {
+                        $(".trends-div-box").css({ display: "block" });
                     });
                 }
             }).catch(err => {
@@ -132,7 +138,6 @@ class AvailableTrends extends React.Component {
         let isGeolocationRejected = this.state.isGeolocationRejected;
         let isGeolocationNotSupported = this.state.isGeolocationNotSupported;
         let isRetrievedTrends = this.state.isRetrievedTrends;
-
         return (
             <div className="trends-div-box">
                 { isGeolocationRejected &&
@@ -146,10 +151,23 @@ class AvailableTrends extends React.Component {
                         { this.notSupportedGeolocation(isGeolocationNotSupported) }
                     </div>
                 }
-                { isRetrievedTrends &&
-                    <ul className="list-group trends-list">
-                        { this.renderTwitterTrends() }
-                    </ul>
+                { isRetrievedTrends ?
+                    (
+                        <ul className="list-group trends-list">
+                            { this.renderTwitterTrends() }
+                        </ul>
+                    )
+                    :
+                    (
+                        <div 
+                            className='spinner-border text-primary' 
+                            role='status'
+                        >
+                            <span class='sr-only'>
+                                Loading...
+                            </span>
+                        </div>
+                    )
                 }
             </div>
         );

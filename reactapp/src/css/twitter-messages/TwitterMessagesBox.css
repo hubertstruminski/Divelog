@@ -24,7 +24,6 @@
     align-items: center;
     height: 100%;
     padding-top: 78px;
-    /*  */
     max-height: 100vh;
 }
 
@@ -139,13 +138,14 @@
     z-index: 5;
     padding-top: 78px;
 
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+
     -webkit-box-shadow: 5px 0px 10px 0px rgba(137,140,138,1);
     -moz-box-shadow: 5px 0px 10px 0px rgba(137,140,138,1);
     box-shadow: 5px 0px 10px 0px rgba(137,140,138,1);
 
-    /* display: grid;
-    grid-template-columns: 40% 60%;
-    /*  */
     max-height: 100vh;
 }
 
