@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../css/Settings.css';
 import { BACKEND_API_URL } from '../../actions/types';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { coy, dark, funky, okaidia, tomorrow, twilight, prism, vs, duotoneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+// import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+// import { coy, dark, funky, okaidia, tomorrow, twilight, prism, vs, duotoneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import $ from 'jquery';
 class Settings extends React.Component {
     constructor(props) {

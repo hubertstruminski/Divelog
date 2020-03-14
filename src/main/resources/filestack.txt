@@ -1,3 +1,0 @@
-ApiKey:Abn3RoxlVQeWNtMpk2Gflz
-Policy:eyJjYWxsIjpbInJlbW92ZSJdLCJleHBpcnkiOjE5MjQ5ODg0MDB9
-Signature:caff23a2ac925ebd715f343f0c19985180cd79e5db60e8350427dba9e01de397

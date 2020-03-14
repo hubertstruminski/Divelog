@@ -1,4 +1,10 @@
 /* Background pattern from Toptal Subtle Patterns */
+.twitter-explore-search-tweets-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
 .tweets-likes-container {
     width: 100%;

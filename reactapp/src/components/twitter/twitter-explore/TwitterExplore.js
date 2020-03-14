@@ -39,6 +39,10 @@ class TwitterExplore extends React.Component {
     componentDidMount() {
         this.isMountedTwitterExplore = true;
 
+        if(this.props.match.params.trendName === undefined) {
+            this.isLoading = false;
+        }
+
         let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {

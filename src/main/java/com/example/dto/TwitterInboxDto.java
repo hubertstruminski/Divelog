@@ -12,6 +12,7 @@ public class TwitterInboxDto {
     private Date createdAt;
     private String text;
     private String pictureUrl;
+    private String userId;
 
     public String getRecipientId() {
         return recipientId;
@@ -67,5 +68,13 @@ public class TwitterInboxDto {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

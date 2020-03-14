@@ -24,6 +24,7 @@ export default class TwitterExploreSearchRequestMethod {
             if(response.status !== 200) {
                 swal("Error", "Internal server error", "error");
             } else {
+                document.getElementsByClassName("twitter-explore-search-tweets-container")[0].style.display = "block";
                 $(".twitter-explore-search-tweets-container").html(response.data);
                 $(".twitter-tweet").attr("data-width", "520px");
             }

@@ -9,6 +9,7 @@ import com.example.model.Connection;
 import com.example.model.CustomTwitter;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.CustomTwitterRepository;
+import com.fasterxml.jackson.module.scala.util.StringW;
 import io.jsonwebtoken.Claims;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -356,11 +357,16 @@ public class TwitterController {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
 
+        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
+        String twitterUserID = String.valueOf(claimsFromJwt.get("twitterUserID"));
+
         DirectMessageList directMessages = getDirectMessagesByRestAPI(twitter);
 
         Set<TwitterInboxDto> messagesSet = new HashSet<>();
         List<Long> recipientIds = new ArrayList<>();
         List<Long> senderIds = new ArrayList<>();
+
+
 
         for(DirectMessage message: directMessages) {
             if(!checkIfConversationExist(senderIds, recipientIds, message)) {
@@ -371,7 +377,16 @@ public class TwitterController {
                 twitterInboxDto.setCreatedAt(message.getCreatedAt());
                 twitterInboxDto.setText(message.getText());
 
-                User user = twitter.showUser(message.getRecipientId());
+                String userId = null;
+                if(!twitterUserID.equals(String.valueOf(message.getRecipientId()))) {
+                    userId = String.valueOf(message.getRecipientId());
+                }
+
+                if(!twitterUserID.equals(String.valueOf(message.getSenderId()))) {
+                    userId = String.valueOf(message.getSenderId());
+                }
+
+                User user = twitter.showUser(Long.parseLong(userId));
                 twitterInboxDto.setName(user.getName());
                 twitterInboxDto.setScreenName(user.getScreenName());
                 twitterInboxDto.setPictureUrl(user.get400x400ProfileImageURL());
