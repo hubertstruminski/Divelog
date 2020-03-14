@@ -2,54 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe87efba-9ed2-482d-8e00-fef5068c4016" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/util/FilestackDataPicker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/actions/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/actions/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/LogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/settings/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/settings/Settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/AvailableTrends.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/AvailableTrends.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/Trend.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/Trend.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/TwitterCategoriesCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/TwitterCategoriesCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-explore/TwitterExplore.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-explore/TwitterExplore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-explore/TwitterExploreSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-explore/TwitterExploreSearch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-home/TwitterHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-home/TwitterHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-home/TwitterHomeAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-home/TwitterHomeAdd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/Conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/Conversation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/SingleMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/SingleMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/TwitterConversationContact.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/TwitterConversationContact.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/TwitterMessagesInbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/components/twitter/twitter-messages/TwitterMessagesInbox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/AvailableTrends.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/AvailableTrends.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/Settings.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/Settings.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/TimelineLikes.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/TimelineLikes.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/Trend.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/twitter-home/TwitterHomeAdd.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/twitter-home/TwitterHomeAdd.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/twitter-messages/Conversation.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/twitter-messages/Conversation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/twitter-messages/TwitterConversationContact.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/twitter-messages/TwitterConversationContact.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/twitter-messages/TwitterMessagesBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/twitter-messages/TwitterMessagesBox.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactapp/src/css/twitter-messages/TwitterMessagesInbox.css" beforeDir="false" afterPath="$PROJECT_DIR$/reactapp/src/css/twitter-messages/TwitterMessagesInbox.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/SocialApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SocialConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/FilestackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/FilestackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterWebhookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/TwitterWebhookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ConnectionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ClaimsConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/SocialApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/SocialApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/config/JwtTokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/config/JwtTokenProvider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/config/SocialConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/FilestackController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/FilestackController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/LogInController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/LogInController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/LogbookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/LogbookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/LogoutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/LogoutController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/MarkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/MarkerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/PostController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TopicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TopicController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TopicVoteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TopicVoteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterWebhookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TwitterWebhookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/repository/ConnectionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/repository/ConnectionRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/service/ClaimsConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/service/ClaimsConverter.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/reactapp/node_modules/" />
@@ -212,7 +169,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="993" />
     <option name="y" value="27" />
     <option name="width" value="917" />
@@ -428,18 +385,17 @@
       <workItem from="1580906818650" duration="3046000" />
       <workItem from="1581279113840" duration="972000" />
       <workItem from="1583955901961" duration="8601000" />
-      <workItem from="1584047114989" duration="4845000" />
+      <workItem from="1584047114989" duration="6766000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94863000" />
+    <option name="totallyTimeSpent" value="96784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23076923" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23076923" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -450,7 +406,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.45896327" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.45896327" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />

@@ -4,6 +4,7 @@ import AuthService from '../../../util/AuthService';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { BACKEND_API_URL } from '../../../actions/types';
+import TwitterExploreSearchRequestMethod from '../../../util/TwitterExploreSearchRequestMethod';
 
 class TwitterExploreSearch extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class TwitterExploreSearch extends React.Component {
             search: ''
         }
         this.Auth = new AuthService();
+        this.SearchTweetObject = new TwitterExploreSearchRequestMethod();
 
         this.onChange = this.onChange.bind(this);
         this.onEnterClick = this.onEnterClick.bind(this);
@@ -23,27 +25,30 @@ class TwitterExploreSearch extends React.Component {
     }
 
     onEnterClick(e) {
-        if(e.keyCode === 13) {
-            this.props.addNewTweet("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
-            let jwtToken = this.Auth.getRightSocialToken();
+        // if(e.keyCode === 13) {
+        //     this.props.addNewTweet("<div class='spinner-border text-primary twitter-explore-search-spinner' role='status'><span class='sr-only'>Loading...</span></div>");
+        //     let jwtToken = this.Auth.getRightSocialToken();
 
-            axios({
-                url: `${BACKEND_API_URL}/twitter/search/tweets/${jwtToken}`,
-                method: 'POST',
-                data: this.state.search,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if(response.status !== 200) {
-                    swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
-                } else {
-                    this.props.addNewTweet(response.data);
-                }
-            }).catch(err => {
-                console.log(err);
-            });
+        //     axios({
+        //         url: `${BACKEND_API_URL}/twitter/search/tweets/${jwtToken}`,
+        //         method: 'POST',
+        //         data: this.state.search,
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json'
+        //         }
+        //     }).then(response => {
+        //         if(response.status !== 200) {
+        //             swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
+        //         } else {
+        //             this.props.addNewTweet(response.data);
+        //         }
+        //     }).catch(err => {
+        //         console.log(err);
+        //     });
+        // }
+        if(e.keyCode === 13) {
+            this.SearchTweetObject.searchTweets(this.props, this.state.search);
         }
     }
 

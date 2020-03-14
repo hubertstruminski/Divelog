@@ -8,6 +8,8 @@ import AvailableTrends from '../AvailableTrends';
 import TwitterExploreSearch from './TwitterExploreSearch';
 import $ from 'jquery';
 import { BACKEND_API_URL } from '../../../actions/types';
+import swal from 'sweetalert';
+import TwitterExploreSearchRequestMethod from '../../../util/TwitterExploreSearchRequestMethod';
 
 class TwitterExplore extends React.Component {
     isMountedTwitterExplore = false;
@@ -23,9 +25,14 @@ class TwitterExplore extends React.Component {
             providerId: '',
             screenName: '',
             tokenSecret: '',
-            searchTweets: ''
+            searchTweets: '',
+            isTrendClickedAgain: false,
+            searchTweetInputAgain: '',
         }
+        this.isLoading = true;
         this.Auth = new AuthService();
+        this.SearchTweetObject = new TwitterExploreSearchRequestMethod();
+
         this.addNewTweet = this.addNewTweet.bind(this);
     }
 
@@ -56,8 +63,45 @@ class TwitterExplore extends React.Component {
                 });
             }
         }).catch(err => {
-            console.log(err);
-        });
+            swal("Error", "Can not retrieve user data.", "error");
+        });   
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(this.state.isTrendClickedAgain) {
+            this.SearchTweetObject.searchTweets(this, this.state.searchTweetInputAgain);
+        } else {
+            if(prevProps.match.params.trendName === undefined) {
+                if(prevProps.location.hash !== "") {
+                    this.SearchTweetObject.searchTweets(this, prevProps.location.hash);
+                }
+            } else {
+                if(prevProps.location.hash === "") {
+                    this.SearchTweetObject.searchTweets(this, prevProps.match.params.trendName);
+                }
+            }
+        }
+        this.isLoading = false;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.isMountedTwitterExplore) {
+            if(nextProps.match.params.trendName === undefined) {
+                if(nextProps.location.hash !== "") {
+                    this.setState({
+                        isTrendClickedAgain: true,
+                        searchTweetInputAgain: nextProps.location.hash
+                    })
+                }
+            } else {
+                if(nextProps.location.hash === "") {
+                    this.setState({
+                        isTrendClickedAgain: true,
+                        searchTweetInputAgain: nextProps.match.params.trendName
+                    })
+                }
+            }
+        }
     }
 
     addNewTweet(newTweets) {
@@ -68,6 +112,7 @@ class TwitterExplore extends React.Component {
     }
 
     render() {
+        let isLoading = this.isLoading;
         return (
             <div className="twitter-container">
                 <div className="twitter-grid-container">
@@ -86,7 +131,25 @@ class TwitterExplore extends React.Component {
                         <TwitterExploreSearch 
                             addNewTweet={this.addNewTweet}
                         />
-                        <div className="twitter-explore-search-tweets-container"></div>
+                        <div className="twitter-explore-search-tweets-container">
+                            {
+                                isLoading ?
+                                (
+                                    <div 
+                                        className='spinner-border text-primary' 
+                                        role='status'
+                                    >
+                                        <span class='sr-only'>
+                                            Loading...
+                                        </span>
+                                    </div>
+                                )
+                                :
+                                (
+                                    <div></div>
+                                )
+                            }
+                        </div>
                     </div>
                     <div className="twitter-grid-item-3">
                         <div className="twitter-rl-container">
@@ -105,4 +168,5 @@ class TwitterExplore extends React.Component {
     }
 }
 
-export default withAuth(TwitterExplore, {  twitterExplore: true });
+// export default withAuth(TwitterExplore, {  twitterExplore: true });
+export default TwitterExplore;

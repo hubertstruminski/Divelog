@@ -1,13 +1,22 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 class Trend extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(e) {
+        this.props.history.replace(`/twitter/explore/${this.props.name}`);
     }
 
     render() {
         return (
-            <div className="twitter-trend-container">
+            <div 
+                className="twitter-trend-container"
+                onClick={this.onClick}
+            >
                 Trending in {this.props.countryName}
                 <br />
                 <span style={{ color: 'black', fontWeight: '700' }}>{this.props.name}</span>
@@ -18,4 +27,4 @@ class Trend extends React.Component {
     }
 }
 
-export default Trend
+export default withRouter(Trend)

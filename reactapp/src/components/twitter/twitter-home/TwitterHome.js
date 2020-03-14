@@ -35,6 +35,7 @@ class TwitterHome extends React.Component {
 
     componentDidMount() {
         this.isMountedTwitter = true;
+
         let jwtToken = this.Auth.getRightSocialToken();
 
         fetch(`${BACKEND_API_URL}/getuserdata/${jwtToken}`, {
