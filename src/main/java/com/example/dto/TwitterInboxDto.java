@@ -5,30 +5,12 @@ import java.util.Objects;
 
 public class TwitterInboxDto {
 
-    private String recipientId;
-    private String senderId;
     private String name;
     private String screenName;
     private Date createdAt;
     private String text;
     private String pictureUrl;
     private String userId;
-
-    public String getRecipientId() {
-        return recipientId;
-    }
-
-    public void setRecipientId(String recipientId) {
-        this.recipientId = recipientId;
-    }
-
-    public String getSenderId() {
-        return senderId;
-    }
-
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
-    }
 
     public String getName() {
         return name;

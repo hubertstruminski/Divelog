@@ -4,6 +4,7 @@ import axios from 'axios';
 import AuthService from '../../../util/AuthService';
 import SingleMessage from './SingleMessage';
 import { BACKEND_API_URL } from '../../../actions/types';
+import $ from 'jquery';
 
 class Conversation extends React.Component {
     constructor(props) {
@@ -12,65 +13,121 @@ class Conversation extends React.Component {
         this.state = {
             isLoadingConversation: this.props.isLoadingConversation,
             directMessages: [],
-            isSingleMessageRetrieved: false
+            isSingleMessageRetrieved: false,
+            isFirstTimeRendered: true
         }
         this.Auth = new AuthService();
         this.renderSingleMessages = this.renderSingleMessages.bind(this);
     }
 
     componentDidMount() {
-        const DM = {
-            recipientId: this.props.recipientId,
-            senderId: this.props.senderId
-        }
-
         let jwtToken = this.Auth.getRightSocialToken();
 
-        axios({
-            url: `${BACKEND_API_URL}/twitter/direct/messages/specified/person/${jwtToken}`,
-            method: 'POST',
-            data: DM,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            console.log(response.data);
-            response.data.map((message, index) => {
-                let urlEntities = [];
-                let mediaEntities = [];
-
-                message.urlEntities.map((urlEntity) => {
-                    let element = urlEntity.expandedURL;
-                    urlEntities.push(element);
-                });
-
-                message.mediaEntities.map((mediaEntity) => {
-                    let element = {
-                        mediaUrl: mediaEntity.mediaURL,
-                        type: mediaEntity.type
-                    }
-                    mediaEntities.push(element);
-                });
-                const singleMessage = {
-                    id: message.id,
-                    createdAt: message.createdAt,
-                    recipientId: message.recipientId,
-                    senderId: message.senderId,
-                    text: message.text,
-                    mediaEntities: mediaEntities,
-                    urlEntities: urlEntities,
-                    twitterOwnerId: message.twitterOwnerId
+        if(this.state.isFirstTimeRendered) {
+            axios({
+                url: `${BACKEND_API_URL}/twitter/direct/messages/specified/person/${jwtToken}`,
+                method: 'POST',
+                data: JSON.stringify(this.props.userId),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
-                this.setState({ directMessages: this.state.directMessages.concat(singleMessage) });
+            }).then(response => {
+                response.data.map((message, index) => {
+                    let urlEntities = [];
+                    let mediaEntities = [];
+    
+                    message.urlEntities.map((urlEntity) => {
+                        let element = urlEntity.expandedURL;
+                        urlEntities.push(element);
+                    });
+    
+                    message.mediaEntities.map((mediaEntity) => {
+                        let element = {
+                            mediaUrl: mediaEntity.mediaURL,
+                            type: mediaEntity.type
+                        }
+                        mediaEntities.push(element);
+                    });
+                    const singleMessage = {
+                        id: message.id,
+                        createdAt: message.createdAt,
+                        recipientId: message.recipientId,
+                        senderId: message.senderId,
+                        text: message.text,
+                        mediaEntities: mediaEntities,
+                        urlEntities: urlEntities,
+                        twitterOwnerId: message.twitterOwnerId
+                    }
+                    this.setState({ directMessages: this.state.directMessages.concat(singleMessage) });
+                });
+                this.setState({ 
+                    isLoadingConversation: false,
+                    isSingleMessageRetrieved: true,
+                    isFirstTimeRendered: false
+                });
+            }).catch(err => {
+                console.log(err);
             });
+        }
+        
+    }
+
+    retrieveSingleMessages() {
+        if(!this.state.isFirstTimeRendered) {
             this.setState({ 
-                isLoadingConversation: false,
-                isSingleMessageRetrieved: true 
+                isSingleMessageRetrieved: false,
+                directMessages: []
+            }, () => {
+                let jwtToken = this.Auth.getRightSocialToken();
+                axios({
+                    url: `${BACKEND_API_URL}/twitter/direct/messages/specified/person/${jwtToken}`,
+                    method: 'POST',
+                    data: JSON.stringify(this.props.userId),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => {
+                    response.data.map((message, index) => {
+                        let urlEntities = [];
+                        let mediaEntities = [];
+        
+                        message.urlEntities.map((urlEntity) => {
+                            let element = urlEntity.expandedURL;
+                            urlEntities.push(element);
+                        });
+        
+                        message.mediaEntities.map((mediaEntity) => {
+                            let element = {
+                                mediaUrl: mediaEntity.mediaURL,
+                                type: mediaEntity.type
+                            }
+                            mediaEntities.push(element);
+                        });
+                        const singleMessage = {
+                            id: message.id,
+                            createdAt: message.createdAt,
+                            recipientId: message.recipientId,
+                            senderId: message.senderId,
+                            text: message.text,
+                            mediaEntities: mediaEntities,
+                            urlEntities: urlEntities,
+                            twitterOwnerId: message.twitterOwnerId
+                        }
+                        this.setState({ 
+                            // isChangedConversationContext: true,
+                            directMessages: this.state.directMessages.concat(singleMessage)
+                        });
+                    });
+                    this.setState({
+                        isSingleMessageRetrieved: true
+                    })
+                }).catch(err => {
+                    console.log(err);
+                });
             });
-        }).catch(err => {
-            console.log(err);
-        });
+        }
     }
 
     renderSingleMessages() {
@@ -93,6 +150,15 @@ class Conversation extends React.Component {
             );
         });
     }
+
+    // setIsSingleMessageRetrieved() {
+    //     this.setState({ 
+    //         isSingleMessageRetrieved: false,
+    //         directMessages: this.props.directMessages
+    //     }, () => {
+    //         this.props.setIsChangedConversationContext(false);
+    //     }); 
+    // }
 
     render() {
         let isLoadingConversation = this.state.isLoadingConversation;
@@ -126,6 +192,9 @@ class Conversation extends React.Component {
                             {
                                 isSingleMessageRetrieved && this.renderSingleMessages()
                             }
+                            {/* {
+                                !isSingleMessageRetrieved && this.renderSingleMessages()
+                            } */}
                         </div>
                         <div className="twitter-messages-direct-message-send-input-container">
                             <i class="fas fa-image"></i>

@@ -6,6 +6,7 @@ import $ from 'jquery';
 import TwitterMessagesSearch from './TwitterMessagesSearch';
 import Conversation from './Conversation';
 import { BACKEND_API_URL } from '../../../actions/types';
+import axios from 'axios';
 
 class TwitterMessagesInbox extends React.Component {
     constructor() {
@@ -17,13 +18,16 @@ class TwitterMessagesInbox extends React.Component {
             copyOfConversations: [],
             isLoading: true,
             isLoadingConversation: false,
-            recipientId: '',
-            senderId: '',
+            userId: '',
             isConversationClicked: false,
             name: '',
             screenName: '',
-            pictureUrl: ''
+            pictureUrl: '',
+            isChangedConversationContext: false,
+            directMessages: []
         }
+        this.child = React.createRef();
+
         this.Auth = new AuthService();
         this.copyOfConversations = [];
         this.renderConversations = this.renderConversations.bind(this);
@@ -32,6 +36,8 @@ class TwitterMessagesInbox extends React.Component {
         this.setIsConversationRetrieved = this.setIsConversationRetrieved.bind(this);
         this.searchPeopleToConversation = this.searchPeopleToConversation.bind(this);
         this.setIsLoadingConversation = this.setIsLoadingConversation.bind(this);
+        this.reRenderSingleMessages = this.reRenderSingleMessages.bind(this);
+        this.setIsChangedConversationContext = this.setIsChangedConversationContext.bind(this);
     }
 
     componentDidMount() {
@@ -47,8 +53,7 @@ class TwitterMessagesInbox extends React.Component {
         .then(json => {
             json.map((item, index) => {
                 const element = {
-                    recipientId: item.recipientId,
-                    senderId: item.senderId,
+                    userId: item.userId,
                     name: item.name,
                     screenName: item.screenName,
                     createdAt: item.createdAt,
@@ -73,14 +78,14 @@ class TwitterMessagesInbox extends React.Component {
             .map((conversation, index) => {
             return (
                 <TwitterConversationContact 
-                    recipientId={conversation.recipientId}
-                    senderId={conversation.senderId}
+                    userId={conversation.userId}
                     name={conversation.name}
                     screenName={conversation.screenName}
                     createdAt={conversation.createdAt}
                     text={conversation.text}
                     pictureUrl={conversation.pictureUrl}
                     setIsLoadingConversation={this.setIsLoadingConversation}
+                    reRenderSingleMessages={this.reRenderSingleMessages}
                 />
             );
         });
@@ -107,14 +112,14 @@ class TwitterMessagesInbox extends React.Component {
             .map((conversation, index) => {
             return (
                 <TwitterConversationContact 
-                    recipientId={conversation.recipientId}
-                    senderId={conversation.senderId}
+                    userId={conversation.userId}
                     name={conversation.name}
                     screenName={conversation.screenName}
                     createdAt={conversation.createdAt}
                     text={conversation.text}
                     pictureUrl={conversation.pictureUrl}
                     setIsLoadingConversation={this.setIsLoadingConversation}
+                    // reRenderSingleMessages={this.reRenderSingleMessages}
                 />
             );
         });
@@ -129,16 +134,27 @@ class TwitterMessagesInbox extends React.Component {
         this.setState({ isConversationsRetrieved: value });
     }
 
-    setIsLoadingConversation(value, recipient, sender, name, screenName, pictureUrl) {
+    setIsLoadingConversation(value, userId, name, screenName, pictureUrl) {
         this.setState({ 
             isConversationClicked: true,
             isLoadingConversation: value,
-            recipientId: recipient,
-            senderId: sender,
+            userId: userId,
             name: name,
             screenName: screenName,
             pictureUrl: pictureUrl
+        }, () => {
+            this.child.current.retrieveSingleMessages();
         });
+    }
+
+    setIsChangedConversationContext(value) {
+        this.setState({ isChangedConversationContext: value });
+    }
+
+    reRenderSingleMessages() {
+        let jwtToken = this.Auth.getRightSocialToken();
+
+        
     }
 
     render() {
@@ -147,7 +163,7 @@ class TwitterMessagesInbox extends React.Component {
         let isConversationClicked = this.state.isConversationClicked;
         return (
             <>
-                <div className="twitter-messages-list-inbox">
+                <div className="twitter-messages-list-inboxfalse">
                     <div className="twitter-messages-title-box">
                         <div className="twitter-messages-title">Messages</div>
                         <i 
@@ -163,11 +179,11 @@ class TwitterMessagesInbox extends React.Component {
                     <div className="twitter-messages-list-persons-spinner">
                         <ul className="list-group">
                             { isConversationsRetrieved && this.renderConversations() }
-                            { !isConversationsRetrieved && this.retrieveConversations() }
+                            {/* { !isConversationsRetrieved && this.retrieveConversations() } */}
                         </ul>
                         { isLoading &&
                             <div 
-                                className='spinner-border text-primary' 
+                                className='spinner-border tfalsext-primary' 
                                 role='status'
                             >
                                 <span class='sr-only'>
@@ -194,12 +210,15 @@ class TwitterMessagesInbox extends React.Component {
                     }
                     { isConversationClicked &&
                         <Conversation 
-                            recipientId={this.state.recipientId}
-                            senderId={this.state.senderId}
+                            userId={this.state.userId}
                             pictureUrl={this.state.pictureUrl}
                             isLoadingConversation={this.state.isLoadingConversation}
                             name={this.state.name}
                             screenName={this.state.screenName}
+                            // directMessages={this.state.directMessages}
+                            // isChangedConversationContext={this.state.isChangedConversationContext}
+                            // setIsChangedConversationContext={this.setIsChangedConversationContext}
+                            ref={this.child}
                         />
                     }
                 </div>

@@ -13,8 +13,10 @@ class TwitterFriendsList extends React.Component {
         this.state = {
             friends: [],
             isRetrieved: false,
-            isEmptyFriendsList: false
+            isEmptyFriendsList: false,
+            isRateLimitExceeded: false
         }
+        this.isError = false;
         this.Auth = new AuthService();
         this.renderFriendsList = this.renderFriendsList.bind(this);
     }
@@ -30,9 +32,15 @@ class TwitterFriendsList extends React.Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(response => { return response.json() })
-        .then(json => {
-            if(this.isMountedFriendsList) {
+        }).then(response => { 
+            if(response.status === 429) {
+                this.setState({ isRateLimitExceeded: true });
+                this.isError = true;
+                return;
+            }
+            return response.json() 
+        }).then(json => {
+            if(this.isMountedFriendsList && !this.isError) {
                 if(json.length !== 0) {
                     json.map((friend, index) => {
                         const element = {
@@ -75,6 +83,7 @@ class TwitterFriendsList extends React.Component {
 
     render() {
         let isRetrieved = this.state.isRetrieved;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
 
         return (
             <ul className="list-group twitter-friends-list">
@@ -82,6 +91,10 @@ class TwitterFriendsList extends React.Component {
                     <button className="btn btn-success">Invite to divelog</button>
                 </li>
                 { isRetrieved && this.renderFriendsList() }
+                { 
+                    isRateLimitExceeded &&
+                    <span style={{ color: "red" }}>Twitter rate limit exceeded</span>
+                }
             </ul>
         );
     }

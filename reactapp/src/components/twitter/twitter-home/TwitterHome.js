@@ -26,8 +26,10 @@ class TwitterHome extends React.Component {
             tokenSecret: '',
             tweets: '',
             isTweetsRetrieved: false,
-            isLoading: true
+            isLoading: true,
+            isRateLimitExceeded: false
         }
+        this.isError = false;
         this.Auth = new AuthService();
 
         this.addNewTweet = this.addNewTweet.bind(this);
@@ -65,16 +67,27 @@ class TwitterHome extends React.Component {
                             'Content-Type': 'application/json'
                         }
                     }).then(response => {
+                        console.log(response.status);
+                        if(response.status === 429) {
+                            this.setState({ 
+                                isRateLimitExceeded: true,
+                                isLoading: false
+                            });
+                            this.isError = true;
+                            return null;
+                        }
                         return response.text();
                     }).then(text => {
-                        this.setState({ 
-                            tweets: text,
-                            isLoading: false
-                        }, () => {
-                            $(".home-timeline-container").css({ display: "block" });
-                            $(".home-timeline-container").html(text);
-                            $(".twitter-tweet").attr("data-width", "520px");
-                        });                      
+                        if(!this.isError) {
+                            this.setState({ 
+                                tweets: text,
+                                isLoading: false
+                            }, () => {
+                                $(".home-timeline-container").css({ display: "block" });
+                                $(".home-timeline-container").html(text);
+                                $(".twitter-tweet").attr("data-width", "520px");
+                            });
+                        }                           
                     });
                 });
             }
@@ -94,8 +107,20 @@ class TwitterHome extends React.Component {
         this.isMountedTwitter = false;
     }
 
+    twitterRateLimitExceeded(isException429) {
+        if(isException429) {
+            return (
+                <>
+                    <span style={{ color: "red" }}>Twitter rate limit exceeded</span>
+                </>
+            )
+        }
+        return null;
+    }
+
     render() {
         let isLoading = this.state.isLoading;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
         return (
             <div className="twitter-container">
                 <div className="twitter-grid-container">
@@ -126,6 +151,9 @@ class TwitterHome extends React.Component {
                                     </span>
                                 </div>
                             }
+                            {
+                                isRateLimitExceeded && this.twitterRateLimitExceeded(isRateLimitExceeded)
+                            }
                         </div>
                     </div>
                     <div className="twitter-grid-item-3">
@@ -137,7 +165,7 @@ class TwitterHome extends React.Component {
                         </div>
                         <div className="twitter-rr-container">
                             <div className="twitter-friends-container">
-                                {/* <TwitterFriendsList /> */}
+                                <TwitterFriendsList />
                             </div>
                         </div>
                     </div>

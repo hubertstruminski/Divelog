@@ -1,13 +1,21 @@
 .twitter-single-message-wrapper {
     width: 100%;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 7.5% 92.5%; 
+}
+
+.twitter-single-message-avatar {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 .twitter-single-message-wrapper img {
-    width: 7.5%;
-    height: 7.5%;
+    width: 100%;
     border-radius: 50%;
+    position: absolute;
+    left: 0;
+    bottom: 11%;
 }
 
 .twitter-single-message-container {
@@ -22,13 +30,10 @@
 .twitter-single-message-text {
     width: 100%;
     text-align: justify;
-    padding-top: 7.5%;
-    padding-bottom: 7.5%;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 4%;
     display: inline-block;
-    font-size: 0.8vw;
-    text-align: center;
+    font-size: 0.65vw;
+    white-space: pre-wrap;
 }
 
 .twitter-dm-photo-message {

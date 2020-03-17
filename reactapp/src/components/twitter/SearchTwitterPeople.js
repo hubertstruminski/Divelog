@@ -15,8 +15,11 @@ class SearchTwitterPeople extends React.Component {
             searchPeople: '',
             timeInterval: 0,
             searchPeopleList: [],
-            isSearched: false
+            isSearched: false,
+            isRateLimitExceeded: false
         }
+        this.isError = false;
+
         this.Auth = new AuthService();
         this.twitterJwtToken = this.Auth.getTwitterToken();
 
@@ -59,7 +62,12 @@ class SearchTwitterPeople extends React.Component {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            if(this.isMountedSearchTwitterPeople) {
+            if(response.status === 429) {
+                this.setState({ isRateLimitExceeded: true });
+                this.isError = true;
+                return;
+            }
+            if(this.isMountedSearchTwitterPeople && !this.isError) {
                 this.setState({ searchPeopleList: [] });
                 let counter = 0;
                 response.data.map((person, index) => {
@@ -116,11 +124,13 @@ class SearchTwitterPeople extends React.Component {
 
     render() {
         let isSearched = this.state.isSearched;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
 
         return (
             <div className="search-people-bar">
             <ul className="list-group">
                 <li id="search-twitter-people" className="list-group-item">
+                    { isRateLimitExceeded && <span style={{ color: "red", fontSize: "0.6vw" }}>Twitter rate limit exceeded</span>} 
                     <input 
                         type="text"
                         value={this.state.searchPeople}

@@ -28,12 +28,14 @@ class TwitterExplore extends React.Component {
             searchTweets: '',
             isTrendClickedAgain: false,
             searchTweetInputAgain: '',
+            isRateLimitExceeded: false
         }
         this.isLoading = true;
         this.Auth = new AuthService();
         this.SearchTweetObject = new TwitterExploreSearchRequestMethod();
 
         this.addNewTweet = this.addNewTweet.bind(this);
+        this.renderRateLimitExceptionView = this.renderRateLimitExceptionView.bind(this);
     }
 
     componentDidMount() {
@@ -115,8 +117,13 @@ class TwitterExplore extends React.Component {
         });
     }
 
+    renderRateLimitExceptionView() {
+        this.setState({ isRateLimitExceeded: true });
+    }
+
     render() {
         let isLoading = this.isLoading;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
         return (
             <div className="twitter-container">
                 <div className="twitter-grid-container">
@@ -134,6 +141,7 @@ class TwitterExplore extends React.Component {
                     <div className="feed-container">
                         <TwitterExploreSearch 
                             addNewTweet={this.addNewTweet}
+                            renderRateLimitExceptionView={this.renderRateLimitExceptionView}
                         />
                         <div className="twitter-explore-search-tweets-container">
                             {
@@ -153,6 +161,10 @@ class TwitterExplore extends React.Component {
                                     <div></div>
                                 )
                             }
+                            {/* {
+                                isRateLimitExceeded && 
+                                <span style={{ color: "red", fontSize: "0.65vw"}}>Twitter rate limit exceeded</span>
+                            } */}
                         </div>
                     </div>
                     <div className="twitter-grid-item-3">

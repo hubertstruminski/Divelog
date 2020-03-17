@@ -68,6 +68,10 @@
     font-size: 0.85vw;
 }
 
+.add-tweet-button-home-timeline:hover {
+    cursor: pointer;
+}
+
 .add-tweet-button-home-timeline:focus {
     outline: 0 !important;
 }

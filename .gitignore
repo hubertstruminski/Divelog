@@ -3,3 +3,4 @@ target/
 out/
 HelloWorld.pdf
 .gitignore
+src/main/resources/filestack.txt

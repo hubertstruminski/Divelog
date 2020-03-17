@@ -1,40 +1,26 @@
 package com.example.controller;
 
+import com.example.cache.service.TwitterCacheService;
 import com.example.config.JwtTokenProvider;
 import com.example.config.SecurityConstants;
-import com.example.config.Signature;
 import com.example.dto.*;
 import com.example.enums.Provider;
 import com.example.model.Connection;
 import com.example.model.CustomTwitter;
 import com.example.repository.ConnectionRepository;
 import com.example.repository.CustomTwitterRepository;
-import com.fasterxml.jackson.module.scala.util.StringW;
 import io.jsonwebtoken.Claims;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
-import sun.net.www.MessageHeader;
-import sun.net.www.http.HttpClient;
-import sun.net.www.http.KeepAliveStream;
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
@@ -52,6 +38,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.apache.commons.lang.StringEscapeUtils.escapeHtml;
 import static org.apache.commons.lang.StringEscapeUtils.escapeJavaScript;
@@ -70,7 +57,7 @@ public class TwitterController {
     private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    private Signature signature;
+    private TwitterCacheService twitterCacheService;
 
     @GetMapping(value = "/signin", produces = "application/json")
     public void loginWithTwitter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,7 +85,7 @@ public class TwitterController {
         }
     }
 
-    @GetMapping(value = "/callback", produces = "application/json")
+    @GetMapping(value = "/callback", produces = "applicationP/json")
     public void loginWithTwitterCallback(HttpServletRequest request, HttpServletResponse response)
             throws TwitterException, ServletException, IOException {
         Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
@@ -186,7 +173,15 @@ public class TwitterController {
         if(twitter == null) {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
-        ResponseList<User> users = twitter.searchUsers(searchInput, 1);
+
+        ResponseList<User> users = null;
+
+        try {
+            users = twitterCacheService.searchUsers(twitter, searchInput, 1);
+        } catch(TwitterException e) {
+            return handleRateLimitExceedException(e.getStatusCode());
+        }
+
         return new ResponseEntity<ResponseList<User>>(users, HttpStatus.OK);
     }
 
@@ -201,29 +196,36 @@ public class TwitterController {
         }
 
         GeoLocation geoLocation = new GeoLocation(latitude, longitude);
-        ResponseList<Location> closestTrends = twitter.getClosestTrends(geoLocation);
 
+        ResponseList<Location> closestTrends = null;
         List<TrendDto> trendList = new ArrayList<>();
+        try {
+            closestTrends = twitterCacheService.getClosestTrends(twitter, geoLocation);
 
-        for(Location location: closestTrends) {
-            Trends placeTrends = twitter.getPlaceTrends(location.getWoeid());
-            Trend[] trends = placeTrends.getTrends();
+            for(Location location: closestTrends) {
+                Trends placeTrends = twitterCacheService.getPlaceTrends(twitter, location.getWoeid());
 
-            for(Trend trend: trends) {
-                if(trend.getTweetVolume() == -1) {
-                    continue;
+                Trend[] trends = placeTrends.getTrends();
+
+                for(Trend trend: trends) {
+                    if(trend.getTweetVolume() == -1) {
+                        continue;
+                    }
+                    TrendDto trendDto = new TrendDto();
+
+                    trendDto.setCountryName(location.getCountryName());
+                    trendDto.setName(trend.getName());
+
+                    String tweetVolume = convertTweetVolume(trend.getTweetVolume());
+                    trendDto.setTweetVolume(tweetVolume);
+
+                    trendList.add(trendDto);
                 }
-                TrendDto trendDto = new TrendDto();
-
-                trendDto.setCountryName(location.getCountryName());
-                trendDto.setName(trend.getName());
-
-                String tweetVolume = convertTweetVolume(trend.getTweetVolume());
-                trendDto.setTweetVolume(tweetVolume);
-
-                trendList.add(trendDto);
             }
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
         }
+
         return new ResponseEntity<List<TrendDto>>(trendList, HttpStatus.OK);
     }
 
@@ -238,16 +240,27 @@ public class TwitterController {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         Object twitterUserID = claimsFromJwt.get("twitterUserID");
 
-        User user = twitter.showUser(String.valueOf(claimsFromJwt.get("screenName")));
-        long id1 = user.getId();
+        User me = null;
+        IDs followersIDs = null;
 
-        IDs followersIDs = twitter.getFollowersIDs(id1, -1);
+        try {
+            me = twitterCacheService.showUserString(twitter, String.valueOf(claimsFromJwt.get("screenName")));
+            followersIDs = twitterCacheService.getFollowersIDs(twitter, me.getId(), -1);
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
+        }
+
         List<User> friendsList = new ArrayList<>();
 
         for(long id: followersIDs.getIDs()) {
-            friendsList.add(user);
+            User user = null;
+            try {
+                user = twitterCacheService.showUserLong(twitter, id);
+                friendsList.add(user);
+            } catch(TwitterException exception) {
+                return handleRateLimitExceedException(exception.getStatusCode());
+            }
         }
-
         return new ResponseEntity<List<User>>(friendsList, HttpStatus.OK);
     }
 
@@ -259,23 +272,31 @@ public class TwitterController {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
 
-        ResponseList<Status> homeTimeline = twitter.getHomeTimeline();
-        final StringBuilder builder = new StringBuilder();
+        ResponseList<Status> homeTimeline = null;
+        try {
+            homeTimeline = twitterCacheService.getHomeTimeline(twitter);
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
+        }
 
-//        for(Status tweet: homeTimeline) {
-//            builder = createOEmbedTweet(tweet, twitter, builder);
-//
-//        }
+        final StringBuilder builder = new StringBuilder();
+        AtomicBoolean isExceptionInsideStream = new AtomicBoolean(false);
 
         homeTimeline.stream()
                 .forEach(tweet -> {
                     try {
                         createOEmbedTweet(tweet, twitter, builder);
                     } catch (TwitterException e) {
-                        e.printStackTrace();
+                        if(e.getStatusCode() == 429) {
+                            isExceptionInsideStream.set(true);
+                            return;
+                        }
                     }
                 });
 
+        if(isExceptionInsideStream.get()) {
+            return handleRateLimitExceedException(429);
+        }
 
         return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
     }
@@ -319,11 +340,16 @@ public class TwitterController {
         StatusUpdate update = new StatusUpdate(escapedHtmlMessage);
         update.setMediaIds(mediaIds);
 
-        Status status = twitter.updateStatus(update);
+        OEmbed oEmbed = null;
+        try {
+            Status status = twitter.updateStatus(update);
 
-        String url= "https://twitter.com/" + status.getUser().getScreenName() + "/status/" + status.getId();
-        OEmbedRequest oEmbedRequest = new OEmbedRequest(status.getId(), url);
-        OEmbed oEmbed = twitter.getOEmbed(oEmbedRequest);
+            String url= "https://twitter.com/" + status.getUser().getScreenName() + "/status/" + status.getId();
+            OEmbedRequest oEmbedRequest = new OEmbedRequest(status.getId(), url);
+            oEmbed = twitter.getOEmbed(oEmbedRequest);
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
+        }
 
         return new ResponseEntity<String>(oEmbed.getHtml(), HttpStatus.OK);
     }
@@ -336,14 +362,17 @@ public class TwitterController {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
 
-        Query tweetsQuery = new Query(query);
-
-        QueryResult queryResult = twitter.search(tweetsQuery);
-        List<Status> tweets = queryResult.getTweets();
         StringBuilder builder = new StringBuilder();
+        try {
+            QueryResult queryResult = twitterCacheService.search(twitter, query);
 
-        for(Status tweet: tweets) {
-            builder = createOEmbedTweet(tweet, twitter, builder);
+            List<Status> tweets = queryResult.getTweets();
+
+            for(Status tweet: tweets) {
+                builder = createOEmbedTweet(tweet, twitter, builder);
+            }
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
         }
 
         return new ResponseEntity<String>(builder.toString(), HttpStatus.OK);
@@ -372,8 +401,6 @@ public class TwitterController {
             if(!checkIfConversationExist(senderIds, recipientIds, message)) {
                 TwitterInboxDto twitterInboxDto = new TwitterInboxDto();
 
-                twitterInboxDto.setRecipientId(String.valueOf(message.getRecipientId()));
-                twitterInboxDto.setSenderId(String.valueOf(message.getSenderId()));
                 twitterInboxDto.setCreatedAt(message.getCreatedAt());
                 twitterInboxDto.setText(message.getText());
 
@@ -385,6 +412,8 @@ public class TwitterController {
                 if(!twitterUserID.equals(String.valueOf(message.getSenderId()))) {
                     userId = String.valueOf(message.getSenderId());
                 }
+
+                twitterInboxDto.setUserId(userId);
 
                 User user = twitter.showUser(Long.parseLong(userId));
                 twitterInboxDto.setName(user.getName());
@@ -400,7 +429,7 @@ public class TwitterController {
     }
 
     @PostMapping(value = "/twitter/direct/messages/specified/person/{jwtToken}", produces = "application/json")
-    public ResponseEntity<?> getDirectMessagesWithSpecifiedPerson(@RequestBody RecipientSender recipientSender,
+    public ResponseEntity<?> getDirectMessagesWithSpecifiedPerson(@RequestBody String userId,
                                                                   @PathVariable String jwtToken) throws TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 
@@ -414,8 +443,10 @@ public class TwitterController {
         DirectMessageList directMessages = getDirectMessagesByRestAPI(twitter);
         List<SingleDirectMessage> privateMessages = new ArrayList<>();
 
+        userId = userId.replace("\"", "");
+
         for(DirectMessage message: directMessages) {
-            if(checkIfMessagesFromSpecifiedPerson(recipientSender, message)) {
+            if(checkIfMessagesFromSpecifiedPerson(userId, message)) {
                 SingleDirectMessage singleMessage = new SingleDirectMessage();
 
                 singleMessage.setId(message.getId());
@@ -474,61 +505,15 @@ public class TwitterController {
         return new ResponseEntity<List<ContactDirectMessage>>(contacts, HttpStatus.OK);
     }
 
-
-    public String getTwitterServerTime() throws IOException, ParseException {
-        HttpsURLConnection con = (HttpsURLConnection)
-                new URL("https://api.twitter.com/oauth/request_token").openConnection();
-        con.setRequestMethod("HEAD");
-        con.getResponseCode();
-        String twitterDate= con.getHeaderField("Date");
-        DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
-        Date date = formatter.parse(twitterDate);
-        return String.valueOf(date.getTime() / 1000L);
-    }
-
     @PostMapping(value = "/twitter/direct/message/person/photo/retrieve/{jwtToken}")
     public ResponseEntity<?> getPhotoFromSingleDirectMessage(@RequestBody String photoUrl, @PathVariable String jwtToken) throws IOException, InvalidKeyException, NoSuchAlgorithmException, SignatureException, ParseException, TwitterException {
-//        Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
-
         Twitter twitter = setTwitterConfiguration(jwtToken);
+
         InputStream dmImageAsStream = twitter.getDMImageAsStream(photoUrl);
 
-
         byte[] bytes = IOUtils.toByteArray(dmImageAsStream);
-
         byte[] encode = Base64.getEncoder().encode(bytes);
-//        String accessToken = (String) claimsFromJwt.get("accessToken");
-//        String tokenSecret = (String) claimsFromJwt.get("tokenSecret");
 
-//        String randomData = RandomStringUtils.randomAlphanumeric(32).toUpperCase();
-//        byte[] bytes = randomData.getBytes("UTF-8");
-//        String base64OAuthNonce = Base64.getEncoder().encodeToString(bytes);
-//
-//        String twitterServerTime = getTwitterServerTime();
-//
-//        String OAUTH_CONSUMER_KEY = SecurityConstants.TWITTER_CONSUMER_KEY;
-//        String OAUTH_SIGNATURE_METHOD = SecurityConstants.OAUTH_SIGNATURE_METHOD;
-//        String OAUTH_TIMESTAMP = twitterServerTime;
-//
-//        String mySignatureString = myFunctionGetSignature(accessToken, photoUrl, tokenSecret, OAUTH_TIMESTAMP);
-//
-//        String authorizationHeader = URLEncoder.encode("oauth_consumer_key", "UTF-8") + "=" + quoted(URLEncoder.encode(OAUTH_CONSUMER_KEY, "UTF-8"), false)
-//                + URLEncoder.encode("oauth_nonce", "UTF-8") + "=" + quoted(URLEncoder.encode(base64OAuthNonce, "UTF-8"), false)
-//                + URLEncoder.encode("oauth_signature", "UTF-8") + "=" + quoted(URLEncoder.encode(mySignatureString, "UTF-8"), false)
-//                + URLEncoder.encode("oauth_signature_method", "UTF-8") + "=" + quoted(URLEncoder.encode(OAUTH_SIGNATURE_METHOD, "UTF-8"), false)
-//                + URLEncoder.encode("oauth_timestamp", "UTF-8") + "=" + quoted(URLEncoder.encode(OAUTH_TIMESTAMP, "UTF-8"), false)
-//                + URLEncoder.encode("oauth_token", "UTF-8") + "=" + quoted(URLEncoder.encode(accessToken, "UTF-8"), false)
-//                + URLEncoder.encode("oauth_version", "UTF-8") + "=" + quoted(URLEncoder.encode("1.0", "UTF-8"), true);
-//
-//        CloseableHttpClient httpClient = HttpClients.createDefault();
-//        HttpGet httpGet = new HttpGet(photoUrl);
-//
-//        httpGet.addHeader("Authorization", "OAuth " + authorizationHeader);
-//        httpGet.addHeader("Content-Type", "application/x-www-form-urlencoded");
-//        httpGet.addHeader("Accept-Encoding", "multipart/form-data");
-//
-//        CloseableHttpResponse response = httpClient.execute(httpGet);
-//        HttpEntity entity = response.getEntity();
         return new ResponseEntity<>(encode, HttpStatus.OK);
     }
 
@@ -590,6 +575,13 @@ public class TwitterController {
         return null;
     }
 
+    private ResponseEntity<?> handleRateLimitExceedException(int statusCode) {
+        if(statusCode == 429) {
+            return new ResponseEntity<>(HttpStatus.valueOf(statusCode));
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
     private String convertTweetVolume(int tweetVolume) {
         String result = String.valueOf(tweetVolume);
         StringBuilder builder = new StringBuilder();
@@ -607,7 +599,11 @@ public class TwitterController {
         String url= "https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId();
         OEmbedRequest oEmbedRequest = new OEmbedRequest(tweet.getId(), url);
 
-        OEmbed oEmbed = twitter.getOEmbed(oEmbedRequest);
+        OEmbed oEmbed = twitterCacheService.getOEmbed(twitter, oEmbedRequest);
+
+        System.out.println("getOEmbed -> limit: " + oEmbed.getRateLimitStatus().getLimit());
+        System.out.println("getOEmbed -> remaining: " + oEmbed.getRateLimitStatus().getRemaining());
+
         return builder.append(oEmbed.getHtml());
     }
 
@@ -616,11 +612,9 @@ public class TwitterController {
                 (recipientIds.contains(message.getSenderId()) && senderIds.contains(message.getRecipientId()));
     }
 
-    private boolean checkIfMessagesFromSpecifiedPerson(RecipientSender recipientSender, DirectMessage message) {
-        return (recipientSender.getRecipientId().equals(String.valueOf(message.getRecipientId())) &&
-                recipientSender.getSenderId().equals(String.valueOf(message.getSenderId()))) ||
-                (recipientSender.getSenderId().equals(String.valueOf(message.getRecipientId())) &&
-                        recipientSender.getRecipientId().equals(String.valueOf(message.getSenderId())));
+    private boolean checkIfMessagesFromSpecifiedPerson(String userId, DirectMessage message) {
+        return userId.equals(String.valueOf(message.getRecipientId())) ||
+                userId.equals(String.valueOf(message.getSenderId()));
     }
 
     private DirectMessageList getDirectMessagesByRestAPI(Twitter twitter) throws TwitterException {
@@ -639,80 +633,5 @@ public class TwitterController {
         return accessToken.equals(foundUser.getAccessToken()) &&
                 createdAt == foundUser.getCreatedAt().getTime() &&
                 tokenSecret.equals(twitterUser.getTokenSecret());
-    }
-
-    private String createHeaderForGetPhotoRequest(String methodRequest, String apiUrl, String parameterString,
-                                                  String tokenSecret) throws UnsupportedEncodingException {
-        String signatureBaseString = methodRequest + "&" + URLEncoder.encode(apiUrl, "UTF-8") + "&" +
-                URLEncoder.encode(parameterString, "UTF-8");
-
-        String signingKey = URLEncoder.encode(SecurityConstants.TWITTER_CONSUMER_SECRET, "UTF-8") + "&" +
-                URLEncoder.encode(tokenSecret, "UTF-8");
-
-
-        return signatureBaseString;
-    }
-
-    private static String getSignature(String url, String params)
-            throws UnsupportedEncodingException, NoSuchAlgorithmException,
-            InvalidKeyException {
-        /**
-         * base has three parts, they are connected by "&": 1) protocol 2) URL
-         * (need to be URLEncoded) 3) Parameter List (need to be URLEncoded).
-         */
-        StringBuilder base = new StringBuilder();
-        base.append("GET&");
-        base.append(url);
-        base.append("&");
-        base.append(params);
-        System.out.println("Stirng for oauth_signature generation:" + base);
-        // yea, don't ask me why, it is needed to append a "&" to the end of
-        // secret key.
-        byte[] keyBytes = (SecurityConstants.TWITTER_CONSUMER_SECRET + "&").getBytes("UTF-8");
-
-        SecretKey key = new SecretKeySpec(keyBytes, "HmacSHA1");
-
-        Mac mac = Mac.getInstance("HmacSHA1");
-        mac.init(key);
-
-        // encode it, base64 it, change it to string and return.
-        return new String(Base64.getEncoder().encode(mac.doFinal(base.toString().getBytes(
-                "UTF-8"))), "UTF-8").trim();
-    }
-
-    private String quoted(String string, boolean last) {
-        if(last) {
-            return "\"" + string + "\"";
-        }
-        return "\"" + string + "\"" + ", ";
-    }
-
-    private String myFunctionGetSignature(String accessToken, String photoUrl, String tokenSecret, String timestamp) throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException, SignatureException {
-        String randomData = RandomStringUtils.randomAlphanumeric(32).toUpperCase();
-        byte[] bytes = randomData.getBytes("UTF-8");
-        System.out.println(bytes.length);
-        String base64OAuthNonce = Base64.getEncoder().encodeToString(bytes);
-
-        UriComponents encode = UriComponentsBuilder.newInstance()
-                .queryParam("include_entities", "true")
-                .queryParam("oauth_consumer_key", SecurityConstants.TWITTER_CONSUMER_KEY)
-                .queryParam("oauth_nonce", base64OAuthNonce)
-                .queryParam("oauth_signature_method", SecurityConstants.OAUTH_SIGNATURE_METHOD)
-                .queryParam("oauth_timestamp", timestamp)
-                .queryParam("oauth_token", accessToken)
-                .queryParam("oauth_version", "1.0")
-                .build().encode();
-
-        // PARAMETER STRING
-        String parameterString = encode.toUriString().substring(1);
-
-        // SIGNATURE BASE STRING
-        String signatureBaseString = "GET&" + URLEncoder.encode(photoUrl, "UTF-8") + "&" + URLEncoder.encode(parameterString, "UTF-8");
-
-        // SIGNING KEY
-        String signingKey = URLEncoder.encode(SecurityConstants.TWITTER_CONSUMER_SECRET, "UTF-8") + "&"
-                + URLEncoder.encode(tokenSecret, "UTF-8");
-
-        return signature.calculateRFC2104HMAC(signatureBaseString, signingKey);
     }
 }

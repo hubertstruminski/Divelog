@@ -24,6 +24,7 @@
     background-color: white;
     overflow-y: scroll;
     height: 86%;
+    padding: 2%;
 }
 
 .twitter-messages-direct-message-send-input-container {

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../../css/twitter-messages/TwitterConversationContact.css';
 import ConvertDMTime from '../../../util/ConvertDMTime';
+import $ from 'jquery';
 
 class TwitterConversationContact extends React.Component {
     constructor(props) {
@@ -8,16 +9,25 @@ class TwitterConversationContact extends React.Component {
         this.convertTime = new ConvertDMTime();
     }
 
+    componentDidMount() {
+        // don't remove this jQuery code, with pure Javascript doesn't work
+        $(".conversation-contact-avatar").css({
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        })
+    }
+
     onSubmit(e) {
         e.preventDefault();
         this.props.setIsLoadingConversation(
             true,
-            this.props.recipientId,
-            this.props.senderId,
+            this.props.userId,
             this.props.name,
             this.props.screenName,
-            this.props.pictureUrl 
+            this.props.pictureUrl
         );
+        // this.props.reRenderSingleMessages();
     }
 
     render() {
@@ -27,6 +37,9 @@ class TwitterConversationContact extends React.Component {
         } else {
             text = this.props.text.substring(0);
         }
+        // document.getElementsByClassName("conversation-contact-avatar").style.display = "flex;"
+        // document.getElementsByClassName("conversation-contact-avatar").style.alignItems = "center";
+        // document.getElementsByClassName("conversation-contact-avatar").style.justifyContent = "center";
 
         let date = this.convertTime.formatDate(this.props.createdAt, false);
 
@@ -44,8 +57,7 @@ class TwitterConversationContact extends React.Component {
                     @{ this.props.screenName }
                     <br />
                     { text }
-                </div>
-                    
+                </div>    
             </li>
         );
     }

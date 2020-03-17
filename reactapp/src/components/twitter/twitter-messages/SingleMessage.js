@@ -49,7 +49,11 @@ class SingleMessage extends React.Component {
         })
 
         if(this.props.senderId === this.props.twitterOwnerId) {
-            $(`.twitter-single-message-wrapper:eq(${this.props.index})`).css({ "justify-content": "flex-end" });
+            $(`.twitter-single-message-wrapper:eq(${this.props.index})`).css({ 
+                "justify-content": "flex-end",
+                "display": "flex",
+                "align-items": "center"
+            });
             $(`.twitter-single-message-container:eq(${this.props.index})`).css({ "text-align": "right" });
             $(`.twitter-single-message-text:eq(${this.props.index})`).css({ "background-color": "#00A4EF", "border-radius": "25px 25px 0 25px" });
             $(`.twitter-single-message-text:eq(${this.props.index})`).hover(function() {
@@ -64,8 +68,6 @@ class SingleMessage extends React.Component {
                 $(`.twitter-single-message-text:eq(${this.props.index})`).css({ "background-color": "#E5ECF0", "border-radius": "25px 25px 25px 0" });
             })
         }
-        let wrapper = $(`.twitter-single-message-wrapper:eq(${this.props.index})`);
-        console.log(wrapper);
     }
     render() {
         let isPhotoMessage = this.state.isPhotoMessage;
@@ -79,7 +81,9 @@ class SingleMessage extends React.Component {
                 }
                 <div className="twitter-single-message-wrapper">
                     { isRecipient &&
-                        <img src={this.props.pictureUrl} alt="Avatar" />
+                        <div className="twitter-single-message-avatar">
+                            <img src={this.props.pictureUrl} alt="Avatar" />
+                        </div>
                     }
                     <div className="twitter-single-message-container">
                         <div className="twitter-single-message-text">

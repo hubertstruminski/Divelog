@@ -17,7 +17,8 @@ class AvailableTrends extends React.Component {
             isGeolocationRejected: false,
             isGeolocationNotSupported: false,
             trends: [],
-            isRetrievedTrends: false
+            isRetrievedTrends: false,
+            isRateLimitExceeded: false
         }
         this.Auth = new AuthService();
 
@@ -60,11 +61,20 @@ class AvailableTrends extends React.Component {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
-            }).then(response => { return response.json() })
+            }).then(response => { 
+                if(response.status === 429) {
+                    this.setState({ isRateLimitExceeded: true }, () => {
+                        document.getElementsByClassName("trend-list")[0].style.display = "flex";
+                        document.getElementsByClassName("trend-list")[0].style.justifyContent = "center";
+                        document.getElementsByClassName("trend-list")[0].style.alignItems = "center";
+                    });
+                    this.isError = true;
+                    return;
+                }
+                return response.json() 
+            })
             .then(json => {
-                if(this.isMountedAvailableTrends) {
-                    // $(".trends-div-box").html("");
-
+                if(this.isMountedAvailableTrends && !this.isError) {
                     json.map((trend, index) => {
                         if(trend.tweetVolume !== -1) {
                             const element = {
@@ -80,7 +90,7 @@ class AvailableTrends extends React.Component {
                         isGeolocationRejected: false,
                         isRetrievedTrends: true
                     }, () => {
-                        $(".trends-div-box").css({ display: "block" });
+                        document.getElementsByClassName("trends-div-box")[0].style.display = "block";
                     });
                 }
             }).catch(err => {
@@ -138,6 +148,7 @@ class AvailableTrends extends React.Component {
         let isGeolocationRejected = this.state.isGeolocationRejected;
         let isGeolocationNotSupported = this.state.isGeolocationNotSupported;
         let isRetrievedTrends = this.state.isRetrievedTrends;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
         return (
             <div className="trends-div-box">
                 { isGeolocationRejected &&
@@ -155,6 +166,18 @@ class AvailableTrends extends React.Component {
                     (
                         <ul className="list-group trends-list">
                             { this.renderTwitterTrends() }
+                            {
+                                isRateLimitExceeded &&
+                                <span style={{ color: "red", 
+                                fontSize: "0.65vw", 
+                                display: "flex",
+                                position: "relative",
+                                alignItems: "center",
+                                justifyContent: "center"
+                                }}>
+                                    Twitter rate limit exceeded
+                                </span>
+                            }
                         </ul>
                     )
                     :

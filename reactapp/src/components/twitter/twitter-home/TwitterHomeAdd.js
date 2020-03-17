@@ -18,8 +18,10 @@ class TwitterHomeAdd extends React.Component {
             failedFiles: [],
             isSuccessUploaded: false,
             isFailedUploaded: false,
-            message: ''
+            message: '',
+            isRateLimitExceeded: false
         }
+        this.isError = false;
         this.Auth = new AuthService();
 
         this.onChange = this.onChange.bind(this);
@@ -145,11 +147,19 @@ class TwitterHomeAdd extends React.Component {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
+            if(response.status === 429) {
+                this.setState({ isRateLimitExceeded: true });
+                this.isError = true;
+                return;
+            }
             if(response.status !== 200) {
                 swal(this.props.t("error-500.title"), this.props.t("error-500.message"), "error");
                 e.preventDefault();
             } else {
+                document.getElementsByClassName("tweet-message-textarea")[0].value = "";
+                document.getElementsByClassName("tweet-add-uploaded-files")[0].innerHTML = "";
                 this.props.addNewTweet(response.data);
+                swal("Success", "Tweet has been created successfully.", "success");
             }
         }).catch(err => {
             console.log(err);
@@ -158,6 +168,7 @@ class TwitterHomeAdd extends React.Component {
 
     render() {
         let isFailedUploaded = this.state.isFailedUploaded;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
         return (
             <div className="add-tweet-container">
                 <div className="avatar-tweet-textarea-container">
@@ -180,6 +191,7 @@ class TwitterHomeAdd extends React.Component {
                     </div>
                 </div>
                 <div className="tweet-add-uploaded-files">
+                    { isRateLimitExceeded && <span style={{ color: "red", fontSize: "0.65vw" }}>Twitter rate limit exceeded</span>}
                     { this.renderFiles(this.state.isSuccessUploaded) }
                     {
                         isFailedUploaded &&
