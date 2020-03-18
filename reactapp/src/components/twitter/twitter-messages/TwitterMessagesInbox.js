@@ -6,7 +6,6 @@ import $ from 'jquery';
 import TwitterMessagesSearch from './TwitterMessagesSearch';
 import Conversation from './Conversation';
 import { BACKEND_API_URL } from '../../../actions/types';
-import axios from 'axios';
 
 class TwitterMessagesInbox extends React.Component {
     constructor() {
@@ -24,8 +23,10 @@ class TwitterMessagesInbox extends React.Component {
             screenName: '',
             pictureUrl: '',
             isChangedConversationContext: false,
-            directMessages: []
+            directMessages: [],
+            isRateLimitExceeded: false
         }
+        this.isError = false;
         this.child = React.createRef();
 
         this.Auth = new AuthService();
@@ -36,7 +37,6 @@ class TwitterMessagesInbox extends React.Component {
         this.setIsConversationRetrieved = this.setIsConversationRetrieved.bind(this);
         this.searchPeopleToConversation = this.searchPeopleToConversation.bind(this);
         this.setIsLoadingConversation = this.setIsLoadingConversation.bind(this);
-        this.reRenderSingleMessages = this.reRenderSingleMessages.bind(this);
         this.setIsChangedConversationContext = this.setIsChangedConversationContext.bind(this);
     }
 
@@ -49,24 +49,35 @@ class TwitterMessagesInbox extends React.Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(response => { return response.json() })
-        .then(json => {
-            json.map((item, index) => {
-                const element = {
-                    userId: item.userId,
-                    name: item.name,
-                    screenName: item.screenName,
-                    createdAt: item.createdAt,
-                    text: item.text,
-                    pictureUrl: item.pictureUrl
-                }
-                this.setState({ conversations: this.state.conversations.concat(element) });
-            });
-            this.setState({ isConversationsRetrieved: true }, () => {
-                this.setState({ isLoading: false });
-                this.copyOfConversations = this.state.conversations.map((x) => x);
-                $(".twitter-messages-list-persons-spinner").css({ display: "block" });
-            });
+        }).then(response => { 
+            if(response.status === 429) {
+                this.setState({ 
+                    isRateLimitExceeded: true,
+                    isLoading: false
+                });
+                this.isError = true;
+                return;
+            }
+            return response.json()
+        }).then(json => {
+            if(!this.isError) {
+                json.map((item, index) => {
+                    const element = {
+                        userId: item.userId,
+                        name: item.name,
+                        screenName: item.screenName,
+                        createdAt: item.createdAt,
+                        text: item.text,
+                        pictureUrl: item.pictureUrl
+                    }
+                    this.setState({ conversations: this.state.conversations.concat(element) });
+                });
+                this.setState({ isConversationsRetrieved: true }, () => {
+                    this.setState({ isLoading: false });
+                    this.copyOfConversations = this.state.conversations.map((x) => x);
+                    $(".twitter-messages-list-persons-spinner").css({ display: "block" });
+                });
+            }
         }).catch(err => {
             console.log(err);
         });
@@ -119,7 +130,6 @@ class TwitterMessagesInbox extends React.Component {
                     text={conversation.text}
                     pictureUrl={conversation.pictureUrl}
                     setIsLoadingConversation={this.setIsLoadingConversation}
-                    // reRenderSingleMessages={this.reRenderSingleMessages}
                 />
             );
         });
@@ -151,16 +161,11 @@ class TwitterMessagesInbox extends React.Component {
         this.setState({ isChangedConversationContext: value });
     }
 
-    reRenderSingleMessages() {
-        let jwtToken = this.Auth.getRightSocialToken();
-
-        
-    }
-
     render() {
         let isConversationsRetrieved = this.state.isConversationsRetrieved;
         let isLoading = this.state.isLoading;
         let isConversationClicked = this.state.isConversationClicked;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
         return (
             <>
                 <div className="twitter-messages-list-inboxfalse">
@@ -191,6 +196,10 @@ class TwitterMessagesInbox extends React.Component {
                                 </span>
                             </div>
                         }
+                        {
+                            isRateLimitExceeded &&
+                            <span style={{ color: "red", fontSize: "0.65vw" }}>Twitter rate limit exceeded.</span>
+                        }
                     </div>
                 </div>
                 <div className="twitter-messages-person-invite-wrapper">
@@ -215,9 +224,6 @@ class TwitterMessagesInbox extends React.Component {
                             isLoadingConversation={this.state.isLoadingConversation}
                             name={this.state.name}
                             screenName={this.state.screenName}
-                            // directMessages={this.state.directMessages}
-                            // isChangedConversationContext={this.state.isChangedConversationContext}
-                            // setIsChangedConversationContext={this.setIsChangedConversationContext}
                             ref={this.child}
                         />
                     }

@@ -14,8 +14,10 @@ class Conversation extends React.Component {
             isLoadingConversation: this.props.isLoadingConversation,
             directMessages: [],
             isSingleMessageRetrieved: false,
-            isFirstTimeRendered: true
+            isFirstTimeRendered: true,
+            isRateLimitExceeded: false
         }
+        this.isError = false;
         this.Auth = new AuthService();
         this.renderSingleMessages = this.renderSingleMessages.bind(this);
     }
@@ -33,34 +35,41 @@ class Conversation extends React.Component {
                     'Content-Type': 'application/json'
                 }
             }).then(response => {
-                response.data.map((message, index) => {
-                    let urlEntities = [];
-                    let mediaEntities = [];
-    
-                    message.urlEntities.map((urlEntity) => {
-                        let element = urlEntity.expandedURL;
-                        urlEntities.push(element);
-                    });
-    
-                    message.mediaEntities.map((mediaEntity) => {
-                        let element = {
-                            mediaUrl: mediaEntity.mediaURL,
-                            type: mediaEntity.type
+                if(response.status === 429) {
+                    this.setState({ isRateLimitExceeded: true });
+                    this.isError = true;
+                    return;
+                }
+                if(!this.isError) {
+                    response.data.map((message, index) => {
+                        let urlEntities = [];
+                        let mediaEntities = [];
+
+                        message.urlEntities.map((urlEntity) => {
+                            let element = urlEntity.expandedURL;
+                            urlEntities.push(element);
+                        });
+        
+                        message.mediaEntities.map((mediaEntity) => {
+                            let element = {
+                                mediaUrl: mediaEntity.mediaURL,
+                                type: mediaEntity.type
+                            }
+                            mediaEntities.push(element);
+                        });
+                        const singleMessage = {
+                            id: message.id,
+                            createdAt: message.createdAt,
+                            recipientId: message.recipientId,
+                            senderId: message.senderId,
+                            text: message.text,
+                            mediaEntities: mediaEntities,
+                            urlEntities: urlEntities,
+                            twitterOwnerId: message.twitterOwnerId
                         }
-                        mediaEntities.push(element);
+                        this.setState({ directMessages: this.state.directMessages.concat(singleMessage) });
                     });
-                    const singleMessage = {
-                        id: message.id,
-                        createdAt: message.createdAt,
-                        recipientId: message.recipientId,
-                        senderId: message.senderId,
-                        text: message.text,
-                        mediaEntities: mediaEntities,
-                        urlEntities: urlEntities,
-                        twitterOwnerId: message.twitterOwnerId
-                    }
-                    this.setState({ directMessages: this.state.directMessages.concat(singleMessage) });
-                });
+                }
                 this.setState({ 
                     isLoadingConversation: false,
                     isSingleMessageRetrieved: true,
@@ -89,40 +98,42 @@ class Conversation extends React.Component {
                         'Content-Type': 'application/json'
                     }
                 }).then(response => {
-                    response.data.map((message, index) => {
-                        let urlEntities = [];
-                        let mediaEntities = [];
-        
-                        message.urlEntities.map((urlEntity) => {
-                            let element = urlEntity.expandedURL;
-                            urlEntities.push(element);
-                        });
-        
-                        message.mediaEntities.map((mediaEntity) => {
-                            let element = {
-                                mediaUrl: mediaEntity.mediaURL,
-                                type: mediaEntity.type
+                    if(response.status === 429) {
+                        this.setState({ isRateLimitExceeded: true });
+                        this.isError = true;
+                        return;
+                    }
+                    if(!this.isError) {
+                        response.data.map((message, index) => {
+                            let urlEntities = [];
+                            let mediaEntities = [];
+            
+                            message.urlEntities.map((urlEntity) => {
+                                let element = urlEntity.expandedURL;
+                                urlEntities.push(element);
+                            });
+            
+                            message.mediaEntities.map((mediaEntity) => {
+                                let element = {
+                                    mediaUrl: mediaEntity.mediaURL,
+                                    type: mediaEntity.type
+                                }
+                                mediaEntities.push(element);
+                            });
+                            const singleMessage = {
+                                id: message.id,
+                                createdAt: message.createdAt,
+                                recipientId: message.recipientId,
+                                senderId: message.senderId,
+                                text: message.text,
+                                mediaEntities: mediaEntities,
+                                urlEntities: urlEntities,
+                                twitterOwnerId: message.twitterOwnerId
                             }
-                            mediaEntities.push(element);
+                            this.setState({ directMessages: this.state.directMessages.concat(singleMessage) });
                         });
-                        const singleMessage = {
-                            id: message.id,
-                            createdAt: message.createdAt,
-                            recipientId: message.recipientId,
-                            senderId: message.senderId,
-                            text: message.text,
-                            mediaEntities: mediaEntities,
-                            urlEntities: urlEntities,
-                            twitterOwnerId: message.twitterOwnerId
-                        }
-                        this.setState({ 
-                            // isChangedConversationContext: true,
-                            directMessages: this.state.directMessages.concat(singleMessage)
-                        });
-                    });
-                    this.setState({
-                        isSingleMessageRetrieved: true
-                    })
+                    }
+                    this.setState({ isSingleMessageRetrieved: true })
                 }).catch(err => {
                     console.log(err);
                 });
@@ -151,18 +162,10 @@ class Conversation extends React.Component {
         });
     }
 
-    // setIsSingleMessageRetrieved() {
-    //     this.setState({ 
-    //         isSingleMessageRetrieved: false,
-    //         directMessages: this.props.directMessages
-    //     }, () => {
-    //         this.props.setIsChangedConversationContext(false);
-    //     }); 
-    // }
-
     render() {
         let isLoadingConversation = this.state.isLoadingConversation;
         let isSingleMessageRetrieved = this.state.isSingleMessageRetrieved;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
         return (
             <>
                 { isLoadingConversation &&
@@ -192,15 +195,16 @@ class Conversation extends React.Component {
                             {
                                 isSingleMessageRetrieved && this.renderSingleMessages()
                             }
-                            {/* {
-                                !isSingleMessageRetrieved && this.renderSingleMessages()
-                            } */}
+                            {
+                                isRateLimitExceeded &&
+                                <span style={{ color: "red", fontSize: "0.65vw" }}>Twitter rate limit exceeded.</span>
+                            }
                         </div>
                         <div className="twitter-messages-direct-message-send-input-container">
                             <i class="fas fa-image"></i>
-                            <textarea
-                                placeholder="Start a new message"
-                            ></textarea>
+                                <textarea
+                                    placeholder="Start a new message"
+                                ></textarea>
                             <i class="fas fa-check"></i>
                         </div>
                     </div>

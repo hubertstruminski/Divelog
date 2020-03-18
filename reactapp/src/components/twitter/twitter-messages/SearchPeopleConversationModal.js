@@ -18,8 +18,11 @@ class SearchPeopleConversationModal extends React.Component {
             isLoading: false,
             searchInput: '',
             isContactsRetrieved: false,
-            selectedContacts: []
+            selectedContacts: [],
+            isRateLimitExceeded: false
         }
+        this.isError = false;
+
         this.Auth = new AuthService();
         this.renderContacts = this.renderContacts.bind(this);
         this.onClose = this.onClose.bind(this);
@@ -64,23 +67,30 @@ class SearchPeopleConversationModal extends React.Component {
                 'content-type': 'application/json'
             }
         }).then(response => {
-            this.setState({ contacts: [] });
-            console.log(response.data);
-            response.data.map((contact, index) => {
-                const element = {
-                    isContactPossible: contact.dmaccessible,
-                    name: contact.name,
-                    screenName: contact.screenName,
-                    pictureUrl: contact.pictureUrl
-                }
-                this.setState({ contacts: this.state.contacts.concat(element) });
-            });
-            this.setState({ 
-                isContactsRetrieved: true,
-                isLoading: false
-            }, () => {
-                $(".twitter-messages-search-people-modal-list-contacts").css({ display: "block" });
-            });
+            if(response.status === 429) {
+                this.setState({ isRateLimitExceeded: true });
+                this.isError = true;
+                return;
+            }
+            if(!this.isError) {
+                this.setState({ contacts: [] });
+                console.log(response.data);
+                response.data.map((contact, index) => {
+                    const element = {
+                        isContactPossible: contact.dmaccessible,
+                        name: contact.name,
+                        screenName: contact.screenName,
+                        pictureUrl: contact.pictureUrl
+                    }
+                    this.setState({ contacts: this.state.contacts.concat(element) });
+                });
+                this.setState({ 
+                    isContactsRetrieved: true,
+                    isLoading: false
+                }, () => {
+                    $(".twitter-messages-search-people-modal-list-contacts").css({ display: "block" });
+                });
+            }
         }).catch(err => {
             console.log(err);
         });
@@ -120,11 +130,6 @@ class SearchPeopleConversationModal extends React.Component {
     }
 
     addSelectedContactToList(object) {
-        // let selectedContactsWrapper = $(".twitter-messages-selected-contacts").width();
-        // let contactsListWrapper = $(".twitter-messages-search-people-modal-list-contacts").width();
-        // let resultWidth = contactsListWrapper - selectedContactsWrapper;
-        // $(".twitter-messages-search-people-modal-list-contacts").width(resultWidth);
-
         this.setState({ selectedContacts: this.state.selectedContacts.concat(object) });
     }
 
@@ -150,6 +155,7 @@ class SearchPeopleConversationModal extends React.Component {
     render() {
         let isLoading = this.state.isLoading;
         let isContactsRetrieved = this.state.isContactsRetrieved;
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
         return (
             <div className="twitter-messages-search-people-conversation-modal">
                 <div className="twitter-messages-search-people-conversation-header">
@@ -195,6 +201,10 @@ class SearchPeopleConversationModal extends React.Component {
                         <ul className="list-group">
                             { this.renderContacts() }
                         </ul>
+                    }
+                    {
+                        isRateLimitExceeded &&
+                        <span style={{ color: "red", fontSize: "0.65vw" }}>Twitter rate limit exceeded.</span>
                     }
                 </div>
             </div>

@@ -24,9 +24,10 @@ public class TwitterCacheConfig {
                 twitterClosestTrendsCacheManager(),
                 twitterPlaceTrendsCacheManager(),
                 twitterSearchTweetsCacheManager(),
-                twitterCreateOEmbedTweetCacheManager());
+                twitterCreateOEmbedTweetCacheManager(),
+                twitterDirectMessagesCacheManager(),
+                twitterShowFriendshipCacheManager());
     }
-
 
     @Bean
     public CacheManager twitterHomeTimelineCacheManager() {
@@ -122,7 +123,6 @@ public class TwitterCacheConfig {
                 .expireAfterAccess(12, TimeUnit.SECONDS); // 75requests / 15min
     }
 
-
     @Bean
     public CacheManager twitterSearchTweetsCacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager("search/tweets");
@@ -136,7 +136,6 @@ public class TwitterCacheConfig {
                 .expireAfterAccess(5, TimeUnit.SECONDS); // 180requests / 15min
     }
 
-
     @Bean
     public CacheManager twitterCreateOEmbedTweetCacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager("tweet/oembed");
@@ -147,6 +146,32 @@ public class TwitterCacheConfig {
         return Caffeine.newBuilder()
                 .initialCapacity(150)
                 .maximumSize(750)
+                .expireAfterAccess(5, TimeUnit.SECONDS); // 180requests / 15min
+    }
+
+    @Bean
+    public CacheManager twitterDirectMessagesCacheManager() {
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager("twitter/direct/messages");
+        cacheManager.setCaffeine(retrieveDirectMessages());
+        return cacheManager;
+    }
+    Caffeine< Object, Object > retrieveDirectMessages() {
+        return Caffeine.newBuilder()
+                .initialCapacity(200)
+                .maximumSize(2000)
+                .expireAfterAccess(1, TimeUnit.MINUTES); // 15requests / 15min
+    }
+
+    @Bean
+    public CacheManager twitterShowFriendshipCacheManager() {
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager("friendships/show");
+        cacheManager.setCaffeine(showFriendship());
+        return cacheManager;
+    }
+    Caffeine< Object, Object > showFriendship() {
+        return Caffeine.newBuilder()
+                .initialCapacity(50)
+                .maximumSize(500)
                 .expireAfterAccess(5, TimeUnit.SECONDS); // 180requests / 15min
     }
 }

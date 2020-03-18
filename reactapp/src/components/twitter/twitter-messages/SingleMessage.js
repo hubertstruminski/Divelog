@@ -13,8 +13,10 @@ class SingleMessage extends React.Component {
             isRecipient: false,
             isPhotoMessage: false,
             mediaUrls: [],
-            mediaUrl: ''
+            mediaUrl: '',
+            isRateLimitExceeded: false
         }
+        this.isError = false;
         this.Auth = new AuthService();
         this.convertTime = new ConvertDMTime();
     }
@@ -32,19 +34,18 @@ class SingleMessage extends React.Component {
                         'Content-Type': 'application/json'
                     }
                 }).then(response => {
-                    console.log(response);
-                    this.setState({
-                        mediaUrl: response.data,
-                        isPhotoMessage: true
-                    });
+                    if(response.status === 429) {
+                        this.setState({ isRateLimitExceeded: true });
+                        this.isError = true;
+                        return;
+                    }
+                    if(!this.isError) {
+                        this.setState({
+                            mediaUrl: response.data,
+                            isPhotoMessage: true
+                        });
+                    }
                 });
-                // }).then(blob => {
-                    // this.setState({
-                    //     mediaUrl: URL.createObjectURL(blob),
-                    //     isPhotoMessage: true
-                    // });
-                // })
-
             }
         })
 
@@ -73,11 +74,16 @@ class SingleMessage extends React.Component {
         let isPhotoMessage = this.state.isPhotoMessage;
         let isRecipient = this.state.isRecipient;
         let createdAt = this.convertTime.formatDate(this.props.createdAt, true);
+        let isRateLimitExceeded = this.state.isRateLimitExceeded;
         return (
             <>
                 {
                     isPhotoMessage && <img className="twitter-dm-photo-message" src={this.state.mediaUrl} />
                     && <img src={`data:image/jpeg;base64,${this.state.mediaUrl}`} />
+                }
+                {
+                    !isPhotoMessage && isRateLimitExceeded &&
+                    <span style={{ color: "red", fontSize: "0.65vw"}}>Twitter rate limit exceeded for photo download.</span>
                 }
                 <div className="twitter-single-message-wrapper">
                     { isRecipient &&

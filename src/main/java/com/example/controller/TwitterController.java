@@ -389,42 +389,46 @@ public class TwitterController {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         String twitterUserID = String.valueOf(claimsFromJwt.get("twitterUserID"));
 
-        DirectMessageList directMessages = getDirectMessagesByRestAPI(twitter);
-
         Set<TwitterInboxDto> messagesSet = new HashSet<>();
         List<Long> recipientIds = new ArrayList<>();
         List<Long> senderIds = new ArrayList<>();
 
+        DirectMessageList directMessages = null;
+        try {
+            directMessages = getDirectMessagesByRestAPI(twitter);
 
+            for(DirectMessage message: directMessages) {
+                if(!checkIfConversationExist(senderIds, recipientIds, message)) {
+                    TwitterInboxDto twitterInboxDto = new TwitterInboxDto();
 
-        for(DirectMessage message: directMessages) {
-            if(!checkIfConversationExist(senderIds, recipientIds, message)) {
-                TwitterInboxDto twitterInboxDto = new TwitterInboxDto();
+                    twitterInboxDto.setCreatedAt(message.getCreatedAt());
+                    twitterInboxDto.setText(message.getText());
 
-                twitterInboxDto.setCreatedAt(message.getCreatedAt());
-                twitterInboxDto.setText(message.getText());
+                    String userId = null;
+                    if(!twitterUserID.equals(String.valueOf(message.getRecipientId()))) {
+                        userId = String.valueOf(message.getRecipientId());
+                    }
 
-                String userId = null;
-                if(!twitterUserID.equals(String.valueOf(message.getRecipientId()))) {
-                    userId = String.valueOf(message.getRecipientId());
+                    if(!twitterUserID.equals(String.valueOf(message.getSenderId()))) {
+                        userId = String.valueOf(message.getSenderId());
+                    }
+
+                    twitterInboxDto.setUserId(userId);
+
+                    User user = twitterCacheService.showUserLong(twitter, Long.parseLong(userId));
+                    twitterInboxDto.setName(user.getName());
+                    twitterInboxDto.setScreenName(user.getScreenName());
+                    twitterInboxDto.setPictureUrl(user.get400x400ProfileImageURL());
+
+                    messagesSet.add(twitterInboxDto);
+                    recipientIds.add(message.getRecipientId());
+                    senderIds.add(message.getSenderId());
                 }
-
-                if(!twitterUserID.equals(String.valueOf(message.getSenderId()))) {
-                    userId = String.valueOf(message.getSenderId());
-                }
-
-                twitterInboxDto.setUserId(userId);
-
-                User user = twitter.showUser(Long.parseLong(userId));
-                twitterInboxDto.setName(user.getName());
-                twitterInboxDto.setScreenName(user.getScreenName());
-                twitterInboxDto.setPictureUrl(user.get400x400ProfileImageURL());
-
-                messagesSet.add(twitterInboxDto);
-                recipientIds.add(message.getRecipientId());
-                senderIds.add(message.getSenderId());
             }
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
         }
+
         return new ResponseEntity<Set<TwitterInboxDto>>(messagesSet, HttpStatus.OK);
     }
 
@@ -440,7 +444,13 @@ public class TwitterController {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         long twitterUserID = (long) claimsFromJwt.get("twitterUserID");
 
-        DirectMessageList directMessages = getDirectMessagesByRestAPI(twitter);
+        DirectMessageList directMessages = null;
+        try {
+            directMessages = getDirectMessagesByRestAPI(twitter);
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
+        }
+
         List<SingleDirectMessage> privateMessages = new ArrayList<>();
 
         userId = userId.replace("\"", "");
@@ -478,29 +488,34 @@ public class TwitterController {
         Claims claimsFromJwt = jwtTokenProvider.getClaimsFromJwt(jwtToken);
         long twitterUserID = (long) claimsFromJwt.get("twitterUserID");
 
-        ResponseList<User> users = twitter.searchUsers(searchInput, 1);
         List<ContactDirectMessage> contacts = new ArrayList<>();
 
-        int count = 0;
-        for(User user: users) {
-            if(count == 5) {
-                break;
+        try {
+            ResponseList<User> users = twitterCacheService.searchUsers(twitter, searchInput, 1);
+
+            int count = 0;
+            for(User user: users) {
+                if(count == 5) {
+                    break;
+                }
+                Relationship relationship = twitterCacheService.showFriendship(twitter, twitterUserID, user.getId());
+
+                ContactDirectMessage contact = new ContactDirectMessage();
+
+                contact.setName(user.getName());
+                contact.setScreenName(user.getScreenName());
+                contact.setPictureUrl(user.get400x400ProfileImageURL());
+
+                if(relationship.canSourceDm()) {
+                    contact.setDMAccessible(true);
+                } else {
+                    contact.setDMAccessible(false);
+                }
+                contacts.add(contact);
+                count++;
             }
-            Relationship relationship = twitter.showFriendship(twitterUserID, user.getId());
-
-            ContactDirectMessage contact = new ContactDirectMessage();
-
-            contact.setName(user.getName());
-            contact.setScreenName(user.getScreenName());
-            contact.setPictureUrl(user.get400x400ProfileImageURL());
-
-            if(relationship.canSourceDm()) {
-                contact.setDMAccessible(true);
-            } else {
-                contact.setDMAccessible(false);
-            }
-            contacts.add(contact);
-            count++;
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
         }
         return new ResponseEntity<List<ContactDirectMessage>>(contacts, HttpStatus.OK);
     }
@@ -509,7 +524,12 @@ public class TwitterController {
     public ResponseEntity<?> getPhotoFromSingleDirectMessage(@RequestBody String photoUrl, @PathVariable String jwtToken) throws IOException, InvalidKeyException, NoSuchAlgorithmException, SignatureException, ParseException, TwitterException {
         Twitter twitter = setTwitterConfiguration(jwtToken);
 
-        InputStream dmImageAsStream = twitter.getDMImageAsStream(photoUrl);
+        InputStream dmImageAsStream = null;
+        try {
+            dmImageAsStream = twitter.getDMImageAsStream(photoUrl);
+        } catch(TwitterException exception) {
+            return handleRateLimitExceedException(exception.getStatusCode());
+        }
 
         byte[] bytes = IOUtils.toByteArray(dmImageAsStream);
         byte[] encode = Base64.getEncoder().encode(bytes);
@@ -601,9 +621,6 @@ public class TwitterController {
 
         OEmbed oEmbed = twitterCacheService.getOEmbed(twitter, oEmbedRequest);
 
-        System.out.println("getOEmbed -> limit: " + oEmbed.getRateLimitStatus().getLimit());
-        System.out.println("getOEmbed -> remaining: " + oEmbed.getRateLimitStatus().getRemaining());
-
         return builder.append(oEmbed.getHtml());
     }
 
@@ -618,10 +635,11 @@ public class TwitterController {
     }
 
     private DirectMessageList getDirectMessagesByRestAPI(Twitter twitter) throws TwitterException {
-        DirectMessageList directMessages = twitter.getDirectMessages(50);
+        DirectMessageList directMessages = twitterCacheService.getDirectMessages(twitter);
 
         while(directMessages.getNextCursor() != null) {
-            DirectMessageList directMessagesFromNextCursor = twitter.getDirectMessages(50, directMessages.getNextCursor());
+            DirectMessageList directMessagesFromNextCursor = twitterCacheService.getDirectMessagesWithCursor(twitter,
+                    directMessages.getNextCursor());
 
             directMessages.addAll(directMessagesFromNextCursor);
         }

@@ -9,7 +9,8 @@ import twitter4j.*;
 @Service
 @CacheConfig(cacheNames = {"twitter/home/timeline",
         "twitter/users/search", "twitter/friends/list", "...showUser/string", "...showUser/long",
-        "trends/closest", "trends/place", "search/tweets", "tweet/oembed"})
+        "trends/closest", "trends/place", "search/tweets", "tweet/oembed", "twitter/direct/messages",
+        "friendships/show"})
 public class TwitterCacheService {
 
     @Cacheable("twitter/home/timeline")
@@ -61,5 +62,20 @@ public class TwitterCacheService {
     @Cacheable("tweet/oembed")
     public OEmbed getOEmbed(Twitter twitter, OEmbedRequest oEmbedRequest) throws TwitterException {
         return twitter.getOEmbed(oEmbedRequest);
+    }
+
+    @Cacheable("twitter/direct/messages")
+    public DirectMessageList getDirectMessages(Twitter twitter) throws TwitterException {
+        return twitter.getDirectMessages(50);
+    }
+
+    @Cacheable("twitter/direct/messages")
+    public DirectMessageList getDirectMessagesWithCursor(Twitter twitter, String cursor) throws TwitterException {
+        return twitter.getDirectMessages(50, cursor);
+    }
+
+    @Cacheable("friendships/show")
+    public Relationship showFriendship(Twitter twitter, long userIdFrom, long userIdTo) throws TwitterException {
+        return twitter.showFriendship(userIdFrom, userIdTo);
     }
 }
