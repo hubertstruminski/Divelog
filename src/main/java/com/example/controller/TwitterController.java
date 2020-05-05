@@ -85,7 +85,7 @@ public class TwitterController {
         }
     }
 
-    @GetMapping(value = "/callback", produces = "applicationP/json")
+    @GetMapping(value = "/callback", produces = "application/json")
     public void loginWithTwitterCallback(HttpServletRequest request, HttpServletResponse response)
             throws TwitterException, ServletException, IOException {
         Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");

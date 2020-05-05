@@ -39,6 +39,8 @@
     "react-twitter-embed": "^2.0.8",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "sockjs-client": "^1.4.0",
+    "stompjs": "^2.3.3",
     "sweetalert": "^2.1.2",
     "tether": "^1.4.7",
     "twit": "^2.2.11",

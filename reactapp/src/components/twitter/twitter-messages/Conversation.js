@@ -5,6 +5,9 @@ import AuthService from '../../../util/AuthService';
 import SingleMessage from './SingleMessage';
 import { BACKEND_API_URL } from '../../../actions/types';
 import $ from 'jquery';
+import SockJS from "sockjs-client";
+import Stomp from 'stompjs';
+import { Socket } from 'dgram';
 
 class Conversation extends React.Component {
     constructor(props) {
@@ -17,6 +20,9 @@ class Conversation extends React.Component {
             isFirstTimeRendered: true,
             isRateLimitExceeded: false
         }
+        // this.socket = null;
+        // this.stompClient = null;
+
         this.isError = false;
         this.Auth = new AuthService();
         this.renderSingleMessages = this.renderSingleMessages.bind(this);
@@ -74,6 +80,30 @@ class Conversation extends React.Component {
                     isLoadingConversation: false,
                     isSingleMessageRetrieved: true,
                     isFirstTimeRendered: false
+                }, () => {
+                    var socket = new SockJS("http://localhost:5000/greeting");
+                    var stompClient = Stomp.over(socket);
+                    // , {transports: ['websocket']}
+                    stompClient.connect({}, () => {
+                        stompClient.subscribe('/topic/public', (payload) => {
+                            var message = JSON.parse(payload.body);
+                            console.log(message);
+                        });
+                        // Tell your username to the server
+                        stompClient.send("/app/chat.addUser",
+                            {},
+                            JSON.stringify({sender: "Hubert Strumiński", type: 'JOIN'})
+                        )
+                    }, (error) => {
+                        console.log("onWebScketError()");
+                        console.log(error)
+                    });
+                        // this.stompClient.subscribe('/user/queue/greeting', function (greeting) {
+                        //   console.log(greeting);
+                        // });
+                        // this.stompClient.subscribe('/user/queue/errors', function (greeting) {
+                        //     console.log(greeting);
+                        //   });
                 });
             }).catch(err => {
                 console.log(err);
@@ -81,6 +111,24 @@ class Conversation extends React.Component {
         }
         
     }
+
+    onWebSocketConnected() {
+        // Subscribe to the Public Topic
+        
+        
+    }
+
+    onWebSocketError(error) {
+        ;
+    }
+
+    onMessageReceived(payload) {
+        
+    }
+
+    // componentWillUnmount() {
+    //     this.stompClient.close();
+    // }
 
     retrieveSingleMessages() {
         if(!this.state.isFirstTimeRendered) {

@@ -79,7 +79,7 @@ class SingleMessage extends React.Component {
             <>
                 {
                     isPhotoMessage && <img className="twitter-dm-photo-message" src={this.state.mediaUrl} />
-                    && <img src={`data:image/jpeg;base64,${this.state.mediaUrl}`} />
+                    && <img className="twitter-dm-photo-message" src={`data:image/jpeg;base64,${this.state.mediaUrl}`} />
                 }
                 {
                     !isPhotoMessage && isRateLimitExceeded &&
