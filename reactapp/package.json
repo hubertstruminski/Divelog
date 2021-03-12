@@ -18,7 +18,7 @@
     "j": "^1.0.0",
     "jquery": "^3.4.1",
     "jsonwebtoken": "^8.5.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jwt-decode": "^2.2.0",
     "mdbootstrap": "^4.8.7",
     "moment": "^2.24.0",
